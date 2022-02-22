@@ -257,42 +257,116 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+Aiken Dueet is a Year 2 NUS Computer Science student. He is currently taking his modules online due to COVID-19. He:
+
+* has a need to manage a large number of online meeting links and details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage online meeting links much quicker than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                      | I want to …​                   | So that I can…​                                         |
+|----------|-----------------------------|-------------------------------|--------------------------------------------------------|
+| `* * *`  | new user                    | see usage instructions        | refer to instructions if I forget how to use the App   |
+| `* * *`  | user                        | view all my entries           | view all my entries in one place                       |
+| `* * *`  | user                        | add a new entry               | add my online lecture details                          |
+| `* * *`  | user                        | edit an existing entry        | add my online lecture details                          |
+| `* * *`  | user                        | delete an entry               | remove old entries that I don’t need anymore           |
+| `* *`    | user with outdated meetings | clear all entries             | remove old entries from the previous semester          |
+| `* *`    | user                        | open a meeting link           | open my meeting quickly                                |
+| `* *`    | user with multiple meetings | search for entries            | find an entry matching a specific criteria             |
+| `*`      | user with multiple meetings | sort entries alphabetically   | easily sieve through my entries in a familiar order    |
+| `* *`    | user with multiple meetings | sort entries chronologically  | know what is my next upcoming meeting                  |
 
-*{More to be added}*
+---
 
-### Use cases
+## Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **System** is `LinkyTime` and the **Actor** is the `user`, unless specified otherwise.
+All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
-**Use case: Delete a person**
+### UC-001: List all entries
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list all entries.
+2. LinkyTime shows a list of all entries.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+   Use case ends.
+
+### UC-002: Add an entry
+
+**MSS**
+
+1. User requests to add a new entry to the list.
+2. LinkyTime adds a new entry with given parameters in the list.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. The user does not include the required parameters with the command.  
+   * 1a1. LinkyTime shows an error message stating which parameters are required.
+
+   Use case ends.
+
+* 1b. The user does not follow the format of the command.
+   * 1b1. LinkyTime shows an error message stating the correct format of the command
+
+   Use case ends.
+
+### UC-003: Edit an entry
+
+**MSS**
+
+1. User requests to list entries.
+2. LinkyTime shows the list of entries.
+3. User requests to edit a specific entry based on the index from the list displayed in step 2.
+4. LinkyTime edits the entry and saves the changes.
+
+Use case ends.
+
+**Extentions**
+
+* 2a. The list is empty.
+
+   Use case ends.
+   
+* 3a. The given index is invalid.
+   * 3a1. LinkyTime shows an error message stating that the given index is invalid.
+
+      Use case resumes at step 2.
+
+* 3b. No arguments were given.
+   * 3b1. LinkyTime shows an error message stating that at least one field must be edited.
+
+      Use case resumes at step 2.
+
+* 3c. The user does not follow the format of the command.
+   * 3c1. LinkyTime shows an error message stating the correct format of the command.
+
+      Use case resumes at step 2.
+
+### UC-004: Delete an entry
+
+**MSS**
+
+1. User requests to list entries.
+2. LinkyTime shows a list of entries.
+3. User requests to delete a specific entry in the list based on the index from the list displayed in step 2.
+4. LinkyTime deletes the entry and saves the changes.
 
     Use case ends.
 
@@ -303,27 +377,129 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+   * 3a1. LinkyTime shows an error message stating that the given index is invalid.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+### UC-005: Clear all entries
+
+**MSS**
+
+1. User chooses to clear all entries in the list.
+2. LinkyTime deletes all entries and saves the changes.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+   Use case ends.
+
+### UC-006: Open a meeting
+
+**MSS**
+
+1. User requests to open a meeting link.
+2. LinkyTime opens the default browser with the given link.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The application does not have permissions to open the browser.
+   * 2a1. The application displays an error message.
+
+   Use case ends.
+
+### UC-007: Find entries
+
+**MSS**
+
+1. User searches for an entry by a search term.
+2. LinkyTime shows a list of entries whose name, tags, or date contains the search term.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. There are no entries matching the search term.
+   * 2a1. An empty list is displayed.
+
+   Use case ends.
+
+### UC-008: Sort entries alphabetically
+
+**MSS**
+
+1. User chooses to sort entries by A-Z.
+2. LinkyTime shows a list of entries that is sorted from A-Z.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+   Use case ends.
+   
+* 2b. The entries are already sorted from A-Z.
+
+   Use case ends.
+
+### UC-009: Sort entries chronologically
+
+**MSS**
+
+1. User chooses to sort entries by the date.
+2. LinkyTime shows a list of entries that is sorted in descending order.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+   Use case ends.
+
+* 2b. The entries are already sorted by the date.
+
+   Use case ends.
+
+### UC-010: Access help
+
+**MSS**
+
+1. User requests to see the list of commands available.
+2. LinkyTime opens a dialog box with a link to the User Guide.
+
+Use case ends.
+
+---
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 entries without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user should be familiar with the basic commands within half an hour of usage.
+5. Should be portable to allow transferring of data between different computers.
+6. Should not require an installer.
+7. Should not depend on external/remote servers.
+8. Should not depend on a Database Management System (DBMS).
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Entry**: A meeting containing the details such as the meeting link, name, date, and other fields
+* **NUS**: The National University of Singapore
+* **List**: List of all entries that are currently saved in the program
+* **Command**: A keyword that defines an action for the program to perform when entered into the CLI.
+* **Search Term**: A substring that is contained in the name/tags of a meeting.
+* **Parameters**: The expected inputs, separated by a space or a delimiter that is specified by the command.
+* **Arguments**: Values that are provided by the user to a command as specified by the command's parameters.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
