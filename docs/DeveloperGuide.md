@@ -298,13 +298,13 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 1. User requests to list all entries.
 2. LinkyTime shows a list of all entries.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-   Use case ends.
+    Use case ends.
 
 ### UC-002: Add an entry
 
@@ -313,19 +313,19 @@ Use case ends.
 1. User requests to add a new entry to the list.
 2. LinkyTime adds a new entry with given parameters in the list.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 1a. The user does not include the required parameters with the command.  
-   * 1a1. LinkyTime shows an error message stating which parameters are required.
-
-   Use case ends.
+  * 1a1. LinkyTime shows an error message stating which parameters are required.
+   
+    Use case ends.
 
 * 1b. The user does not follow the format of the command.
-   * 1b1. LinkyTime shows an error message stating the correct format of the command
-
-   Use case ends.
+  * 1b1. LinkyTime shows an error message stating the correct format of the command.
+   
+    Use case ends.
 
 ### UC-003: Edit an entry
 
@@ -336,28 +336,28 @@ Use case ends.
 3. User requests to edit a specific entry based on the index from the list displayed in step 2.
 4. LinkyTime edits the entry and saves the changes.
 
-Use case ends.
+    Use case ends.
 
 **Extentions**
 
 * 2a. The list is empty.
 
-   Use case ends.
+    Use case ends.
    
 * 3a. The given index is invalid.
-   * 3a1. LinkyTime shows an error message stating that the given index is invalid.
+  * 3a1. LinkyTime shows an error message stating that the given index is invalid.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 * 3b. No arguments were given.
-   * 3b1. LinkyTime shows an error message stating that at least one field must be edited.
-
-      Use case resumes at step 2.
+  * 3b1. LinkyTime shows an error message stating that at least one field must be edited.
+   
+    Use case resumes at step 2.
 
 * 3c. The user does not follow the format of the command.
-   * 3c1. LinkyTime shows an error message stating the correct format of the command.
+  * 3c1. LinkyTime shows an error message stating the correct format of the command.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 ### UC-004: Delete an entry
 
@@ -374,12 +374,12 @@ Use case ends.
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
 * 3a. The given index is invalid.
-   * 3a1. LinkyTime shows an error message stating that the given index is invalid.
+  * 3a1. LinkyTime shows an error message stating that the given index is invalid.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 ### UC-005: Clear all entries
 
@@ -388,13 +388,13 @@ Use case ends.
 1. User chooses to clear all entries in the list.
 2. LinkyTime deletes all entries and saves the changes.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-   Use case ends.
+    Use case ends.
 
 ### UC-006: Open a meeting
 
@@ -403,14 +403,14 @@ Use case ends.
 1. User requests to open a meeting link.
 2. LinkyTime opens the default browser with the given link.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 2a. The application does not have permissions to open the browser.
-   * 2a1. The application displays an error message.
-
-   Use case ends.
+* 2a. The application does not have permissions to open the browser. 
+  * 2a1. The application displays an error message.
+  
+    Use case ends.
 
 ### UC-007: Find entries
 
@@ -419,14 +419,14 @@ Use case ends.
 1. User searches for an entry by a search term.
 2. LinkyTime shows a list of entries whose name, tags, or date contains the search term.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. There are no entries matching the search term.
-   * 2a1. An empty list is displayed.
+  * 2a1. An empty list is displayed.
 
-   Use case ends.
+    Use case ends.
 
 ### UC-008: Sort entries alphabetically
 
@@ -435,17 +435,17 @@ Use case ends.
 1. User chooses to sort entries by A-Z.
 2. LinkyTime shows a list of entries that is sorted from A-Z.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-   Use case ends.
+    Use case ends.
    
 * 2b. The entries are already sorted from A-Z.
 
-   Use case ends.
+    Use case ends.
 
 ### UC-009: Sort entries chronologically
 
@@ -454,17 +454,17 @@ Use case ends.
 1. User chooses to sort entries by the date.
 2. LinkyTime shows a list of entries that is sorted in descending order.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-   Use case ends.
+    Use case ends.
 
 * 2b. The entries are already sorted by the date.
 
-   Use case ends.
+    Use case ends.
 
 ### UC-010: Access help
 
@@ -473,7 +473,7 @@ Use case ends.
 1. User requests to see the list of commands available.
 2. LinkyTime opens a dialog box with a link to the User Guide.
 
-Use case ends.
+    Use case ends.
 
 ---
 
