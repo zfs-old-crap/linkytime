@@ -298,7 +298,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 1. User requests to list all entries.
 2. LinkyTime shows a list of all entries.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -313,19 +313,19 @@ Use case ends.
 1. User requests to add a new entry to the list.
 2. LinkyTime adds a new entry with given parameters in the list.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 1a. The user does not include the required parameters with the command.  
    * 1a1. LinkyTime shows an error message stating which parameters are required.
 
-   Use case ends.
+     Use case ends.
 
 * 1b. The user does not follow the format of the command.
-   * 1b1. LinkyTime shows an error message stating the correct format of the command
+   * 1b1. LinkyTime shows an error message stating the correct format of the command.
 
-   Use case ends.
+       Use case ends.
 
 ### UC-003: Edit an entry
 
@@ -336,7 +336,7 @@ Use case ends.
 3. User requests to edit a specific entry based on the index from the list displayed in step 2.
 4. LinkyTime edits the entry and saves the changes.
 
-Use case ends.
+    Use case ends.
 
 **Extentions**
 
@@ -410,7 +410,7 @@ Use case ends.
 * 2a. The application does not have permissions to open the browser.
    * 2a1. The application displays an error message.
 
-   Use case ends.
+     Use case ends.
 
 ### UC-007: Find entries
 
@@ -419,14 +419,14 @@ Use case ends.
 1. User searches for an entry by a search term.
 2. LinkyTime shows a list of entries whose name, tags, or date contains the search term.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. There are no entries matching the search term.
    * 2a1. An empty list is displayed.
 
-   Use case ends.
+     Use case ends.
 
 ### UC-008: Sort entries alphabetically
 
@@ -435,7 +435,7 @@ Use case ends.
 1. User chooses to sort entries by A-Z.
 2. LinkyTime shows a list of entries that is sorted from A-Z.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -454,7 +454,7 @@ Use case ends.
 1. User chooses to sort entries by the date.
 2. LinkyTime shows a list of entries that is sorted in descending order.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -473,7 +473,7 @@ Use case ends.
 1. User requests to see the list of commands available.
 2. LinkyTime opens a dialog box with a link to the User Guide.
 
-Use case ends.
+    Use case ends.
 
 ---
 
