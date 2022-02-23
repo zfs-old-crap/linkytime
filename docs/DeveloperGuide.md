@@ -304,7 +304,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 * 2a. The list is empty.
 
-   Use case ends.
+    Use case ends.
 
 ### UC-002: Add an entry
 
@@ -318,14 +318,14 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 **Extensions**
 
 * 1a. The user does not include the required parameters with the command.  
-   * 1a1. LinkyTime shows an error message stating which parameters are required.
-
-     Use case ends.
+  * 1a1. LinkyTime shows an error message stating which parameters are required.
+   
+        Use case ends.
 
 * 1b. The user does not follow the format of the command.
-   * 1b1. LinkyTime shows an error message stating the correct format of the command.
-
-       Use case ends.
+  * 1b1. LinkyTime shows an error message stating the correct format of the command.
+   
+        Use case ends.
 
 ### UC-003: Edit an entry
 
@@ -342,22 +342,22 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 * 2a. The list is empty.
 
-   Use case ends.
+    Use case ends.
    
 * 3a. The given index is invalid.
-   * 3a1. LinkyTime shows an error message stating that the given index is invalid.
+  * 3a1. LinkyTime shows an error message stating that the given index is invalid.
 
-      Use case resumes at step 2.
+        Use case resumes at step 2.
 
 * 3b. No arguments were given.
-   * 3b1. LinkyTime shows an error message stating that at least one field must be edited.
-
-      Use case resumes at step 2.
+  * 3b1. LinkyTime shows an error message stating that at least one field must be edited.
+   
+        Use case resumes at step 2.
 
 * 3c. The user does not follow the format of the command.
-   * 3c1. LinkyTime shows an error message stating the correct format of the command.
+  * 3c1. LinkyTime shows an error message stating the correct format of the command.
 
-      Use case resumes at step 2.
+        Use case resumes at step 2.
 
 ### UC-004: Delete an entry
 
@@ -374,12 +374,12 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
 * 3a. The given index is invalid.
-   * 3a1. LinkyTime shows an error message stating that the given index is invalid.
+  * 3a1. LinkyTime shows an error message stating that the given index is invalid.
 
-      Use case resumes at step 2.
+        Use case resumes at step 2.
 
 ### UC-005: Clear all entries
 
@@ -388,13 +388,13 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 1. User chooses to clear all entries in the list.
 2. LinkyTime deletes all entries and saves the changes.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-   Use case ends.
+    Use case ends.
 
 ### UC-006: Open a meeting
 
@@ -403,14 +403,14 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 1. User requests to open a meeting link.
 2. LinkyTime opens the default browser with the given link.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 2a. The application does not have permissions to open the browser.
-   * 2a1. The application displays an error message.
-
-     Use case ends.
+* 2a. The application does not have permissions to open the browser. 
+  * 2a1. The application displays an error message.
+  
+        Use case ends.
 
 ### UC-007: Find entries
 
@@ -424,9 +424,9 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 **Extensions**
 
 * 2a. There are no entries matching the search term.
-   * 2a1. An empty list is displayed.
+  * 2a1. An empty list is displayed.
 
-     Use case ends.
+        Use case ends.
 
 ### UC-008: Sort entries alphabetically
 
@@ -441,11 +441,11 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 * 2a. The list is empty.
 
-   Use case ends.
+    Use case ends.
    
 * 2b. The entries are already sorted from A-Z.
 
-   Use case ends.
+    Use case ends.
 
 ### UC-009: Sort entries chronologically
 
@@ -460,11 +460,11 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 * 2a. The list is empty.
 
-   Use case ends.
+    Use case ends.
 
 * 2b. The entries are already sorted by the date.
 
-   Use case ends.
+    Use case ends.
 
 ### UC-010: Access help
 
