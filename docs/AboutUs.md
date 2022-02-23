@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Zhou GuanZong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gnoznaug.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Gnoznaug)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Deliverables and deadlines
 
 ### Johnny Doe
 
