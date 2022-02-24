@@ -19,14 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Software Design
 
-### Jane Doe
+### James Doe
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe
@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code Quality, Deadlines and Deliverables
 
-### James Doe
+### Zhou GuanZong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gnoznaug.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Gnoznaug)]
+[[portfolio](team/gnoznaug.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and deadlines
