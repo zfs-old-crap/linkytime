@@ -38,6 +38,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
+### Tan Chen Xiang
+
+<img src="images/xmashedxtomatox.png" width="200px">
+
+[[github](https://github.com/xMashedxTomatox)]
+[[portfolio](team/xmashedxtomatox.md)]
+
+* Role: Developer
+* Responsibilities: Software Design, Deadlines and Deliverables
+
 ### Tan Ming Li, Natalie
 
 <img src="images/natalietanml.png" width="200px">
