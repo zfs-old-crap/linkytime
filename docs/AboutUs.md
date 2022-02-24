@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/chenxiangtan.png" width="200px">
 
 [[github](https://github.com/xMashedxTomatox)]
-[[portfolio](team/natalietanml.md)]
+[[portfolio](team/chenxiangtan.md)]
 
 * Role: Developer
 * Responsibilities: Software Design, Deadlines and Deliverables
