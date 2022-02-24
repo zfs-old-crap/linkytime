@@ -89,9 +89,14 @@ Examples:
 
 #### List all meetings : `list`
 
-Shows a list of all meetings in the application.
+Views all meeting entries in the meeting list and display their respective details.
 
 Format: `list`
+
+Details include:
+* Zoom link
+* Meeting name
+* Meeting date/time
 
 
 #### Delete a person : `delete`
