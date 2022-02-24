@@ -40,10 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Chen Xiang
 
-<img src="images/chenxiangtan.png" width="200px">
+<img src="images/xmashedxtomatox.png" width="200px">
 
 [[github](https://github.com/xMashedxTomatox)]
-[[portfolio](team/chenxiangtan.md)]
+[[portfolio](team/xmashedxtomatox.md)]
 
 * Role: Developer
 * Responsibilities: Software Design, Deadlines and Deliverables
