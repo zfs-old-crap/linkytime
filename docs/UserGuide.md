@@ -22,7 +22,7 @@ title: User Guide
 
 3. Copy the file to the folder you want to use as the _home folder_ for the app.
 
-4. Double-click the file to start the app. The GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. A GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br>
     
     ![Ui](images/Ui.png)
 
