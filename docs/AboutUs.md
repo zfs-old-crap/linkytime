@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/natalietanml.png" width="200px">
 
 [[github](http://github.com/NatalieTanML)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/natalietanml.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality, Deadlines and Deliverables
