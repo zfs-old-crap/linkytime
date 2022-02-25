@@ -175,5 +175,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Edit** | Coming soon
 **Find** | Coming soon
+**Sort** | Coming soon
+**Open** | Coming soon
 **Help** | `help`
 **Exit** | `exit`
