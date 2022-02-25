@@ -87,11 +87,16 @@ Examples:
 * `add n/CS2103T Lecture l/meet.google.com d/Friday 2pm t/lecture t/cs2103t`
 
 
-#### List all meetings : `list`
+#### List all meeting entries : `list`
 
-Shows a list of all meetings in the application.
+View all meeting entries in the entry list and display their respective details.
 
 Format: `list`
+
+Details include:
+* Zoom link
+* Meeting name
+* Meeting date/time
 
 
 #### Delete a person : `delete`
