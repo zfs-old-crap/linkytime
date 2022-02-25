@@ -87,9 +87,9 @@ Examples:
 * `add n/CS2103T Lecture l/meet.google.com d/Friday 2pm t/lecture t/cs2103t`
 
 
-#### List all meetings : `list`
+#### List all meeting entries : `list`
 
-Views all meeting entries in the meeting list and display their respective details.
+View all meeting entries in the entry list and display their respective details.
 
 Format: `list`
 
