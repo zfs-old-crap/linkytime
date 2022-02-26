@@ -141,12 +141,14 @@ Format: `exit`
 
 #### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Your meeting entries are saved to your computer automatically upon running any command that changes the data. There is no need to save manually.
 
 
 #### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+The meeting entries are saved in a JSON file at `[JAR file location]/data/meetings.json`. Advanced users are welcome to update their entries directly by editing that file.  
+
+If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
