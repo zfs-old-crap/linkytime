@@ -87,11 +87,16 @@ Examples:
 * `add n/CS2103T Lecture l/meet.google.com d/Friday 2pm t/lecture t/cs2103t`
 
 
-#### List all meetings : `list`
+#### List all meeting entries : `list`
 
-Shows a list of all meeting entries in the application.
+View all meeting entries in the entry list and display their respective details.
 
 Format: `list`
+
+Details include:
+* Zoom link
+* Meeting name
+* Meeting date/time
 
 
 #### Delete a meeting entry : `delete`
@@ -163,10 +168,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add** | `add n/MEETING_NAME l/LINK d/DATETIME [t/TAG]…​` <br> e.g., `add n/CS2103T Lecture l/meet.google.com d/Friday 2pm t/lecture t/cs2103t`
 **List** | `list`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear** | `clear`
+**Edit** | Coming soon
+**Find** | Coming soon
+**Sort** | Coming soon
+**Open** | Coming soon
 **Help** | `help`
+**Exit** | `exit`

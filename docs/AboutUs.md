@@ -19,24 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Software Design
 
-### James Doe
+### Justine Koh Yong Tai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/justinekoh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/justinekoh)]
+[[portfolio](team/justinekoh.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Software Design, Deadlines and Deliverables
 
 ### Tan Chen Xiang
 
