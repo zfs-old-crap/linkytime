@@ -148,10 +148,8 @@ Your meeting entries are saved to your computer automatically upon running any c
 
 The meeting entries are saved in a JSON file at `[JAR file location]/data/meetings.json`. Advanced users are welcome to update their entries directly by editing that file.  
 
-If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
-
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
 </div>
 
 #### Archiving data files `[coming in v2.0]`
