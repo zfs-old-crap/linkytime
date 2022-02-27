@@ -140,15 +140,15 @@ Format: `exit`
 
 #### Saving the data
 
-LinkyTime data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Your meeting entries are saved to your computer automatically upon running any command that changes the data. There is no need to save manually.
 
 
 #### Editing the data file
 
-LinkyTime data are saved as a JSON file `[JAR file location]/data/linkytime.json`. Advanced users are welcome to update data directly by editing that data file.
+The meeting entries are saved in a JSON file at `[JAR file location]/data/app.json`. Advanced users are welcome to update their entries directly by editing that file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
 </div>
 
 #### Archiving data files `[coming in v2.0]`
