@@ -31,8 +31,8 @@ title: User Guide
     Some example commands you can try:
 
     * **`list`** : Lists all meeting entries.
-    * **`add`**`l/https://meet.google.com n/CS2103T Lecture d/Friday 2pm` : Adds a meeting named `CS2103T Lecture` to the list of meeting entries.
-    * **`delete`**`3` : Deletes the 3rd entry shown in the current list.
+    * **`add`** `l/https://meet.google.com n/CS2103T Lecture d/Friday 2pm` : Adds a meeting named `CS2103T Lecture` to the list of meeting entries.
+    * **`delete`** `3` : Deletes the 3rd entry shown in the current list.
     * **`exit`** : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
@@ -73,7 +73,7 @@ This section describes each of the commands and features available in **LinkyTim
 
 #### Add a meeting entry: `add`
 
-Adds a meeting entry into the meeting list.
+Adds a meeting entry into the entry list.
 
 Format: `add n/MEETING_NAME l/LINK d/DATETIME [t/TAG]…​`
 
@@ -99,24 +99,23 @@ Details include:
 * Meeting date/time
 
 
-#### Delete a person : `delete`
+#### Delete a meeting entry : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified meeting entry and all associated fields from the entry list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the meeting entry at the specified `INDEX`.
+* The index refers to the index number shown in the displayed entry list.
+* The index **must be a positive integer** 1, 2, 3, …​ that is within the range of entries.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd meeting entry in the entry list.
 
 
 #### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all meeting entries from the address book.
 
 Format: `clear`
 
@@ -150,7 +149,7 @@ The meeting entries are saved in a JSON file at `[JAR file location]/data/app.js
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
-</div>
+
 
 #### Archiving data files `[coming in v2.0]`
 
@@ -161,7 +160,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LinkyTime home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
