@@ -145,7 +145,7 @@ Your meeting entries are saved to your computer automatically upon running any c
 
 #### Editing the data file
 
-The meeting entries are saved in a JSON file at `[JAR file location]/data/app.json`. Advanced users are welcome to update their entries directly by editing that file.  
+The meeting entries are saved in a JSON file at `[JAR file location]/data/app.json`. Advanced users are welcome to update their entries directly by editing that file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
