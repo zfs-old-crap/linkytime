@@ -149,7 +149,7 @@ The meeting entries are saved in a JSON file at `[JAR file location]/data/app.js
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
-
+</div>
 
 #### Archiving data files `[coming in v2.0]`
 
