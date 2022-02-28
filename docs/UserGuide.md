@@ -10,7 +10,7 @@ title: User Guide
 
 ## Introduction
 
-**LinkyTime** is a desktop app for NUS students to organize their Zoom and online meeting links, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
+**LinkyTime** is a desktop app for NUS students to organize their online meeting links, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -98,9 +98,9 @@ Format: `list`
 
 Details include:
 
-* Zoom link
+* Meeting link
 * Meeting name
-* Meeting date/time
+* Meeting date and time
 
 
 #### Delete a meeting entry : `delete`
@@ -165,7 +165,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty `app.json` data file it creates with the file that contains the data of your previous LinkyTime home folder.
+**A**: Install the app in the other computer and overwrite the empty `app.json` data file it creates with the equivalent `app.json` data file from your previous LinkyTime installation.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -490,10 +490,10 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Entry**: A meeting containing the details such as the meeting link, name, date, and other fields
-* **NUS**: The National University of Singapore
-* **List**: Also known as entry list, meeting entry list. List of all entries that are currently saved in the program
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Entry**: A meeting containing the details such as the meeting link, name, date, and other fields.
+* **List**: List of all entries that are currently saved in the program. May also be referred to as an entry list, or a meeting entry list.
+* **NUS**: The National University of Singapore.
 * **Command**: A keyword that defines an action for the program to perform when entered into the CLI.
 * **Search Term**: A substring that is contained in the name/tags of a meeting.
 
