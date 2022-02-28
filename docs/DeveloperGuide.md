@@ -271,7 +271,7 @@ Aiken Dueet is a Year 2 NUS Computer Science student. He is currently taking his
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                      | I want to …​                   | So that I can…​                                         |
+| Priority | As a …                      | I want to …                   | So that I can…                                         |
 |----------|-----------------------------|-------------------------------|--------------------------------------------------------|
 | `* * *`  | new user                    | see usage instructions        | refer to instructions if I forget how to use the App   |
 | `* * *`  | user                        | view all my entries           | view all my entries in one place                       |
@@ -284,7 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with multiple meetings | sort entries alphabetically   | easily sieve through my entries in a familiar order    |
 | `* *`    | user with multiple meetings | sort entries chronologically  | know what is my next upcoming meeting                  |
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## Use cases
 
@@ -338,7 +338,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
-**Extentions**
+**Extensions**
 
 * 2a. The list is empty.
 
@@ -475,7 +475,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
 
@@ -493,13 +493,11 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Entry**: A meeting containing the details such as the meeting link, name, date, and other fields
 * **NUS**: The National University of Singapore
-* **List**: List of all entries that are currently saved in the program
+* **List**: Also known as entry list, meeting entry list. List of all entries that are currently saved in the program
 * **Command**: A keyword that defines an action for the program to perform when entered into the CLI.
 * **Search Term**: A substring that is contained in the name/tags of a meeting.
-* **Parameters**: The expected inputs, separated by a space or a delimiter that is specified by the command.
-* **Arguments**: Values that are provided by the user to a command as specified by the command's parameters.
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
