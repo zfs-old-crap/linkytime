@@ -10,7 +10,7 @@ title: User Guide
 
 ## Introduction
 
-**LinkyTime** is a desktop app for NUS students to organize their Zoom/online meeting links, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
+**LinkyTime** is a desktop app for NUS students to organize their online meeting links, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -30,10 +30,10 @@ title: User Guide
    
     Some example commands you can try:
 
-    * **`list`** : Lists all meeting entries.
-    * **`add`** `l/https://meet.google.com n/CS2103T Lecture d/Friday 2pm` : Adds a meeting named `CS2103T Lecture` to the list of meeting entries.
-    * **`delete`** `3` : Deletes the 3rd entry shown in the current list.
-    * **`exit`** : Exits the app.
+    * `list` : Lists all meeting entries.
+    * `add l/https://meet.google.com n/CS2103T Lecture d/Friday 2pm` : Adds a meeting named `CS2103T Lecture` to the list of meeting entries.
+    * `delete 3` : Deletes the 3rd entry shown in the current list.
+    * `exit` : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
 
@@ -69,6 +69,7 @@ title: User Guide
 
 This section describes each of the commands and features available in **LinkyTime**.
 
+
 ### Meeting Entry Management
 
 #### Add a meeting entry: `add`
@@ -78,12 +79,14 @@ Adds a meeting entry into the entry list.
 Format: `add n/MEETING_NAME l/LINK d/DATETIME [t/TAG]…​`
 
 Parameters:
+
 * `MEETING_NAME` The name of the meeting entry.
 * `LINK` The link to the online meeting.
 * `DATETIME` The date and starting time of the meeting.
 * `TAG` The tags associated with the meeting entry.
 
 Examples:
+
 * `add n/CS2103T Lecture l/meet.google.com d/Friday 2pm t/lecture t/cs2103t`
 
 
@@ -94,9 +97,10 @@ View all meeting entries in the entry list and display their respective details.
 Format: `list`
 
 Details include:
-* Zoom link
+
+* Meeting link
 * Meeting name
-* Meeting date/time
+* Meeting date and time
 
 
 #### Delete a meeting entry : `delete`
@@ -115,7 +119,7 @@ Examples:
 
 #### Clearing all entries : `clear`
 
-Clears all meeting entries from the address book.
+Clears all meeting entries from the entry list.
 
 Format: `clear`
 
@@ -151,6 +155,7 @@ The meeting entries are saved in a JSON file at `[JAR file location]/data/app.js
 If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
 </div>
 
+
 #### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
@@ -160,7 +165,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LinkyTime home folder.
+**A**: Install the app in the other computer and overwrite the empty `app.json` data file it creates with the equivalent `app.json` data file from your previous LinkyTime installation.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -172,9 +177,9 @@ Action | Format, Examples
 **List** | `list`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
-**Edit** | Coming soon
-**Find** | Coming soon
-**Sort** | Coming soon
-**Open** | Coming soon
+**Edit** | _Coming soon_
+**Find** | _Coming soon_
+**Sort** | _Coming soon_
+**Open** | _Coming soon_
 **Help** | `help`
 **Exit** | `exit`
