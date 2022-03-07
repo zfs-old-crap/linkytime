@@ -100,15 +100,15 @@ public class MeetingEntry {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(this.name)
+        builder.append(name)
                 .append("; Meeting URL: ")
-                .append(this.url)
+                .append(url)
                 .append("; Date and time: ")
-                .append(this.dateTime)
+                .append(dateTime)
                 .append("; Is recurring: ")
-                .append(this.isRecurring);
+                .append(isRecurring);
 
-        Set<Tag> tags = this.tags;
+        final Set<Tag> tags = this.tags;
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
