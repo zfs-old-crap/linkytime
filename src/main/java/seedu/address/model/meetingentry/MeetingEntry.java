@@ -84,12 +84,12 @@ public class MeetingEntry {
             return false;
         }
 
-        MeetingEntry otherMeetingEntry = (MeetingEntry) other;
-        return otherMeetingEntry.getName().equals(getName())
-                && otherMeetingEntry.getUrl().equals(getUrl())
-                && otherMeetingEntry.getDateTime().equals(getDateTime())
-                && otherMeetingEntry.getIsRecurring().equals(getIsRecurring())
-                && otherMeetingEntry.getTags().equals(getTags());
+        final MeetingEntry otherMeetingEntry = (MeetingEntry) other;
+        return otherMeetingEntry.name.equals(this.name)
+                && otherMeetingEntry.url.equals(this.url)
+                && otherMeetingEntry.dateTime.equals(this.dateTime)
+                && otherMeetingEntry.isRecurring.equals(this.isRecurring)
+                && otherMeetingEntry.tags.equals(this.tags);
     }
 
     @Override
@@ -100,15 +100,15 @@ public class MeetingEntry {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(this.name)
                 .append("; Meeting URL: ")
-                .append(getUrl())
+                .append(this.url)
                 .append("; Date and time: ")
-                .append(getDateTime())
+                .append(this.dateTime)
                 .append("; Is recurring: ")
-                .append(getIsRecurring());
+                .append(this.isRecurring);
 
-        Set<Tag> tags = getTags();
+        Set<Tag> tags = this.tags;
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
