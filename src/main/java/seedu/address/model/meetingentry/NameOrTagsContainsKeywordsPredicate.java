@@ -23,7 +23,7 @@ public class NameOrTagsContainsKeywordsPredicate implements Predicate<MeetingEnt
     @Override
     public boolean test(MeetingEntry meetingEntry) {
         return keywords.stream()
-                .anyMatch(keyword -> meetingEntry.getMeetingName().name.toLowerCase().contains(keyword.toLowerCase())
+                .anyMatch(keyword -> meetingEntry.getName().name.toLowerCase().contains(keyword.toLowerCase())
                         || meetingEntry.getTags().stream()
                         .anyMatch(tag -> tag.tagName.toLowerCase().contains(keyword.toLowerCase())));
     }

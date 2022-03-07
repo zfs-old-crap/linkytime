@@ -10,11 +10,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class IsRecurring {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting recurrence status can only be a single letter `y` or `n`";
+            "Meeting recurrence status can only be a single letter `Y` or `N`";
 
-    public static final String VALIDATION_REGEX = "y|n";
-    public static final String RECURRING = "y";
-    public static final String NON_RECURRING = "n";
+    public static final String VALIDATION_REGEX = "[YN]";
+    public static final String RECURRING = "Y";
+    public static final String NON_RECURRING = "N";
 
     public final boolean isRecurring;
 
@@ -25,7 +25,7 @@ public class IsRecurring {
      */
     public IsRecurring(String recurStatus) {
         requireNonNull(recurStatus);
-        recurStatus = recurStatus.toLowerCase();
+        recurStatus = recurStatus.toUpperCase();
         checkArgument(isValidRecurringStatus(recurStatus), MESSAGE_CONSTRAINTS);
         this.isRecurring = recurStatus.equals(RECURRING);
     }
@@ -37,14 +37,14 @@ public class IsRecurring {
      * @return True, if the {@code String} is a valid recurrence status.
      */
     public static boolean isValidRecurringStatus(String test) {
-        test = test.toLowerCase();
+        test = test.toUpperCase();
         return test.matches(VALIDATION_REGEX);
     }
 
 
     @Override
     public String toString() {
-        return isRecurring ? "Y" : "N";
+        return isRecurring ? RECURRING : NON_RECURRING;
     }
 
     @Override

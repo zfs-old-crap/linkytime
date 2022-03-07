@@ -16,42 +16,42 @@ import seedu.address.model.tag.Tag;
 public class MeetingEntry {
 
     // Identity fields
-    private final MeetingName meetingName;
-    private final MeetingUrl meetingUrl;
-    private final MeetingDateTime meetingDateTime;
-    private final IsRecurring isRecurring;
+    private final MeetingName name;
+    private final MeetingUrl url;
+    private final MeetingDateTime dateTime;
 
     // Data fields
+    private final IsRecurring isRecurring;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructs a {@code MeetingEntry}. Every field must be present and non-null.
      *
-     * @param meetingName   The name of the meeting entry.
-     * @param meetingUrl    The URL link of the meeting.
-     * @param meetingDateTime   The date and time of the meeting.
-     * @param isRecurring   Whether the meeting is recurring.
+     * @param name       The name of the meeting entry.
+     * @param url        The URL link of the meeting.
+     * @param dateTime   The date and time of the meeting.
+     * @param isRecurring       Whether the meeting is recurring.
      */
-    public MeetingEntry(MeetingName meetingName, MeetingUrl meetingUrl, MeetingDateTime meetingDateTime,
+    public MeetingEntry(MeetingName name, MeetingUrl url, MeetingDateTime dateTime,
                         IsRecurring isRecurring, Set<Tag> tags) {
-        requireAllNonNull(meetingName, meetingUrl, meetingDateTime, isRecurring, tags);
-        this.meetingName = meetingName;
-        this.meetingUrl = meetingUrl;
-        this.meetingDateTime = meetingDateTime;
+        requireAllNonNull(name, url, dateTime, isRecurring, tags);
+        this.name = name;
+        this.url = url;
+        this.dateTime = dateTime;
         this.isRecurring = isRecurring;
         this.tags.addAll(tags);
     }
 
-    public MeetingName getMeetingName() {
-        return meetingName;
+    public MeetingName getName() {
+        return name;
     }
 
-    public MeetingUrl getMeetingUrl() {
-        return meetingUrl;
+    public MeetingUrl getUrl() {
+        return url;
     }
 
     public MeetingDateTime getMeetingTime() {
-        return meetingDateTime;
+        return dateTime;
     }
 
     public IsRecurring getIsRecurring() {
@@ -85,8 +85,8 @@ public class MeetingEntry {
         }
 
         MeetingEntry otherMeetingEntry = (MeetingEntry) other;
-        return otherMeetingEntry.getMeetingName().equals(getMeetingName())
-                && otherMeetingEntry.getMeetingUrl().equals(getMeetingUrl())
+        return otherMeetingEntry.getName().equals(getName())
+                && otherMeetingEntry.getUrl().equals(getUrl())
                 && otherMeetingEntry.getMeetingTime().equals(getMeetingTime())
                 && otherMeetingEntry.getIsRecurring().equals(getIsRecurring())
                 && otherMeetingEntry.getTags().equals(getTags());
@@ -94,18 +94,18 @@ public class MeetingEntry {
 
     @Override
     public int hashCode() {
-        return Objects.hash(meetingName, meetingUrl, meetingDateTime, isRecurring, tags);
+        return Objects.hash(name, url, dateTime, isRecurring, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getMeetingName())
+        builder.append(getName())
                 .append("; Meeting URL: ")
-                .append(getMeetingUrl())
-                .append("; Date and Time: ")
+                .append(getUrl())
+                .append("; Date and time: ")
                 .append(getMeetingTime())
-                .append("; Is Recurring: ")
+                .append("; Is recurring: ")
                 .append(getIsRecurring());
 
         Set<Tag> tags = getTags();
