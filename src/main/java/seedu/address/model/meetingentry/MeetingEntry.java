@@ -27,10 +27,10 @@ public class MeetingEntry {
     /**
      * Constructs a {@code MeetingEntry}. Every field must be present and non-null.
      *
-     * @param name       The name of the meeting entry.
-     * @param url        The URL link of the meeting.
-     * @param dateTime   The date and time of the meeting.
-     * @param isRecurring       Whether the meeting is recurring.
+     * @param name          The name of the meeting entry.
+     * @param url           The URL link of the meeting.
+     * @param dateTime      The date and time of the meeting.
+     * @param isRecurring   Whether the meeting is recurring.
      */
     public MeetingEntry(MeetingName name, MeetingUrl url, MeetingDateTime dateTime,
                         IsRecurring isRecurring, Set<Tag> tags) {
@@ -50,7 +50,7 @@ public class MeetingEntry {
         return url;
     }
 
-    public MeetingDateTime getMeetingTime() {
+    public MeetingDateTime getDateTime() {
         return dateTime;
     }
 
@@ -87,7 +87,7 @@ public class MeetingEntry {
         MeetingEntry otherMeetingEntry = (MeetingEntry) other;
         return otherMeetingEntry.getName().equals(getName())
                 && otherMeetingEntry.getUrl().equals(getUrl())
-                && otherMeetingEntry.getMeetingTime().equals(getMeetingTime())
+                && otherMeetingEntry.getDateTime().equals(getDateTime())
                 && otherMeetingEntry.getIsRecurring().equals(getIsRecurring())
                 && otherMeetingEntry.getTags().equals(getTags());
     }
@@ -104,7 +104,7 @@ public class MeetingEntry {
                 .append("; Meeting URL: ")
                 .append(getUrl())
                 .append("; Date and time: ")
-                .append(getMeetingTime())
+                .append(getDateTime())
                 .append("; Is recurring: ")
                 .append(getIsRecurring());
 
