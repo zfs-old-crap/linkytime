@@ -9,6 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meetingentry.IsRecurring;
+import seedu.address.model.meetingentry.MeetingDateTime;
+import seedu.address.model.meetingentry.MeetingName;
+import seedu.address.model.meetingentry.MeetingUrl;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -121,4 +125,68 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    // region MeetingEntry
+
+    /**
+     * Parses a {@code String meetingName} into a {@code MeetingName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meetingName} is invalid.
+     */
+    public static MeetingName parseMeetingName(String meetingName) throws ParseException {
+        requireNonNull(meetingName);
+        String trimmedMeetingName = meetingName.trim();
+        if (!MeetingName.isValidName(trimmedMeetingName)) {
+            throw new ParseException(MeetingName.MESSAGE_CONSTRAINTS);
+        }
+        return new MeetingName(trimmedMeetingName);
+    }
+
+    /**
+     * Parses a {@code String meetingUrl} into a {@code MeetingUrl}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meetingUrl} is invalid.
+     */
+    public static MeetingUrl parseMeetingUrl(String meetingUrl) throws ParseException {
+        requireNonNull(meetingUrl);
+        String trimmedMeetingUrl = meetingUrl.trim();
+        if (!MeetingUrl.isValidUrl(trimmedMeetingUrl)) {
+            throw new ParseException(MeetingUrl.MESSAGE_CONSTRAINTS);
+        }
+        return new MeetingUrl(trimmedMeetingUrl);
+    }
+
+    /**
+     * Parses a {@code String meetingDateTime} into a {@code MeetingDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meetingDateTime} is invalid.
+     */
+    public static MeetingDateTime parseMeetingDateTime(String meetingDateTime) throws ParseException {
+        requireNonNull(meetingDateTime);
+        String trimmedMeetingDateTime = meetingDateTime.trim();
+        if (!MeetingDateTime.isValidDateTime(trimmedMeetingDateTime)) {
+            throw new ParseException(MeetingDateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new MeetingDateTime(trimmedMeetingDateTime);
+    }
+
+    /**
+     * Parses a {@code String recurringStatus} into a {@code IsRecurring}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code recurringStatus} is invalid.
+     */
+    public static IsRecurring parseRecurringStatus(String recurringStatus) throws ParseException {
+        requireNonNull(recurringStatus);
+        String trimmedRecurringStatus = recurringStatus.trim();
+        if (!IsRecurring.isValidRecurringStatus(trimmedRecurringStatus)) {
+            throw new ParseException(IsRecurring.MESSAGE_CONSTRAINTS);
+        }
+        return new IsRecurring(trimmedRecurringStatus);
+    }
+
+    // endregion
 }
