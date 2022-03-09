@@ -106,7 +106,7 @@ public class MainApp extends Application {
             initialData = new LinkyTime();
         }
 
-        return new ModelManager(initialAddressBookData, userPrefs);
+        return new ModelManager(initialAddressBookData, userPrefs, initialData);
     }
 
     private void initLogging(Config config) {
