@@ -69,6 +69,7 @@ public class UserPrefs extends AddressBookUserPrefs implements ReadOnlyUserPrefs
         final UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
+                && linkyTimeFilePath.equals(o.linkyTimeFilePath)
                 && super.equals(o);
     }
 
