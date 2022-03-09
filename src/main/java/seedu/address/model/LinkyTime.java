@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.meetingentry.UniqueMeetingEntryList;
+import seedu.address.model.meetingentry.MeetingEntryList;
 
 /**
  * Wraps all data of LinkyTime
@@ -14,7 +14,7 @@ import seedu.address.model.meetingentry.UniqueMeetingEntryList;
  */
 public class LinkyTime implements ReadOnlyLinkyTime {
 
-    private final UniqueMeetingEntryList meetingEntries;
+    private final MeetingEntryList meetingEntries;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class LinkyTime implements ReadOnlyLinkyTime {
      *   among constructors.
      */
     {
-        meetingEntries = new UniqueMeetingEntryList();
+        meetingEntries = new MeetingEntryList();
     }
 
     public LinkyTime() {}
