@@ -28,7 +28,7 @@ public class ModelManager extends AddressBookModelManager implements Model {
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyLinkyTime linkyTime) {
         super(addressBook, userPrefs);
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(linkyTime, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
