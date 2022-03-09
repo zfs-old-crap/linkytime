@@ -20,7 +20,9 @@ import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -97,6 +99,56 @@ public class AddCommandTest {
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getLinkyTimeFilePath() {
+            return null;
+        }
+
+        @Override
+        public void setLinkyTimeFilePath(Path linkyTimeFilePath) {
+
+        }
+
+        @Override
+        public void setLinkyTime(ReadOnlyLinkyTime linkyTime) {
+
+        }
+
+        @Override
+        public ReadOnlyLinkyTime getLinkyTime() {
+            return null;
+        }
+
+        @Override
+        public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
+            return false;
+        }
+
+        @Override
+        public void deleteMeetingEntry(MeetingEntry target) {
+
+        }
+
+        @Override
+        public void addMeetingEntry(MeetingEntry meetingEntry) {
+
+        }
+
+        @Override
+        public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
+
+        }
+
+        @Override
+        public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
+
         }
 
         @Override
