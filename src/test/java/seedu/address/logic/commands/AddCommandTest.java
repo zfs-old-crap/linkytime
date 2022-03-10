@@ -20,7 +20,9 @@ import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -96,6 +98,56 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getLinkyTimeFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setLinkyTimeFilePath(Path linkyTimeFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setLinkyTime(ReadOnlyLinkyTime linkyTime) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyLinkyTime getLinkyTime() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeetingEntry(MeetingEntry target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeetingEntry(MeetingEntry meetingEntry) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

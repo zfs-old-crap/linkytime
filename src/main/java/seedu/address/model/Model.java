@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.meetingentry.MeetingEntry;
 
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface Model extends AddressBookModel {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<MeetingEntry> PREDICATE_SHOW_ALL_MEETING_ENTRIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +35,52 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' LinkyTime file path.
      */
-    Path getAddressBookFilePath();
+    Path getLinkyTimeFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' LinkyTime file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setLinkyTimeFilePath(Path linkyTimeFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces LinkyTime data with the data in {@code linkyTime}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setLinkyTime(ReadOnlyLinkyTime linkyTime);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns LinkyTime */
+    ReadOnlyLinkyTime getLinkyTime();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a meeting entry that is identical to {@code meetingEntry} exists in LinkyTime.
      */
-    boolean hasPerson(Person person);
+    boolean hasMeetingEntry(MeetingEntry meetingEntry);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given meeting entry.
+     * The meeting entry must exist in LinkyTime.
      */
-    void deletePerson(Person target);
+    void deleteMeetingEntry(MeetingEntry target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given meeting entry.
+     * {@code meetingEntry} must not already exist in LinkyTime.
      */
-    void addPerson(Person person);
+    void addMeetingEntry(MeetingEntry meetingEntry);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given meeting entry {@code target} with {@code editedMeetingEntry}.
+     * {@code target} must exist in LinkyTime.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered meeting entry list */
+    ObservableList<MeetingEntry> getFilteredMeetingEntryList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered meeting entry list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate);
 }
