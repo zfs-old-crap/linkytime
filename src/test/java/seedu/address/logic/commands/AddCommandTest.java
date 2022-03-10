@@ -103,52 +103,52 @@ public class AddCommandTest {
 
         @Override
         public Path getLinkyTimeFilePath() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setLinkyTimeFilePath(Path linkyTimeFilePath) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setLinkyTime(ReadOnlyLinkyTime linkyTime) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyLinkyTime getLinkyTime() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteMeetingEntry(MeetingEntry target) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addMeetingEntry(MeetingEntry meetingEntry) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
