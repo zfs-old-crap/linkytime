@@ -59,7 +59,7 @@ public class UniqueModuleCodeList implements Iterable<ModuleCode> {
     public void setModuleCode(ModuleCode target, ModuleCode editedModuleCode) {
         requireAllNonNull(target, editedModuleCode);
 
-        int index = internalList.indexOf(target);
+        final int index = internalList.indexOf(target);
         if (index == -1) {
             throw new ModuleCodeNotFoundException();
         }

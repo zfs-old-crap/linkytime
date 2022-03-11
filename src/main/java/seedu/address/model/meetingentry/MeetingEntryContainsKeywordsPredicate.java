@@ -7,10 +7,10 @@ import java.util.function.Predicate;
  * Tests that a {@code MeetingEntry}'s {@code MeetingName}, {@code ModuleCode} or {@code Tags} matches any
  * of the keywords given.
  */
-public class NameOrModuleCodeOrTagsContainsKeywordsPredicate implements Predicate<MeetingEntry> {
+public class MeetingEntryContainsKeywordsPredicate implements Predicate<MeetingEntry> {
     private final List<String> keywords;
 
-    public NameOrModuleCodeOrTagsContainsKeywordsPredicate(List<String> keywords) {
+    public MeetingEntryContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -33,8 +33,8 @@ public class NameOrModuleCodeOrTagsContainsKeywordsPredicate implements Predicat
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameOrModuleCodeOrTagsContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameOrModuleCodeOrTagsContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof MeetingEntryContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((MeetingEntryContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
