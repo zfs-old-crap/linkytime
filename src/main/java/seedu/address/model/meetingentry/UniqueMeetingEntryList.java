@@ -16,7 +16,7 @@ import seedu.address.model.meetingentry.exceptions.MeetingEntryNotFoundException
  *
  * Supports a minimal set of list operations.
  */
-public class MeetingEntryList implements Iterable<MeetingEntry> {
+public class UniqueMeetingEntryList implements Iterable<MeetingEntry> {
 
     private final ObservableList<MeetingEntry> internalList = FXCollections.observableArrayList();
     private final ObservableList<MeetingEntry> internalUnmodifiableList =
@@ -76,7 +76,7 @@ public class MeetingEntryList implements Iterable<MeetingEntry> {
         }
     }
 
-    public void setMeetingEntries(MeetingEntryList replacement) {
+    public void setMeetingEntries(UniqueMeetingEntryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -109,8 +109,8 @@ public class MeetingEntryList implements Iterable<MeetingEntry> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MeetingEntryList // instanceof handles nulls
-                && internalList.equals(((MeetingEntryList) other).internalList));
+                || (other instanceof UniqueMeetingEntryList // instanceof handles nulls
+                && internalList.equals(((UniqueMeetingEntryList) other).internalList));
     }
 
     @Override

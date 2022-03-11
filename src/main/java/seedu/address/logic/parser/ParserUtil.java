@@ -13,6 +13,7 @@ import seedu.address.model.meetingentry.IsRecurring;
 import seedu.address.model.meetingentry.MeetingDateTime;
 import seedu.address.model.meetingentry.MeetingName;
 import seedu.address.model.meetingentry.MeetingUrl;
+import seedu.address.model.modulecode.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -38,6 +39,8 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+    // region AB3 Person
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -126,6 +129,8 @@ public class ParserUtil {
         return tagSet;
     }
 
+    // endregion
+
     // region MeetingEntry
 
     /**
@@ -171,6 +176,21 @@ public class ParserUtil {
             throw new ParseException(MeetingDateTime.MESSAGE_CONSTRAINTS);
         }
         return new MeetingDateTime(trimmedMeetingDateTime);
+    }
+
+    /**
+     * Parses a {@code String moduleCode} into a {@code ModuleCode}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meetingDateTime} is invalid.
+     */
+    public static ModuleCode parseModuleCode(String moduleCode) throws ParseException {
+        requireNonNull(moduleCode);
+        String trimmedModuleCode = moduleCode.trim();
+        if (!ModuleCode.isValidModuleCode(trimmedModuleCode)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleCode(trimmedModuleCode);
     }
 
     /**

@@ -18,6 +18,7 @@ import seedu.address.model.meetingentry.MeetingDateTime;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.meetingentry.MeetingName;
 import seedu.address.model.meetingentry.MeetingUrl;
+import seedu.address.model.modulecode.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,6 +37,7 @@ public class JsonLinkyTimeStorage implements LinkyTimeStorage {
                         new MeetingName("CS2103T Lecture"),
                         dummyMeetingUrl,
                         new MeetingDateTime("18mar2022"),
+                        new ModuleCode("CS2103T"),
                         new IsRecurring("Y"),
                         new HashSet<Tag>()
                 ),
@@ -43,6 +45,7 @@ public class JsonLinkyTimeStorage implements LinkyTimeStorage {
                         new MeetingName("CS2101 Tutorial"),
                         dummyMeetingUrl,
                         new MeetingDateTime("19mar2022"),
+                        new ModuleCode("CS2101"),
                         new IsRecurring("Y"),
                         new HashSet<Tag>()
                 ),
@@ -50,6 +53,7 @@ public class JsonLinkyTimeStorage implements LinkyTimeStorage {
                         new MeetingName("TokTik Rejection Interview"),
                         dummyMeetingUrl,
                         new MeetingDateTime("20mar2022"),
+                        new ModuleCode("Intern"),
                         new IsRecurring("N"),
                         new HashSet<Tag>()
                 )
