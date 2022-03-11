@@ -7,10 +7,10 @@ import seedu.address.commons.core.GuiSettings;
 /**
  * Unmodifiable view of user prefs.
  */
-public interface ReadOnlyUserPrefs {
+public interface ReadOnlyUserPrefs extends ReadOnlyAddressBookUserPrefs {
 
     GuiSettings getGuiSettings();
 
-    Path getAddressBookFilePath();
+    Path getLinkyTimeFilePath();
 
 }

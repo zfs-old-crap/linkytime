@@ -53,7 +53,7 @@ public class UniqueMeetingEntryList implements Iterable<MeetingEntry> {
     public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
         requireAllNonNull(target, editedMeetingEntry);
 
-        int index = internalList.indexOf(target);
+        final int index = internalList.indexOf(target);
         if (index == -1) {
             throw new MeetingEntryNotFoundException();
         }
