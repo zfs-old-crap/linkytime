@@ -40,11 +40,11 @@ public class LinkyTimeParser {
 
         switch (commandWord) {
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

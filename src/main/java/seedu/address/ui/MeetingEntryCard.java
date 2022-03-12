@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.meetingentry.MeetingEntry;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code MeetingEntry}.
  */
 public class MeetingEntryCard extends UiPart<Region> {
 

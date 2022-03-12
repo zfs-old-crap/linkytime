@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the LinkyTime meeting entry list to the user.
+ * Lists all meeting entries in the LinkyTime meeting entry list to the user.
  */
 public class ListCommand extends Command {
 
