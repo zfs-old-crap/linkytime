@@ -12,7 +12,9 @@ import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.MeetingEntryBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -39,9 +41,33 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
+    public void execute_newMeetingEntry_success() {
+        MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new LinkyTime());
+        expectedModel.addMeetingEntry(validMeetingEntry);
+
+        assertCommandSuccess(new seedu.address.logic.commands.meetingentry.AddCommand(validMeetingEntry), model,
+                String.format(seedu.address.logic.commands.meetingentry.AddCommand.MESSAGE_SUCCESS,
+                        validMeetingEntry), expectedModel);
+    }
+
+    @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
         assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
+
+    //      TODO implement the testcase when able to retrieve meetinglist
+    //    @Test
+    //    public void execute_duplicateMeetingEntry_throwsCommandException() {
+    //        MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
+    //        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new LinkyTime());
+    //        expectedModel.addMeetingEntry(validMeetingEntry);
+    //
+    //        MeetingEntry meetingEntryInList = model.getLinkyTime().getMeetingEntryList().get(0);
+    //        assertCommandFailure(new seedu.address.logic.commands.meetingentry.AddCommand(meetingEntryInList),
+    //        expectedModel, AddCommand.MESSAGE_DUPLICATE_PERSON);
+    //    }
 
 }

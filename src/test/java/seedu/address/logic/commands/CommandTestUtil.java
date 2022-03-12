@@ -3,10 +3,14 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -38,6 +42,32 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_NAME_LECTURE = "Lecture";
+    public static final String VALID_NAME_TUTORIAL = "Tutorial";
+    public static final String VALID_URL_LECTURE = "https://www.google.com";
+    public static final String VALID_URL_TUTORIAL = "https://www.zoom.com";
+    public static final String VALID_DATETIME_LECTURE = "Friday";
+    public static final String VALID_DATETIME_TUTORIAL = "Tuesday";
+    public static final String VALID_MODULE_CODE_LECTURE = "CS2103";
+    public static final String VALID_MODULE_CODE_TUTORIAL = "CS2101";
+    public static final String VALID_RECURRING_LECTURE = "Y";
+    public static final String VALID_RECURRING_TUTORIAL = "Y";
+    public static final String VALID_TAG_LECTURE = "damith";
+    public static final String VALID_TAG_TUTORIAL = "amy";
+
+    public static final String NAME_DESC_LECTURE = " " + PREFIX_NAME + VALID_NAME_LECTURE;
+    public static final String NAME_DESC_TUTORIAL = " " + PREFIX_NAME + VALID_NAME_TUTORIAL;
+    public static final String URL_DESC_LECTURE = " " + PREFIX_URL + VALID_URL_LECTURE;
+    public static final String URL_DESC_TUTORIAL = " " + PREFIX_URL + VALID_URL_TUTORIAL;
+    public static final String DATETIME_DESC_LECTURE = " " + PREFIX_DATETIME + VALID_DATETIME_LECTURE;
+    public static final String DATETIME_DESC_TUTORIAL = " " + PREFIX_DATETIME + VALID_DATETIME_TUTORIAL;
+    public static final String MODULE_CODE_DESC_LECTURE = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_LECTURE;
+    public static final String MODULE_CODE_DESC_TUTORIAL = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_TUTORIAL;
+    public static final String RECURRING_DESC_LECTURE = " " + PREFIX_RECURRING + VALID_RECURRING_LECTURE;
+    public static final String RECURRING_DESC_TUTORIAL = " " + PREFIX_RECURRING + VALID_RECURRING_TUTORIAL;
+    public static final String TAG_DESC_LECTURE = " " + PREFIX_TAG + VALID_TAG_LECTURE;
+    public static final String TAG_DESC_TUTORIAL = " " + PREFIX_TAG + VALID_TAG_TUTORIAL;
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -54,6 +84,15 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    //    TODO once we start validaint input
+    //    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    //    public static final String INVALID_URL_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    //    public static final String INVALID_DATETIME_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    //    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_ADDRESS; // empty string not allowed
+    //    public static final String INVALID_RECURRING_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
+    //    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
