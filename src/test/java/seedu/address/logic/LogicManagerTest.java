@@ -51,6 +51,8 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
+    //  There's currently no implementation for delete command hence this test will fail.
+    //  To be uncommented when delete command is implemented.
     //  @Test
     //  public void execute_commandExecutionError_throwsCommandException() {
     //      String deleteCommand = "delete 9";
@@ -63,6 +65,8 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
+    //  There's currently no implementation for add command hence this test will fail.
+    //  To be uncommented when delete command is implemented.
     //  @Test
     //  public void execute_storageThrowsIoException_throwsCommandException() {
     //      // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub

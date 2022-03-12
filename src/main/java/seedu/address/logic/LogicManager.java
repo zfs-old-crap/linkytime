@@ -41,9 +41,9 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        final CommandResult commandResult;
+
         final Command command = linkyTimeParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        final CommandResult commandResult = command.execute(model);
 
         try {
             storage.saveLinkyTime(model.getLinkyTime());
