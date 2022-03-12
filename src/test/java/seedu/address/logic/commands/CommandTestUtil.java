@@ -85,7 +85,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    //    TODO once we start validaint input
+    //    TODO once we start validating input
     //    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     //    public static final String INVALID_URL_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     //    public static final String INVALID_DATETIME_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -115,9 +115,9 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            final CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -130,8 +130,8 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+                                            Model expectedModel) {
+        final CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -144,13 +144,14 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        final AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        final List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -158,7 +159,7 @@ public class CommandTestUtil {
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        final Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 

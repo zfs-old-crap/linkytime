@@ -72,14 +72,15 @@ public class TypicalMeetingEntries {
 
     public static final String KEYWORD_MATCHING_TUTORIAL = "Tutorial"; // A keyword that matches TUTORIAL
 
-    private TypicalMeetingEntries() {} // prevents instantiation
+    private TypicalMeetingEntries() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code LinkyTime} with all the typical meeting entries.
      */
     public static LinkyTime getTypicalAddressBook() {
-        LinkyTime lt = new LinkyTime();
-        for (MeetingEntry meetingEntry : getTypicalMeetingEntries()) {
+        final LinkyTime lt = new LinkyTime();
+        for (final MeetingEntry meetingEntry : getTypicalMeetingEntries()) {
             lt.addMeetingEntry(meetingEntry);
         }
         return lt;

@@ -36,10 +36,10 @@ public class AddCommandTest {
 
     @Test
     public void execute_meetingEntryAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingMeetingEntryAdded modelStub = new ModelStubAcceptingMeetingEntryAdded();
-        MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
+        final ModelStubAcceptingMeetingEntryAdded modelStub = new ModelStubAcceptingMeetingEntryAdded();
+        final MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validMeetingEntry).execute(modelStub);
+        final CommandResult commandResult = new AddCommand(validMeetingEntry).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validMeetingEntry), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validMeetingEntry), modelStub.meetingEntriesAdded);
@@ -47,9 +47,9 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicateMeetingEntry_throwsCommandException() {
-        MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
-        AddCommand addCommand = new AddCommand(validMeetingEntry);
-        ModelStub modelStub = new ModelStubWithMeetingEntry(validMeetingEntry);
+        final MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
+        final AddCommand addCommand = new AddCommand(validMeetingEntry);
+        final ModelStub modelStub = new ModelStubWithMeetingEntry(validMeetingEntry);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ENTRY, () -> addCommand.execute(modelStub));
     }
@@ -57,16 +57,16 @@ public class AddCommandTest {
     @Test
     public void equals() {
 
-        MeetingEntry cS2103 = new MeetingEntryBuilder().withName("CS2103").build();
-        MeetingEntry cS2101 = new MeetingEntryBuilder().withName("CS2101").build();
-        AddCommand addCS2103Command = new AddCommand(cS2103);
-        AddCommand addCS2101Command = new AddCommand(cS2101);
+        final MeetingEntry cs2103 = new MeetingEntryBuilder().withName("CS2103").build();
+        final MeetingEntry cs2101 = new MeetingEntryBuilder().withName("CS2101").build();
+        final AddCommand addCS2103Command = new AddCommand(cs2103);
+        final AddCommand addCS2101Command = new AddCommand(cs2101);
 
         // same object -> returns true
         assertTrue(addCS2103Command.equals(addCS2103Command));
 
         // same values -> returns true
-        AddCommand addCS2103CommandCopy = new AddCommand(cS2103);
+        final AddCommand addCS2103CommandCopy = new AddCommand(cs2103);
         assertTrue(addCS2103Command.equals(addCS2103CommandCopy));
 
         // different types -> returns false

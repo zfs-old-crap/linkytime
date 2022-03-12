@@ -28,9 +28,9 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newMeetingEntry_success() {
-        MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
+        final MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new LinkyTime());
+        final Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new LinkyTime());
         expectedModel.addMeetingEntry(validMeetingEntry);
 
         assertCommandSuccess(new AddCommand(validMeetingEntry), model,

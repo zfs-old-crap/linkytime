@@ -65,7 +65,7 @@ public class MeetingEntryBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code MeetingEntry} that we are building.
      */
-    public MeetingEntryBuilder withTags(String ... tags) {
+    public MeetingEntryBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }

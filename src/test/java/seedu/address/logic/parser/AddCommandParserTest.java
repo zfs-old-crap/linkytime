@@ -34,11 +34,11 @@ import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.testutil.MeetingEntryBuilder;
 
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        MeetingEntry expectedMeetingEntry = new MeetingEntryBuilder(CS2103).build();
+        final MeetingEntry expectedMeetingEntry = new MeetingEntryBuilder(CS2103).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_LECTURE + URL_DESC_LECTURE
@@ -71,17 +71,17 @@ public class AddCommandParserTest {
                 + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
         // multiple tags - all accepted
-        MeetingEntry expectedMeetingEntryMultipleTags = new MeetingEntryBuilder(CS2103)
+        final MeetingEntry expectedMeetingEntryMultipleTags = new MeetingEntryBuilder(CS2103)
                 .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL).build();
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE + TAG_DESC_TUTORIAL
-                + TAG_DESC_LECTURE , new AddCommand(expectedMeetingEntryMultipleTags));
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntryMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        MeetingEntry expectedMeetingEntry = new MeetingEntryBuilder(CS2101).withTags().build();
+        final MeetingEntry expectedMeetingEntry = new MeetingEntryBuilder(CS2101).withTags().build();
         assertParseSuccess(parser, NAME_DESC_TUTORIAL + URL_DESC_TUTORIAL + DATETIME_DESC_TUTORIAL
                         + MODULE_CODE_DESC_TUTORIAL + RECURRING_DESC_TUTORIAL,
                 new AddCommand(expectedMeetingEntry));
@@ -89,7 +89,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        final String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
