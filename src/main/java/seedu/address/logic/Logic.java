@@ -13,7 +13,7 @@ import seedu.address.model.meetingentry.MeetingEntry;
 /**
  * API of the Logic component
  */
-public interface Logic extends AddressBookLogic {
+public interface Logic {
     /**
      * Executes the command and returns the result.
      * @param commandText The command as entered by the user.
