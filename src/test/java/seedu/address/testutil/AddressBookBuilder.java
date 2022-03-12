@@ -6,7 +6,8 @@ import seedu.address.model.person.Person;
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ * {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();} <br>
+ * To be removed when transitioning to LinkyTime test cases.
  */
 public class AddressBookBuilder {
 

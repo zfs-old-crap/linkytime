@@ -13,6 +13,7 @@ import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
+ * To be removed when transitioning to LinkyTime test cases.
  */
 public class PersonBuilder {
 
@@ -60,7 +61,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
