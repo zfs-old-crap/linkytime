@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.meetingentry.MeetingEntry;
 
 /**
- * Adds a MeetingEntry to LinkyTime.
+ * Adds a meeting entry to LinkyTime.
  */
 public class AddCommand extends Command {
 
@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "Boring";
 
     public static final String MESSAGE_SUCCESS = "New meeting entry added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This meeting entry already exists in LinkyTime";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This meeting entry already exists in LinkyTime";
 
     private final MeetingEntry toAdd;
 
@@ -55,7 +55,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasMeetingEntry(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }
 
         model.addMeetingEntry(toAdd);

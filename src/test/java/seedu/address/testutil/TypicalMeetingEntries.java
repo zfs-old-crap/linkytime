@@ -21,7 +21,7 @@ import seedu.address.model.LinkyTime;
 import seedu.address.model.meetingentry.MeetingEntry;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code MeetingEntry} objects to be used in tests.
  */
 public class TypicalMeetingEntries {
 
@@ -70,12 +70,12 @@ public class TypicalMeetingEntries {
             .withModuleCode(VALID_MODULE_CODE_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE)
             .withTags(VALID_TAG_LECTURE).build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_TUTORIAL = "Tutorial"; // A keyword that matches TUTORIAL
 
     private TypicalMeetingEntries() {} // prevents instantiation
 
     /**
-     * Returns an {@code LinkyTime} with all the typical meetingEntries.
+     * Returns an {@code LinkyTime} with all the typical meeting entries.
      */
     public static LinkyTime getTypicalAddressBook() {
         LinkyTime lt = new LinkyTime();
