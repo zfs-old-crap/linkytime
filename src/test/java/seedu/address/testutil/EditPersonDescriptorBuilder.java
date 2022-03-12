@@ -14,6 +14,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
+ * To be removed when transitioning to LinkyTime test cases.
  */
 public class EditPersonDescriptorBuilder {
 
