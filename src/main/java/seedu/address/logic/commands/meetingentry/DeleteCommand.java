@@ -24,7 +24,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_MEETINGENTRY_SUCCESS = "Deleted Meeting Entry: %1$s";
+    public static final String MESSAGE_DELETE_MEETING_ENTRY_SUCCESS = "Deleted Meeting Entry: %1$s";
 
     private final Index targetIndex;
 
@@ -38,12 +38,12 @@ public class DeleteCommand extends Command {
         List<MeetingEntry> lastShownList = model.getFilteredMeetingEntryList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MEETINGENTRY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_ENTRY_DISPLAYED_INDEX);
         }
 
         MeetingEntry meetingEntryToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteMeetingEntry(meetingEntryToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_MEETINGENTRY_SUCCESS, meetingEntryToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_MEETING_ENTRY_SUCCESS, meetingEntryToDelete));
     }
 
     @Override
