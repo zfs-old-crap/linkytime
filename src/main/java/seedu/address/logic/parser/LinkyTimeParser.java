@@ -10,6 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.meetingentry.AddCommand;
+import seedu.address.logic.commands.meetingentry.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meetingentry.AddCommandParser;
 
@@ -42,6 +43,8 @@ public class LinkyTimeParser {
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:
