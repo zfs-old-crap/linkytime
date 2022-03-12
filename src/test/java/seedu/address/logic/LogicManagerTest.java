@@ -19,8 +19,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.meetingentry.ListCommand;
 import seedu.address.logic.commands.person.AddCommand;
-import seedu.address.logic.commands.person.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
