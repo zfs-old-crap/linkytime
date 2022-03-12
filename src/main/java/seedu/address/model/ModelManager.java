@@ -11,33 +11,34 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.meetingentry.MeetingEntry;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the LinkyTime data.
  */
-public class ModelManager implements Model {
+public class ModelManager extends AddressBookModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final LinkyTime linkyTime;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<MeetingEntry> filteredMeetingEntries;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyLinkyTime linkyTime) {
+        super(addressBook, userPrefs);
+        requireAllNonNull(linkyTime, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredMeetingEntries = new FilteredList<>(this.linkyTime.getMeetingEntryList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new LinkyTime());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,50 +66,50 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getLinkyTimeFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setLinkyTimeFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== LinkyTime ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setLinkyTime(ReadOnlyLinkyTime linkyTime) {
+        this.linkyTime.resetData(linkyTime);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyLinkyTime getLinkyTime() {
+        return linkyTime;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
+        requireNonNull(meetingEntry);
+        return linkyTime.hasMeetingEntry(meetingEntry);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteMeetingEntry(MeetingEntry target) {
+        linkyTime.removeMeetingEntry(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addMeetingEntry(MeetingEntry meetingEntry) {
+        linkyTime.addMeetingEntry(meetingEntry);
+        updateFilteredMeetingEntryList(PREDICATE_SHOW_ALL_MEETING_ENTRIES);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
+        requireAllNonNull(target, editedMeetingEntry);
 
-        addressBook.setPerson(target, editedPerson);
+        linkyTime.setMeetingEntry(target, editedMeetingEntry);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -118,14 +119,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
+        return filteredMeetingEntries;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredMeetingEntries.setPredicate(predicate);
     }
 
     @Override
@@ -141,10 +142,10 @@ public class ModelManager implements Model {
         }
 
         // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        final ModelManager other = (ModelManager) obj;
+        return super.equals(other)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredMeetingEntries.equals(other.filteredMeetingEntries);
     }
 
 }

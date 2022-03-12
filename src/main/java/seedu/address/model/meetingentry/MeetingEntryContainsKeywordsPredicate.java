@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code MeetingEntry}'s {@code MeetingName} or {@code Tags} matches any of the keywords given.
+ * Tests that a {@code MeetingEntry}'s {@code MeetingName}, {@code ModuleCode} or {@code Tags} matches any
+ * of the keywords given.
  */
-public class NameOrTagsContainsKeywordsPredicate implements Predicate<MeetingEntry> {
+public class MeetingEntryContainsKeywordsPredicate implements Predicate<MeetingEntry> {
     private final List<String> keywords;
 
-    public NameOrTagsContainsKeywordsPredicate(List<String> keywords) {
+    public MeetingEntryContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -24,6 +25,7 @@ public class NameOrTagsContainsKeywordsPredicate implements Predicate<MeetingEnt
     public boolean test(MeetingEntry meetingEntry) {
         return keywords.stream()
                 .anyMatch(keyword -> meetingEntry.getName().name.toLowerCase().contains(keyword.toLowerCase())
+                        || meetingEntry.getModuleCode().moduleCode.toLowerCase().contains(keyword.toLowerCase())
                         || meetingEntry.getTags().stream()
                         .anyMatch(tag -> tag.tagName.toLowerCase().contains(keyword.toLowerCase())));
     }
@@ -31,8 +33,8 @@ public class NameOrTagsContainsKeywordsPredicate implements Predicate<MeetingEnt
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameOrTagsContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameOrTagsContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof MeetingEntryContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((MeetingEntryContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

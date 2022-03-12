@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.modulecode.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,6 +20,7 @@ public class MeetingEntry {
     private final MeetingName name;
     private final MeetingUrl url;
     private final MeetingDateTime dateTime;
+    private final ModuleCode moduleCode;
 
     // Data fields
     private final IsRecurring isRecurring;
@@ -33,11 +35,12 @@ public class MeetingEntry {
      * @param isRecurring   Whether the meeting is recurring.
      */
     public MeetingEntry(MeetingName name, MeetingUrl url, MeetingDateTime dateTime,
-                        IsRecurring isRecurring, Set<Tag> tags) {
+                        ModuleCode moduleCode, IsRecurring isRecurring, Set<Tag> tags) {
         requireAllNonNull(name, url, dateTime, isRecurring, tags);
         this.name = name;
         this.url = url;
         this.dateTime = dateTime;
+        this.moduleCode = moduleCode;
         this.isRecurring = isRecurring;
         this.tags.addAll(tags);
     }
@@ -52,6 +55,10 @@ public class MeetingEntry {
 
     public MeetingDateTime getDateTime() {
         return dateTime;
+    }
+
+    public ModuleCode getModuleCode() {
+        return moduleCode;
     }
 
     public IsRecurring getIsRecurring() {
@@ -88,19 +95,22 @@ public class MeetingEntry {
         return otherMeetingEntry.name.equals(this.name)
                 && otherMeetingEntry.url.equals(this.url)
                 && otherMeetingEntry.dateTime.equals(this.dateTime)
+                && otherMeetingEntry.moduleCode.equals(this.moduleCode)
                 && otherMeetingEntry.isRecurring.equals(this.isRecurring)
                 && otherMeetingEntry.tags.equals(this.tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, url, dateTime, isRecurring, tags);
+        return Objects.hash(name, url, dateTime, moduleCode, isRecurring, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(name)
+        builder.append(moduleCode)
+                .append(" ")
+                .append(name)
                 .append("; Meeting URL: ")
                 .append(url)
                 .append("; Date and time: ")
