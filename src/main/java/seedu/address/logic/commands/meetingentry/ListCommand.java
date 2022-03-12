@@ -1,11 +1,11 @@
 package seedu.address.logic.commands.meetingentry;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETING_ENTRIES;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETING_ENTRIES;
 
 /**
  * Lists all persons in the LinkyTime meeting entry list to the user.
