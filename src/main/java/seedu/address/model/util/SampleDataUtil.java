@@ -5,7 +5,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.LinkyTime;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyLinkyTime;
+import seedu.address.model.meetingentry.IsRecurring;
+import seedu.address.model.meetingentry.MeetingDateTime;
+import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.meetingentry.MeetingName;
+import seedu.address.model.meetingentry.MeetingUrl;
+import seedu.address.model.modulecode.ModuleCode;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -46,6 +54,44 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static MeetingEntry[] getSampleMeetingEntries() {
+        final MeetingUrl dummyMeetingUrl = new MeetingUrl("https://legit-uni.zoom.us/j/344299221?pwd=F3a99221");
+        return new MeetingEntry[] {
+            new MeetingEntry(
+                    new MeetingName("CS2103T Lecture"),
+                    dummyMeetingUrl,
+                    new MeetingDateTime("18mar20223pm"),
+                    new ModuleCode("CS2103T"),
+                    new IsRecurring("Y"),
+                    getTagSet()
+            ),
+            new MeetingEntry(
+                    new MeetingName("CS2101 Tutorial"),
+                    dummyMeetingUrl,
+                    new MeetingDateTime("19mar20222pm"),
+                    new ModuleCode("CS2101"),
+                    new IsRecurring("Y"),
+                    getTagSet("memes")
+            ),
+            new MeetingEntry(
+                    new MeetingName("TokTik Rejection Interview"),
+                    dummyMeetingUrl,
+                    new MeetingDateTime("20mar20221am"),
+                    new ModuleCode("Intern"),
+                    new IsRecurring("N"),
+                    getTagSet("internship", "interview")
+            )
+        };
+    }
+
+    public static ReadOnlyLinkyTime getSampleLinkyTime() {
+        final LinkyTime sampleLinkyTime = new LinkyTime();
+        for (final MeetingEntry sampleMeetingEntry : getSampleMeetingEntries()) {
+            sampleLinkyTime.addMeetingEntry(sampleMeetingEntry);
+        }
+        return sampleLinkyTime;
     }
 
     /**
