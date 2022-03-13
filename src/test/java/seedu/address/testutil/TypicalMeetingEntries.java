@@ -24,7 +24,6 @@ import seedu.address.model.meetingentry.MeetingEntry;
  * A utility class containing a list of {@code MeetingEntry} objects to be used in tests.
  */
 public class TypicalMeetingEntries {
-
     public static final MeetingEntry CS2105 = new MeetingEntryBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("Thursday")
             .withModuleCode("CS2105")
@@ -60,7 +59,7 @@ public class TypicalMeetingEntries {
             .withModuleCode("CS1101S")
             .withTags("hartinmenz").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - MeetingEntry's details found in {@code CommandTestUtil}
     public static final MeetingEntry CS2101 = new MeetingEntryBuilder().withName(VALID_NAME_TUTORIAL)
             .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_TUTORIAL)
             .withModuleCode(VALID_MODULE_CODE_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
@@ -78,7 +77,7 @@ public class TypicalMeetingEntries {
     /**
      * Returns an {@code LinkyTime} with all the typical meeting entries.
      */
-    public static LinkyTime getTypicalAddressBook() {
+    public static LinkyTime getTypicalLinkyTime() {
         final LinkyTime lt = new LinkyTime();
         for (final MeetingEntry meetingEntry : getTypicalMeetingEntries()) {
             lt.addMeetingEntry(meetingEntry);

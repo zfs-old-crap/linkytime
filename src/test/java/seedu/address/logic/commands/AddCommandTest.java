@@ -51,12 +51,12 @@ public class AddCommandTest {
         final AddCommand addCommand = new AddCommand(validMeetingEntry);
         final ModelStub modelStub = new ModelStubWithMeetingEntry(validMeetingEntry);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ENTRY, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_MEETING_ENTRY,
+                () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-
         final MeetingEntry cs2103 = new MeetingEntryBuilder().withName("CS2103").build();
         final MeetingEntry cs2101 = new MeetingEntryBuilder().withName("CS2101").build();
         final AddCommand addCS2103Command = new AddCommand(cs2103);
@@ -75,7 +75,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addCS2103CommandCopy.equals(null));
 
-        // different person -> returns false
+        // different meeting entry -> returns false
         assertFalse(addCS2103Command.equals(addCS2101Command));
     }
 

@@ -16,7 +16,6 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building MeetingEntry objects.
  */
 public class MeetingEntryBuilder {
-
     public static final String DEFAULT_NAME = "Lecture";
     public static final String DEFAULT_URL = "https://www.zoom.com";
     public static final String DEFAULT_DATETIME = "Tuesday";
