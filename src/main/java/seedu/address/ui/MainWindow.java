@@ -27,13 +27,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private MeetingEntryListPanel meetingEntryListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -116,10 +116,10 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        final StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getLinkyTimeFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        final CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -156,7 +156,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+        final GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
@@ -174,7 +174,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            final CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

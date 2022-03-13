@@ -59,7 +59,7 @@ public class MeetingEntryCard extends UiPart<Region> {
         }
 
         // state check
-        MeetingEntryCard card = (MeetingEntryCard) other;
+        final MeetingEntryCard card = (MeetingEntryCard) other;
         return name.getText().equals(card.name.getText())
                 && meetingEntry.equals(card.meetingEntry);
     }
