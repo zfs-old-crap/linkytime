@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.meetingentry.AddCommand;
 import seedu.address.model.AddressBook;
-import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -31,7 +30,7 @@ public class AddCommandIntegrationTest {
     public void execute_newMeetingEntry_success() {
         final MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
 
-        final Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new LinkyTime());
+        final Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), model.getLinkyTime());
         expectedModel.addMeetingEntry(validMeetingEntry);
 
         assertCommandSuccess(new AddCommand(validMeetingEntry), model,

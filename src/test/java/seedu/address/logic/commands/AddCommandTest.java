@@ -51,8 +51,8 @@ public class AddCommandTest {
         final AddCommand addCommand = new AddCommand(validMeetingEntry);
         final ModelStub modelStub = new ModelStubWithMeetingEntry(validMeetingEntry);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_MEETING_ENTRY,
-                () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_MEETING_ENTRY, () -> addCommand.execute(modelStub));
     }
 
     @Test
