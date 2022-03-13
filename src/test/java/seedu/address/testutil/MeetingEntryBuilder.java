@@ -103,6 +103,9 @@ public class MeetingEntryBuilder {
         return this;
     }
 
+    /**
+     * Creates the {@code MeetingEntry} represented by this {@code MeetingEntryBuilder} instance.
+     */
     public MeetingEntry build() {
         return new MeetingEntry(meetingName, meetingUrl,
                 meetingDateTime, moduleCode, isRecurring, tags);

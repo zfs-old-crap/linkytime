@@ -34,7 +34,8 @@ public class DeleteCommandTest {
                 .get(INDEX_FIRST_MEETING_ENTRY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_MEETING_ENTRY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MEETING_ENTRY_SUCCESS, meetingEntryToDelete);
+        String expectedMessage =
+                String.format(DeleteCommand.MESSAGE_DELETE_MEETING_ENTRY_SUCCESS, meetingEntryToDelete);
 
         ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), model.getLinkyTime());
         expectedModel.deleteMeetingEntry(meetingEntryToDelete);

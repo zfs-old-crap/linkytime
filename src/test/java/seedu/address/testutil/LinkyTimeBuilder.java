@@ -19,6 +19,9 @@ public class LinkyTimeBuilder {
         this.linkyTime = linkyTime;
     }
 
+    /**
+     * Adds a new {@code MeetingEntry} to the {@code LinkyTime} that we are building.
+     */
     public LinkyTimeBuilder withEntry(MeetingEntry meetingEntry) {
         linkyTime.addMeetingEntry(meetingEntry);
         return this;
