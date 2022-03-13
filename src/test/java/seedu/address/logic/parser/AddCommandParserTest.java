@@ -1,142 +1,159 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.RECURRING_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.RECURRING_DESC_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_URL_LECTURE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalMeetingEntries.CS2101;
+import static seedu.address.testutil.TypicalMeetingEntries.CS2103;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.person.AddCommand;
-import seedu.address.logic.parser.person.AddCommandParser;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.logic.commands.meetingentry.AddCommand;
+import seedu.address.logic.parser.meetingentry.AddCommandParser;
+import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.testutil.MeetingEntryBuilder;
 
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        final MeetingEntry expectedMeetingEntry = new MeetingEntryBuilder(CS2103).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_LECTURE + URL_DESC_LECTURE
+                + DATETIME_DESC_LECTURE + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, NAME_DESC_TUTORIAL + NAME_DESC_LECTURE + URL_DESC_LECTURE
+                + DATETIME_DESC_LECTURE + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple urls - last url accepted
+        assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_TUTORIAL + URL_DESC_LECTURE
+                + DATETIME_DESC_LECTURE + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple datetime - last datetime accepted
+        assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_TUTORIAL
+                + DATETIME_DESC_LECTURE + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple module code - last module code accepted
+        assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
+                + MODULE_CODE_DESC_TUTORIAL + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
+
+        // multiple recurrence - last recurrence accepted
+        assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
+                + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_TUTORIAL + RECURRING_DESC_LECTURE
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+        final MeetingEntry expectedMeetingEntryMultipleTags = new MeetingEntryBuilder(CS2103)
+                .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL).build();
+        assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
+                + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE + TAG_DESC_TUTORIAL
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntryMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedPerson));
+        final MeetingEntry expectedMeetingEntry = new MeetingEntryBuilder(CS2101).withTags().build();
+        assertParseSuccess(parser, NAME_DESC_TUTORIAL + URL_DESC_TUTORIAL + DATETIME_DESC_TUTORIAL
+                        + MODULE_CODE_DESC_TUTORIAL + RECURRING_DESC_TUTORIAL,
+                new AddCommand(expectedMeetingEntry));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        final String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, VALID_NAME_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
+                        + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE,
                 expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+        // missing url prefix
+        assertParseFailure(parser, NAME_DESC_LECTURE + VALID_URL_LECTURE + DATETIME_DESC_LECTURE
+                        + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE,
                 expectedMessage);
 
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
+        // missing datetime prefix
+        assertParseFailure(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + VALID_DATETIME_LECTURE
+                        + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE,
                 expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
+        // missing module code prefix
+        assertParseFailure(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
+                        + VALID_MODULE_CODE_LECTURE + RECURRING_DESC_LECTURE,
+                expectedMessage);
+
+        //missing recurrence prefix
+        assertParseFailure(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
+                        + MODULE_CODE_DESC_LECTURE + VALID_RECURRING_LECTURE,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, VALID_NAME_LECTURE + VALID_URL_LECTURE + VALID_DATETIME_LECTURE
+                        + VALID_MODULE_CODE_LECTURE + VALID_RECURRING_LECTURE,
                 expectedMessage);
     }
 
-    @Test
-    public void parse_invalidValue_failure() {
-        // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
-
-        // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
-
-        // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
-
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
-
-        // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
-
-        // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-                Name.MESSAGE_CONSTRAINTS);
-
-        // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-    }
+    //      TODO update once we do input validation
+    //    @Test
+    //    public void parse_invalidValue_failure() {
+    //        // invalid name
+    //        seedu.address.logic.parser.person.AddCommandParser oldParser = new seedu.address.logic.parser
+    //        .person.AddCommandParser();
+    //        assertParseFailure(oldParser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+    //                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+    //
+    //        // invalid phone
+    //        assertParseFailure(oldParser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+    //                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+    //
+    //        // invalid email
+    //        assertParseFailure(oldParser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
+    //                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+    //
+    //        // invalid address
+    //        assertParseFailure(oldParser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+    //                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+    //
+    //        // invalid tag
+    //        assertParseFailure(oldParser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+    //                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+    //
+    //        // two invalid values, only first invalid value reported
+    //        assertParseFailure(oldParser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
+    //                Name.MESSAGE_CONSTRAINTS);
+    //
+    //        // non-empty preamble
+    //        assertParseFailure(oldParser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+    //                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+    //                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    //    }
 }
