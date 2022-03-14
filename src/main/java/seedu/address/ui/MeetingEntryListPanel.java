@@ -14,7 +14,7 @@ import seedu.address.model.meetingentry.MeetingEntry;
  * Panel containing the list of persons.
  */
 public class MeetingEntryListPanel extends UiPart<Region> {
-    private static final String FXML = "MeetingListPanel.fxml";
+    private static final String FXML = "MeetingEntryListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
