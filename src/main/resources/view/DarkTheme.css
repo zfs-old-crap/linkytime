@@ -350,3 +350,21 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#moduleCode {
+    -fx-text-fill: white;
+    -fx-background-color: #b56576;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 12;
+}
+
+#isRecurring {
+    -fx-text-fill: black;
+    -fx-background-color: #a4b494;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
