@@ -175,7 +175,7 @@ public class CommandTestUtil {
     public static void showMeetingEntryAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingEntryList().size());
 
-        MeetingEntry meetingEntry = model.getFilteredMeetingEntryList().get(targetIndex.getZeroBased());
+        final MeetingEntry meetingEntry = model.getFilteredMeetingEntryList().get(targetIndex.getZeroBased());
         model.updateFilteredMeetingEntryList(otherMeetingEntry -> otherMeetingEntry.equals(meetingEntry));
 
         assertEquals(1, model.getFilteredMeetingEntryList().size());

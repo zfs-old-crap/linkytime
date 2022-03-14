@@ -16,7 +16,6 @@ import seedu.address.model.meetingentry.MeetingEntry;
  * Deletes a meeting entry identified using its displayed index from LinkyTime.
  */
 public class DeleteCommand extends Command {
-
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -35,13 +34,13 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<MeetingEntry> lastShownList = model.getFilteredMeetingEntryList();
+        final List<MeetingEntry> lastShownList = model.getFilteredMeetingEntryList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_ENTRY_DISPLAYED_INDEX);
         }
 
-        MeetingEntry meetingEntryToDelete = lastShownList.get(targetIndex.getZeroBased());
+        final MeetingEntry meetingEntryToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteMeetingEntry(meetingEntryToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_MEETING_ENTRY_SUCCESS, meetingEntryToDelete));
     }

@@ -33,21 +33,21 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the MeetingEntry in the {@code model}'s MeetingEntry list.
+     * Returns the middle index of the meeting entry in the {@code model}'s MeetingEntry list.
      */
     public static Index getMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredMeetingEntryList().size() / 2);
     }
 
     /**
-     * Returns the last index of the MeetingEntry in the {@code model}'s MeetingEntry list.
+     * Returns the last index of the meeting entry in the {@code model}'s MeetingEntry list.
      */
     public static Index getLastIndex(Model model) {
         return Index.fromOneBased(model.getFilteredMeetingEntryList().size());
     }
 
     /**
-     * Returns the MeetingEntry in the {@code model}'s MeetingEntry list at {@code index}.
+     * Returns the meeting entry in the {@code model}'s meeting entry list at {@code index}.
      */
     public static MeetingEntry getMeetingEntry(Model model, Index index) {
         return model.getFilteredMeetingEntryList().get(index.getZeroBased());
