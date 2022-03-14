@@ -31,7 +31,7 @@ title: User Guide
     Some example commands you can try:
 
     * `list` : Lists all meeting entries.
-    * `add l/https://meet.google.com n/CS2103T Lecture d/Friday 2pm` : Adds a meeting named `CS2103T Lecture` to the list of meeting entries.
+    * `add n/Tutorial u/https://www.zoom.com d/13mar2022 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with the module code `CS2103` to the list of meeting entries.
     * `delete 3` : Deletes the 3rd entry shown in the current list.
     * `exit` : Exits the app.
 
@@ -46,19 +46,19 @@ title: User Guide
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add l/LINK`, `LINK` is a parameter which can be used as `add l/meet.google.com`.
+  e.g. in `add u/LINK`, `LINK` is a parameter which can be used as `add u/https://meet.google.com`.
 
 * Items in square brackets are optional.<br>
-  e.g. `l/LINK [t/TAG]` can be used as `l/meet.google.com t/lecture` or as `l/meet.google.com`.
+  e.g. `u/LINK [t/TAG]` can be used as `u/https://meet.google.com t/midterm` or as `u/https://meet.google.com`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/lecture`, `t/lecture t/cs2103t` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/recorded`, `t/recorded t/lecturequiz` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `l/LINK n/MEETING_NAME`, `n/MEETING_NAME l/LINK` is also acceptable.
+  e.g. if the command specifies `u/LINK n/MEETING_NAME`, `n/MEETING_NAME u/LINK` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `n/CS2103T Lecture n/CS2103T Tutorial`, only `n/CS2103T Tutorial` will be taken.
+  e.g. if you specify `n/Lecture n/Tutorial`, only `n/Tutorial` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -76,18 +76,21 @@ This section describes each of the commands and features available in **LinkyTim
 
 Adds a meeting entry into the entry list.
 
-Format: `add n/MEETING_NAME l/LINK d/DATETIME [t/TAG]…​`
+Format: `add n/MEETING_NAME u/LINK d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...`
 
 Parameters:
 
 * `MEETING_NAME` The name of the meeting entry.
 * `LINK` The link to the online meeting.
 * `DATETIME` The date and starting time of the meeting.
+* `MODULE_CODE` The module code of the module that the meeting is for.
+* `IS_RECURRING` Whether the meeting recurs every week. Given as `Y` or `N`.
 * `TAG` The tags associated with the meeting entry.
 
 Examples:
 
-* `add n/CS2103T Lecture l/meet.google.com d/Friday 2pm t/lecture t/cs2103t`
+* `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
+* `add n/Midterm u/https://www.google.com d/13mar2022 10am m/CS2106 r/N`
 
 
 #### List all meeting entries : `list`
@@ -173,7 +176,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/MEETING_NAME l/LINK d/DATETIME [t/TAG]…​` <br> e.g., `add n/CS2103T Lecture l/meet.google.com d/Friday 2pm t/lecture t/cs2103t`
+**Add** | `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
 **List** | `list`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
