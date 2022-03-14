@@ -20,7 +20,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.EditCommand;
-import seedu.address.model.AddressBook;
+import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -139,17 +139,19 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the {@code LinkyTime}, filtered meeting entry list and selected meeting entry remained unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        final AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        final List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+
+        final LinkyTime expectedLinkyTime = new LinkyTime(actualModel.getLinkyTime());
+        final List<MeetingEntry> expectedFilteredMeetingEntryList =
+                new ArrayList<>(actualModel.getFilteredMeetingEntryList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedLinkyTime, actualModel.getLinkyTime());
+        assertEquals(expectedFilteredMeetingEntryList, actualModel.getFilteredMeetingEntryList());
     }
 
     /**
@@ -168,7 +170,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the MeetingEntry at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s LinkyTime.
      */
     public static void showMeetingEntryAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingEntryList().size());

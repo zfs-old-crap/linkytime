@@ -74,7 +74,7 @@ public class DeleteCommandTest {
         showMeetingEntryAtIndex(model, INDEX_FIRST_MEETING_ENTRY);
 
         Index outOfBoundIndex = INDEX_SECOND_MEETING_ENTRY;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of LinkyTime list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getLinkyTime().getMeetingEntryList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
