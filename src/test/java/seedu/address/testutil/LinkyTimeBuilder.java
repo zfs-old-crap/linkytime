@@ -6,7 +6,7 @@ import seedu.address.model.meetingentry.MeetingEntry;
 /**
  * A utility class to help with building a LinkyTime objects.
  * Example usage: <br>
- * {@code LinkyTime lt = new LinkyTimeBuilder().withEntry(CS2103T_tutorial).withEntry(CS2106_lab).build();}
+ * {@code LinkyTime lt = new LinkyTimeBuilder().withEntry(cs2103tTutorial).withEntry(cs2106Lab).build();}
  */
 public class LinkyTimeBuilder {
     private LinkyTime linkyTime;
