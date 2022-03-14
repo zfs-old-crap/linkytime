@@ -22,7 +22,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting entry to LinkyTime. "
             + "Parameters: "
             + PREFIX_NAME + "MEETING_NAME "
-            + PREFIX_URL + "LINK "
+            + PREFIX_URL + "URL "
             + PREFIX_DATETIME + "DATETIME "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
             + PREFIX_RECURRING + "IS_RECURRING "
