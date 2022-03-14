@@ -46,16 +46,16 @@ title: User Guide
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add u/LINK`, `LINK` is a parameter which can be used as `add u/https://meet.google.com`.
+  e.g. in `add u/URL`, `URL` is a parameter which can be used as `add u/https://meet.google.com`.
 
 * Items in square brackets are optional.<br>
-  e.g. `u/LINK [t/TAG]` can be used as `u/https://meet.google.com t/midterm` or as `u/https://meet.google.com`.
+  e.g. `u/URL [t/TAG]` can be used as `u/https://meet.google.com t/midterm` or as `u/https://meet.google.com`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/recorded`, `t/recorded t/lecturequiz` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `u/LINK n/MEETING_NAME`, `n/MEETING_NAME u/LINK` is also acceptable.
+  e.g. if the command specifies `u/URL n/MEETING_NAME`, `n/MEETING_NAME u/URL` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/Lecture n/Tutorial`, only `n/Tutorial` will be taken.
@@ -76,12 +76,12 @@ This section describes each of the commands and features available in **LinkyTim
 
 Adds a meeting entry into the entry list.
 
-Format: `add n/MEETING_NAME u/LINK d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...`
+Format: `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...`
 
 Parameters:
 
 * `MEETING_NAME` The name of the meeting entry.
-* `LINK` The link to the online meeting.
+* `URL` The URL to the online meeting.
 * `DATETIME` The date and starting time of the meeting.
 * `MODULE_CODE` The module code of the module that the meeting is for.
 * `IS_RECURRING` Whether the meeting recurs every week. Given as `Y` or `N`.
@@ -101,7 +101,7 @@ Format: `list`
 
 Details include:
 
-* Meeting link
+* Meeting url
 * Meeting name
 * Meeting date and time
 
@@ -176,7 +176,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/MEETING_NAME u/LINK d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
+**Add** | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
 **List** | `list`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
