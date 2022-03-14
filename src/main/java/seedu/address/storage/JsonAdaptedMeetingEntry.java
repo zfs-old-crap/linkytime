@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link MeetingEntry}.
  */
 class JsonAdaptedMeetingEntry {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Meeting Entry's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Meeting entry's %s field is missing!";
 
     private final String name;
     private final String url;
@@ -76,6 +76,7 @@ class JsonAdaptedMeetingEntry {
             meetingEntryTags.add(tag.toModelType());
         }
 
+        // Validate name.
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MeetingName.class.getSimpleName()));
@@ -85,6 +86,7 @@ class JsonAdaptedMeetingEntry {
         }
         final MeetingName modelName = new MeetingName(name);
 
+        // Validate url.
         if (url == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MeetingUrl.class.getSimpleName()));
@@ -94,26 +96,27 @@ class JsonAdaptedMeetingEntry {
         }
         final MeetingUrl modelUrl = new MeetingUrl(url);
 
+        // Validate dateTime.
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MeetingDateTime.class.getSimpleName()));
         }
-        // TODO: To be uncommented when MeetingDateTime validation is implemented.
-        // if (!dateTime.isValidDateTime(dateTime)) {
-        //     throw new IllegalValueException(MeetingDateTime.MESSAGE_CONSTRAINTS);
-        // }
+        if (!MeetingDateTime.isValidDateTime(dateTime)) {
+            throw new IllegalValueException(MeetingDateTime.MESSAGE_CONSTRAINTS);
+        }
         final MeetingDateTime modelDateTime = new MeetingDateTime(dateTime);
 
+        // Validate module code.
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ModuleCode.class.getSimpleName()));
         }
-        // TODO: To be uncommented when ModuleCode validation is implemented.
-        // if (!moduleCode.isValidModuleCode(moduleCode)) {
-        //     throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
-        // }
+        if (!ModuleCode.isValidModuleCode(moduleCode)) {
+            throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
+        // Validate recurring status.
         if (isRecurring == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     IsRecurring.class.getSimpleName()));
