@@ -18,7 +18,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.EditCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.meetingentry.LinkyTimeNameContainsKeywordsPredicate;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -137,8 +136,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingEntryList().size());
 
         MeetingEntry meetingEntry = model.getFilteredMeetingEntryList().get(targetIndex.getZeroBased());
-        final String[] splitName = meetingEntry.getName().name.split("\\s+");
-        model.updateFilteredMeetingEntryList(new LinkyTimeNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredMeetingEntryList(otherMeetingEntry -> otherMeetingEntry.equals(meetingEntry));
 
         assertEquals(1, model.getFilteredMeetingEntryList().size());
     }
