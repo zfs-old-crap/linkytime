@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_URL + "www.zoom.com "
             + PREFIX_DATETIME + "13mar2022 "
             + PREFIX_MODULE_CODE + "CS2103 "
-            + PREFIX_RECURRING + "Yes "
+            + PREFIX_RECURRING + "Y "
             + PREFIX_TAG + "Boring";
 
     public static final String MESSAGE_SUCCESS = "New meeting entry added: %1$s";
