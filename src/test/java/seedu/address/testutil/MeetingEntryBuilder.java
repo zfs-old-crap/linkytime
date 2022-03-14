@@ -17,15 +17,15 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class MeetingEntryBuilder {
 
-    public static final String DEFAULT_MEETINGNAME = "CS2103T Lecture";
+    public static final String DEFAULT_NAME = "CS2103T Lecture";
     public static final String DEFAULT_URL = "https://legit-uni.zoom.us/j/344299221?pwd=F3a99221";
-    public static final String DEFAULT_DATETIME = "13mar2022";
-    public static final String DEFAULT_MODULECODE = "CS2103";
-    public static final String DEFAULT_ISRECURRING = "Y";
+    public static final String DEFAULT_DATETIME = "Tuesday";
+    public static final String DEFAULT_MODULE_CODE = "CS2103";
+    public static final String DEFAULT_RECURRENCE = "Y";
 
-    private MeetingName meetingName;
-    private MeetingUrl meetingUrl;
-    private MeetingDateTime meetingDateTime;
+    private MeetingName name;
+    private MeetingUrl url;
+    private MeetingDateTime dateTime;
     private ModuleCode moduleCode;
     private IsRecurring isRecurring;
     private Set<Tag> tags;
@@ -34,11 +34,11 @@ public class MeetingEntryBuilder {
      * Creates a {@code MeetingEntryBuilder} with the default details.
      */
     public MeetingEntryBuilder() {
-        meetingName = new MeetingName(DEFAULT_MEETINGNAME);
-        meetingUrl = new MeetingUrl(DEFAULT_URL);
-        meetingDateTime = new MeetingDateTime(DEFAULT_DATETIME);
-        moduleCode = new ModuleCode(DEFAULT_MODULECODE);
-        isRecurring = new IsRecurring(DEFAULT_ISRECURRING);
+        name = new MeetingName(DEFAULT_NAME);
+        url = new MeetingUrl(DEFAULT_URL);
+        dateTime = new MeetingDateTime(DEFAULT_DATETIME);
+        moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
+        isRecurring = new IsRecurring(DEFAULT_RECURRENCE);
         tags = new HashSet<>();
     }
 
@@ -46,9 +46,9 @@ public class MeetingEntryBuilder {
      * Initializes the MeetingEntryBuilder with the data of {@code meetingEntryToCopy}.
      */
     public MeetingEntryBuilder(MeetingEntry meetingEntryToCopy) {
-        meetingName = meetingEntryToCopy.getName();
-        meetingUrl = meetingEntryToCopy.getUrl();
-        meetingDateTime = meetingEntryToCopy.getDateTime();
+        name = meetingEntryToCopy.getName();
+        url = meetingEntryToCopy.getUrl();
+        dateTime = meetingEntryToCopy.getDateTime();
         moduleCode = meetingEntryToCopy.getModuleCode();
         isRecurring = meetingEntryToCopy.getIsRecurring();
         tags = new HashSet<>(meetingEntryToCopy.getTags());
@@ -58,13 +58,12 @@ public class MeetingEntryBuilder {
      * Sets the {@code MeetingName} of the {@code MeetingEntry} that we are building.
      */
     public MeetingEntryBuilder withName(String name) {
-        this.meetingName = new MeetingName(name);
+        this.name = new MeetingName(name);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
-     * {@code MeetingEntry} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code MeetingEntry} that we are building.
      */
     public MeetingEntryBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -75,15 +74,15 @@ public class MeetingEntryBuilder {
      * Sets the {@code Url} of the {@code MeetingEntry} that we are building.
      */
     public MeetingEntryBuilder withUrl(String url) {
-        this.meetingUrl = new MeetingUrl(url);
+        this.url = new MeetingUrl(url);
         return this;
     }
 
     /**
-     * Sets the {@code meetingDateTime} of the {@code MeetingEntry} that we are building.
+     * Sets the {@code MeetingDateTime} of the {@code MeetingEntry} that we are building.
      */
     public MeetingEntryBuilder withDateTime(String dateTime) {
-        this.meetingDateTime = new MeetingDateTime(dateTime);
+        this.dateTime = new MeetingDateTime(dateTime);
         return this;
     }
 
@@ -107,7 +106,6 @@ public class MeetingEntryBuilder {
      * Creates the {@code MeetingEntry} represented by this {@code MeetingEntryBuilder} instance.
      */
     public MeetingEntry build() {
-        return new MeetingEntry(meetingName, meetingUrl,
-                meetingDateTime, moduleCode, isRecurring, tags);
+        return new MeetingEntry(name, url, dateTime, moduleCode, isRecurring, tags);
     }
 }
