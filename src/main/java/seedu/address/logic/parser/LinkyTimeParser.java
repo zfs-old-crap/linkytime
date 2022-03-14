@@ -9,8 +9,10 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.meetingentry.AddCommand;
 import seedu.address.logic.commands.meetingentry.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.meetingentry.AddCommandParser;
 
 /**
  * Parses user input.
@@ -39,13 +41,12 @@ public class LinkyTimeParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
