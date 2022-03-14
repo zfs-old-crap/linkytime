@@ -19,7 +19,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -74,39 +73,28 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s LinkyTime and {@code userPrefs}. <br>
+     * The data from the sample LinkyTime will be used instead if {@code storage}'s LinkyTime is not found,
+     * or an empty LinkyTime will be used instead if errors occur when reading {@code storage}'s LinkyTime.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyLinkyTime> linkyTimeOptional;
         ReadOnlyLinkyTime initialData;
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialAddressBookData;
 
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialAddressBookData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-
-            linkyTimeOptional = storage.readLinkyTime();
+            final Optional<ReadOnlyLinkyTime> linkyTimeOptional = storage.readLinkyTime();
             if (!linkyTimeOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample LinkyTime data.");
             }
-            initialData = linkyTimeOptional.get();
+            initialData = linkyTimeOptional.orElseGet(SampleDataUtil::getSampleLinkyTime);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialAddressBookData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty LinkyTime");
             initialData = new LinkyTime();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialAddressBookData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty LinkyTime");
             initialData = new LinkyTime();
         }
 
-        return new ModelManager(initialAddressBookData, userPrefs, initialData);
+        return new ModelManager(new AddressBook(), userPrefs, initialData);
     }
 
     private void initLogging(Config config) {

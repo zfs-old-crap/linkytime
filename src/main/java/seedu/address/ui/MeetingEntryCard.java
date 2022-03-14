@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -12,7 +14,7 @@ import seedu.address.model.meetingentry.MeetingEntry;
  */
 public class MeetingEntryCard extends UiPart<Region> {
 
-    private static final String FXML = "MeetingEntryCard.fxml";
+    private static final String FXML = "MeetingEntryListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -27,11 +29,17 @@ public class MeetingEntryCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
+    private Label moduleCode;
+    @FXML
     private Label name;
     @FXML
     private Label dateTime;
     @FXML
-    private Label link;
+    private Label url;
+    @FXML
+    private Label isRecurring;
     @FXML
     private FlowPane tags;
 
@@ -41,9 +49,19 @@ public class MeetingEntryCard extends UiPart<Region> {
     public MeetingEntryCard(MeetingEntry meetingEntry, int displayedIndex) {
         super(FXML);
         this.meetingEntry = meetingEntry;
+        id.setText(displayedIndex + ". ");
+        moduleCode.setText(meetingEntry.getModuleCode().moduleCode);
         name.setText(meetingEntry.getName().name);
         dateTime.setText(meetingEntry.getDateTime().datetime);
-        link.setText(meetingEntry.getUrl().meetingUrl.toString());
+        url.setText(meetingEntry.getUrl().meetingUrl.toString());
+        isRecurring.setVisible(meetingEntry.getIsRecurring().isRecurring);
+        if (meetingEntry.getIsRecurring().isRecurring) {
+            isRecurring.setText("Recurring");
+        }
+        isRecurring.managedProperty().bind(isRecurring.visibleProperty());
+        meetingEntry.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
@@ -60,7 +78,7 @@ public class MeetingEntryCard extends UiPart<Region> {
 
         // state check
         final MeetingEntryCard card = (MeetingEntryCard) other;
-        return name.getText().equals(card.name.getText())
+        return id.getText().equals(card.id.getText())
                 && meetingEntry.equals(card.meetingEntry);
     }
 }

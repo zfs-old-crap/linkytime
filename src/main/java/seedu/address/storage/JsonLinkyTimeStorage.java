@@ -4,61 +4,23 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.LinkyTime;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.FileUtil;
+import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyLinkyTime;
-import seedu.address.model.meetingentry.IsRecurring;
-import seedu.address.model.meetingentry.MeetingDateTime;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.meetingentry.MeetingName;
-import seedu.address.model.meetingentry.MeetingUrl;
-import seedu.address.model.modulecode.ModuleCode;
-import seedu.address.model.tag.Tag;
 
 /**
  * A class to access LinkyTime data stored as a json file on the hard disk.
  */
 public class JsonLinkyTimeStorage implements LinkyTimeStorage {
-
     private static final Logger logger = LogsCenter.getLogger(JsonLinkyTimeStorage.class);
 
     // Temporary dummy data to substitute data file from storage while this class is still being implemented.
-    private static final LinkyTime DUMMY_DATA = new LinkyTime();
-    static {
-        final MeetingUrl dummyMeetingUrl = new MeetingUrl("https://legit-uni.zoom.us/j/344299221?pwd=F3a99221");
-        JsonLinkyTimeStorage.DUMMY_DATA.setMeetingEntries(Arrays.asList(
-                new MeetingEntry(
-                        new MeetingName("CS2103T Lecture"),
-                        dummyMeetingUrl,
-                        new MeetingDateTime("18mar2022"),
-                        new ModuleCode("CS2103T"),
-                        new IsRecurring("Y"),
-                        new HashSet<Tag>()
-                ),
-                new MeetingEntry(
-                        new MeetingName("CS2101 Tutorial"),
-                        dummyMeetingUrl,
-                        new MeetingDateTime("19mar2022"),
-                        new ModuleCode("CS2101"),
-                        new IsRecurring("Y"),
-                        new HashSet<Tag>()
-                ),
-                new MeetingEntry(
-                        new MeetingName("TokTik Rejection Interview"),
-                        dummyMeetingUrl,
-                        new MeetingDateTime("20mar2022"),
-                        new ModuleCode("Intern"),
-                        new IsRecurring("N"),
-                        new HashSet<Tag>()
-                )
-        ));
-    }
 
     private final Path filePath;
 
@@ -84,8 +46,18 @@ public class JsonLinkyTimeStorage implements LinkyTimeStorage {
     public Optional<ReadOnlyLinkyTime> readLinkyTime(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        // TODO: Retrieval from data file.
-        return Optional.<ReadOnlyLinkyTime>of(JsonLinkyTimeStorage.DUMMY_DATA);
+        final Optional<JsonSerializableLinkyTime> jsonLinkyTime = JsonUtil.readJsonFile(
+                filePath, JsonSerializableLinkyTime.class);
+        if (!jsonLinkyTime.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonLinkyTime.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
     }
 
     @Override
@@ -102,7 +74,8 @@ public class JsonLinkyTimeStorage implements LinkyTimeStorage {
         requireNonNull(linkyTime);
         requireNonNull(filePath);
 
-        // TODO: Persistence to data file.
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableLinkyTime(linkyTime), filePath);
     }
 
 }
