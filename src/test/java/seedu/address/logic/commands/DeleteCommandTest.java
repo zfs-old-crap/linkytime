@@ -106,7 +106,7 @@ public class DeleteCommandTest {
 
 
     /**
-     * Updates {@code model}'s filtered list to show no MeetingEntry.
+     * Updates {@code model}'s filtered list to show no meeting entries.
      */
     private void showNoMeetingEntry(Model model) {
         model.updateFilteredMeetingEntryList(p -> false);

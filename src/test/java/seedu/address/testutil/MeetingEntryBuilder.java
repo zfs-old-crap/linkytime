@@ -80,7 +80,7 @@ public class MeetingEntryBuilder {
     }
 
     /**
-     * Sets the {@code <eetingDateTime} of the {@code MeetingEntry} that we are building.
+     * Sets the {@code meetingDateTime} of the {@code MeetingEntry} that we are building.
      */
     public MeetingEntryBuilder withDateTime(String dateTime) {
         this.meetingDateTime = new MeetingDateTime(dateTime);
