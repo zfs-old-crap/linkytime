@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tutorial "
-            + PREFIX_URL + "www.zoom.com "
+            + PREFIX_URL + "https://www.zoom.com "
             + PREFIX_DATETIME + "13mar2022 "
             + PREFIX_MODULE_CODE + "CS2103 "
             + PREFIX_RECURRING + "Y "
