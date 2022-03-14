@@ -16,10 +16,10 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building MeetingEntry objects.
  */
 public class MeetingEntryBuilder {
-    public static final String DEFAULT_NAME = "Lecture";
-    public static final String DEFAULT_URL = "https://www.zoom.com";
+    public static final String DEFAULT_NAME = "CS2103T Lecture";
+    public static final String DEFAULT_URL = "https://legit-uni.zoom.us/j/344299221?pwd=F3a99221";
     public static final String DEFAULT_DATETIME = "Tuesday";
-    public static final String DEFAULT_MODULE_CODE = "CS2101";
+    public static final String DEFAULT_MODULE_CODE = "CS2103";
     public static final String DEFAULT_RECURRENCE = "Y";
 
     private MeetingName name;
@@ -78,10 +78,18 @@ public class MeetingEntryBuilder {
     }
 
     /**
-     * Sets the {@code DateTime} of the {@code MeetingEntry} that we are building.
+     * Sets the {@code MeetingDateTime} of the {@code MeetingEntry} that we are building.
      */
     public MeetingEntryBuilder withDateTime(String dateTime) {
         this.dateTime = new MeetingDateTime(dateTime);
+        return this;
+    }
+
+    /**
+     * Sets the {@code IsRecurring} field of the {@code MeetingEntry} that we are building.
+     */
+    public MeetingEntryBuilder withIsRecurring(String isRecurring) {
+        this.isRecurring = new IsRecurring(isRecurring);
         return this;
     }
 
@@ -94,15 +102,9 @@ public class MeetingEntryBuilder {
     }
 
     /**
-     * Sets the {@code IsRecurring} of the {@code MeetingEntry} that we are building.
+     * Creates the {@code MeetingEntry} represented by this {@code MeetingEntryBuilder} instance.
      */
-    public MeetingEntryBuilder withIsRecurring(String isRecurring) {
-        this.isRecurring = new IsRecurring(isRecurring);
-        return this;
-    }
-
     public MeetingEntry build() {
         return new MeetingEntry(name, url, dateTime, moduleCode, isRecurring, tags);
     }
-
 }

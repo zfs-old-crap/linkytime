@@ -4,21 +4,21 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.logic.commands.CommandTestUtil.showMeetingEntryAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING_ENTRY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING_ENTRY;
+import static seedu.address.testutil.TypicalMeetingEntries.getTypicalLinkyTime;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.person.DeleteCommand;
-import seedu.address.model.LinkyTime;
+import seedu.address.logic.commands.meetingentry.DeleteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.meetingentry.MeetingEntry;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -26,17 +26,20 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new LinkyTime());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalLinkyTime());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        final MeetingEntry meetingEntryToDelete = model.getFilteredMeetingEntryList()
+                .get(INDEX_FIRST_MEETING_ENTRY.getZeroBased());
+        final DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_MEETING_ENTRY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        final String expectedMessage =
+                String.format(DeleteCommand.MESSAGE_DELETE_MEETING_ENTRY_SUCCESS, meetingEntryToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new LinkyTime());
-        expectedModel.deletePerson(personToDelete);
+        final ModelManager expectedModel =
+                new ModelManager(getTypicalAddressBook(), new UserPrefs(), model.getLinkyTime());
+        expectedModel.deleteMeetingEntry(meetingEntryToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -46,48 +49,50 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MEETING_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showMeetingEntryAtIndex(model, INDEX_FIRST_MEETING_ENTRY);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        final MeetingEntry meetingEntryToDelete = model.getFilteredMeetingEntryList()
+                .get(INDEX_FIRST_MEETING_ENTRY.getZeroBased());
+        final DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_MEETING_ENTRY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        final String expectedMessage =
+                String.format(DeleteCommand.MESSAGE_DELETE_MEETING_ENTRY_SUCCESS, meetingEntryToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new LinkyTime());
-        expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
+        final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), model.getLinkyTime());
+        expectedModel.deleteMeetingEntry(meetingEntryToDelete);
+        showNoMeetingEntry(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showMeetingEntryAtIndex(model, INDEX_FIRST_MEETING_ENTRY);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        final Index outOfBoundIndex = INDEX_SECOND_MEETING_ENTRY;
+        // ensures that outOfBoundIndex is still in bounds of LinkyTime list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getLinkyTime().getMeetingEntryList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MEETING_ENTRY_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        final DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_MEETING_ENTRY);
+        final DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_MEETING_ENTRY);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        final DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_MEETING_ENTRY);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -96,16 +101,17 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different meeting entry -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+    /**
+     * Updates {@code model}'s filtered list to show no meeting entries.
+     */
+    private void showNoMeetingEntry(Model model) {
+        model.updateFilteredMeetingEntryList(p -> false);
+
+        assertTrue(model.getFilteredMeetingEntryList().isEmpty());
     }
 }

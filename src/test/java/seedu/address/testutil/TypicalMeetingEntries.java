@@ -75,7 +75,7 @@ public class TypicalMeetingEntries {
     } // prevents instantiation
 
     /**
-     * Returns an {@code LinkyTime} with all the typical meeting entries.
+     * Returns a {@code LinkyTime} with all the typical meeting entries.
      */
     public static LinkyTime getTypicalLinkyTime() {
         final LinkyTime lt = new LinkyTime();
