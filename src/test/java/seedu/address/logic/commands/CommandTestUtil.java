@@ -51,7 +51,7 @@ public class CommandTestUtil {
     public static final String VALID_DATETIME_LECTURE = "Friday";
     public static final String VALID_DATETIME_TUTORIAL = "Tuesday";
     public static final String VALID_DURATION_LECTURE = "2";
-    public static final String VALID_DURATION_TUTORIAL = "1";
+    public static final String VALID_DURATION_TUTORIAL = "1.5";
     public static final String VALID_MODULE_CODE_LECTURE = "CS2103";
     public static final String VALID_MODULE_CODE_TUTORIAL = "CS2101";
     public static final String VALID_RECURRING_LECTURE = "Y";
@@ -98,7 +98,7 @@ public class CommandTestUtil {
     //    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_ADDRESS; // empty string not allowed
     //    public static final String INVALID_RECURRING_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
     //    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "two"; //letters not allowed in names
+    public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "two"; //letters not allowed in duration
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

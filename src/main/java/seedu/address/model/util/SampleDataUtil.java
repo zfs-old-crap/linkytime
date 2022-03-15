@@ -43,7 +43,7 @@ public class SampleDataUtil {
                 new MeetingName("TokTik Rejection Interview"),
                 new MeetingUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
                 new MeetingDateTime("20mar20221am"),
-                new MeetingDuration("1"),
+                new MeetingDuration("1.5"),
                 new ModuleCode("Intern"),
                 new IsRecurring("N"),
                 getTagSet("internship", "interview")
