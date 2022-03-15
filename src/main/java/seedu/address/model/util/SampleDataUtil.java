@@ -8,6 +8,7 @@ import seedu.address.model.LinkyTime;
 import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.meetingentry.IsRecurring;
 import seedu.address.model.meetingentry.MeetingDateTime;
+import seedu.address.model.meetingentry.MeetingDuration;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.meetingentry.MeetingName;
 import seedu.address.model.meetingentry.MeetingUrl;
@@ -24,6 +25,7 @@ public class SampleDataUtil {
                 new MeetingName("CS2103T Lecture"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/344299221?pwd=F3a99221"),
                 new MeetingDateTime("18mar20223pm"),
+                new MeetingDuration("2"),
                 new ModuleCode("CS2103T"),
                 new IsRecurring("Y"),
                 getTagSet()
@@ -32,6 +34,7 @@ public class SampleDataUtil {
                 new MeetingName("CS2101 Tutorial"),
                 new MeetingUrl("https://meet.google.com/omg-look-ma"),
                 new MeetingDateTime("19mar20222pm"),
+                new MeetingDuration("1"),
                 new ModuleCode("CS2101"),
                 new IsRecurring("Y"),
                 getTagSet("memes")
@@ -40,6 +43,7 @@ public class SampleDataUtil {
                 new MeetingName("TokTik Rejection Interview"),
                 new MeetingUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
                 new MeetingDateTime("20mar20221am"),
+                new MeetingDuration("1"),
                 new ModuleCode("Intern"),
                 new IsRecurring("N"),
                 getTagSet("internship", "interview")
