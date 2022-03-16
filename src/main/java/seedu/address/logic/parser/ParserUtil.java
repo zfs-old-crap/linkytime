@@ -187,9 +187,9 @@ public class ParserUtil {
      */
     public static MeetingDuration parseMeetingDuration(String meetingDuration) throws ParseException {
         requireNonNull(meetingDuration);
-        String trimmedMeetingDuration = meetingDuration.trim();
+        final String trimmedMeetingDuration = meetingDuration.trim();
         if (!MeetingDuration.isValidDuration(trimmedMeetingDuration)) {
-            throw new ParseException(MeetingDuration.MESSAGE_CONTRAINTS);
+            throw new ParseException(MeetingDuration.MESSAGE_CONSTRAINTS);
         }
         return new MeetingDuration(trimmedMeetingDuration);
     }

@@ -124,7 +124,7 @@ public class AddCommandParserTest {
                         + DURATION_DESC_LECTURE + VALID_MODULE_CODE_LECTURE + RECURRING_DESC_LECTURE,
                 expectedMessage);
 
-        //missing recurrence prefix
+        // missing recurrence prefix
         assertParseFailure(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                         + DURATION_DESC_LECTURE + MODULE_CODE_DESC_LECTURE + VALID_RECURRING_LECTURE,
                 expectedMessage);

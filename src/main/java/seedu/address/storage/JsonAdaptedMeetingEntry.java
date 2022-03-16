@@ -117,7 +117,7 @@ class JsonAdaptedMeetingEntry {
                     MeetingDuration.class.getSimpleName()));
         }
         if (!MeetingDuration.isValidDuration(duration)) {
-            throw new IllegalValueException(MeetingDuration.MESSAGE_CONTRAINTS);
+            throw new IllegalValueException(MeetingDuration.MESSAGE_CONSTRAINTS);
         }
         final MeetingDuration modelDuration = new MeetingDuration(duration);
 

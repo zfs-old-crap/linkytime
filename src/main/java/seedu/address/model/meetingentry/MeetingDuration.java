@@ -11,9 +11,8 @@ import java.time.LocalDateTime;
  * Guarantees: immutable;
  */
 public class MeetingDuration {
-
-    public static final String MESSAGE_CONTRAINTS =
-            "Duration should be given in hours and be less than 24hours";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Duration should be given in hours and range from 1 to 24 inclusive";
 
     public final float duration;
 
@@ -24,7 +23,7 @@ public class MeetingDuration {
      */
     public MeetingDuration(String duration) {
         requireNonNull(duration);
-        checkArgument(isValidDuration(duration), MESSAGE_CONTRAINTS);
+        checkArgument(isValidDuration(duration), MESSAGE_CONSTRAINTS);
         this.duration = Float.parseFloat(duration);
     }
 
@@ -37,28 +36,22 @@ public class MeetingDuration {
      */
     public static boolean isValidDuration(String test) {
         try {
-            final float number = Float.parseFloat(test);
-            if (number > 24 || number < 0) {
-                return false;
-            }
+            final float durationToTest = Float.parseFloat(test);
+            return durationToTest > 0 && durationToTest <= 24;
         } catch (NumberFormatException e) {
             return false;
         }
-        return true;
     }
 
     /**
      * Returns the endTime given the startTime.
      *
-     * @param startTime The {@code LocalDateTime} to add the duration to.
+     * @param startDateTime The {@code LocalDateTime} to add the duration to.
      * @return The resulting time after adding the duration to the startTime.
      */
-    public LocalDateTime getEndTime(LocalDateTime startTime) {
-        final int hours = (int) duration;
-        final float remainder = duration - hours;
-        final int roundedOffMinutes = (int) (remainder * 60);
-        final Duration dur = Duration.ofHours(hours).plusMinutes(roundedOffMinutes);
-        return startTime.plus(dur);
+    public LocalDateTime getDateEndTime(LocalDateTime startDateTime) {
+        final int durationInMinutes = (int) (duration * 60);
+        return startDateTime.plusMinutes(durationInMinutes);
     }
 
     @Override

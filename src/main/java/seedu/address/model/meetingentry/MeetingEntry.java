@@ -112,7 +112,7 @@ public class MeetingEntry {
         return Objects.hash(name, url, dateTime, duration, moduleCode, isRecurring, tags);
     }
 
-    //Not updating to show the duration for now
+    // Not updating to show the duration for now
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
