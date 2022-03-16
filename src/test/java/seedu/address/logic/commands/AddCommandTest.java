@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.modulecode.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.MeetingEntryBuilder;
 
@@ -150,6 +151,21 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModuleCode(ModuleCode moduleCode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<ModuleCode> getFilteredModuleCodeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredModuleCodeList(Predicate<ModuleCode> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -58,7 +58,7 @@ class JsonAdaptedMeetingEntry {
         name = source.getName().name;
         url = source.getUrl().meetingUrl.toExternalForm();
         dateTime = source.getDateTime().datetime;
-        moduleCode = source.getModuleCode().moduleCode;
+        moduleCode = source.getModuleCode().code;
         isRecurring = source.getIsRecurring().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

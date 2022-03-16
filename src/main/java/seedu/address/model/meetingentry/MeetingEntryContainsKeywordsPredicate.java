@@ -25,7 +25,7 @@ public class MeetingEntryContainsKeywordsPredicate implements Predicate<MeetingE
     public boolean test(MeetingEntry meetingEntry) {
         return keywords.stream()
                 .anyMatch(keyword -> meetingEntry.getName().name.toLowerCase().contains(keyword.toLowerCase())
-                        || meetingEntry.getModuleCode().moduleCode.toLowerCase().contains(keyword.toLowerCase())
+                        || meetingEntry.getModuleCode().code.toLowerCase().contains(keyword.toLowerCase())
                         || meetingEntry.getTags().stream()
                         .anyMatch(tag -> tag.tagName.toLowerCase().contains(keyword.toLowerCase())));
     }
