@@ -11,7 +11,6 @@ import seedu.address.model.Model;
  * Lists all module codes in the LinkyTime module code list to the user.
  */
 public class ListModuleCodeCommand extends Command {
-
     public static final String COMMAND_WORD = "mlist";
 
     public static final String MESSAGE_SUCCESS = "Listed all module codes";

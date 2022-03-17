@@ -10,7 +10,6 @@ import seedu.address.model.modulecode.ModuleCode;
  * An UI component that displays information of a {@code ModuleCodeCard}.
  */
 public class ModuleCodeCard extends UiPart<Region> {
-
     private static final String FXML = "ModuleCodeListCard.fxml";
 
     /**

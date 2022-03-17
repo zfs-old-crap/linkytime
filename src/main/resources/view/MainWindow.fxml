@@ -40,32 +40,30 @@
           </padding>
         </StackPane>
 
-          <StackPane VBox.vgrow="SOMETIMES" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                     minHeight="100" prefHeight="100" maxHeight="150">
+        <StackPane VBox.vgrow="SOMETIMES" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                   minHeight="100" prefHeight="100" maxHeight="150">
+          <padding>
+            <Insets top="5" right="10" bottom="5" left="10" />
+          </padding>
+        </StackPane>
+
+        <SplitPane orientation="HORIZONTAL" VBox.vgrow="ALWAYS" minHeight="200">
+          <VBox fx:id="meetingEntryList" styleClass="pane-with-border" minWidth="320" prefWidth="320">
             <padding>
-              <Insets top="5" right="10" bottom="5" left="10" />
+              <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
-          </StackPane>
+            <Label styleClass="label-bright">Meetings</Label>
+            <StackPane fx:id="meetingEntryListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
 
-          <SplitPane orientation="HORIZONTAL" VBox.vgrow="ALWAYS" minHeight="200">
-
-            <VBox fx:id="meetingEntryList" styleClass="pane-with-border" minWidth="320" prefWidth="320">
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-              <Label styleClass="label-bright">Meetings</Label>
-              <StackPane fx:id="meetingEntryListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-            </VBox>
-
-            <VBox fx:id="moduleCodeList" styleClass="pane-with-border" minWidth="160" prefWidth="160">
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-              <Label styleClass="label-bright">Modules</Label>
-              <StackPane fx:id="moduleCodeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-            </VBox>
-
-          </SplitPane>
+          <VBox fx:id="moduleCodeList" styleClass="pane-with-border" minWidth="160" prefWidth="160">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <Label styleClass="label-bright">Modules</Label>
+            <StackPane fx:id="moduleCodeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
+        </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

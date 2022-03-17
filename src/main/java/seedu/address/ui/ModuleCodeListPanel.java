@@ -34,10 +34,10 @@ public class ModuleCodeListPanel extends UiPart<Region> {
      */
     class ModuleCodeListViewCell extends ListCell<ModuleCode> {
         @Override
-        protected void updateItem(ModuleCode moduleCode, boolean empty) {
-            super.updateItem(moduleCode, empty);
+        protected void updateItem(ModuleCode moduleCode, boolean isEmpty) {
+            super.updateItem(moduleCode, isEmpty);
 
-            if (empty || moduleCode == null) {
+            if (isEmpty || moduleCode == null) {
                 setGraphic(null);
                 setText(null);
             } else {
