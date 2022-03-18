@@ -34,10 +34,10 @@ public class MeetingEntryListPanel extends UiPart<Region> {
      */
     class MeetingListViewCell extends ListCell<MeetingEntry> {
         @Override
-        protected void updateItem(MeetingEntry meetingEntry, boolean empty) {
-            super.updateItem(meetingEntry, empty);
+        protected void updateItem(MeetingEntry meetingEntry, boolean isEmpty) {
+            super.updateItem(meetingEntry, isEmpty);
 
-            if (empty || meetingEntry == null) {
+            if (isEmpty || meetingEntry == null) {
                 setGraphic(null);
                 setText(null);
             } else {

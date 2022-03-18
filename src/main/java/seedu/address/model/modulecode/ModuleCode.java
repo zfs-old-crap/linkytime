@@ -18,17 +18,21 @@ public class ModuleCode {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String moduleCode;
+    public final String code;
 
     /**
      * Constructs a {@code ModuleCode}.
      *
-     * @param moduleCode A valid module code.
+     * @param code A valid module code.
      */
-    public ModuleCode(String moduleCode) {
-        requireNonNull(moduleCode);
-        checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
-        this.moduleCode = moduleCode;
+    public ModuleCode(String code) {
+        requireNonNull(code);
+        checkArgument(isValidModuleCode(code), MESSAGE_CONSTRAINTS);
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     /**
@@ -44,19 +48,19 @@ public class ModuleCode {
 
     @Override
     public String toString() {
-        return '[' + moduleCode + ']';
+        return '[' + code + ']';
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ModuleCode // instanceof handles nulls
-                && moduleCode.equals(((ModuleCode) other).moduleCode)); // state check
+                && code.equals(((ModuleCode) other).code)); // state check
     }
 
     @Override
     public int hashCode() {
-        return moduleCode.hashCode();
+        return code.hashCode();
     }
 
 }

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.modulecode.ModuleCode;
 
 /**
  * Represents the in-memory model of the LinkyTime data.
@@ -22,6 +23,7 @@ public class ModelManager extends AddressBookModelManager implements Model {
     private final LinkyTime linkyTime;
     private final UserPrefs userPrefs;
     private final FilteredList<MeetingEntry> filteredMeetingEntries;
+    private final FilteredList<ModuleCode> filteredModuleCodes;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,13 +37,14 @@ public class ModelManager extends AddressBookModelManager implements Model {
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMeetingEntries = new FilteredList<>(this.linkyTime.getMeetingEntryList());
+        filteredModuleCodes = new FilteredList<>(this.linkyTime.getModuleCodeList());
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new LinkyTime());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs ===============================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -76,7 +79,7 @@ public class ModelManager extends AddressBookModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== LinkyTime ================================================================================
+    // =========== LinkyTime ===============================================================================
 
     @Override
     public void setLinkyTime(ReadOnlyLinkyTime linkyTime) {
@@ -87,6 +90,8 @@ public class ModelManager extends AddressBookModelManager implements Model {
     public ReadOnlyLinkyTime getLinkyTime() {
         return linkyTime;
     }
+
+    // =========== MeetingEntry ============================================================================
 
     @Override
     public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
@@ -112,12 +117,8 @@ public class ModelManager extends AddressBookModelManager implements Model {
         linkyTime.setMeetingEntry(target, editedMeetingEntry);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered MeetingEntry List Accessors ====================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
     public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
         return filteredMeetingEntries;
@@ -127,6 +128,27 @@ public class ModelManager extends AddressBookModelManager implements Model {
     public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
         requireNonNull(predicate);
         filteredMeetingEntries.setPredicate(predicate);
+    }
+
+    // =========== ModuleCode ==============================================================================
+
+    @Override
+    public boolean hasModuleCode(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        return linkyTime.hasModuleCode(moduleCode);
+    }
+
+    // =========== Filtered ModuleCode List Accessors ======================================================
+
+    @Override
+    public ObservableList<ModuleCode> getFilteredModuleCodeList() {
+        return filteredModuleCodes;
+    }
+
+    @Override
+    public void updateFilteredModuleCodeList(Predicate<ModuleCode> predicate) {
+        requireNonNull(predicate);
+        filteredModuleCodes.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +167,8 @@ public class ModelManager extends AddressBookModelManager implements Model {
         final ModelManager other = (ModelManager) obj;
         return super.equals(other)
                 && userPrefs.equals(other.userPrefs)
-                && filteredMeetingEntries.equals(other.filteredMeetingEntries);
+                && filteredMeetingEntries.equals(other.filteredMeetingEntries)
+                && filteredModuleCodes.equals(other.filteredModuleCodes);
     }
 
 }
