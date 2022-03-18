@@ -4,7 +4,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showMeetingEntryAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING_ENTRY;
 import static seedu.address.testutil.TypicalMeetingEntries.getTypicalLinkyTime;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalLinkyTime());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getLinkyTime());
+        model = new ModelManager(new UserPrefs(), getTypicalLinkyTime());
+        expectedModel = new ModelManager(new UserPrefs(), model.getLinkyTime());
     }
 
     @Test

@@ -1,0 +1,10 @@
+{
+  "meetingEntries" : [ {
+    "name" : "CS2103T Lecture",
+    "url" : "h",
+    "dateTime" : "18mar20223pm",
+    "moduleCode" : "CS2103T",
+    "isRecurring" : "Y",
+    "tagged" : [ ]
+  } ]
+}

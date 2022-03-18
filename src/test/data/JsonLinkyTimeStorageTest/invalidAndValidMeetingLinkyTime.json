@@ -1,0 +1,17 @@
+{
+  "meetingEntries" : [ {
+    "name" : "Meeting with valid link",
+    "url" : "https://legit-uni.zoom.us/j/344299221?pwd=F3a99221",
+    "dateTime" : "18mar20223pm",
+    "moduleCode" : "CS2103T",
+    "isRecurring" : "Y",
+    "tagged" : [ ]
+  }, {
+    "name" : "Meeting with invalid link",
+    "url" : "gfhfg",
+    "dateTime" : "18mar20223pm",
+    "moduleCode" : "CS2103T",
+    "isRecurring" : "Y",
+    "tagged" : [ ]
+  } ]
+}

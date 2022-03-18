@@ -17,7 +17,7 @@ import seedu.address.model.modulecode.ModuleCode;
 /**
  * Represents the in-memory model of the LinkyTime data.
  */
-public class ModelManager extends AddressBookModelManager implements Model {
+public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final LinkyTime linkyTime;
@@ -28,12 +28,10 @@ public class ModelManager extends AddressBookModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyLinkyTime linkyTime) {
-        super(addressBook, userPrefs);
+    public ModelManager(ReadOnlyUserPrefs userPrefs, ReadOnlyLinkyTime linkyTime) {
         requireAllNonNull(linkyTime, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
+        logger.fine("Initializing with linkytime: " + linkyTime + " and user prefs " + userPrefs);
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMeetingEntries = new FilteredList<>(this.linkyTime.getMeetingEntryList());
@@ -41,7 +39,7 @@ public class ModelManager extends AddressBookModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new LinkyTime());
+        this(new UserPrefs(), new LinkyTime());
     }
 
     // =========== UserPrefs ===============================================================================
@@ -70,13 +68,13 @@ public class ModelManager extends AddressBookModelManager implements Model {
 
     @Override
     public Path getLinkyTimeFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getLinkyTimeFilePath();
     }
 
     @Override
     public void setLinkyTimeFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setLinkyTimeFilePath(addressBookFilePath);
     }
 
     // =========== LinkyTime ===============================================================================

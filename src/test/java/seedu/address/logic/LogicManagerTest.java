@@ -1,8 +1,11 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalMeetingEntries.CS2103;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -13,17 +16,19 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.meetingentry.AddCommand;
 import seedu.address.logic.commands.meetingentry.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.UserPrefs;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.storage.JsonLinkyTimeStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.MeetingEntryBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -38,10 +43,8 @@ public class LogicManagerTest {
     public void setUp() {
         JsonLinkyTimeStorage linkyTimeStorage =
                 new JsonLinkyTimeStorage(temporaryFolder.resolve("app.json"));
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, linkyTimeStorage);
+        StorageManager storage = new StorageManager(userPrefsStorage, linkyTimeStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -51,13 +54,11 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
-    //  There's currently no implementation for delete command hence this test will fail.
-    //  To be uncommented when delete command is implemented.
-    //  @Test
-    //  public void execute_commandExecutionError_throwsCommandException() {
-    //      String deleteCommand = "delete 9";
-    //      assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    //  }
+    @Test
+    public void execute_commandExecutionError_throwsCommandException() {
+        String deleteCommand = "delete 9";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+    }
 
     @Test
     public void execute_validCommand_success() throws Exception {
@@ -65,34 +66,30 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-    //  There's currently no implementation for add command hence this test will fail.
-    //  To be uncommented when delete command is implemented.
-    //  @Test
-    //  public void execute_storageThrowsIoException_throwsCommandException() {
-    //      // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-    //      JsonLinkyTimeStorage linkyTimeStorage =
-    //              new JsonLinkyTimeStorage(temporaryFolder.resolve("app.json"));
-    //      JsonAddressBookStorage addressBookStorage =
-    //              new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-    //      JsonUserPrefsStorage userPrefsStorage =
-    //              new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //      StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, linkyTimeStorage);
-    //      logic = new LogicManager(model, storage);
-    //
-    //      // Execute add command
-    //      String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-    //              + ADDRESS_DESC_AMY;
-    //      Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-    //      ModelManager expectedModel = new ModelManager();
-    //      expectedModel.addPerson(expectedPerson);
-    //      String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-    //      assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    //  }
+    @Test
+    public void execute_storageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonLinkyTimeIoExceptionThrowingStub
+        JsonLinkyTimeStorage linkyTimeStorage =
+                new JsonLinkyTimeIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionLinkyTime.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(userPrefsStorage, linkyTimeStorage);
+        logic = new LogicManager(model, storage);
 
-    //    @Test
-    //    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-    //        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
-    //    }
+        // Execute add command
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
+                + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE;
+        MeetingEntry expectedMeeting = new MeetingEntryBuilder(CS2103).withTags().build();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addMeetingEntry(expectedMeeting);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void getFilteredMeetingEntryList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredMeetingEntryList().remove(0));
+    }
 
     /**
      * Executes the command and confirms that
@@ -130,7 +127,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new LinkyTime());
+        Model expectedModel = new ModelManager(new UserPrefs(), new LinkyTime());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -150,13 +147,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonLinkyTimeIoExceptionThrowingStub extends JsonLinkyTimeStorage {
+        private JsonLinkyTimeIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveLinkyTime(ReadOnlyLinkyTime linkyTime, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
