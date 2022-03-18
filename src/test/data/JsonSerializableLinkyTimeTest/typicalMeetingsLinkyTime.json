@@ -41,5 +41,6 @@
     "moduleCode" : "CS1101S",
     "isRecurring" : "Y",
     "tagged" : [ "hartinmenz" ]
-  } ]
+  } ],
+  "moduleCodes" : [ ]
 }

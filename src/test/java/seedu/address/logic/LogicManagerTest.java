@@ -3,7 +3,11 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.RECURRING_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_LECTURE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalMeetingEntries.CS2103;
 

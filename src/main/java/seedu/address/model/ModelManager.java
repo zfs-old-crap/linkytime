@@ -163,8 +163,7 @@ public class ModelManager implements Model {
 
         // state check
         final ModelManager other = (ModelManager) obj;
-        return super.equals(other)
-                && userPrefs.equals(other.userPrefs)
+        return userPrefs.equals(other.userPrefs)
                 && filteredMeetingEntries.equals(other.filteredMeetingEntries)
                 && filteredModuleCodes.equals(other.filteredModuleCodes);
     }

@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.meetingentry.exceptions.DuplicateMeetingEntryException;
+import seedu.address.model.modulecode.ModuleCode;
 
 public class LinkyTimeTest {
 
@@ -82,14 +83,18 @@ public class LinkyTimeTest {
      */
     private static class LinkyTimeStub implements ReadOnlyLinkyTime {
         private final ObservableList<MeetingEntry> meetings = FXCollections.observableArrayList();
+        private final ObservableList<ModuleCode> moduleCodes = FXCollections.observableArrayList();
 
         LinkyTimeStub(Collection<MeetingEntry> meetings) {
             this.meetings.setAll(meetings);
         }
-
         @Override
         public ObservableList<MeetingEntry> getMeetingEntryList() {
             return meetings;
+        }
+        @Override
+        public ObservableList<ModuleCode> getModuleCodeList() {
+            return moduleCodes;
         }
     }
 

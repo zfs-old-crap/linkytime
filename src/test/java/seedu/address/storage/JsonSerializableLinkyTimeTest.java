@@ -20,7 +20,7 @@ public class JsonSerializableLinkyTimeTest {
     private static final Path DUPLICATE_MEETING_FILE = TEST_DATA_FOLDER.resolve("duplicateMeetingLinkyTime.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
+    public void toModelType_typicalMeetingsFile_success() throws Exception {
         JsonSerializableLinkyTime dataFromFile = JsonUtil.readJsonFile(TYPICAL_MEETINGS_FILE,
                 JsonSerializableLinkyTime.class).get();
         LinkyTime linkyTimeFromFile = dataFromFile.toModelType();
@@ -29,14 +29,14 @@ public class JsonSerializableLinkyTimeTest {
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
+    public void toModelType_invalidMeetingFile_throwsIllegalValueException() throws Exception {
         JsonSerializableLinkyTime dataFromFile = JsonUtil.readJsonFile(INVALID_MEETING_FILE,
                 JsonSerializableLinkyTime.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+    public void toModelType_duplicateMeetings_throwsIllegalValueException() throws Exception {
         JsonSerializableLinkyTime dataFromFile = JsonUtil.readJsonFile(DUPLICATE_MEETING_FILE,
                 JsonSerializableLinkyTime.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableLinkyTime.MESSAGE_DUPLICATE_MEETING_ENTRY,
