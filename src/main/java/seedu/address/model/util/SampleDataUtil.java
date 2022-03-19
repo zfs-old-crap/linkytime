@@ -51,10 +51,17 @@ public class SampleDataUtil {
         };
     }
 
+    public static ModuleCode[] getSampleModuleCodes() {
+        return new ModuleCode[] { new ModuleCode("CS2103T"), new ModuleCode("CS2101"), new ModuleCode("Intern") };
+    }
+
     public static ReadOnlyLinkyTime getSampleLinkyTime() {
         final LinkyTime sampleLinkyTime = new LinkyTime();
         for (final MeetingEntry sampleMeetingEntry : getSampleMeetingEntries()) {
             sampleLinkyTime.addMeetingEntry(sampleMeetingEntry);
+        }
+        for (final ModuleCode sampleModuleCode : getSampleModuleCodes()) {
+            sampleLinkyTime.addModuleCode(sampleModuleCode);
         }
         return sampleLinkyTime;
     }

@@ -3,10 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.meetingentry.UniqueMeetingEntryList;
+import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.modulecode.UniqueModuleCodeList;
 
 /**
  * Wraps all data of LinkyTime
@@ -15,6 +18,7 @@ import seedu.address.model.meetingentry.UniqueMeetingEntryList;
 public class LinkyTime implements ReadOnlyLinkyTime {
 
     private final UniqueMeetingEntryList meetingEntries;
+    private final UniqueModuleCodeList moduleCodes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class LinkyTime implements ReadOnlyLinkyTime {
      */
     {
         meetingEntries = new UniqueMeetingEntryList();
+        moduleCodes = new UniqueModuleCodeList();
     }
 
     public LinkyTime() {}
@@ -48,12 +53,21 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     }
 
     /**
+     * Replaces the contents of the module code list with {@code moduleCodes}.
+     * {@code moduleCodes} must not contain duplicate module codes.
+     */
+    public void setModuleCodes(List<ModuleCode> moduleCodes) {
+        this.moduleCodes.setModuleCodes(moduleCodes);
+    }
+
+    /**
      * Resets the existing data of this {@code LinkyTime} with {@code newData}.
      */
     public void resetData(ReadOnlyLinkyTime newData) {
         requireNonNull(newData);
 
         setMeetingEntries(newData.getMeetingEntryList());
+        setModuleCodes(newData.getModuleCodeList());
     }
 
     //// meeting-entry-level operations
@@ -92,11 +106,30 @@ public class LinkyTime implements ReadOnlyLinkyTime {
         meetingEntries.remove(key);
     }
 
+    //// module-code-level operations
+
+    /**
+     * Returns true if a module code that is identical to {@code moduleCode} exists in LinkyTime.
+     */
+    public boolean hasModuleCode(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        return moduleCodes.contains(moduleCode);
+    }
+
+    /**
+     * Adds a module code to LinkyTime.
+     * The module code must not already exist in LinkyTime.
+     */
+    public void addModuleCode(ModuleCode moduleCode) {
+        moduleCodes.add(moduleCode);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return meetingEntries.asUnmodifiableObservableList().size() + " meeting entries";
+        return meetingEntries.asUnmodifiableObservableList().size() + " meeting entries\n"
+                + moduleCodes.asUnmodifiableObservableList().size() + " modules";
         // TODO: refine later
     }
 
@@ -106,14 +139,20 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     }
 
     @Override
+    public ObservableList<ModuleCode> getModuleCodeList() {
+        return moduleCodes.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof LinkyTime // instanceof handles nulls
-                && meetingEntries.equals(((LinkyTime) other).meetingEntries));
+                && meetingEntries.equals(((LinkyTime) other).meetingEntries)
+                && moduleCodes.equals(((LinkyTime) other).moduleCodes));
     }
 
     @Override
     public int hashCode() {
-        return meetingEntries.hashCode();
+        return Objects.hash(meetingEntries, moduleCodes);
     }
 }
