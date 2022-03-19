@@ -8,5 +8,6 @@
       "y" : 100,
       "z" : 99
     }
-  }
+  },
+  "linkyTimeFilePath" : "data\\app.json"
 }

@@ -35,14 +35,14 @@ public class ModelManagerTest {
 
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
-        UserPrefs userPrefs = new UserPrefs();
+        final UserPrefs userPrefs = new UserPrefs();
         userPrefs.setLinkyTimeFilePath(Paths.get("linkyTime/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
-        UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
+        final UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
         userPrefs.setLinkyTimeFilePath(Paths.get("new/linkyTime/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
@@ -54,7 +54,7 @@ public class ModelManagerTest {
 
     @Test
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
-        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        final GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
     }
@@ -66,7 +66,7 @@ public class ModelManagerTest {
 
     @Test
     public void setLinkyTimeFilePath_validPath_setsLinkyTimeFilePath() {
-        Path path = Paths.get("linkyTime/file/path");
+        final Path path = Paths.get("linkyTime/file/path");
         modelManager.setLinkyTimeFilePath(path);
         assertEquals(path, modelManager.getLinkyTimeFilePath());
     }
@@ -82,7 +82,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasMeetingEntry_meetingEntryLinkyTime_returnsTrue() {
+    public void hasMeetingEntry_meetingEntryInLinkyTime_returnsTrue() {
         modelManager.addMeetingEntry(CS2105);
         assertTrue(modelManager.hasMeetingEntry(CS2105));
     }
@@ -94,13 +94,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        LinkyTime linkyTime = new LinkyTimeBuilder().withEntry(CS2105).withEntry(CS2106).build();
-        LinkyTime differentLinkyTime = new LinkyTime();
-        UserPrefs userPrefs = new UserPrefs();
+        final LinkyTime linkyTime = new LinkyTimeBuilder().withEntry(CS2105).withEntry(CS2106).build();
+        final LinkyTime differentLinkyTime = new LinkyTime();
+        final UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(userPrefs, linkyTime);
-        ModelManager modelManagerCopy = new ModelManager(userPrefs, linkyTime);
+        modelManager = new ModelManager(linkyTime, userPrefs);
+        final ModelManager modelManagerCopy = new ModelManager(linkyTime, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,19 +113,19 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different linkyTime -> returns false
-        assertFalse(modelManager.equals(new ModelManager(userPrefs, differentLinkyTime)));
+        assertFalse(modelManager.equals(new ModelManager(differentLinkyTime, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = {CS2105.getModuleCode().toString()};
+        final String[] keywords = {CS2105.getModuleCode().toString()};
         modelManager.updateFilteredMeetingEntryList(new MeetingEntryContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(userPrefs, linkyTime)));
+        assertFalse(modelManager.equals(new ModelManager(linkyTime, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredMeetingEntryList(PREDICATE_SHOW_ALL_MEETING_ENTRIES);
 
         // different userPrefs -> returns false
-        UserPrefs differentUserPrefs = new UserPrefs();
+        final UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setLinkyTimeFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(differentUserPrefs, linkyTime)));
+        assertFalse(modelManager.equals(new ModelManager(linkyTime, differentUserPrefs)));
     }
 }

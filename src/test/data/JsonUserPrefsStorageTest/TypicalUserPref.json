@@ -6,5 +6,6 @@
       "x" : 300,
       "y" : 100
     }
-  }
+  },
+  "linkyTimeFilePath" : "data\\app.json"
 }

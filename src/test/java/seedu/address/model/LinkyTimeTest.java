@@ -21,7 +21,6 @@ import seedu.address.model.meetingentry.exceptions.DuplicateMeetingEntryExceptio
 import seedu.address.model.modulecode.ModuleCode;
 
 public class LinkyTimeTest {
-
     private final LinkyTime linkyTime = new LinkyTime();
 
     @Test
@@ -65,13 +64,6 @@ public class LinkyTimeTest {
         linkyTime.addMeetingEntry(CS2103);
         assertTrue(linkyTime.hasMeetingEntry(CS2103));
     }
-    //  Commenting this out as all fields in meetings are identity at the moment
-    //  @Test
-    //  public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-    //      linkyTime.addMeetingEntry(CS2105);
-    //      MeetingEntry new2105 = new MeetingEntryBuilder(2105).edit(...)
-    //      assertTrue(linkyTime.hasMeetingEntry(CS2105));
-    //  }
 
     @Test
     public void getMeetingList_modifyList_throwsUnsupportedOperationException() {

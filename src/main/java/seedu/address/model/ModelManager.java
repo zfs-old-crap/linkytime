@@ -28,7 +28,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given linkyTime and userPrefs.
      */
-    public ModelManager(ReadOnlyUserPrefs userPrefs, ReadOnlyLinkyTime linkyTime) {
+    public ModelManager(ReadOnlyLinkyTime linkyTime, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(linkyTime, userPrefs);
 
         logger.fine("Initializing with LinkyTime: " + linkyTime + " and user prefs " + userPrefs);
@@ -39,7 +39,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new UserPrefs(), new LinkyTime());
+        this(new LinkyTime(), new UserPrefs());
     }
 
     // =========== UserPrefs ===============================================================================

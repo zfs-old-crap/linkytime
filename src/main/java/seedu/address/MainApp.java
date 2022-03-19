@@ -57,7 +57,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         LinkyTimeStorage linkyTimeStorage = new JsonLinkyTimeStorage(userPrefs.getLinkyTimeFilePath());
-        storage = new StorageManager(userPrefsStorage, linkyTimeStorage);
+        storage = new StorageManager(linkyTimeStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -90,7 +90,7 @@ public class MainApp extends Application {
             initialData = new LinkyTime();
         }
 
-        return new ModelManager(userPrefs, initialData);
+        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {

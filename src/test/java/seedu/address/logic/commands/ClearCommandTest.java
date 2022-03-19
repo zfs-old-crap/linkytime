@@ -14,16 +14,16 @@ public class ClearCommandTest {
 
     @Test
     public void execute_emptyLinkyTime_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
+        final Model model = new ModelManager();
+        final Model expectedModel = new ModelManager();
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_nonEmptyLinkyTime_success() {
-        Model model = new ModelManager(new UserPrefs(), new LinkyTime());
-        Model expectedModel = new ModelManager(new UserPrefs(), getTypicalLinkyTime());
+        final Model model = new ModelManager(new LinkyTime(), new UserPrefs());
+        final Model expectedModel = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
         expectedModel.setLinkyTime(new LinkyTime());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

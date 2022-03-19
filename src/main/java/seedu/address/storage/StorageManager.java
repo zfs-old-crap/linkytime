@@ -23,8 +23,8 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code LinkyTimeStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(UserPrefsStorage userPrefsStorage,
-                          LinkyTimeStorage linkyTimeStorage) {
+    public StorageManager(LinkyTimeStorage linkyTimeStorage,
+                          UserPrefsStorage userPrefsStorage) {
         this.userPrefsStorage = userPrefsStorage;
         this.linkyTimeStorage = linkyTimeStorage;
     }

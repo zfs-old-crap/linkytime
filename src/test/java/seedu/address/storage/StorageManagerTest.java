@@ -26,7 +26,7 @@ public class StorageManagerTest {
     public void setUp() {
         JsonLinkyTimeStorage linkyTimeStorage = new JsonLinkyTimeStorage(getTempFilePath("app"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(userPrefsStorage, linkyTimeStorage);
+        storageManager = new StorageManager(linkyTimeStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(new UserPrefs(), getTypicalLinkyTime());
+        model = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
     }
 
     @Test
     public void execute_newMeetingEntry_success() {
         final MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
 
-        final Model expectedModel = new ModelManager(new UserPrefs(), model.getLinkyTime());
+        final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
         expectedModel.addMeetingEntry(validMeetingEntry);
 
         assertCommandSuccess(new AddCommand(validMeetingEntry), model,

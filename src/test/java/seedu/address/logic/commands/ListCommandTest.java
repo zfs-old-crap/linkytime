@@ -23,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(new UserPrefs(), getTypicalLinkyTime());
-        expectedModel = new ModelManager(new UserPrefs(), model.getLinkyTime());
+        model = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
+        expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
     }
 
     @Test

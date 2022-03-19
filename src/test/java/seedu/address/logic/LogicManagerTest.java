@@ -40,53 +40,54 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
     private Logic logic;
 
     @BeforeEach
     public void setUp() {
-        JsonLinkyTimeStorage linkyTimeStorage =
+        final JsonLinkyTimeStorage linkyTimeStorage =
                 new JsonLinkyTimeStorage(temporaryFolder.resolve("app.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(userPrefsStorage, linkyTimeStorage);
+        final JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        final StorageManager storage = new StorageManager(linkyTimeStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
-        String invalidCommand = "uicfhmowqewca";
+        final String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        final String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
+        final String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonLinkyTimeIoExceptionThrowingStub
-        JsonLinkyTimeStorage linkyTimeStorage =
+        final JsonLinkyTimeStorage linkyTimeStorage =
                 new JsonLinkyTimeIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionLinkyTime.json"));
-        JsonUserPrefsStorage userPrefsStorage =
+        final JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(userPrefsStorage, linkyTimeStorage);
+        final StorageManager storage = new StorageManager(linkyTimeStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
+        final String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE;
-        MeetingEntry expectedMeeting = new MeetingEntryBuilder(CS2103).withTags().build();
-        ModelManager expectedModel = new ModelManager();
+        final MeetingEntry expectedMeeting = new MeetingEntryBuilder(CS2103).withTags().build();
+        final ModelManager expectedModel = new ModelManager();
         expectedModel.addMeetingEntry(expectedMeeting);
-        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        final String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
@@ -104,7 +105,7 @@ public class LogicManagerTest {
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
             Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.execute(inputCommand);
+        final CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
@@ -131,7 +132,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(new UserPrefs(), new LinkyTime());
+        final Model expectedModel = new ModelManager(new LinkyTime(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

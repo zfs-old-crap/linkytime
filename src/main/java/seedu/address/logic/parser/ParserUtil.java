@@ -63,10 +63,6 @@ public class ParserUtil {
         return tagSet;
     }
 
-    // endregion
-
-    // region MeetingEntry
-
     /**
      * Parses a {@code String meetingName} into a {@code MeetingName}.
      * Leading and trailing whitespaces will be trimmed.
@@ -141,6 +137,4 @@ public class ParserUtil {
         }
         return new IsRecurring(trimmedRecurringStatus);
     }
-
-    // endregion
 }

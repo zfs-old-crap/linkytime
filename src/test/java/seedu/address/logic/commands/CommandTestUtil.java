@@ -21,9 +21,10 @@ import seedu.address.model.meetingentry.MeetingEntry;
 
 /**
  * Contains helper methods for testing commands.
+ * This file is an adapted version of AddressBook's CommandTestUtil and is currently missing certain functions
+ * due to missing implementation. Please refer to the original implementation for further reference.
  */
 public class CommandTestUtil {
-
     public static final String VALID_NAME_LECTURE = "Lecture";
     public static final String VALID_NAME_TUTORIAL = "Tutorial";
     public static final String VALID_URL_LECTURE = "https://www.google.com";

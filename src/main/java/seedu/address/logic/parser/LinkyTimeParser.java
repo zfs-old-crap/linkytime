@@ -43,6 +43,7 @@ public class LinkyTimeParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
         // MeetingEntry Commands
         case AddCommand.COMMAND_WORD:
