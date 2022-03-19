@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalMeetingEntries.CS2106;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -116,8 +117,9 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentLinkyTime, userPrefs)));
 
         // different filteredList -> returns false
-        final String[] keywords = {CS2105.getModuleCode().toString()};
-        modelManager.updateFilteredMeetingEntryList(new MeetingEntryContainsKeywordsPredicate(Arrays.asList(keywords)));
+        final ArrayList<String> keywords = new ArrayList<>();
+        keywords.add(CS2105.getModuleCode().toString());
+        modelManager.updateFilteredMeetingEntryList(new MeetingEntryContainsKeywordsPredicate(keywords));
         assertFalse(modelManager.equals(new ModelManager(linkyTime, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
