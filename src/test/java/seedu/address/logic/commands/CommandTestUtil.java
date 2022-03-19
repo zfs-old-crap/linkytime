@@ -98,7 +98,7 @@ public class CommandTestUtil {
     //    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_ADDRESS; // empty string not allowed
     //    public static final String INVALID_RECURRING_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
     //    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "two"; //letters not allowed in duration
+    public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "two"; // letters not allowed in duration
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

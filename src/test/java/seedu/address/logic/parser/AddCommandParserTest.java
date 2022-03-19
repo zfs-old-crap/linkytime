@@ -63,7 +63,7 @@ public class AddCommandParserTest {
                 + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_CODE_DESC_LECTURE
                 + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
-        //multiple duration - last duration accepted
+        // multiple duration - last duration accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + DURATION_DESC_TUTORIAL + DURATION_DESC_LECTURE + MODULE_CODE_DESC_LECTURE
                 + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
