@@ -12,5 +12,5 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_MEETING_ENTRY_DISPLAYED_INDEX =
             "The meeting entry index provided is invalid";
-
+    public static final String MESSAGE_MEETINGS_LISTED_OVERVIEW = "%1$d meeting entries listed!";
 }
