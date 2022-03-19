@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
@@ -36,7 +37,15 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
      * @throws DataConversionException if the file format is not as expected.
      */
     public Optional<UserPrefs> readUserPrefs(Path prefsFilePath) throws DataConversionException {
-        return JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);
+        Optional<UserPrefs> userPrefs = JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);
+        userPrefs.map(x -> {
+            String unreliableFilePath = x.getLinkyTimeFilePath().toString();
+            String reliableFilePath = unreliableFilePath.replaceAll("\\\\|/",
+                    "\\" + System.getProperty("file.separator"));
+            x.setLinkyTimeFilePath(Paths.get(reliableFilePath));
+            return x;
+        });
+        return userPrefs;
     }
 
     @Override
