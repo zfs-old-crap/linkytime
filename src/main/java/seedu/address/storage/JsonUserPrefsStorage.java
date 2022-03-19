@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
@@ -15,7 +14,7 @@ import seedu.address.model.UserPrefs;
  */
 public class JsonUserPrefsStorage implements UserPrefsStorage {
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonUserPrefsStorage(Path filePath) {
         this.filePath = filePath;
@@ -27,7 +26,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
     }
 
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws DataConversionException {
+    public Optional<JsonAdaptedUserPrefs> readUserPrefs() throws DataConversionException {
         return readUserPrefs(filePath);
     }
 
@@ -36,21 +35,17 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
      * @param prefsFilePath location of the data. Cannot be null.
      * @throws DataConversionException if the file format is not as expected.
      */
-    public Optional<UserPrefs> readUserPrefs(Path prefsFilePath) throws DataConversionException {
-        Optional<UserPrefs> userPrefs = JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);
-        userPrefs.map(x -> {
-            String unreliableFilePath = x.getLinkyTimeFilePath().toString();
-            String reliableFilePath = unreliableFilePath.replaceAll("\\\\|/",
-                    "\\" + System.getProperty("file.separator"));
-            x.setLinkyTimeFilePath(Paths.get(reliableFilePath));
-            return x;
-        });
-        return userPrefs;
+    public Optional<JsonAdaptedUserPrefs> readUserPrefs(Path prefsFilePath) throws DataConversionException {
+        return JsonUtil.readJsonFile(prefsFilePath, JsonAdaptedUserPrefs.class);
     }
 
     @Override
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
-        JsonUtil.saveJsonFile(userPrefs, filePath);
+        final UserPrefs userPrefsToSave = new UserPrefs();
+        userPrefsToSave.setGuiSettings(userPrefs.getGuiSettings());
+        userPrefsToSave.setLinkyTimeFilePath(userPrefs.getLinkyTimeFilePath());
+        final JsonAdaptedUserPrefs jsonAdaptedUserPrefs = new JsonAdaptedUserPrefs(userPrefsToSave);
+        JsonUtil.saveJsonFile(jsonAdaptedUserPrefs, filePath);
     }
 
 }
