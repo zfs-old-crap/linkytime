@@ -26,12 +26,12 @@ public class ModelManager implements Model {
     private final FilteredList<ModuleCode> filteredModuleCodes;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given linkyTime and userPrefs.
      */
     public ModelManager(ReadOnlyUserPrefs userPrefs, ReadOnlyLinkyTime linkyTime) {
         requireAllNonNull(linkyTime, userPrefs);
 
-        logger.fine("Initializing with linkytime: " + linkyTime + " and user prefs " + userPrefs);
+        logger.fine("Initializing with LinkyTime: " + linkyTime + " and user prefs " + userPrefs);
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMeetingEntries = new FilteredList<>(this.linkyTime.getMeetingEntryList());
@@ -72,9 +72,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setLinkyTimeFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setLinkyTimeFilePath(addressBookFilePath);
+    public void setLinkyTimeFilePath(Path linkyTimeFilePath) {
+        requireNonNull(linkyTimeFilePath);
+        userPrefs.setLinkyTimeFilePath(linkyTimeFilePath);
     }
 
     // =========== LinkyTime ===============================================================================

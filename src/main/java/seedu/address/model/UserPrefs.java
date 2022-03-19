@@ -79,6 +79,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
+        sb.append("\nLocal data file location : " + linkyTimeFilePath);
         return sb.toString();
     }
 
