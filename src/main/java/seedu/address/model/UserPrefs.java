@@ -66,7 +66,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         final UserPrefs o = (UserPrefs) other;
         return guiSettings.equals(o.guiSettings)
-                && linkyTimeFilePath.equals(o.linkyTimeFilePath);
+                && linkyTimeFilePath.getFileName().equals(o.linkyTimeFilePath.getFileName());
     }
 
     @Override
