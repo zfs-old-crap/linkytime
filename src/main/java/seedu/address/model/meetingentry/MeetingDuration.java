@@ -43,12 +43,12 @@ public class MeetingDuration {
     }
 
     /**
-     * Returns the endTime given the startTime.
+     * Returns the endDateTime given the startDateTime.
      *
      * @param startDateTime The {@code LocalDateTime} to add the duration to.
-     * @return The resulting time after adding the duration to the startDateTime.
+     * @return The resulting LocalDateTime after adding the duration to the startDateTime.
      */
-    public LocalDateTime getDateEndTime(LocalDateTime startDateTime) {
+    public LocalDateTime getEndDateTime(LocalDateTime startDateTime) {
         final int durationInMinutes = (int) (duration * 60);
         return startDateTime.plusMinutes(durationInMinutes);
     }
