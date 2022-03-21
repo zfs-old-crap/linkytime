@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.meetingentry.FindCommand;
 import seedu.address.logic.parser.meetingentry.FindCommandParser;
-import seedu.address.model.meetingentry.MeetingEntryContainsKeywordsPredicate;
+import seedu.address.model.meetingentry.MeetingContainsAllKeywordsPredicate;
 
 public class FindCommandParserTest {
     private final FindCommandParser parser = new FindCommandParser();
@@ -24,10 +24,10 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new MeetingEntryContainsKeywordsPredicate(Arrays.asList("CS2101", "CS2030")));
-        assertParseSuccess(parser, "CS2101 CS2030", expectedFindCommand);
+                new FindCommand(new MeetingContainsAllKeywordsPredicate(Arrays.asList("CS", "Tutorial")));
+        assertParseSuccess(parser, "CS Tutorial", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n CS2101 \n \t CS2030  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n CS \n \t Tutorial  \t", expectedFindCommand);
     }
 }
