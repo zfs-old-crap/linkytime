@@ -105,6 +105,17 @@ Details include:
 * Meeting name
 * Meeting date and time
 
+#### Find a meeting entry : `find`
+
+Find meetings in the entry list that matches the provided keywords and displays their respective details.
+
+Format: `find KEYWORD MORE_KEYWORDS...`
+
+* Displays all meetings with name, module code or tags that matches any of the provided keywords.
+
+Examples:
+
+* `find CS2101 Aaron` displays all meetings with fields that matches `CS2101` or `Aaron`.
 
 #### Delete a meeting entry : `delete`
 
@@ -176,12 +187,15 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
+
+**
+Add** | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...` <br>
+e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
 **List** | `list`
+**Find** | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
 **Edit** | _Coming soon_
-**Find** | _Coming soon_
 **Sort** | _Coming soon_
 **Open** | _Coming soon_
 **Help** | `help`
