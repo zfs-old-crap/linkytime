@@ -23,7 +23,8 @@ public class MeetingDateTime {
     /**
      * Constructs a {@code MeetingDateTime}.
      *
-     * @param datetime A valid datetime.
+     * @param datetime A {@code String} representing the meeting date and time, formatted according
+     * to {@link #DATETIME_FORMAT}.
      */
     public MeetingDateTime(String datetime) {
         requireNonNull(datetime);
@@ -32,10 +33,21 @@ public class MeetingDateTime {
     }
 
     /**
-     * Returns true if a given string is a valid datetime.
+     * Constructs a {@code MeetingDateTime}.
+     *
+     * @param datetime A {@code LocalDateTime} representing the meeting date and time.
+     */
+    public MeetingDateTime(LocalDateTime datetime) {
+        requireNonNull(datetime);
+        checkArgument(isValidDateTime(datetime), MESSAGE_CONSTRAINTS);
+        this.datetime = datetime;
+    }
+
+    /**
+     * Returns true if a given {@code String} is a valid date and time.
      *
      * @param test The {@code String} to test.
-     * @return True, if the {@code String} is a valid datetime.
+     * @return True, if the {@code String} represents a valid date and time.
      */
     public static boolean isValidDateTime(String test) {
         try {
@@ -47,11 +59,26 @@ public class MeetingDateTime {
     }
 
     /**
-     * Converts the given string to its datetime representation.
+     * Returns true if a given {@code LocalDateTime} is a valid date and time.
      *
-     * @param dateTime The string to convert, formatted as `d MMM uuuu h:mma`.
+     * @param test The {@code LocalDateTime} to test.
+     * @return True, if the {@code LocalDateTime} is a valid date and time in the Gregorian calendar.
+     */
+    public static boolean isValidDateTime(LocalDateTime test) {
+        try {
+            parseDateTime(test.format(DATETIME_FORMAT));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Converts the given string to its date and time representation.
+     *
+     * @param dateTime The string to convert, formatted according to {@link #DATETIME_FORMAT}.
      * @return A datetime representation of {@code dateTime}.
-     * @throws DateTimeParseException if {@code dateTime} is not formatted as `d MMM uuuu h:mma`.
+     * @throws DateTimeParseException If {@code dateTime} is not formatted according to {@link #DATETIME_FORMAT}.
      */
     public static LocalDateTime parseDateTime(String dateTime) {
         try {

@@ -2,6 +2,8 @@ package seedu.address.model.meetingentry;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -56,7 +58,18 @@ public class MeetingEntry {
     }
 
     public MeetingDateTime getDateTime() {
-        return dateTime;
+        if (!isRecurring.isRecurring || LocalDateTime.now().isBefore(getEndDateTime())) {
+            return dateTime;
+        }
+        return new MeetingDateTime(getNextRecurrence());
+    }
+
+    private LocalDateTime getNextRecurrence() {
+        return dateTime.datetime.plusWeeks(1);
+    }
+
+    private LocalDateTime getEndDateTime() {
+        return duration.getEndDateTime(dateTime.datetime);
     }
 
     public MeetingDuration getDuration() {
