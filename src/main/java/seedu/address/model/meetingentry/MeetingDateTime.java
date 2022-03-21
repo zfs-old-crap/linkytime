@@ -14,8 +14,8 @@ import java.time.format.ResolverStyle;
  */
 public class MeetingDateTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "DateTime should be formatted as dd MMM uuuu h:ma; e.g. 21 Apr 2021 2:30pm";
-    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM uuuu h:mma")
+            "DateTime should be formatted as d MMM uuuu h:mma; e.g. 21 Apr 2021 2:30pm";
+    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("d MMM uuuu h:mma")
             .withResolverStyle(ResolverStyle.STRICT);
 
     public final LocalDateTime datetime;
@@ -49,9 +49,9 @@ public class MeetingDateTime {
     /**
      * Converts the given string to its datetime representation.
      *
-     * @param dateTime The string to convert, formatted as `dd MMM uuuu h:ma`.
+     * @param dateTime The string to convert, formatted as `d MMM uuuu h:mma`.
      * @return A datetime representation of {@code dateTime}.
-     * @throws DateTimeParseException if {@code dateTime} is not formatted as `dd MMM uuuu h:ma`.
+     * @throws DateTimeParseException if {@code dateTime} is not formatted as `d MMM uuuu h:mma`.
      */
     public static LocalDateTime parseDateTime(String dateTime) {
         try {
