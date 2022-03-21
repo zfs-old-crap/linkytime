@@ -35,7 +35,7 @@ public class DeleteCommandTest {
         final String expectedMessage =
                 String.format(DeleteCommand.MESSAGE_DELETE_MEETING_ENTRY_SUCCESS, meetingEntryToDelete);
 
-        final ModelManager expectedModel = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
+        final ModelManager expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
         expectedModel.deleteMeetingEntry(meetingEntryToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -60,7 +60,7 @@ public class DeleteCommandTest {
         final String expectedMessage =
                 String.format(DeleteCommand.MESSAGE_DELETE_MEETING_ENTRY_SUCCESS, meetingEntryToDelete);
 
-        final Model expectedModel = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
+        final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
         expectedModel.deleteMeetingEntry(meetingEntryToDelete);
         showNoMeetingEntry(expectedModel);
 

@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.regex.Matcher;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.UserPrefs;
@@ -49,7 +50,7 @@ public class JsonAdaptedUserPrefs {
             final UserPrefs userPrefs = new UserPrefs();
             userPrefs.setGuiSettings(guiSettings);
             final String reliableFilePath = filePathString.replaceAll("[/\\\\]",
-                    "\\" + File.separator);
+                    Matcher.quoteReplacement(File.separator));
             userPrefs.setLinkyTimeFilePath(Paths.get(reliableFilePath));
             return userPrefs;
         } catch (Exception e) {
