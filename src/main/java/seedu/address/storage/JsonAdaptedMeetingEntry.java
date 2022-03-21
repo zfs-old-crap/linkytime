@@ -16,7 +16,7 @@ import seedu.address.model.meetingentry.MeetingDuration;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.meetingentry.MeetingName;
 import seedu.address.model.meetingentry.MeetingUrl;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,8 +28,8 @@ class JsonAdaptedMeetingEntry {
     private final String name;
     private final String url;
     private final String dateTime;
+    private final String module;
     private final String duration;
-    private final String moduleCode;
     private final String isRecurring;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -41,14 +41,14 @@ class JsonAdaptedMeetingEntry {
                                    @JsonProperty("url") String url,
                                    @JsonProperty("dateTime") String dateTime,
                                    @JsonProperty("duration") String duration,
-                                   @JsonProperty("moduleCode") String moduleCode,
+                                   @JsonProperty("module") String module,
                                    @JsonProperty("isRecurring") String isRecurring,
                                    @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.url = url;
         this.dateTime = dateTime;
         this.duration = duration;
-        this.moduleCode = moduleCode;
+        this.module = module;
         this.isRecurring = isRecurring;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -63,7 +63,7 @@ class JsonAdaptedMeetingEntry {
         url = source.getUrl().meetingUrl.toExternalForm();
         dateTime = source.getDateTime().datetime;
         duration = String.valueOf(source.getDuration().duration);
-        moduleCode = source.getModuleCode().code;
+        module = source.getModule().code;
         isRecurring = source.getIsRecurring().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -121,15 +121,15 @@ class JsonAdaptedMeetingEntry {
         }
         final MeetingDuration modelDuration = new MeetingDuration(duration);
 
-        // Validate module code.
-        if (moduleCode == null) {
+        // Validate module.
+        if (module == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ModuleCode.class.getSimpleName()));
+                    Module.class.getSimpleName()));
         }
-        if (!ModuleCode.isValidModuleCode(moduleCode)) {
-            throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
+        if (!Module.isValidModule(module)) {
+            throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
         }
-        final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
+        final Module modelModule = new Module(module);
 
         // Validate recurring status.
         if (isRecurring == null) {
@@ -143,6 +143,6 @@ class JsonAdaptedMeetingEntry {
 
         final Set<Tag> modelTags = new HashSet<>(meetingEntryTags);
         return new MeetingEntry(modelName, modelUrl, modelDateTime, modelDuration,
-                modelModuleCode, modelIsRecurring, modelTags);
+                modelModule, modelIsRecurring, modelTags);
     }
 }

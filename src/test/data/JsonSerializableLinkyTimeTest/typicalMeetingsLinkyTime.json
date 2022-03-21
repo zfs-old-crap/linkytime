@@ -4,7 +4,7 @@
     "url" : "https://www.zoom.com",
     "dateTime" : "Thursday",
     "duration" : "2.0",
-    "moduleCode" : "CS2105",
+    "module" : "CS2105",
     "isRecurring" : "Y",
     "tagged" : [ "roger" ]
   }, {
@@ -12,7 +12,7 @@
     "url" : "https://www.zoom.com",
     "dateTime" : "Wednesday",
     "duration" : "2.0",
-    "moduleCode" : "CS2106",
+    "module" : "CS2106",
     "isRecurring" : "Y",
     "tagged" : [ "colin" ]
   }, {
@@ -20,7 +20,7 @@
     "url" : "https://www.zoom.com",
     "dateTime" : "Thursday",
     "duration" : "2.0",
-    "moduleCode" : "CS2030",
+    "module" : "CS2030",
     "isRecurring" : "Y",
     "tagged" : [ "ooi" ]
   }, {
@@ -28,7 +28,7 @@
     "url" : "https://www.zoom.com",
     "dateTime" : "Monday",
     "duration" : "1.0",
-    "moduleCode" : "CS2040",
+    "module" : "CS2040",
     "isRecurring" : "Y",
     "tagged" : [ "CKF" ]
   }, {
@@ -36,7 +36,7 @@
     "url" : "https://www.zoom.com",
     "dateTime" : "Tuesday",
     "duration" : "15.0",
-    "moduleCode" : "CS2100",
+    "module" : "CS2100",
     "isRecurring" : "Y",
     "tagged" : [ "aaron" ]
   }, {
@@ -44,9 +44,9 @@
     "url" : "https://www.zoom.com",
     "dateTime" : "Thursday",
     "duration" : "1.5",
-    "moduleCode" : "CS1101S",
+    "module" : "CS1101S",
     "isRecurring" : "Y",
     "tagged" : [ "hartinmenz" ]
   } ],
-  "moduleCodes" : [ ]
+  "modules" : [ ]
 }

@@ -8,8 +8,8 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.meetingentry.UniqueMeetingEntryList;
-import seedu.address.model.modulecode.ModuleCode;
-import seedu.address.model.modulecode.UniqueModuleCodeList;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.UniqueModuleList;
 
 /**
  * Wraps all data of LinkyTime
@@ -18,7 +18,7 @@ import seedu.address.model.modulecode.UniqueModuleCodeList;
 public class LinkyTime implements ReadOnlyLinkyTime {
 
     private final UniqueMeetingEntryList meetingEntries;
-    private final UniqueModuleCodeList moduleCodes;
+    private final UniqueModuleList modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,7 +29,7 @@ public class LinkyTime implements ReadOnlyLinkyTime {
      */
     {
         meetingEntries = new UniqueMeetingEntryList();
-        moduleCodes = new UniqueModuleCodeList();
+        modules = new UniqueModuleList();
     }
 
     public LinkyTime() {}
@@ -53,11 +53,11 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     }
 
     /**
-     * Replaces the contents of the module code list with {@code moduleCodes}.
-     * {@code moduleCodes} must not contain duplicate module codes.
+     * Replaces the contents of the module list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
      */
-    public void setModuleCodes(List<ModuleCode> moduleCodes) {
-        this.moduleCodes.setModuleCodes(moduleCodes);
+    public void setModules(List<Module> modules) {
+        this.modules.setModules(modules);
     }
 
     /**
@@ -67,7 +67,7 @@ public class LinkyTime implements ReadOnlyLinkyTime {
         requireNonNull(newData);
 
         setMeetingEntries(newData.getMeetingEntryList());
-        setModuleCodes(newData.getModuleCodeList());
+        setModules(newData.getModuleList());
     }
 
     //// meeting-entry-level operations
@@ -106,22 +106,22 @@ public class LinkyTime implements ReadOnlyLinkyTime {
         meetingEntries.remove(key);
     }
 
-    //// module-code-level operations
+    //// module-level operations
 
     /**
-     * Returns true if a module code that is identical to {@code moduleCode} exists in LinkyTime.
+     * Returns true if a module that is identical to {@code module} exists in LinkyTime.
      */
-    public boolean hasModuleCode(ModuleCode moduleCode) {
-        requireNonNull(moduleCode);
-        return moduleCodes.contains(moduleCode);
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return modules.contains(module);
     }
 
     /**
-     * Adds a module code to LinkyTime.
-     * The module code must not already exist in LinkyTime.
+     * Adds a module to LinkyTime.
+     * The module must not already exist in LinkyTime.
      */
-    public void addModuleCode(ModuleCode moduleCode) {
-        moduleCodes.add(moduleCode);
+    public void addModule(Module module) {
+        modules.add(module);
     }
 
     //// util methods
@@ -129,7 +129,7 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     @Override
     public String toString() {
         return meetingEntries.asUnmodifiableObservableList().size() + " meeting entries\n"
-                + moduleCodes.asUnmodifiableObservableList().size() + " modules";
+                + modules.asUnmodifiableObservableList().size() + " modules";
         // TODO: refine later
     }
 
@@ -139,8 +139,8 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     }
 
     @Override
-    public ObservableList<ModuleCode> getModuleCodeList() {
-        return moduleCodes.asUnmodifiableObservableList();
+    public ObservableList<Module> getModuleList() {
+        return modules.asUnmodifiableObservableList();
     }
 
     @Override
@@ -148,11 +148,11 @@ public class LinkyTime implements ReadOnlyLinkyTime {
         return other == this // short circuit if same object
                 || (other instanceof LinkyTime // instanceof handles nulls
                 && meetingEntries.equals(((LinkyTime) other).meetingEntries)
-                && moduleCodes.equals(((LinkyTime) other).moduleCodes));
+                && modules.equals(((LinkyTime) other).modules));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(meetingEntries, moduleCodes);
+        return Objects.hash(meetingEntries, modules);
     }
 }

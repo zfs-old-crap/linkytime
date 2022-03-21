@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,8 +20,8 @@ public class MeetingEntry {
     private final MeetingName name;
     private final MeetingUrl url;
     private final MeetingDateTime dateTime;
+    private final Module module;
     private final MeetingDuration duration;
-    private final ModuleCode moduleCode;
 
     // Data fields
     private final IsRecurring isRecurring;
@@ -36,13 +36,13 @@ public class MeetingEntry {
      * @param isRecurring   Whether the meeting is recurring.
      */
     public MeetingEntry(MeetingName name, MeetingUrl url, MeetingDateTime dateTime, MeetingDuration duration,
-                        ModuleCode moduleCode, IsRecurring isRecurring, Set<Tag> tags) {
+                        Module module, IsRecurring isRecurring, Set<Tag> tags) {
         requireAllNonNull(name, url, dateTime, isRecurring, tags);
         this.name = name;
         this.url = url;
         this.dateTime = dateTime;
         this.duration = duration;
-        this.moduleCode = moduleCode;
+        this.module = module;
         this.isRecurring = isRecurring;
         this.tags.addAll(tags);
     }
@@ -62,9 +62,8 @@ public class MeetingEntry {
     public MeetingDuration getDuration() {
         return duration;
     }
-
-    public ModuleCode getModuleCode() {
-        return moduleCode;
+    public Module getModule() {
+        return module;
     }
 
     public IsRecurring getIsRecurring() {
@@ -102,21 +101,21 @@ public class MeetingEntry {
                 && otherMeetingEntry.url.equals(this.url)
                 && otherMeetingEntry.dateTime.equals(this.dateTime)
                 && otherMeetingEntry.duration.equals(this.duration)
-                && otherMeetingEntry.moduleCode.equals(this.moduleCode)
+                && otherMeetingEntry.module.equals(this.module)
                 && otherMeetingEntry.isRecurring.equals(this.isRecurring)
                 && otherMeetingEntry.tags.equals(this.tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, url, dateTime, duration, moduleCode, isRecurring, tags);
+        return Objects.hash(name, url, dateTime, duration, module, isRecurring, tags);
     }
 
     // Not updating to show the duration for now
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(moduleCode)
+        builder.append(module)
                 .append(" ")
                 .append(name)
                 .append("; Meeting URL: ")

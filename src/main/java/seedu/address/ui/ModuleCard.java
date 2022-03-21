@@ -4,13 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.module.Module;
 
 /**
- * An UI component that displays information of a {@code ModuleCodeCard}.
+ * An UI component that displays information of a {@code ModuleCard}.
  */
-public class ModuleCodeCard extends UiPart<Region> {
-    private static final String FXML = "ModuleCodeListCard.fxml";
+public class ModuleCard extends UiPart<Region> {
+    private static final String FXML = "ModuleListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -20,7 +20,7 @@ public class ModuleCodeCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final ModuleCode moduleCode;
+    public final Module module;
 
     @FXML
     private HBox cardPane;
@@ -30,13 +30,13 @@ public class ModuleCodeCard extends UiPart<Region> {
     private Label code;
 
     /**
-     * Creates a {@code ModuleCodeCard} with the given {@code ModuleCode} and index to display.
+     * Creates a {@code ModuleCard} with the given {@code Module} and index to display.
      */
-    public ModuleCodeCard(ModuleCode moduleCode, int displayedIndex) {
+    public ModuleCard(Module module, int displayedIndex) {
         super(FXML);
-        this.moduleCode = moduleCode;
+        this.module = module;
         id.setText(displayedIndex + ". ");
-        code.setText(moduleCode.getCode());
+        code.setText(module.getCode());
     }
 
     @Override
@@ -47,13 +47,13 @@ public class ModuleCodeCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModuleCodeCard)) {
+        if (!(other instanceof ModuleCard)) {
             return false;
         }
 
         // state check
-        final ModuleCodeCard card = (ModuleCodeCard) other;
+        final ModuleCard card = (ModuleCard) other;
         return id.getText().equals(card.id.getText())
-                && moduleCode.equals(card.moduleCode);
+                && module.equals(card.module);
     }
 }

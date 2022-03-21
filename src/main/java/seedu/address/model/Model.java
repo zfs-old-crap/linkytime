@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.module.Module;
 
 /**
  * The API of the Model component.
@@ -14,7 +14,7 @@ import seedu.address.model.modulecode.ModuleCode;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<MeetingEntry> PREDICATE_SHOW_ALL_MEETING_ENTRIES = unused -> true;
-    Predicate<ModuleCode> PREDICATE_SHOW_ALL_MODULE_CODES = unused -> true;
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     // =========== UserPrefs ===============================================================================
 
@@ -94,21 +94,21 @@ public interface Model {
      */
     void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate);
 
-    // =========== ModuleCode ==============================================================================
+    // =========== Module ==================================================================================
 
     /**
-     * Returns true if a module code that is identical to {@code moduleCode} exists in LinkyTime.
+     * Returns true if a module that is identical to {@code module} exists in LinkyTime.
      */
-    boolean hasModuleCode(ModuleCode moduleCode);
+    boolean hasModule(Module module);
 
-    // =========== Filtered ModuleCode List Accessors ======================================================
+    // =========== Filtered Module List Accessors ==========================================================
 
-    /** Returns an unmodifiable view of the filtered module code list */
-    ObservableList<ModuleCode> getFilteredModuleCodeList();
+    /** Returns an unmodifiable view of the filtered module list */
+    ObservableList<Module> getFilteredModuleList();
 
     /**
-     * Updates the filter of the filtered module code list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredModuleCodeList(Predicate<ModuleCode> predicate);
+    void updateFilteredModuleList(Predicate<Module> predicate);
 }

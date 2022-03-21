@@ -117,7 +117,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         final ArrayList<String> keywords = new ArrayList<>();
-        keywords.add(CS2105.getModuleCode().toString());
+        keywords.add(CS2105.getModule().toString());
         modelManager.updateFilteredMeetingEntryList(new MeetingEntryContainsKeywordsPredicate(keywords));
         assertFalse(modelManager.equals(new ModelManager(linkyTime, userPrefs)));
 
