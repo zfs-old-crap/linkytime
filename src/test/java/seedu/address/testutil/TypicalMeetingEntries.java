@@ -19,6 +19,8 @@ import java.util.List;
 
 import seedu.address.model.LinkyTime;
 import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.module.Module;
+import seedu.address.testutil.module.TypicalModules;
 
 /**
  * A utility class containing a list of {@code MeetingEntry} objects to be used in tests.
@@ -81,6 +83,9 @@ public class TypicalMeetingEntries {
         final LinkyTime lt = new LinkyTime();
         for (final MeetingEntry meetingEntry : getTypicalMeetingEntries()) {
             lt.addMeetingEntry(meetingEntry);
+        }
+        for (final Module module : TypicalModules.getTypicalModules()) {
+            lt.addModule(module);
         }
         return lt;
     }

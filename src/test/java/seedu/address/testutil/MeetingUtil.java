@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,7 +23,7 @@ public class MeetingUtil {
         sb.append(PREFIX_NAME + meetingEntry.getName().name + " ");
         sb.append(PREFIX_URL + meetingEntry.getUrl().toString() + " ");
         sb.append(PREFIX_DATETIME + meetingEntry.getDateTime().datetime + " ");
-        sb.append(PREFIX_MODULE_CODE + meetingEntry.getModuleCode().code + " ");
+        sb.append(PREFIX_MODULE + meetingEntry.getModule().code + " ");
         sb.append(PREFIX_RECURRING + meetingEntry.getIsRecurring().toString() + " ");
         meetingEntry.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
