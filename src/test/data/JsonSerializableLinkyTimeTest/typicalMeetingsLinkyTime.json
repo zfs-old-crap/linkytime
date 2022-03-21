@@ -1,0 +1,46 @@
+{
+  "meetingEntries" : [ {
+    "name" : "Lecture",
+    "url" : "https://www.zoom.com",
+    "dateTime" : "Thursday",
+    "moduleCode" : "CS2105",
+    "isRecurring" : "Y",
+    "tagged" : [ "roger" ]
+  }, {
+    "name" : "Lecture",
+    "url" : "https://www.zoom.com",
+    "dateTime" : "Wednesday",
+    "moduleCode" : "CS2106",
+    "isRecurring" : "Y",
+    "tagged" : [ "colin" ]
+  }, {
+    "name" : "Lecture",
+    "url" : "https://www.zoom.com",
+    "dateTime" : "Thursday",
+    "moduleCode" : "CS2030",
+    "isRecurring" : "Y",
+    "tagged" : [ "ooi" ]
+  }, {
+    "name" : "Lecture",
+    "url" : "https://www.zoom.com",
+    "dateTime" : "Monday",
+    "moduleCode" : "CS2040",
+    "isRecurring" : "Y",
+    "tagged" : [ "CKF" ]
+  }, {
+    "name" : "Lecture",
+    "url" : "https://www.zoom.com",
+    "dateTime" : "Tuesday",
+    "moduleCode" : "CS2100",
+    "isRecurring" : "Y",
+    "tagged" : [ "aaron" ]
+  }, {
+    "name" : "Lecture",
+    "url" : "https://www.zoom.com",
+    "dateTime" : "Thursday",
+    "moduleCode" : "CS1101S",
+    "isRecurring" : "Y",
+    "tagged" : [ "hartinmenz" ]
+  } ],
+  "moduleCodes" : [ ]
+}

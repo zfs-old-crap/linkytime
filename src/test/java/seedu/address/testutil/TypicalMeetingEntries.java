@@ -46,6 +46,7 @@ public class TypicalMeetingEntries {
             .withUrl("https://www.zoom.com").withDateTime("Tuesday").withDuration("15")
             .withModuleCode("CS2100")
             .withTags("aaron").build();
+
     public static final MeetingEntry CS2107 = new MeetingEntryBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("Thursday").withDuration("1.7")
             .withModuleCode("CS2107")
@@ -56,6 +57,7 @@ public class TypicalMeetingEntries {
             .withUrl("https://www.zoom.com").withDateTime("Friday").withDuration("2")
             .withModuleCode("PC1221")
             .withTags("proftay").build();
+
     public static final MeetingEntry CS1101S = new MeetingEntryBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("Thursday").withDuration("1.5")
             .withModuleCode("CS1101S")
