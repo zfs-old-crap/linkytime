@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ModelStub;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.meetingentry.AddCommand;
 import seedu.address.model.module.Module;
 import seedu.address.testutil.module.ModuleBuilder;
 
