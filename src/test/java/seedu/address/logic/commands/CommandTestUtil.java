@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
@@ -31,6 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_URL_TUTORIAL = "https://www.zoom.com";
     public static final String VALID_DATETIME_LECTURE = "Friday";
     public static final String VALID_DATETIME_TUTORIAL = "Tuesday";
+    public static final String VALID_DURATION_LECTURE = "2";
+    public static final String VALID_DURATION_TUTORIAL = "1.5";
     public static final String VALID_MODULE_LECTURE = "CS2103";
     public static final String VALID_MODULE_TUTORIAL = "CS2101";
     public static final String VALID_RECURRING_LECTURE = "Y";
@@ -44,6 +47,8 @@ public class CommandTestUtil {
     public static final String URL_DESC_TUTORIAL = " " + PREFIX_URL + VALID_URL_TUTORIAL;
     public static final String DATETIME_DESC_LECTURE = " " + PREFIX_DATETIME + VALID_DATETIME_LECTURE;
     public static final String DATETIME_DESC_TUTORIAL = " " + PREFIX_DATETIME + VALID_DATETIME_TUTORIAL;
+    public static final String DURATION_DESC_LECTURE = " " + PREFIX_DURATION + VALID_DURATION_LECTURE;
+    public static final String DURATION_DESC_TUTORIAL = " " + PREFIX_DURATION + VALID_DURATION_TUTORIAL;
     public static final String MODULE_DESC_LECTURE = " " + PREFIX_MODULE + VALID_MODULE_LECTURE;
     public static final String MODULE_DESC_TUTORIAL = " " + PREFIX_MODULE + VALID_MODULE_TUTORIAL;
     public static final String RECURRING_DESC_LECTURE = " " + PREFIX_RECURRING + VALID_RECURRING_LECTURE;
@@ -58,6 +63,7 @@ public class CommandTestUtil {
     //    public static final String INVALID_MODULE_DESC = " " + PREFIX_ADDRESS; // empty string not allowed
     //    public static final String INVALID_RECURRING_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
     //    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "two"; // letters not allowed in duration
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

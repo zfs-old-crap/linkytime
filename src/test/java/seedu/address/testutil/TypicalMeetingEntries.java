@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
@@ -25,47 +27,49 @@ import seedu.address.model.meetingentry.MeetingEntry;
  */
 public class TypicalMeetingEntries {
     public static final MeetingEntry CS2105 = new MeetingEntryBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("Thursday")
+            .withUrl("https://www.zoom.com").withDateTime("Thursday").withDuration("2")
             .withModule("CS2105")
             .withTags("roger").build();
     public static final MeetingEntry CS2106 = new MeetingEntryBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("Wednesday")
+            .withUrl("https://www.zoom.com").withDateTime("Wednesday").withDuration("2")
             .withModule("CS2106")
             .withTags("colin").build();
     public static final MeetingEntry CS2030 = new MeetingEntryBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("Thursday")
+            .withUrl("https://www.zoom.com").withDateTime("Thursday").withDuration("2")
             .withModule("CS2030")
             .withTags("ooi").build();
     public static final MeetingEntry CS2040 = new MeetingEntryBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("Monday")
+            .withUrl("https://www.zoom.com").withDateTime("Monday").withDuration("1")
             .withModule("CS2040")
             .withTags("CKF").build();
     public static final MeetingEntry CS2100 = new MeetingEntryBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("Tuesday")
+            .withUrl("https://www.zoom.com").withDateTime("Tuesday").withDuration("15")
             .withModule("CS2100")
             .withTags("aaron").build();
-    public static final MeetingEntry CS1101S = new MeetingEntryBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("Thursday")
-            .withModule("CS1101S")
-            .withTags("hartinmenz").build();
 
-    // Manually added
-    public static final MeetingEntry PC1221 = new MeetingEntryBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("Friday")
-            .withModule("PC1221")
-            .withTags("proftay").build();
     public static final MeetingEntry CS2107 = new MeetingEntryBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("Thursday")
+            .withUrl("https://www.zoom.com").withDateTime("Thursday").withDuration("1.7")
             .withModule("CS2107")
             .withTags("sufatrio").build();
 
+    // Manually added
+    public static final MeetingEntry PC1221 = new MeetingEntryBuilder().withName("Lecture")
+            .withUrl("https://www.zoom.com").withDateTime("Friday").withDuration("2")
+            .withModule("PC1221")
+            .withTags("proftay").build();
+
+    public static final MeetingEntry CS1101S = new MeetingEntryBuilder().withName("Lecture")
+            .withUrl("https://www.zoom.com").withDateTime("Thursday").withDuration("1.5")
+            .withModule("CS1101S")
+            .withTags("hartinmenz").build();
+
     // Manually added - MeetingEntry's details found in {@code CommandTestUtil}
     public static final MeetingEntry CS2101 = new MeetingEntryBuilder().withName(VALID_NAME_TUTORIAL)
-            .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_TUTORIAL)
+            .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_TUTORIAL).withDuration(VALID_DURATION_TUTORIAL)
             .withModule(VALID_MODULE_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
             .withTags(VALID_TAG_TUTORIAL).build();
     public static final MeetingEntry CS2103 = new MeetingEntryBuilder().withName(VALID_NAME_LECTURE)
-            .withUrl(VALID_URL_LECTURE).withDateTime(VALID_DATETIME_LECTURE)
+            .withUrl(VALID_URL_LECTURE).withDateTime(VALID_DATETIME_LECTURE).withDuration(VALID_DURATION_LECTURE)
             .withModule(VALID_MODULE_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE)
             .withTags(VALID_TAG_LECTURE).build();
 

@@ -21,6 +21,7 @@ public class MeetingEntry {
     private final MeetingUrl url;
     private final MeetingDateTime dateTime;
     private final Module module;
+    private final MeetingDuration duration;
 
     // Data fields
     private final IsRecurring isRecurring;
@@ -34,12 +35,13 @@ public class MeetingEntry {
      * @param dateTime      The date and time of the meeting.
      * @param isRecurring   Whether the meeting is recurring.
      */
-    public MeetingEntry(MeetingName name, MeetingUrl url, MeetingDateTime dateTime,
+    public MeetingEntry(MeetingName name, MeetingUrl url, MeetingDateTime dateTime, MeetingDuration duration,
                         Module module, IsRecurring isRecurring, Set<Tag> tags) {
         requireAllNonNull(name, url, dateTime, isRecurring, tags);
         this.name = name;
         this.url = url;
         this.dateTime = dateTime;
+        this.duration = duration;
         this.module = module;
         this.isRecurring = isRecurring;
         this.tags.addAll(tags);
@@ -57,6 +59,9 @@ public class MeetingEntry {
         return dateTime;
     }
 
+    public MeetingDuration getDuration() {
+        return duration;
+    }
     public Module getModule() {
         return module;
     }
@@ -95,6 +100,7 @@ public class MeetingEntry {
         return otherMeetingEntry.name.equals(this.name)
                 && otherMeetingEntry.url.equals(this.url)
                 && otherMeetingEntry.dateTime.equals(this.dateTime)
+                && otherMeetingEntry.duration.equals(this.duration)
                 && otherMeetingEntry.module.equals(this.module)
                 && otherMeetingEntry.isRecurring.equals(this.isRecurring)
                 && otherMeetingEntry.tags.equals(this.tags);
@@ -102,9 +108,10 @@ public class MeetingEntry {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, url, dateTime, module, isRecurring, tags);
+        return Objects.hash(name, url, dateTime, duration, module, isRecurring, tags);
     }
 
+    // Not updating to show the duration for now
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

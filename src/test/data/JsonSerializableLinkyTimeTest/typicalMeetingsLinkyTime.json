@@ -3,6 +3,7 @@
     "name" : "Lecture",
     "url" : "https://www.zoom.com",
     "dateTime" : "Thursday",
+    "duration" : "2.0",
     "module" : "CS2105",
     "isRecurring" : "Y",
     "tagged" : [ "roger" ]
@@ -10,6 +11,7 @@
     "name" : "Lecture",
     "url" : "https://www.zoom.com",
     "dateTime" : "Wednesday",
+    "duration" : "2.0",
     "module" : "CS2106",
     "isRecurring" : "Y",
     "tagged" : [ "colin" ]
@@ -17,6 +19,7 @@
     "name" : "Lecture",
     "url" : "https://www.zoom.com",
     "dateTime" : "Thursday",
+    "duration" : "2.0",
     "module" : "CS2030",
     "isRecurring" : "Y",
     "tagged" : [ "ooi" ]
@@ -24,6 +27,7 @@
     "name" : "Lecture",
     "url" : "https://www.zoom.com",
     "dateTime" : "Monday",
+    "duration" : "1.0",
     "module" : "CS2040",
     "isRecurring" : "Y",
     "tagged" : [ "CKF" ]
@@ -31,6 +35,7 @@
     "name" : "Lecture",
     "url" : "https://www.zoom.com",
     "dateTime" : "Tuesday",
+    "duration" : "15.0",
     "module" : "CS2100",
     "isRecurring" : "Y",
     "tagged" : [ "aaron" ]
@@ -38,6 +43,7 @@
     "name" : "Lecture",
     "url" : "https://www.zoom.com",
     "dateTime" : "Thursday",
+    "duration" : "1.5",
     "module" : "CS1101S",
     "isRecurring" : "Y",
     "tagged" : [ "hartinmenz" ]
