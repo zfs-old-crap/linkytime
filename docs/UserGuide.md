@@ -31,7 +31,7 @@ title: User Guide
     Some example commands you can try:
 
     * `list` : Lists all meeting entries.
-    * `add n/Tutorial u/https://www.zoom.com d/13mar2022 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with the module code `CS2103` to the list of meeting entries.
+    * `add n/Tutorial u/https://www.zoom.com d/13mar2022 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with the module `CS2103` to the list of meeting entries.
     * `delete 3` : Deletes the 3rd entry shown in the current list.
     * `exit` : Exits the app.
 
@@ -76,14 +76,14 @@ This section describes each of the commands and features available in **LinkyTim
 
 Adds a meeting entry into the entry list.
 
-Format: `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...`
+Format: `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...`
 
 Parameters:
 
 * `MEETING_NAME` The name of the meeting entry.
 * `URL` The URL to the online meeting.
 * `DATETIME` The date and starting time of the meeting.
-* `MODULE_CODE` The module code of the module that the meeting is for.
+* `MODULE_INDEX` The index of the module in the module list that the meeting is for.
 * `IS_RECURRING` Whether the meeting recurs every week. Given as `Y` or `N`.
 * `TAG` The tags associated with the meeting entry.
 
@@ -176,7 +176,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
+**Add** | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
 **List** | `list`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
