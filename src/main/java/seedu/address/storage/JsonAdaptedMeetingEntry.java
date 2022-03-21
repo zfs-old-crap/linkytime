@@ -61,7 +61,7 @@ class JsonAdaptedMeetingEntry {
     public JsonAdaptedMeetingEntry(MeetingEntry source) {
         name = source.getName().name;
         url = source.getUrl().meetingUrl.toExternalForm();
-        dateTime = source.getDateTime().datetime;
+        dateTime = source.getDateTime().datetime.format(MeetingDateTime.DATETIME_FORMAT);
         duration = String.valueOf(source.getDuration().duration);
         moduleCode = source.getModuleCode().code;
         isRecurring = source.getIsRecurring().toString();
