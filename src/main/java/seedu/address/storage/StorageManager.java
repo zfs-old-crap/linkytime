@@ -9,6 +9,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 
 /**
  * Manages storage of LinkyTime data in local storage.
@@ -36,7 +37,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<JsonAdaptedUserPrefs> readUserPrefs() throws DataConversionException, IOException {
+    public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
         return userPrefsStorage.readUserPrefs();
     }
 

@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 
 /**
  * API of the Storage component
@@ -14,7 +15,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 public interface Storage extends UserPrefsStorage, LinkyTimeStorage {
 
     @Override
-    Optional<JsonAdaptedUserPrefs> readUserPrefs() throws DataConversionException, IOException;
+    Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;

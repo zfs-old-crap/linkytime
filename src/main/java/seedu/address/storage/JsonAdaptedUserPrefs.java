@@ -16,6 +16,7 @@ import seedu.address.model.UserPrefs;
 public class JsonAdaptedUserPrefs {
     private final GuiSettings guiSettings;
     private final String filePathString;
+
     /**
      * Constructs a {@code JsonAdaptedUserPrefs} with the given module code details.
      */

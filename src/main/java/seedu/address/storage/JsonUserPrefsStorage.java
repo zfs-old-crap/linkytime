@@ -26,7 +26,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
     }
 
     @Override
-    public Optional<JsonAdaptedUserPrefs> readUserPrefs() throws DataConversionException {
+    public Optional<UserPrefs> readUserPrefs() throws DataConversionException {
         return readUserPrefs(filePath);
     }
 
@@ -35,15 +35,24 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
      * @param prefsFilePath location of the data. Cannot be null.
      * @throws DataConversionException if the file format is not as expected.
      */
-    public Optional<JsonAdaptedUserPrefs> readUserPrefs(Path prefsFilePath) throws DataConversionException {
-        return JsonUtil.readJsonFile(prefsFilePath, JsonAdaptedUserPrefs.class);
+    public Optional<UserPrefs> readUserPrefs(Path prefsFilePath) throws DataConversionException {
+        final Optional<JsonAdaptedUserPrefs> jsonAdaptedUserPrefs =
+                JsonUtil.readJsonFile(prefsFilePath, JsonAdaptedUserPrefs.class);
+        if (!jsonAdaptedUserPrefs.isPresent()) {
+            return Optional.empty();
+        }
+
+        final UserPrefs userPrefs = jsonAdaptedUserPrefs.get().toModelType();
+        return Optional.of(userPrefs);
     }
 
     @Override
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         final UserPrefs userPrefsToSave = new UserPrefs();
+
         userPrefsToSave.setGuiSettings(userPrefs.getGuiSettings());
         userPrefsToSave.setLinkyTimeFilePath(userPrefs.getLinkyTimeFilePath());
+
         final JsonAdaptedUserPrefs jsonAdaptedUserPrefs = new JsonAdaptedUserPrefs(userPrefsToSave);
         JsonUtil.saveJsonFile(jsonAdaptedUserPrefs, filePath);
     }

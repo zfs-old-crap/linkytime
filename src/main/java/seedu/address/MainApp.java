@@ -22,7 +22,6 @@ import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonAdaptedUserPrefs;
 import seedu.address.storage.JsonLinkyTimeStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.LinkyTimeStorage;
@@ -145,18 +144,14 @@ public class MainApp extends Application {
 
         UserPrefs initializedPrefs;
         try {
-            Optional<JsonAdaptedUserPrefs> prefsOptional = storage.readUserPrefs();
-            initializedPrefs = prefsOptional.get().toModelType();
+            Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
+            initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Linkytime");
-            initializedPrefs = new UserPrefs();
-        } catch (NullPointerException e) {
-            logger.warning("UserPrefs file at " + prefsFilePath + " is empty. "
-                    + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         }
 
