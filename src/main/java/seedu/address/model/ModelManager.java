@@ -17,7 +17,7 @@ import seedu.address.model.module.Module;
 /**
  * Represents the in-memory model of the LinkyTime data.
  */
-public class ModelManager extends AddressBookModelManager implements Model {
+public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final LinkyTime linkyTime;
@@ -26,14 +26,12 @@ public class ModelManager extends AddressBookModelManager implements Model {
     private final FilteredList<Module> filteredModules;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given linkyTime and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyLinkyTime linkyTime) {
-        super(addressBook, userPrefs);
+    public ModelManager(ReadOnlyLinkyTime linkyTime, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(linkyTime, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
+        logger.fine("Initializing with LinkyTime: " + linkyTime + " and user prefs " + userPrefs);
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMeetingEntries = new FilteredList<>(this.linkyTime.getMeetingEntryList());
@@ -41,7 +39,7 @@ public class ModelManager extends AddressBookModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new LinkyTime());
+        this(new LinkyTime(), new UserPrefs());
     }
 
     // =========== UserPrefs ===============================================================================
@@ -70,13 +68,13 @@ public class ModelManager extends AddressBookModelManager implements Model {
 
     @Override
     public Path getLinkyTimeFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getLinkyTimeFilePath();
     }
 
     @Override
-    public void setLinkyTimeFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setLinkyTimeFilePath(Path linkyTimeFilePath) {
+        requireNonNull(linkyTimeFilePath);
+        userPrefs.setLinkyTimeFilePath(linkyTimeFilePath);
     }
 
     // =========== LinkyTime ===============================================================================
@@ -165,8 +163,7 @@ public class ModelManager extends AddressBookModelManager implements Model {
 
         // state check
         final ModelManager other = (ModelManager) obj;
-        return super.equals(other)
-                && userPrefs.equals(other.userPrefs)
+        return userPrefs.equals(other.userPrefs)
                 && filteredMeetingEntries.equals(other.filteredMeetingEntries)
                 && filteredModules.equals(other.filteredModules);
     }

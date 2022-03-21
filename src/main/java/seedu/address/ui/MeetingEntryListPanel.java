@@ -11,11 +11,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meetingentry.MeetingEntry;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of meetings.
  */
 public class MeetingEntryListPanel extends UiPart<Region> {
     private static final String FXML = "MeetingEntryListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(MeetingEntryListPanel.class);
 
     @FXML
     private ListView<MeetingEntry> meetingEntryListView;
