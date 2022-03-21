@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
 
 /**
@@ -22,7 +22,7 @@ public class ModelManager implements Model {
 
     private final LinkyTime linkyTime;
     private final UserPrefs userPrefs;
-    private final FilteredList<MeetingEntry> filteredMeetingEntries;
+    private final FilteredList<Meeting> filteredMeetings;
     private final FilteredList<Module> filteredModules;
 
     /**
@@ -34,7 +34,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with LinkyTime: " + linkyTime + " and user prefs " + userPrefs);
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredMeetingEntries = new FilteredList<>(this.linkyTime.getMeetingEntryList());
+        filteredMeetings = new FilteredList<>(this.linkyTime.getMeetingList());
         filteredModules = new FilteredList<>(this.linkyTime.getModuleList());
     }
 
@@ -89,43 +89,43 @@ public class ModelManager implements Model {
         return linkyTime;
     }
 
-    // =========== MeetingEntry ============================================================================
+    // =========== Meeting ============================================================================
 
     @Override
-    public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
-        requireNonNull(meetingEntry);
-        return linkyTime.hasMeetingEntry(meetingEntry);
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return linkyTime.hasMeeting(meeting);
     }
 
     @Override
-    public void deleteMeetingEntry(MeetingEntry target) {
-        linkyTime.removeMeetingEntry(target);
+    public void deleteMeeting(Meeting target) {
+        linkyTime.removeMeeting(target);
     }
 
     @Override
-    public void addMeetingEntry(MeetingEntry meetingEntry) {
-        linkyTime.addMeetingEntry(meetingEntry);
-        updateFilteredMeetingEntryList(PREDICATE_SHOW_ALL_MEETING_ENTRIES);
+    public void addMeeting(Meeting meeting) {
+        linkyTime.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     @Override
-    public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
-        requireAllNonNull(target, editedMeetingEntry);
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
 
-        linkyTime.setMeetingEntry(target, editedMeetingEntry);
+        linkyTime.setMeeting(target, editedMeeting);
     }
 
-    // =========== Filtered MeetingEntry List Accessors ====================================================
+    // =========== Filtered Meeting List Accessors ====================================================
 
     @Override
-    public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
-        return filteredMeetingEntries;
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
     }
 
     @Override
-    public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
-        filteredMeetingEntries.setPredicate(predicate);
+        filteredMeetings.setPredicate(predicate);
     }
 
     // =========== Module ==================================================================================
@@ -164,7 +164,7 @@ public class ModelManager implements Model {
         // state check
         final ModelManager other = (ModelManager) obj;
         return userPrefs.equals(other.userPrefs)
-                && filteredMeetingEntries.equals(other.filteredMeetingEntries)
+                && filteredMeetings.equals(other.filteredMeetings)
                 && filteredModules.equals(other.filteredModules);
     }
 

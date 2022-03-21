@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.LinkyTime;
-import seedu.address.testutil.TypicalMeetingEntries;
+import seedu.address.testutil.TypicalMeetings;
 
 public class JsonSerializableLinkyTimeTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableLinkyTimeTest");
@@ -24,7 +24,7 @@ public class JsonSerializableLinkyTimeTest {
         JsonSerializableLinkyTime dataFromFile = JsonUtil.readJsonFile(TYPICAL_MEETINGS_FILE,
                 JsonSerializableLinkyTime.class).get();
         LinkyTime linkyTimeFromFile = dataFromFile.toModelType();
-        LinkyTime typicalMeetingslinkyTime = TypicalMeetingEntries.getTypicalLinkyTime();
+        LinkyTime typicalMeetingslinkyTime = TypicalMeetings.getTypicalLinkyTime();
         assertEquals(linkyTimeFromFile, typicalMeetingslinkyTime);
     }
 
@@ -39,7 +39,7 @@ public class JsonSerializableLinkyTimeTest {
     public void toModelType_duplicateMeetings_throwsIllegalValueException() throws Exception {
         JsonSerializableLinkyTime dataFromFile = JsonUtil.readJsonFile(DUPLICATE_MEETING_FILE,
                 JsonSerializableLinkyTime.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableLinkyTime.MESSAGE_DUPLICATE_MEETING_ENTRY,
+        assertThrows(IllegalValueException.class, JsonSerializableLinkyTime.MESSAGE_DUPLICATE_MEETING,
                 dataFromFile::toModelType);
     }
 

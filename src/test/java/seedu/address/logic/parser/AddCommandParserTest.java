@@ -26,73 +26,73 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_URL_LECTURE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalMeetingEntries.CS2101;
-import static seedu.address.testutil.TypicalMeetingEntries.CS2103;
+import static seedu.address.testutil.TypicalMeetings.CS2101;
+import static seedu.address.testutil.TypicalMeetings.CS2103;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.meetingentry.AddCommand;
-import seedu.address.logic.parser.meetingentry.AddCommandParser;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.testutil.MeetingEntryBuilder;
+import seedu.address.logic.commands.meeting.AddCommand;
+import seedu.address.logic.parser.meeting.AddCommandParser;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.testutil.MeetingBuilder;
 
 public class AddCommandParserTest {
     private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        final MeetingEntry expectedMeetingEntry = new MeetingEntryBuilder(CS2103).build();
+        final Meeting expectedMeeting = new MeetingBuilder(CS2103).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_LECTURE + URL_DESC_LECTURE
                 + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_TUTORIAL + NAME_DESC_LECTURE + URL_DESC_LECTURE
                 + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
 
         // multiple urls - last url accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_TUTORIAL + URL_DESC_LECTURE
                 + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
 
         // multiple datetime - last datetime accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_TUTORIAL
                 + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
 
         // multiple duration - last duration accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + DURATION_DESC_TUTORIAL + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
 
         // multiple module - last module accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + DURATION_DESC_LECTURE + MODULE_DESC_TUTORIAL + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE
-                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
 
         // multiple recurrence - last recurrence accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_TUTORIAL + RECURRING_DESC_LECTURE
-                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
 
         // multiple tags - all accepted
-        final MeetingEntry expectedMeetingEntryMultipleTags = new MeetingEntryBuilder(CS2103)
+        final Meeting expectedMeetingMultipleTags = new MeetingBuilder(CS2103)
                 .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL).build();
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE + TAG_DESC_TUTORIAL
-                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntryMultipleTags));
+                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        final MeetingEntry expectedMeetingEntry = new MeetingEntryBuilder(CS2101).withTags().build();
+        final Meeting expectedMeeting = new MeetingBuilder(CS2101).withTags().build();
         assertParseSuccess(parser, NAME_DESC_TUTORIAL + URL_DESC_TUTORIAL + DATETIME_DESC_TUTORIAL
                         + DURATION_DESC_TUTORIAL + MODULE_DESC_TUTORIAL + RECURRING_DESC_TUTORIAL,
-                new AddCommand(expectedMeetingEntry));
+                new AddCommand(expectedMeeting));
     }
 
     @Test

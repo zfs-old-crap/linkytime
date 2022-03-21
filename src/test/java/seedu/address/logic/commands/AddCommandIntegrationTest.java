@@ -1,17 +1,17 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalMeetingEntries.getTypicalLinkyTime;
+import static seedu.address.testutil.TypicalMeetings.getTypicalLinkyTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.meetingentry.AddCommand;
+import seedu.address.logic.commands.meeting.AddCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.testutil.MeetingEntryBuilder;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.testutil.MeetingBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -26,26 +26,26 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newMeetingEntry_success() {
-        final MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
+    public void execute_newMeeting_success() {
+        final Meeting validMeeting = new MeetingBuilder().build();
 
         final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
-        expectedModel.addMeetingEntry(validMeetingEntry);
+        expectedModel.addMeeting(validMeeting);
 
-        assertCommandSuccess(new AddCommand(validMeetingEntry), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validMeetingEntry), expectedModel);
+        assertCommandSuccess(new AddCommand(validMeeting), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validMeeting), expectedModel);
     }
 
 
     //      TODO implement the testcase when able to retrieve meetinglist
     //    @Test
-    //    public void execute_duplicateMeetingEntry_throwsCommandException() {
-    //        MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
+    //    public void execute_duplicateMeeting_throwsCommandException() {
+    //        Meeting validMeeting = new MeetingBuilder().build();
     //        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new LinkyTime());
-    //        expectedModel.addMeetingEntry(validMeetingEntry);
+    //        expectedModel.addMeeting(validMeeting);
     //
-    //        MeetingEntry meetingEntryInList = model.getLinkyTime().getMeetingEntryList().get(0);
-    //        assertCommandFailure(new seedu.address.logic.commands.meetingentry.AddCommand(meetingEntryInList),
+    //        Meeting meetingInList = model.getLinkyTime().getMeetingList().get(0);
+    //        assertCommandFailure(new seedu.address.logic.commands.meeting.AddCommand(meetingInList),
     //        expectedModel, AddCommand.MESSAGE_DUPLICATE_PERSON);
     //    }
 

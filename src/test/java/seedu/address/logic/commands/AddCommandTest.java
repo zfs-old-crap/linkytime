@@ -16,47 +16,47 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.meetingentry.AddCommand;
+import seedu.address.logic.commands.meeting.AddCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
-import seedu.address.testutil.MeetingEntryBuilder;
+import seedu.address.testutil.MeetingBuilder;
 
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullMeetingEntry_throwsNullPointerException() {
+    public void constructor_nullMeeting_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_meetingEntryAcceptedByModel_addSuccessful() throws Exception {
-        final ModelStubAcceptingMeetingEntryAdded modelStub = new ModelStubAcceptingMeetingEntryAdded();
-        final MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
+    public void execute_meetingAcceptedByModel_addSuccessful() throws Exception {
+        final ModelStubAcceptingMeetingAdded modelStub = new ModelStubAcceptingMeetingAdded();
+        final Meeting validMeeting = new MeetingBuilder().build();
 
-        final CommandResult commandResult = new AddCommand(validMeetingEntry).execute(modelStub);
+        final CommandResult commandResult = new AddCommand(validMeeting).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validMeetingEntry), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validMeetingEntry), modelStub.meetingEntriesAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validMeeting), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
     }
 
     @Test
-    public void execute_duplicateMeetingEntry_throwsCommandException() {
-        final MeetingEntry validMeetingEntry = new MeetingEntryBuilder().build();
-        final AddCommand addCommand = new AddCommand(validMeetingEntry);
-        final ModelStub modelStub = new ModelStubWithMeetingEntry(validMeetingEntry);
+    public void execute_duplicateMeeting_throwsCommandException() {
+        final Meeting validMeeting = new MeetingBuilder().build();
+        final AddCommand addCommand = new AddCommand(validMeeting);
+        final ModelStub modelStub = new ModelStubWithMeeting(validMeeting);
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_MEETING_ENTRY, () -> addCommand.execute(modelStub));
+                AddCommand.MESSAGE_DUPLICATE_MEETING, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        final MeetingEntry cs2103 = new MeetingEntryBuilder().withName("CS2103").build();
-        final MeetingEntry cs2101 = new MeetingEntryBuilder().withName("CS2101").build();
+        final Meeting cs2103 = new MeetingBuilder().withName("CS2103").build();
+        final Meeting cs2101 = new MeetingBuilder().withName("CS2101").build();
         final AddCommand addCS2103Command = new AddCommand(cs2103);
         final AddCommand addCS2101Command = new AddCommand(cs2101);
 
@@ -73,7 +73,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addCS2103CommandCopy.equals(null));
 
-        // different meeting entry -> returns false
+        // different meeting -> returns false
         assertFalse(addCS2103Command.equals(addCS2101Command));
     }
 
@@ -122,32 +122,32 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
+        public boolean hasMeeting(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteMeetingEntry(MeetingEntry target) {
+        public void deleteMeeting(Meeting target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addMeetingEntry(MeetingEntry meetingEntry) {
+        public void addMeeting(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
+        public void setMeeting(Meeting target, Meeting editedMeeting) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
+        public ObservableList<Meeting> getFilteredMeetingList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
+        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -169,40 +169,40 @@ public class AddCommandTest {
 
 
     /**
-     * A Model stub that contains a single meetingEntry.
+     * A Model stub that contains a single meeting.
      */
-    private class ModelStubWithMeetingEntry extends ModelStub {
-        private final MeetingEntry meetingEntry;
+    private class ModelStubWithMeeting extends ModelStub {
+        private final Meeting meeting;
 
-        ModelStubWithMeetingEntry(MeetingEntry meetingEntry) {
-            requireNonNull(meetingEntry);
-            this.meetingEntry = meetingEntry;
+        ModelStubWithMeeting(Meeting meeting) {
+            requireNonNull(meeting);
+            this.meeting = meeting;
         }
 
         @Override
-        public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
-            requireNonNull(meetingEntry);
-            return this.meetingEntry.equals(meetingEntry);
+        public boolean hasMeeting(Meeting meeting) {
+            requireNonNull(meeting);
+            return this.meeting.equals(meeting);
         }
 
     }
 
     /**
-     * A Model stub that always accept the MeetingEntry being added.
+     * A Model stub that always accept the Meeting being added.
      */
-    private class ModelStubAcceptingMeetingEntryAdded extends ModelStub {
-        final ArrayList<MeetingEntry> meetingEntriesAdded = new ArrayList<>();
+    private class ModelStubAcceptingMeetingAdded extends ModelStub {
+        final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
-            requireNonNull(meetingEntry);
-            return meetingEntriesAdded.stream().anyMatch(meetingEntry::equals);
+        public boolean hasMeeting(Meeting meeting) {
+            requireNonNull(meeting);
+            return meetingsAdded.stream().anyMatch(meeting::equals);
         }
 
         @Override
-        public void addMeetingEntry(MeetingEntry meetingEntry) {
-            requireNonNull(meetingEntry);
-            meetingEntriesAdded.add(meetingEntry);
+        public void addMeeting(Meeting meeting) {
+            requireNonNull(meeting);
+            meetingsAdded.add(meeting);
         }
     }
 

@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.meetingentry.UniqueMeetingEntryList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
 
@@ -17,7 +17,7 @@ import seedu.address.model.module.UniqueModuleList;
  */
 public class LinkyTime implements ReadOnlyLinkyTime {
 
-    private final UniqueMeetingEntryList meetingEntries;
+    private final UniqueMeetingList meetings;
     private final UniqueModuleList modules;
 
     /*
@@ -28,14 +28,14 @@ public class LinkyTime implements ReadOnlyLinkyTime {
      *   among constructors.
      */
     {
-        meetingEntries = new UniqueMeetingEntryList();
+        meetings = new UniqueMeetingList();
         modules = new UniqueModuleList();
     }
 
     public LinkyTime() {}
 
     /**
-     * Creates a LinkyTime using the MeetingEntries in the {@code toBeCopied}
+     * Creates a LinkyTime using the Meetings in the {@code ReadOnlyLinkyTime}
      */
     public LinkyTime(ReadOnlyLinkyTime toBeCopied) {
         this();
@@ -45,11 +45,11 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the meeting entry list with {@code meetingEntries}.
-     * {@code meetingEntries} must not contain duplicate meeting entries.
+     * Replaces the contents of the meeting list with {@code meetings}.
+     * {@code meetings} must not contain duplicate meetings.
      */
-    public void setMeetingEntries(List<MeetingEntry> meetingEntries) {
-        this.meetingEntries.setMeetingEntries(meetingEntries);
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings.setMeetings(meetings);
     }
 
     /**
@@ -66,44 +66,44 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     public void resetData(ReadOnlyLinkyTime newData) {
         requireNonNull(newData);
 
-        setMeetingEntries(newData.getMeetingEntryList());
+        setMeetings(newData.getMeetingList());
         setModules(newData.getModuleList());
     }
 
-    //// meeting-entry-level operations
+    //// meeting-level operations
 
     /**
-     * Returns true if a meeting entry that is identical to {@code meetingEntry} exists in LinkyTime.
+     * Returns true if a meeting that is identical to {@code meeting} exists in LinkyTime.
      */
-    public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
-        requireNonNull(meetingEntry);
-        return meetingEntries.contains(meetingEntry);
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetings.contains(meeting);
     }
 
     /**
-     * Adds a meeting entry to LinkyTime.
-     * The meeting entry must not already exist in LinkyTime.
+     * Adds a meeting to LinkyTime.
+     * The meeting must not already exist in LinkyTime.
      */
-    public void addMeetingEntry(MeetingEntry m) {
-        meetingEntries.add(m);
+    public void addMeeting(Meeting m) {
+        meetings.add(m);
     }
 
     /**
-     * Replaces the given meeting entry {@code target} in the list with {@code editedMeetingEntry}.
+     * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
      * {@code target} must exist in LinkyTime.
      */
-    public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
-        requireNonNull(editedMeetingEntry);
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
 
-        meetingEntries.setMeetingEntry(target, editedMeetingEntry);
+        meetings.setMeeting(target, editedMeeting);
     }
 
     /**
      * Removes {@code key} from {@code LinkyTime}.
      * {@code key} must exist in LinkyTime.
      */
-    public void removeMeetingEntry(MeetingEntry key) {
-        meetingEntries.remove(key);
+    public void removeMeeting(Meeting key) {
+        meetings.remove(key);
     }
 
     //// module-level operations
@@ -128,14 +128,14 @@ public class LinkyTime implements ReadOnlyLinkyTime {
 
     @Override
     public String toString() {
-        return meetingEntries.asUnmodifiableObservableList().size() + " meeting entries\n"
+        return meetings.asUnmodifiableObservableList().size() + " meeting\n"
                 + modules.asUnmodifiableObservableList().size() + " modules";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<MeetingEntry> getMeetingEntryList() {
-        return meetingEntries.asUnmodifiableObservableList();
+    public ObservableList<Meeting> getMeetingList() {
+        return meetings.asUnmodifiableObservableList();
     }
 
     @Override
@@ -147,12 +147,12 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof LinkyTime // instanceof handles nulls
-                && meetingEntries.equals(((LinkyTime) other).meetingEntries)
+                && meetings.equals(((LinkyTime) other).meetings)
                 && modules.equals(((LinkyTime) other).modules));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(meetingEntries, modules);
+        return Objects.hash(meetings, modules);
     }
 }

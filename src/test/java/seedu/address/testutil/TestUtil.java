@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * A utility class for test cases.
@@ -33,23 +33,23 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the meeting entry in the {@code model}'s MeetingEntry list.
+     * Returns the middle index of the meeting in the {@code model}'s Meeting list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredMeetingEntryList().size() / 2);
+        return Index.fromOneBased(model.getFilteredMeetingList().size() / 2);
     }
 
     /**
-     * Returns the last index of the meeting entry in the {@code model}'s MeetingEntry list.
+     * Returns the last index of the meeting in the {@code model}'s Meeting list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredMeetingEntryList().size());
+        return Index.fromOneBased(model.getFilteredMeetingList().size());
     }
 
     /**
-     * Returns the meeting entry in the {@code model}'s meeting entry list at {@code index}.
+     * Returns the meeting in the {@code model}'s meeting list at {@code index}.
      */
-    public static MeetingEntry getMeetingEntry(Model model, Index index) {
-        return model.getFilteredMeetingEntryList().get(index.getZeroBased());
+    public static Meeting getMeeting(Model model, Index index) {
+        return model.getFilteredMeetingList().get(index.getZeroBased());
     }
 }
