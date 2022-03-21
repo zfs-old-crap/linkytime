@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.module.Module;
 
 /**
  * Represents the in-memory model of the LinkyTime data.
@@ -23,7 +23,7 @@ public class ModelManager extends AddressBookModelManager implements Model {
     private final LinkyTime linkyTime;
     private final UserPrefs userPrefs;
     private final FilteredList<MeetingEntry> filteredMeetingEntries;
-    private final FilteredList<ModuleCode> filteredModuleCodes;
+    private final FilteredList<Module> filteredModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,7 +37,7 @@ public class ModelManager extends AddressBookModelManager implements Model {
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMeetingEntries = new FilteredList<>(this.linkyTime.getMeetingEntryList());
-        filteredModuleCodes = new FilteredList<>(this.linkyTime.getModuleCodeList());
+        filteredModules = new FilteredList<>(this.linkyTime.getModuleList());
     }
 
     public ModelManager() {
@@ -130,25 +130,25 @@ public class ModelManager extends AddressBookModelManager implements Model {
         filteredMeetingEntries.setPredicate(predicate);
     }
 
-    // =========== ModuleCode ==============================================================================
+    // =========== Module ==================================================================================
 
     @Override
-    public boolean hasModuleCode(ModuleCode moduleCode) {
-        requireNonNull(moduleCode);
-        return linkyTime.hasModuleCode(moduleCode);
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return linkyTime.hasModule(module);
     }
 
-    // =========== Filtered ModuleCode List Accessors ======================================================
+    // =========== Filtered Module List Accessors ==========================================================
 
     @Override
-    public ObservableList<ModuleCode> getFilteredModuleCodeList() {
-        return filteredModuleCodes;
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
     }
 
     @Override
-    public void updateFilteredModuleCodeList(Predicate<ModuleCode> predicate) {
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        filteredModuleCodes.setPredicate(predicate);
+        filteredModules.setPredicate(predicate);
     }
 
     @Override
@@ -168,7 +168,7 @@ public class ModelManager extends AddressBookModelManager implements Model {
         return super.equals(other)
                 && userPrefs.equals(other.userPrefs)
                 && filteredMeetingEntries.equals(other.filteredMeetingEntries)
-                && filteredModuleCodes.equals(other.filteredModuleCodes);
+                && filteredModules.equals(other.filteredModules);
     }
 
 }

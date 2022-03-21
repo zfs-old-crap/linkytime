@@ -2,7 +2,7 @@ package seedu.address.logic.parser.meetingentry;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,7 +23,7 @@ import seedu.address.model.meetingentry.MeetingDateTime;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.meetingentry.MeetingName;
 import seedu.address.model.meetingentry.MeetingUrl;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,10 +39,10 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         final ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_URL, PREFIX_DATETIME,
-                        PREFIX_MODULE_CODE, PREFIX_RECURRING, PREFIX_TAG);
+                        PREFIX_MODULE, PREFIX_RECURRING, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_URL, PREFIX_DATETIME,
-                PREFIX_MODULE_CODE, PREFIX_RECURRING)
+                PREFIX_MODULE, PREFIX_RECURRING)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -50,12 +50,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         final MeetingName name = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NAME).get());
         final MeetingUrl url = ParserUtil.parseMeetingUrl(argMultimap.getValue(PREFIX_URL).get());
         final MeetingDateTime dateTime = ParserUtil.parseMeetingDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
-        final ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
+        final Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
         final IsRecurring recurringStatus = ParserUtil.parseRecurringStatus(argMultimap
                 .getValue(PREFIX_RECURRING).get());
         final Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        final MeetingEntry meetingEntry = new MeetingEntry(name, url, dateTime, moduleCode, recurringStatus, tagList);
+        final MeetingEntry meetingEntry = new MeetingEntry(name, url, dateTime, module, recurringStatus, tagList);
 
         return new AddCommand(meetingEntry);
     }

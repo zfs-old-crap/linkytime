@@ -11,7 +11,7 @@ import seedu.address.model.meetingentry.MeetingDateTime;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.meetingentry.MeetingName;
 import seedu.address.model.meetingentry.MeetingUrl;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,7 +24,7 @@ public class SampleDataUtil {
                 new MeetingName("CS2103T Lecture"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/344299221?pwd=F3a99221"),
                 new MeetingDateTime("18mar20223pm"),
-                new ModuleCode("CS2103T"),
+                new Module("CS2103T"),
                 new IsRecurring("Y"),
                 getTagSet()
             ),
@@ -32,7 +32,7 @@ public class SampleDataUtil {
                 new MeetingName("CS2101 Tutorial"),
                 new MeetingUrl("https://meet.google.com/omg-look-ma"),
                 new MeetingDateTime("19mar20222pm"),
-                new ModuleCode("CS2101"),
+                new Module("CS2101"),
                 new IsRecurring("Y"),
                 getTagSet("memes")
             ),
@@ -40,15 +40,15 @@ public class SampleDataUtil {
                 new MeetingName("TokTik Rejection Interview"),
                 new MeetingUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
                 new MeetingDateTime("20mar20221am"),
-                new ModuleCode("Intern"),
+                new Module("Intern"),
                 new IsRecurring("N"),
                 getTagSet("internship", "interview")
             )
         };
     }
 
-    public static ModuleCode[] getSampleModuleCodes() {
-        return new ModuleCode[] { new ModuleCode("CS2103T"), new ModuleCode("CS2101"), new ModuleCode("Intern") };
+    public static Module[] getSampleModules() {
+        return new Module[] { new Module("CS2103T"), new Module("CS2101"), new Module("Intern") };
     }
 
     public static ReadOnlyLinkyTime getSampleLinkyTime() {
@@ -56,8 +56,8 @@ public class SampleDataUtil {
         for (final MeetingEntry sampleMeetingEntry : getSampleMeetingEntries()) {
             sampleLinkyTime.addMeetingEntry(sampleMeetingEntry);
         }
-        for (final ModuleCode sampleModuleCode : getSampleModuleCodes()) {
-            sampleLinkyTime.addModuleCode(sampleModuleCode);
+        for (final Module sampleModule : getSampleModules()) {
+            sampleLinkyTime.addModule(sampleModule);
         }
         return sampleLinkyTime;
     }

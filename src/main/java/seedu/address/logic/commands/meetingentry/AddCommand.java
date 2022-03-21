@@ -2,7 +2,7 @@ package seedu.address.logic.commands.meetingentry;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,14 +24,14 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "MEETING_NAME "
             + PREFIX_URL + "URL "
             + PREFIX_DATETIME + "DATETIME "
-            + PREFIX_MODULE_CODE + "MODULE_CODE "
+            + PREFIX_MODULE + "MODULE "
             + PREFIX_RECURRING + "IS_RECURRING "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tutorial "
             + PREFIX_URL + "https://www.zoom.com "
             + PREFIX_DATETIME + "13mar2022 "
-            + PREFIX_MODULE_CODE + "CS2103 "
+            + PREFIX_MODULE + "CS2103 "
             + PREFIX_RECURRING + "Y "
             + PREFIX_TAG + "Boring";
 

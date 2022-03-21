@@ -15,6 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_URL = new Prefix("u/");
     public static final Prefix PREFIX_DATETIME = new Prefix("d/");
     public static final Prefix PREFIX_RECURRING = new Prefix("r/");
-    public static final Prefix PREFIX_MODULE_CODE = new Prefix("m/");
+    public static final Prefix PREFIX_MODULE = new Prefix("m/");
 
 }

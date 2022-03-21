@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code MeetingEntry}'s {@code MeetingName}, {@code ModuleCode} or {@code Tags} matches any
+ * Tests that a {@code MeetingEntry}'s {@code MeetingName}, {@code Module} or {@code Tags} matches any
  * of the keywords given.
  */
 public class MeetingEntryContainsKeywordsPredicate implements Predicate<MeetingEntry> {
@@ -25,7 +25,7 @@ public class MeetingEntryContainsKeywordsPredicate implements Predicate<MeetingE
     public boolean test(MeetingEntry meetingEntry) {
         return keywords.stream()
                 .anyMatch(keyword -> meetingEntry.getName().name.toLowerCase().contains(keyword.toLowerCase())
-                        || meetingEntry.getModuleCode().code.toLowerCase().contains(keyword.toLowerCase())
+                        || meetingEntry.getModule().code.toLowerCase().contains(keyword.toLowerCase())
                         || meetingEntry.getTags().stream()
                         .anyMatch(tag -> tag.tagName.toLowerCase().contains(keyword.toLowerCase())));
     }

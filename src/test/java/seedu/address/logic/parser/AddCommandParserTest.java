@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_TUTORIAL;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_LECTURE;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
@@ -15,7 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
@@ -42,39 +42,39 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_LECTURE + URL_DESC_LECTURE
-                + DATETIME_DESC_LECTURE + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + DATETIME_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE
                 + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_TUTORIAL + NAME_DESC_LECTURE + URL_DESC_LECTURE
-                + DATETIME_DESC_LECTURE + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + DATETIME_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE
                 + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
         // multiple urls - last url accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_TUTORIAL + URL_DESC_LECTURE
-                + DATETIME_DESC_LECTURE + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + DATETIME_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE
                 + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
         // multiple datetime - last datetime accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_TUTORIAL
-                + DATETIME_DESC_LECTURE + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + DATETIME_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE
                 + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
-        // multiple module code - last module code accepted
+        // multiple modules - last module accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
-                + MODULE_CODE_DESC_TUTORIAL + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + MODULE_DESC_TUTORIAL + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE
                 + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
         // multiple recurrence - last recurrence accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
-                + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_TUTORIAL + RECURRING_DESC_LECTURE
+                + MODULE_DESC_LECTURE + RECURRING_DESC_TUTORIAL + RECURRING_DESC_LECTURE
                 + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntry));
 
         // multiple tags - all accepted
         final MeetingEntry expectedMeetingEntryMultipleTags = new MeetingEntryBuilder(CS2103)
                 .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL).build();
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
-                + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE + TAG_DESC_TUTORIAL
+                + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE + TAG_DESC_TUTORIAL
                 + TAG_DESC_LECTURE, new AddCommand(expectedMeetingEntryMultipleTags));
     }
 
@@ -83,7 +83,7 @@ public class AddCommandParserTest {
         // zero tags
         final MeetingEntry expectedMeetingEntry = new MeetingEntryBuilder(CS2101).withTags().build();
         assertParseSuccess(parser, NAME_DESC_TUTORIAL + URL_DESC_TUTORIAL + DATETIME_DESC_TUTORIAL
-                        + MODULE_CODE_DESC_TUTORIAL + RECURRING_DESC_TUTORIAL,
+                        + MODULE_DESC_TUTORIAL + RECURRING_DESC_TUTORIAL,
                 new AddCommand(expectedMeetingEntry));
     }
 
@@ -93,32 +93,32 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
-                        + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE,
+                        + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE,
                 expectedMessage);
 
         // missing url prefix
         assertParseFailure(parser, NAME_DESC_LECTURE + VALID_URL_LECTURE + DATETIME_DESC_LECTURE
-                        + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE,
+                        + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE,
                 expectedMessage);
 
         // missing datetime prefix
         assertParseFailure(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + VALID_DATETIME_LECTURE
-                        + MODULE_CODE_DESC_LECTURE + RECURRING_DESC_LECTURE,
+                        + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE,
                 expectedMessage);
 
-        // missing module code prefix
+        // missing module prefix
         assertParseFailure(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
-                        + VALID_MODULE_CODE_LECTURE + RECURRING_DESC_LECTURE,
+                        + VALID_MODULE_LECTURE + RECURRING_DESC_LECTURE,
                 expectedMessage);
 
         //missing recurrence prefix
         assertParseFailure(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
-                        + MODULE_CODE_DESC_LECTURE + VALID_RECURRING_LECTURE,
+                        + MODULE_DESC_LECTURE + VALID_RECURRING_LECTURE,
                 expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_LECTURE + VALID_URL_LECTURE + VALID_DATETIME_LECTURE
-                        + VALID_MODULE_CODE_LECTURE + VALID_RECURRING_LECTURE,
+                        + VALID_MODULE_LECTURE + VALID_RECURRING_LECTURE,
                 expectedMessage);
     }
 

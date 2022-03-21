@@ -1,19 +1,19 @@
-package seedu.address.model.modulecode;
+package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Module Code in the Module list.
- * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
+ * Represents a Module in the Module list.
+ * Guarantees: immutable; is valid as declared in {@link #isValidModule(String)}
  */
-public class ModuleCode {
+public class Module {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Module codes should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Modules should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the module code must not be a whitespace,
+     * The first character of the module must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -21,13 +21,13 @@ public class ModuleCode {
     public final String code;
 
     /**
-     * Constructs a {@code ModuleCode}.
+     * Constructs a {@code Module}.
      *
-     * @param code A valid module code.
+     * @param code A valid module.
      */
-    public ModuleCode(String code) {
+    public Module(String code) {
         requireNonNull(code);
-        checkArgument(isValidModuleCode(code), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidModule(code), MESSAGE_CONSTRAINTS);
         this.code = code;
     }
 
@@ -36,12 +36,12 @@ public class ModuleCode {
     }
 
     /**
-     * Returns true if a given string is a valid module code.
+     * Returns true if a given string is a valid module.
      *
      * @param test The {@code String} to test.
-     * @return True, if the {@code String} is a valid module code.
+     * @return True, if the {@code String} is a valid module.
      */
-    public static boolean isValidModuleCode(String test) {
+    public static boolean isValidModule(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -54,8 +54,8 @@ public class ModuleCode {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModuleCode // instanceof handles nulls
-                && code.equals(((ModuleCode) other).code)); // state check
+                || (other instanceof Module // instanceof handles nulls
+                && code.equals(((Module) other).code)); // state check
     }
 
     @Override
