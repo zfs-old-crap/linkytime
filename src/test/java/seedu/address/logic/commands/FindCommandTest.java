@@ -16,18 +16,14 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.meetingentry.FindCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meetingentry.MeetingEntryContainsKeywordsPredicate;
 
-/**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
- */
 public class FindCommandTest {
-    private Model model = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalLinkyTime());
-    private Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalLinkyTime());
+    private Model model = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
 
     @Test
     public void equals() {

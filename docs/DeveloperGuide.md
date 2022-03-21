@@ -317,14 +317,14 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 **Extensions**
 
-* 1a. The user does not include the required parameters with the command.  
+* 1a. The user does not include the required parameters with the command.
   * 1a1. LinkyTime shows an error message stating which parameters are required.
-   
+
     Use case ends.
 
 * 1b. The user does not follow the format of the command.
   * 1b1. LinkyTime shows an error message stating the correct format of the command.
-   
+
     Use case ends.
 
 ### UC-003: Edit an entry
@@ -343,7 +343,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 * 2a. The list is empty.
 
     Use case ends.
-   
+
 * 3a. The given index is invalid.
   * 3a1. LinkyTime shows an error message stating that the given index is invalid.
 
@@ -351,7 +351,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 * 3b. No arguments were given.
   * 3b1. LinkyTime shows an error message stating that at least one field must be edited.
-   
+
     Use case resumes at step 2.
 
 * 3c. The user does not follow the format of the command.
@@ -407,9 +407,9 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 **Extensions**
 
-* 2a. The application does not have permissions to open the browser. 
+* 2a. The application does not have permissions to open the browser.
   * 2a1. The application displays an error message.
-  
+
     Use case ends.
 
 ### UC-007: Find entries
@@ -442,7 +442,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 * 2a. The list is empty.
 
     Use case ends.
-   
+
 * 2b. The entries are already sorted from A-Z.
 
     Use case ends.

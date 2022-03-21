@@ -13,7 +13,6 @@ import seedu.address.logic.parser.meetingentry.FindCommandParser;
 import seedu.address.model.meetingentry.MeetingEntryContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
-
     private final FindCommandParser parser = new FindCommandParser();
 
     @Test
@@ -31,5 +30,4 @@ public class FindCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n CS2101 \n \t CS2030  \t", expectedFindCommand);
     }
-
 }
