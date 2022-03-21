@@ -177,7 +177,7 @@ Step 3:
 The `LinkyTimeParser` parses the user input into an `AddCommandParser` and thus creates an `AddCommandParser` object.
 
 Step 4:
-The `LinkyTimeParses` passes the arguments of the user input to the `AddCommandParser` for the `AddCommandParser` to parse the arguments.
+The `LinkyTimeParser` passes the arguments of the user input to the `AddCommandParser` for the `AddCommandParser` to parse the arguments.
 
 Step 5:
 The `AddCommandParser` parses the arguments and creates an `AddCommand` which contains the meeting to be added.
