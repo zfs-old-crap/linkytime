@@ -44,20 +44,20 @@ public class TypicalMeetingEntries {
             .withUrl("https://www.zoom.com").withDateTime("Tuesday")
             .withModule("CS2100")
             .withTags("aaron").build();
-    public static final MeetingEntry CS2107 = new MeetingEntryBuilder().withName("Lecture")
+    public static final MeetingEntry CS1101S = new MeetingEntryBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("Thursday")
-            .withModule("CS2107")
-            .withTags("sufatrio").build();
+            .withModule("CS1101S")
+            .withTags("hartinmenz").build();
 
     // Manually added
     public static final MeetingEntry PC1221 = new MeetingEntryBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("Friday")
             .withModule("PC1221")
             .withTags("proftay").build();
-    public static final MeetingEntry CS1101S = new MeetingEntryBuilder().withName("Lecture")
+    public static final MeetingEntry CS2107 = new MeetingEntryBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("Thursday")
-            .withModule("CS1101S")
-            .withTags("hartinmenz").build();
+            .withModule("CS2107")
+            .withTags("sufatrio").build();
 
     // Manually added - MeetingEntry's details found in {@code CommandTestUtil}
     public static final MeetingEntry CS2101 = new MeetingEntryBuilder().withName(VALID_NAME_TUTORIAL)

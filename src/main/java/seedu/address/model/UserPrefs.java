@@ -11,8 +11,7 @@ import seedu.address.commons.core.GuiSettings;
 /**
  * Represents User's preferences.
  */
-public class UserPrefs extends AddressBookUserPrefs implements ReadOnlyUserPrefs {
-
+public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path linkyTimeFilePath = Paths.get("data" , "app.json");
 
@@ -36,7 +35,6 @@ public class UserPrefs extends AddressBookUserPrefs implements ReadOnlyUserPrefs
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setLinkyTimeFilePath(newUserPrefs.getLinkyTimeFilePath());
-        super.resetData(newUserPrefs);
     }
 
     public GuiSettings getGuiSettings() {
@@ -67,10 +65,8 @@ public class UserPrefs extends AddressBookUserPrefs implements ReadOnlyUserPrefs
         }
 
         final UserPrefs o = (UserPrefs) other;
-
         return guiSettings.equals(o.guiSettings)
-                && linkyTimeFilePath.equals(o.linkyTimeFilePath)
-                && super.equals(o);
+                && linkyTimeFilePath.equals(o.linkyTimeFilePath);
     }
 
     @Override
@@ -82,7 +78,7 @@ public class UserPrefs extends AddressBookUserPrefs implements ReadOnlyUserPrefs
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append(super.toString());
+        sb.append("\nLocal data file location : " + linkyTimeFilePath);
         return sb.toString();
     }
 

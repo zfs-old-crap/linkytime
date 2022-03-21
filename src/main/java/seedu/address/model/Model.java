@@ -11,7 +11,7 @@ import seedu.address.model.module.Module;
 /**
  * The API of the Model component.
  */
-public interface Model extends AddressBookModel {
+public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<MeetingEntry> PREDICATE_SHOW_ALL_MEETING_ENTRIES = unused -> true;
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
