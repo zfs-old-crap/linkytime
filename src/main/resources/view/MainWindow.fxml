@@ -56,12 +56,12 @@
             <StackPane fx:id="meetingEntryListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="moduleCodeList" styleClass="pane-with-border" minWidth="160" prefWidth="160">
+          <VBox fx:id="moduleList" styleClass="pane-with-border" minWidth="160" prefWidth="160">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <Label styleClass="label-bright">Modules</Label>
-            <StackPane fx:id="moduleCodeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="moduleListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </SplitPane>
 

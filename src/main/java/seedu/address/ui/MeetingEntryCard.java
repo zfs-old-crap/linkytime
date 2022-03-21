@@ -31,7 +31,7 @@ public class MeetingEntryCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label moduleCode;
+    private Label module;
     @FXML
     private Label name;
     @FXML
@@ -50,7 +50,7 @@ public class MeetingEntryCard extends UiPart<Region> {
         super(FXML);
         this.meetingEntry = meetingEntry;
         id.setText(displayedIndex + ". ");
-        moduleCode.setText(meetingEntry.getModuleCode().code);
+        module.setText(meetingEntry.getModule().code);
         name.setText(meetingEntry.getName().name);
         dateTime.setText(meetingEntry.getDateTime().datetime);
         url.setText(meetingEntry.getUrl().meetingUrl.toString());
