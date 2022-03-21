@@ -2,11 +2,11 @@ package seedu.address.storage;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.regex.Matcher;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.regex.Matcher;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.UserPrefs;
