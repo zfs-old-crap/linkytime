@@ -19,7 +19,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class MeetingEntryBuilder {
     public static final String DEFAULT_NAME = "CS2103T Lecture";
     public static final String DEFAULT_URL = "https://legit-uni.zoom.us/j/344299221?pwd=F3a99221";
-    public static final String DEFAULT_DATETIME = "Tuesday";
+    public static final String DEFAULT_DATETIME = "1 Mar 2022 10:00am";
     public static final String DEFAULT_DURATION = "2";
     public static final String DEFAULT_MODULE_CODE = "CS2103";
     public static final String DEFAULT_RECURRENCE = "Y";

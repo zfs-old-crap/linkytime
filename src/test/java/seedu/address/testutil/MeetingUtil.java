@@ -23,7 +23,7 @@ public class MeetingUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + meetingEntry.getName().name + " ");
         sb.append(PREFIX_URL + meetingEntry.getUrl().toString() + " ");
-        sb.append(PREFIX_DATETIME + meetingEntry.getDateTime().datetime + " ");
+        sb.append(PREFIX_DATETIME + meetingEntry.getDateTime().toString() + " ");
         sb.append(PREFIX_DURATION + String.valueOf(meetingEntry.getDuration().duration) + " ");
         sb.append(PREFIX_MODULE_CODE + meetingEntry.getModuleCode().code + " ");
         sb.append(PREFIX_RECURRING + meetingEntry.getIsRecurring().toString() + " ");
