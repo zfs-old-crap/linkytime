@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.DURATION_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.RECURRING_DESC_LECTURE;
@@ -83,7 +84,7 @@ public class LogicManagerTest {
 
         // Execute add command
         final String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
-                + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE;
+                + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE;
         final MeetingEntry expectedMeeting = new MeetingEntryBuilder(CS2103).withTags().build();
         final ModelManager expectedModel = new ModelManager();
         expectedModel.addMeetingEntry(expectedMeeting);

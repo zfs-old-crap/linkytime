@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meetingentry.IsRecurring;
 import seedu.address.model.meetingentry.MeetingDateTime;
+import seedu.address.model.meetingentry.MeetingDuration;
 import seedu.address.model.meetingentry.MeetingName;
 import seedu.address.model.meetingentry.MeetingUrl;
 import seedu.address.model.module.Module;
@@ -106,6 +107,21 @@ public class ParserUtil {
             throw new ParseException(MeetingDateTime.MESSAGE_CONSTRAINTS);
         }
         return new MeetingDateTime(trimmedMeetingDateTime);
+    }
+
+    /**
+     * Parses a {@code String meetingDuration} into a {@code MeetingDuration}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meetingDuration} is invalid.
+     */
+    public static MeetingDuration parseMeetingDuration(String meetingDuration) throws ParseException {
+        requireNonNull(meetingDuration);
+        final String trimmedMeetingDuration = meetingDuration.trim();
+        if (!MeetingDuration.isValidDuration(trimmedMeetingDuration)) {
+            throw new ParseException(MeetingDuration.MESSAGE_CONSTRAINTS);
+        }
+        return new MeetingDuration(trimmedMeetingDuration);
     }
 
     /**

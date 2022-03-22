@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meetingentry.IsRecurring;
 import seedu.address.model.meetingentry.MeetingDateTime;
+import seedu.address.model.meetingentry.MeetingDuration;
 import seedu.address.model.meetingentry.MeetingEntry;
 import seedu.address.model.meetingentry.MeetingName;
 import seedu.address.model.meetingentry.MeetingUrl;
@@ -28,6 +29,7 @@ class JsonAdaptedMeetingEntry {
     private final String url;
     private final String dateTime;
     private final String module;
+    private final String duration;
     private final String isRecurring;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -38,12 +40,14 @@ class JsonAdaptedMeetingEntry {
     public JsonAdaptedMeetingEntry(@JsonProperty("name") String name,
                                    @JsonProperty("url") String url,
                                    @JsonProperty("dateTime") String dateTime,
+                                   @JsonProperty("duration") String duration,
                                    @JsonProperty("module") String module,
                                    @JsonProperty("isRecurring") String isRecurring,
                                    @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.url = url;
         this.dateTime = dateTime;
+        this.duration = duration;
         this.module = module;
         this.isRecurring = isRecurring;
         if (tagged != null) {
@@ -58,6 +62,7 @@ class JsonAdaptedMeetingEntry {
         name = source.getName().name;
         url = source.getUrl().meetingUrl.toExternalForm();
         dateTime = source.getDateTime().datetime;
+        duration = String.valueOf(source.getDuration().duration);
         module = source.getModule().code;
         isRecurring = source.getIsRecurring().toString();
         tagged.addAll(source.getTags().stream()
@@ -106,6 +111,16 @@ class JsonAdaptedMeetingEntry {
         }
         final MeetingDateTime modelDateTime = new MeetingDateTime(dateTime);
 
+        // Validate duration.
+        if (duration == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MeetingDuration.class.getSimpleName()));
+        }
+        if (!MeetingDuration.isValidDuration(duration)) {
+            throw new IllegalValueException(MeetingDuration.MESSAGE_CONSTRAINTS);
+        }
+        final MeetingDuration modelDuration = new MeetingDuration(duration);
+
         // Validate module.
         if (module == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -127,6 +142,7 @@ class JsonAdaptedMeetingEntry {
         final IsRecurring modelIsRecurring = new IsRecurring(isRecurring);
 
         final Set<Tag> modelTags = new HashSet<>(meetingEntryTags);
-        return new MeetingEntry(modelName, modelUrl, modelDateTime, modelModule, modelIsRecurring, modelTags);
+        return new MeetingEntry(modelName, modelUrl, modelDateTime, modelDuration,
+                modelModule, modelIsRecurring, modelTags);
     }
 }
