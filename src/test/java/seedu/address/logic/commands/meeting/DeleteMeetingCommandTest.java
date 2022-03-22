@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,13 +7,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showMeetingAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
-import static seedu.address.testutil.TypicalMeetings.getTypicalLinkyTime;
+import static seedu.address.testutil.meeting.TypicalMeetings.getTypicalLinkyTime;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.meeting.DeleteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -21,32 +20,32 @@ import seedu.address.model.meeting.Meeting;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteMeetingCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteMeetingCommandTest {
     private final Model model = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         final Meeting meetingToDelete = model.getFilteredMeetingList()
                 .get(INDEX_FIRST_MEETING.getZeroBased());
-        final DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_MEETING);
+        final DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(INDEX_FIRST_MEETING);
 
         final String expectedMessage =
-                String.format(DeleteCommand.MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete);
+                String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete);
 
         final ModelManager expectedModel = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
         expectedModel.deleteMeeting(meetingToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         final Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);
-        final DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        final DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        assertCommandFailure(deleteMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
     @Test
@@ -55,16 +54,16 @@ public class DeleteCommandTest {
 
         final Meeting meetingToDelete = model.getFilteredMeetingList()
                 .get(INDEX_FIRST_MEETING.getZeroBased());
-        final DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_MEETING);
+        final DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(INDEX_FIRST_MEETING);
 
         final String expectedMessage =
-                String.format(DeleteCommand.MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete);
+                String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete);
 
         final Model expectedModel = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
         expectedModel.deleteMeeting(meetingToDelete);
         showNoMeeting(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -75,21 +74,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of LinkyTime list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getLinkyTime().getMeetingList().size());
 
-        final DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        final DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        assertCommandFailure(deleteMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_MEETING);
-        final DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_MEETING);
+        final DeleteMeetingCommand deleteFirstCommand = new DeleteMeetingCommand(INDEX_FIRST_MEETING);
+        final DeleteMeetingCommand deleteSecondCommand = new DeleteMeetingCommand(INDEX_SECOND_MEETING);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        final DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_MEETING);
+        final DeleteMeetingCommand deleteFirstCommandCopy = new DeleteMeetingCommand(INDEX_FIRST_MEETING);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

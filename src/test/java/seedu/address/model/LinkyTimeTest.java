@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalMeetings.CS2103;
-import static seedu.address.testutil.TypicalMeetings.getTypicalLinkyTime;
+import static seedu.address.testutil.meeting.TypicalMeetings.CS2103;
+import static seedu.address.testutil.meeting.TypicalMeetings.getTypicalLinkyTime;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.meeting;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,21 +15,21 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.meeting.AddCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
-import seedu.address.testutil.MeetingBuilder;
+import seedu.address.testutil.meeting.MeetingBuilder;
 
 
-public class AddCommandTest {
+public class AddMeetingCommandTest {
 
     @Test
     public void constructor_nullMeeting_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddMeetingCommand(null));
     }
 
     @Test
@@ -37,34 +37,34 @@ public class AddCommandTest {
         final ModelStubAcceptingMeetingAdded modelStub = new ModelStubAcceptingMeetingAdded();
         final Meeting validMeeting = new MeetingBuilder().build();
 
-        final CommandResult commandResult = new AddCommand(validMeeting).execute(modelStub);
+        final CommandResult commandResult = new AddMeetingCommand(validMeeting).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validMeeting), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
     }
 
     @Test
     public void execute_duplicateMeeting_throwsCommandException() {
         final Meeting validMeeting = new MeetingBuilder().build();
-        final AddCommand addCommand = new AddCommand(validMeeting);
+        final AddMeetingCommand addMeetingCommand = new AddMeetingCommand(validMeeting);
         final ModelStub modelStub = new ModelStubWithMeeting(validMeeting);
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_MEETING, () -> addCommand.execute(modelStub));
+                AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () -> addMeetingCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         final Meeting cs2103 = new MeetingBuilder().withName("CS2103").build();
         final Meeting cs2101 = new MeetingBuilder().withName("CS2101").build();
-        final AddCommand addCS2103Command = new AddCommand(cs2103);
-        final AddCommand addCS2101Command = new AddCommand(cs2101);
+        final AddMeetingCommand addCS2103Command = new AddMeetingCommand(cs2103);
+        final AddMeetingCommand addCS2101Command = new AddMeetingCommand(cs2101);
 
         // same object -> returns true
         assertTrue(addCS2103Command.equals(addCS2103Command));
 
         // same values -> returns true
-        final AddCommand addCS2103CommandCopy = new AddCommand(cs2103);
+        final AddMeetingCommand addCS2103CommandCopy = new AddMeetingCommand(cs2103);
         assertTrue(addCS2103Command.equals(addCS2103CommandCopy));
 
         // different types -> returns false

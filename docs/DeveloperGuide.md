@@ -281,7 +281,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user with outdated meetings | clear all meetings            | remove old meetings from the previous semester       |
 | `* *`    | user                        | open a meeting link           | open my meeting quickly                              |
 | `* *`    | user with multiple meetings | search for meetings           | find an meeting matching a specific criteria         |
-| `*`      | user with multiple meetings | sort meetings alphabetically  | easily sieve through my meetings in a familiar order |
 | `* *`    | user with multiple meetings | sort meetings chronologically | know what is my next upcoming meeting                |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -302,7 +301,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The meeting list is empty.
 
     Use case ends.
 
@@ -310,8 +309,8 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 **MSS**
 
-1. User requests to add a new meeting to the list.
-2. LinkyTime adds a new meeting with given parameters in the list.
+1. User requests to add a new meeting to the meeting list.
+2. LinkyTime adds a new meeting with given parameters in the meeting list.
 
     Use case ends.
 
@@ -333,14 +332,14 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 1. User requests to list meetings.
 2. LinkyTime shows the list of meetings.
-3. User requests to edit a specific meeting based on the index from the list displayed in step 2.
+3. User requests to edit a specific meeting based on the index from the meeting list displayed in step 2.
 4. LinkyTime edits the meeting and saves the changes.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The meeting list is empty.
 
     Use case ends.
 
@@ -365,14 +364,14 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 1. User requests to list meetings.
 2. LinkyTime shows a list of meetings.
-3. User requests to delete a specific meeting in the list based on the index from the list displayed in step 2.
+3. User requests to delete a specific meeting in the meeting list based on the index from the meeting list displayed in step 2.
 4. LinkyTime deletes the meeting and saves the changes.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The meeting list is empty.
 
     Use case ends.
 
@@ -392,7 +391,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The meeting list is empty.
 
     Use case ends.
 
@@ -424,30 +423,12 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 **Extensions**
 
 * 2a. There are no meetings matching the search term.
-  * 2a1. An empty list is displayed.
+  * 2a1. An empty meeting list is displayed.
 
     Use case ends.
+  
 
-### UC-008: Sort meetings alphabetically
-
-**MSS**
-
-1. User chooses to sort meetings by A-Z.
-2. LinkyTime shows a list of meetings that is sorted from A-Z.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-    Use case ends.
-
-* 2b. The meetings are already sorted from A-Z.
-
-    Use case ends.
-
-### UC-009: Sort meetings chronologically
+### UC-008: Sort meetings chronologically
 
 **MSS**
 
@@ -458,7 +439,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The meeting list is empty.
 
     Use case ends.
 
@@ -466,7 +447,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
-### UC-010: Access help
+### UC-09: Access help
 
 **MSS**
 
@@ -492,7 +473,6 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Meeting**: A meeting containing the details such as the meeting link, name, date, and other fields.
-* **List**: List of all meetings that are currently saved in the program. May also be referred to as a meeting list.
 * **NUS**: The National University of Singapore.
 * **Command**: A keyword that defines an action for the program to perform when entered into the CLI.
 * **Search Term**: A substring that is contained in the name/tags of a meeting.

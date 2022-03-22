@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.meeting;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_LECTURE;
@@ -26,18 +26,17 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_URL_LECTURE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalMeetings.CS2101;
-import static seedu.address.testutil.TypicalMeetings.CS2103;
+import static seedu.address.testutil.meeting.TypicalMeetings.CS2101;
+import static seedu.address.testutil.meeting.TypicalMeetings.CS2103;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.meeting.AddCommand;
-import seedu.address.logic.parser.meeting.AddCommandParser;
+import seedu.address.logic.commands.meeting.AddMeetingCommand;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.testutil.MeetingBuilder;
+import seedu.address.testutil.meeting.MeetingBuilder;
 
-public class AddCommandParserTest {
-    private final AddCommandParser parser = new AddCommandParser();
+public class AddMeetingCommandParserTest {
+    private final AddMeetingCommandParser parser = new AddMeetingCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -46,44 +45,44 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_LECTURE + URL_DESC_LECTURE
                 + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddMeetingCommand(expectedMeeting));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_TUTORIAL + NAME_DESC_LECTURE + URL_DESC_LECTURE
                 + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddMeetingCommand(expectedMeeting));
 
         // multiple urls - last url accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_TUTORIAL + URL_DESC_LECTURE
                 + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddMeetingCommand(expectedMeeting));
 
         // multiple datetime - last datetime accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_TUTORIAL
                 + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddMeetingCommand(expectedMeeting));
 
         // multiple duration - last duration accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + DURATION_DESC_TUTORIAL + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, new AddMeetingCommand(expectedMeeting));
 
         // multiple module - last module accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + DURATION_DESC_LECTURE + MODULE_DESC_TUTORIAL + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE
-                + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
+                + TAG_DESC_LECTURE, new AddMeetingCommand(expectedMeeting));
 
         // multiple recurrence - last recurrence accepted
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_TUTORIAL + RECURRING_DESC_LECTURE
-                + TAG_DESC_LECTURE, new AddCommand(expectedMeeting));
+                + TAG_DESC_LECTURE, new AddMeetingCommand(expectedMeeting));
 
         // multiple tags - all accepted
         final Meeting expectedMeetingMultipleTags = new MeetingBuilder(CS2103)
                 .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL).build();
         assertParseSuccess(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
                 + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE + TAG_DESC_TUTORIAL
-                + TAG_DESC_LECTURE, new AddCommand(expectedMeetingMultipleTags));
+                + TAG_DESC_LECTURE, new AddMeetingCommand(expectedMeetingMultipleTags));
     }
 
     @Test
@@ -92,12 +91,12 @@ public class AddCommandParserTest {
         final Meeting expectedMeeting = new MeetingBuilder(CS2101).withTags().build();
         assertParseSuccess(parser, NAME_DESC_TUTORIAL + URL_DESC_TUTORIAL + DATETIME_DESC_TUTORIAL
                         + DURATION_DESC_TUTORIAL + MODULE_DESC_TUTORIAL + RECURRING_DESC_TUTORIAL,
-                new AddCommand(expectedMeeting));
+                new AddMeetingCommand(expectedMeeting));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        final String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        final String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
@@ -139,8 +138,8 @@ public class AddCommandParserTest {
     //    @Test
     //    public void parse_invalidValue_failure() {
     //        // invalid name
-    //        seedu.address.logic.parser.person.AddCommandParser oldParser = new seedu.address.logic.parser
-    //        .person.AddCommandParser();
+    //        seedu.address.logic.parser.person.AddMeetingCommandParser oldParser = new seedu.address.logic.parser
+    //        .person.AddMeetingCommandParser();
     //        assertParseFailure(oldParser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
     //                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
     //
@@ -167,6 +166,6 @@ public class AddCommandParserTest {
     //        // non-empty preamble
     //        assertParseFailure(oldParser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
     //                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-    //                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    //                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
     //    }
 }

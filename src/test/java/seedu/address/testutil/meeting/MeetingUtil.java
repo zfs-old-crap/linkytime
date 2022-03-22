@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.meeting;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
@@ -8,15 +8,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_URL;
 
-import seedu.address.logic.commands.meeting.AddCommand;
+import seedu.address.logic.commands.meeting.AddMeetingCommand;
 import seedu.address.model.meeting.Meeting;
 
 /**
  * This class is a placeholder for MeetingUtil. For reference please refer to the obsolete package.
  */
 public class MeetingUtil {
-    public static String getAddCommand(Meeting meeting) {
-        return AddCommand.COMMAND_WORD + " " + getMeetingDetails(meeting);
+    public static String getAddMeetingCommand(Meeting meeting) {
+        return AddMeetingCommand.COMMAND_WORD + " " + getMeetingDetails(meeting);
     }
 
     public static String getMeetingDetails(Meeting meeting) {

@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Lists all meetings in the LinkyTime meeting list to the user.
  */
-public class ListCommand extends Command {
+public class ListMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 

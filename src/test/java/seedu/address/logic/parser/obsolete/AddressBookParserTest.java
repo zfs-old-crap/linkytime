@@ -16,12 +16,12 @@
 //import seedu.address.logic.commands.ClearCommand;
 //import seedu.address.logic.commands.ExitCommand;
 //import seedu.address.logic.commands.HelpCommand;
-//import seedu.address.logic.commands.person.AddCommand;
-//import seedu.address.logic.commands.person.DeleteCommand;
+//import seedu.address.logic.commands.person.AddMeetingCommand;
+//import seedu.address.logic.commands.person.DeleteMeetingCommand;
 //import seedu.address.logic.commands.person.EditCommand;
 //import seedu.address.logic.commands.person.EditCommand.EditPersonDescriptor;
 //import seedu.address.logic.commands.person.FindCommand;
-//import seedu.address.logic.commands.person.ListCommand;
+//import seedu.address.logic.commands.person.ListMeetingCommand;
 //import seedu.address.logic.parser.exceptions.ParseException;
 //import seedu.address.model.person.NameContainsKeywordsPredicate;
 //import seedu.address.model.person.Person;
@@ -36,8 +36,8 @@
 //    @Test
 //    public void parseCommand_add() throws Exception {
 //        Person person = new PersonBuilder().build();
-//        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-//        assertEquals(new AddCommand(person), command);
+//        AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+//        assertEquals(new AddMeetingCommand(person), command);
 //    }
 //
 //    @Test
@@ -48,9 +48,9 @@
 //
 //    @Test
 //    public void parseCommand_delete() throws Exception {
-//        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-//                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-//        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+//        DeleteMeetingCommand command = (DeleteMeetingCommand) parser.parseCommand(
+//                DeleteMeetingCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+//        assertEquals(new DeleteMeetingCommand(INDEX_FIRST_PERSON), command);
 //    }
 //
 //    @Test
@@ -84,8 +84,8 @@
 //
 //    @Test
 //    public void parseCommand_list() throws Exception {
-//        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-//        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+//        assertTrue(parser.parseCommand(ListMeetingCommand.COMMAND_WORD) instanceof ListMeetingCommand);
+//        assertTrue(parser.parseCommand(ListMeetingCommand.COMMAND_WORD + " 3") instanceof ListMeetingCommand);
 //    }
 //
 //    @Test

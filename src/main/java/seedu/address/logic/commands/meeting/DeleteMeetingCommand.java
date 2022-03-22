@@ -15,7 +15,7 @@ import seedu.address.model.meeting.Meeting;
 /**
  * Deletes a meeting identified using its displayed index from LinkyTime.
  */
-public class DeleteCommand extends Command {
+public class DeleteMeetingCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -27,7 +27,7 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteMeetingCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -48,7 +48,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteMeetingCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteMeetingCommand) other).targetIndex)); // state check
     }
 }

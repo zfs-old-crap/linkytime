@@ -31,7 +31,7 @@
 ///**
 // * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
 // */
-//public class EditCommandTest {
+//public class EditMeetingCommandTest {
 //
 //    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new LinkyTime());
 //

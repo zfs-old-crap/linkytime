@@ -18,7 +18,7 @@ import seedu.address.model.meeting.Meeting;
 /**
  * Adds a meeting to LinkyTime.
  */
-public class AddCommand extends Command {
+public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to LinkyTime. "
             + "Parameters: "
@@ -44,9 +44,9 @@ public class AddCommand extends Command {
     private final Meeting toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Meeting}
+     * Creates an AddMeetingCommand to add the specified {@code Meeting}
      */
-    public AddCommand(Meeting meeting) {
+    public AddMeetingCommand(Meeting meeting) {
         requireNonNull(meeting);
         toAdd = meeting;
     }
@@ -66,7 +66,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddMeetingCommand // instanceof handles nulls
+                && toAdd.equals(((AddMeetingCommand) other).toAdd));
     }
 }

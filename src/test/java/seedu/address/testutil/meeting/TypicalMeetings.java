@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.meeting;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TUTORIAL;

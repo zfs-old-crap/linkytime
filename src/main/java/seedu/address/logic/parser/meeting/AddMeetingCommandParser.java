@@ -12,7 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_URL;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.meeting.AddCommand;
+import seedu.address.logic.commands.meeting.AddMeetingCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -29,16 +29,16 @@ import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddMeetingCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
+     * and returns an AddMeetingCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddMeetingCommand parse(String args) throws ParseException {
         final ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_URL, PREFIX_DATETIME,
                         PREFIX_DURATION, PREFIX_MODULE, PREFIX_RECURRING, PREFIX_TAG);
@@ -46,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_URL, PREFIX_DATETIME,
                 PREFIX_DURATION, PREFIX_MODULE, PREFIX_RECURRING)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
         final MeetingName name = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NAME).get());
@@ -61,7 +61,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         final Meeting meeting = new Meeting(name, url, dateTime, duration,
                 module, recurringStatus, tagList);
 
-        return new AddCommand(meeting);
+        return new AddMeetingCommand(meeting);
     }
 
     /**

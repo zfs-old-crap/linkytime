@@ -10,13 +10,13 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.meeting.AddCommand;
-import seedu.address.logic.commands.meeting.DeleteCommand;
-import seedu.address.logic.commands.meeting.ListCommand;
+import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
+import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.commands.module.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.meeting.AddCommandParser;
-import seedu.address.logic.parser.meeting.DeleteCommandParser;
+import seedu.address.logic.parser.meeting.AddMeetingCommandParser;
+import seedu.address.logic.parser.meeting.DeleteMeetingCommandParser;
 
 /**
  * Parses user input.
@@ -46,12 +46,12 @@ public class LinkyTimeParser {
 
         switch (commandWord) {
         // Meeting Commands
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommandParser().parse(arguments);
+        case DeleteMeetingCommand.COMMAND_WORD:
+            return new DeleteMeetingCommandParser().parse(arguments);
+        case ListMeetingCommand.COMMAND_WORD:
+            return new ListMeetingCommand();
 
         // Module Commands
         case ListModuleCommand.COMMAND_WORD:
