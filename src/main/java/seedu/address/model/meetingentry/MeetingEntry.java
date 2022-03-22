@@ -2,8 +2,8 @@ package seedu.address.model.meetingentry;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -58,14 +58,23 @@ public class MeetingEntry {
     }
 
     public MeetingDateTime getDateTime() {
-        if (!isRecurring.isRecurring || LocalDateTime.now().isBefore(getEndDateTime())) {
+        if (!isRecurring.isRecurring) {
             return dateTime;
         }
         return new MeetingDateTime(getNextRecurrence());
     }
 
     private LocalDateTime getNextRecurrence() {
-        return dateTime.datetime.plusWeeks(1);
+        final LocalDateTime today = LocalDateTime.now();
+        final long weeksElapsed = ChronoUnit.WEEKS.between(dateTime.datetime, today);
+        if (weeksElapsed < 0) {
+            return dateTime.datetime;
+        }
+        final LocalDateTime recurringThisWeek = dateTime.datetime.plusWeeks(weeksElapsed);
+        if (today.isBefore(recurringThisWeek) || today.isEqual(recurringThisWeek)) {
+            return recurringThisWeek;
+        }
+        return recurringThisWeek.plusWeeks(1);
     }
 
     private LocalDateTime getEndDateTime() {
