@@ -159,11 +159,11 @@ This section describes some noteworthy details on how certain features are imple
 
 #### List meetings feature
 This section explains the implementation of the List meetings feature.
-The `ListCommand` updates the UI to display the details of all `Meetings` in `LinkyTime`.
+The `ListMeetingCommand` updates the UI to display the details of all `Meetings` in `LinkyTime`.
 
-Below is the sequence diagram for the execution of `ListCommand` after user input is sent to `LogicManager`.
+Below is the sequence diagram for the execution of `ListMeetingCommand` after user input is sent to `LogicManager`.
 
-![`ListCommand` sequence diagram](images/ListSequenceDiagram.png)
+![`ListMeetingCommand` sequence diagram](images/ListMeetingSequenceDiagram.png)
 
 Step 1:
 The user inputs the proper syntax for listing all meetings which is then passed to the `LogicManager`. E.g. `list`
@@ -172,27 +172,27 @@ Step 2:
 The `LogicManager` then calls `LinkyTimeParser::parseCommand` for it to figure out what command this is.
 
 Step 3:
-The `LinkyTimeParser` parses the user input and creates a `ListCommand` object.
+The `LinkyTimeParser` parses the user input and creates a `ListMeetingCommand` object.
 
 Step 4:
-The `ListCommand` is then returned to the `LogicManager` which calls `ListCommand::execute` to execute the command.
+The `ListMeetingCommand` is then returned to the `LogicManager` which calls `ListMeetingCommand::execute` to execute the command.
 
 Step 5:
-The `ListCommand` then calls `Model::updateFileredMeetingEntryList` to update the model's filter to display all meetings.
+The `ListMeetingCommand` then calls `Model::updateFileredMeetingList` to update the model's filter to display all meetings.
 
 Step 6:
-The `ListCommand` then creates a successful `CommandResult`.
+The `ListMeetingCommand` then creates a successful `CommandResult`.
 
 #### Design considerations:
 **Aspect: How list executes:**
 
-**Alternative 1 (current choice):** `LinkyTimeParser` returns a `ListCommand` without having a parser.
+**Alternative 1 (current choice):** `LinkyTimeParser` returns a `ListMeetingCommand` without having a parser.
 * Pros: Easier to implement and allows for more flexible user input.
-* Cons: All user inputs that contains `list` as its first word will result in the execution of `ListCommand`, 
+* Cons: All user inputs that contains `list` as its first word will result in the execution of `ListMeetingCommand`, 
 including those that don't make sense. E.g. `list abc`
 
-**Alternative 2:** `LinkyTimeParser` uses a `ListCommandParser` to enforce that the user input cannot have additional params.
-* Pros: Provides clear definition of what the user input for a `ListCommand` should be.
+**Alternative 2:** `LinkyTimeParser` uses a `ListMeetingCommandParser` to enforce that the user input cannot have additional params.
+* Pros: Provides clear definition of what the user input for a `ListMeetingCommand` should be.
 * Cons: Harder to implement and more rigid in nature.
 
 --------------------------------------------------------------------------------------------------------------------

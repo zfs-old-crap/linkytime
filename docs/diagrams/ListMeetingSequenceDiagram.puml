@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":LinkyTimeParser" as LinkyTimeParser LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
-participant "l:ListCommand" as ListCommand LOGIC_COLOR
+participant "l:ListMeetingCommand" as ListMeetingCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -18,34 +18,34 @@ activate LogicManager
 LogicManager -> LinkyTimeParser : parseCommand("list")
 activate LinkyTimeParser
 
-create ListCommand
-LinkyTimeParser -> ListCommand
-activate ListCommand
+create ListMeetingCommand
+LinkyTimeParser -> ListMeetingCommand
+activate ListMeetingCommand
 
-ListCommand --> LinkyTimeParser : l
-deactivate ListCommand
+ListMeetingCommand --> LinkyTimeParser : l
+deactivate ListMeetingCommand
 
 LinkyTimeParser --> LogicManager : l
 deactivate LinkyTimeParser
 
-LogicManager -> ListCommand : execute()
-activate ListCommand
+LogicManager -> ListMeetingCommand : execute()
+activate ListMeetingCommand
 
-ListCommand -> Model : updateFilteredMeetingEntryList()
+ListMeetingCommand -> Model : updateFilteredMeetingList()
 activate Model
 
-Model --> ListCommand
+Model --> ListMeetingCommand
 deactivate Model
 
 create CommandResult
-ListCommand -> CommandResult
+ListMeetingCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ListCommand : result
+CommandResult --> ListMeetingCommand : result
 deactivate CommandResult
 
-ListCommand --> LogicManager : result
-deactivate ListCommand
+ListMeetingCommand --> LogicManager : result
+deactivate ListMeetingCommand
 
 [<--LogicManager
 deactivate LogicManager
