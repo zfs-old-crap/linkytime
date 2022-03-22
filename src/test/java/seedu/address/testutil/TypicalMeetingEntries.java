@@ -93,6 +93,6 @@ public class TypicalMeetingEntries {
     }
 
     public static List<MeetingEntry> getTypicalMeetingEntries() {
-        return new ArrayList<>(Arrays.asList(CS2105, CS2106, CS2030, CS2040, CS2100, CS1101S));
+        return new ArrayList<>(Arrays.asList(CS2101, CS2105, CS2106, CS2030, CS2040, CS2100, CS1101S));
     }
 }

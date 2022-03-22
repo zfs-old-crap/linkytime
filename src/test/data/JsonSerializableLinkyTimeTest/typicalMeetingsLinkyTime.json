@@ -1,5 +1,13 @@
 {
   "meetingEntries" : [ {
+    "name": "Tutorial",
+    "url": "https://www.zoom.com",
+    "dateTime": "Tuesday",
+    "duration": "1.5",
+    "module": "CS2101",
+    "isRecurring": "N",
+    "tagged": [ "amy" ]
+  }, {
     "name" : "Lecture",
     "url" : "https://www.zoom.com",
     "dateTime" : "Thursday",
@@ -49,6 +57,8 @@
     "tagged" : [ "hartinmenz" ]
   } ],
   "modules" : [ {
+    "code": "CS2101"
+  }, {
     "code": "CS2105"
   }, {
     "code": "CS2106"
