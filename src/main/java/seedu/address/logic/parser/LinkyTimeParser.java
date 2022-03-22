@@ -6,11 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.meeting.AddMeetingCommand;
-import seedu.address.logic.commands.meeting.ClearMeetingCommand;
 import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
 import seedu.address.logic.commands.meeting.FindMeetingCommand;
 import seedu.address.logic.commands.meeting.ListMeetingCommand;
@@ -62,8 +62,8 @@ public class LinkyTimeParser {
             return new ListModuleCommand();
 
         // System Commands
-        case ClearMeetingCommand.COMMAND_WORD:
-            return new ClearMeetingCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         case ExitCommand.COMMAND_WORD:

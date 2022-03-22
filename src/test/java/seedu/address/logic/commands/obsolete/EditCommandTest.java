@@ -166,7 +166,7 @@
 //        assertFalse(standardCommand.equals(null));
 //
 //        // different types -> returns false
-//        assertFalse(standardCommand.equals(new ClearMeetingCommand()));
+//        assertFalse(standardCommand.equals(new ClearCommand()));
 //
 //        // different index -> returns false
 //        assertFalse(standardCommand.equals(new EditMeetingCommand(INDEX_SECOND_PERSON, DESC_AMY)));

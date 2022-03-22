@@ -13,7 +13,7 @@
 //
 //import org.junit.jupiter.api.Test;
 //
-//import seedu.address.logic.commands.meeting.ClearMeetingCommand;
+//import seedu.address.logic.commands.ClearCommand;
 //import seedu.address.logic.commands.ExitCommand;
 //import seedu.address.logic.commands.HelpCommand;
 //import seedu.address.logic.commands.person.AddMeetingCommand;
@@ -42,8 +42,8 @@
 //
 //    @Test
 //    public void parseCommand_clear() throws Exception {
-//        assertTrue(parser.parseCommand(ClearMeetingCommand.COMMAND_WORD) instanceof ClearMeetingCommand);
-//        assertTrue(parser.parseCommand(ClearMeetingCommand.COMMAND_WORD + " 3") instanceof ClearMeetingCommand);
+//        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+//        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
 //    }
 //
 //    @Test
