@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.LinkyTime;
 import seedu.address.model.ReadOnlyLinkyTime;
-import seedu.address.model.meetingentry.IsRecurring;
-import seedu.address.model.meetingentry.MeetingDateTime;
-import seedu.address.model.meetingentry.MeetingDuration;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.meetingentry.MeetingName;
-import seedu.address.model.meetingentry.MeetingUrl;
+import seedu.address.model.meeting.IsRecurring;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDateTime;
+import seedu.address.model.meeting.MeetingDuration;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.MeetingUrl;
 import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
@@ -19,9 +19,9 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code LinkyTime} with sample data.
  */
 public class SampleDataUtil {
-    public static MeetingEntry[] getSampleMeetingEntries() {
-        return new MeetingEntry[] {
-            new MeetingEntry(
+    public static Meeting[] getSampleMeetings() {
+        return new Meeting[] {
+            new Meeting(
                 new MeetingName("CS2103T Lecture"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/344299221?pwd=F3a99221"),
                 new MeetingDateTime("18mar20223pm"),
@@ -30,7 +30,7 @@ public class SampleDataUtil {
                 new IsRecurring("Y"),
                 getTagSet()
             ),
-            new MeetingEntry(
+            new Meeting(
                 new MeetingName("CS2101 Tutorial"),
                 new MeetingUrl("https://meet.google.com/omg-look-ma"),
                 new MeetingDateTime("19mar20222pm"),
@@ -39,7 +39,7 @@ public class SampleDataUtil {
                 new IsRecurring("Y"),
                 getTagSet("memes")
             ),
-            new MeetingEntry(
+            new Meeting(
                 new MeetingName("TokTik Rejection Interview"),
                 new MeetingUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
                 new MeetingDateTime("20mar20221am"),
@@ -57,8 +57,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyLinkyTime getSampleLinkyTime() {
         final LinkyTime sampleLinkyTime = new LinkyTime();
-        for (final MeetingEntry sampleMeetingEntry : getSampleMeetingEntries()) {
-            sampleLinkyTime.addMeetingEntry(sampleMeetingEntry);
+        for (final Meeting sampleMeeting : getSampleMeetings()) {
+            sampleLinkyTime.addMeeting(sampleMeeting);
         }
         for (final Module sampleModule : getSampleModules()) {
             sampleLinkyTime.addModule(sampleModule);

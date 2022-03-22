@@ -10,15 +10,19 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.meetingentry.AddCommand;
-import seedu.address.logic.commands.meetingentry.DeleteCommand;
-import seedu.address.logic.commands.meetingentry.ListCommand;
-import seedu.address.logic.commands.meetingentry.OpenCommand;
+import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
+import seedu.address.logic.commands.meeting.FindMeetingCommand;
+import seedu.address.logic.commands.meeting.ListMeetingCommand;
+import seedu.address.logic.commands.meeting.OpenMeetingCommand;
+import seedu.address.logic.commands.module.AddModuleCommand;
 import seedu.address.logic.commands.module.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.meetingentry.AddCommandParser;
-import seedu.address.logic.parser.meetingentry.DeleteCommandParser;
-import seedu.address.logic.parser.meetingentry.OpenCommandParser;
+import seedu.address.logic.parser.meeting.AddMeetingCommandParser;
+import seedu.address.logic.parser.meeting.DeleteMeetingCommandParser;
+import seedu.address.logic.parser.meeting.FindMeetingCommandParser;
+import seedu.address.logic.parser.meeting.OpenMeetingCommandParser;
+import seedu.address.logic.parser.module.AddModuleCommandParser;
 
 /**
  * Parses user input.
@@ -47,17 +51,21 @@ public class LinkyTimeParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-        // MeetingEntry Commands
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-        case OpenCommand.COMMAND_WORD:
-            return new OpenCommandParser().parse(arguments);
+        // Meeting Commands
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommandParser().parse(arguments);
+        case DeleteMeetingCommand.COMMAND_WORD:
+            return new DeleteMeetingCommandParser().parse(arguments);
+        case ListMeetingCommand.COMMAND_WORD:
+            return new ListMeetingCommand();
+        case FindMeetingCommand.COMMAND_WORD:
+            return new FindMeetingCommandParser().parse(arguments);
+        case OpenMeetingCommand.COMMAND_WORD:
+            return new OpenMeetingCommandParser().parse(arguments);
 
         // Module Commands
+        case AddModuleCommand.COMMAND_WORD:
+            return new AddModuleCommandParser().parse(arguments);
         case ListModuleCommand.COMMAND_WORD:
             return new ListModuleCommand();
 
