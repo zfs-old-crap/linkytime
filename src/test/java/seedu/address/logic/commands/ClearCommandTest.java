@@ -22,9 +22,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyLinkyTime_success() {
-        final Model model = new ModelManager(new LinkyTime(), new UserPrefs());
-        final Model expectedModel = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
-        expectedModel.setLinkyTime(new LinkyTime());
+        final Model model = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
+        final Model expectedModel = new ModelManager(new LinkyTime(), model.getUserPrefs());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

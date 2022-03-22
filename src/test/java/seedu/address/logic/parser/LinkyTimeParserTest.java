@@ -30,9 +30,9 @@ public class LinkyTimeParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Meeting person = new MeetingBuilder().build();
-        AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(MeetingUtil.getAddMeetingCommand(person));
-        assertEquals(new AddMeetingCommand(person), command);
+        Meeting meeting = new MeetingBuilder().build();
+        AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(MeetingUtil.getAddMeetingCommand(meeting));
+        assertEquals(new AddMeetingCommand(meeting), command);
     }
 
     @Test
