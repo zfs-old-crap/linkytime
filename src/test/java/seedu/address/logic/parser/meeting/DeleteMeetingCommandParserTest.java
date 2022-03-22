@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
-import seedu.address.logic.parser.meeting.DeleteMeetingCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -28,6 +27,7 @@ public class DeleteMeetingCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteMeetingCommand.MESSAGE_USAGE));
     }
 }

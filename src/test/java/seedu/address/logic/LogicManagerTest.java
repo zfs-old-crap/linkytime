@@ -83,8 +83,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        final String addMeetingCommand = AddMeetingCommand.COMMAND_WORD + NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
-                + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE;
+        final String addMeetingCommand = AddMeetingCommand.COMMAND_WORD + NAME_DESC_LECTURE + URL_DESC_LECTURE
+                + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE;
         final Meeting expectedMeeting = new MeetingBuilder(CS2103).withTags().build();
         final ModelManager expectedModel = new ModelManager();
         expectedModel.addMeeting(expectedMeeting);
