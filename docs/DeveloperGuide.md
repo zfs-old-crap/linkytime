@@ -155,47 +155,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Meetings
+The Meetings component consists of the following set of features: List Meeting, Add Meeting, Edit Meeting, Delete Meeting, Find Meeting, and Opening Meeting URL.
 
 #### Add Meeting feature
 
-This section explains how the feature is implemented and why it was implemented that way.
-The `AddCommand` causes the specified meeting to be added to the application.
-This command requires several compulsory fields such as meeting name, url, date, duration, module code, whether it is recurring. 
+This section explains the implementation of the Add Meeting feature via the `add` command.
+The `AddMeetingCommand` causes the specified meeting to be added to the application.
+This command requires several compulsory fields such as the meeting name, URL, date time, duration, module, and whether it is recurring.
 There is only one optional field which is the tags of the meeting.
 
-Below is the sequence diagram for the execution of `AddCommand`
+Below is the sequence diagram for the execution of `AddMeetingCommand`
 
-![`AddCommand` sequence diagram](images/AddSequenceDiagram.png)
+![`AddMeetingCommand` sequence diagram](images/AddSequenceDiagram.png)
 
 Step 1:
-The user inputs the proper syntax for adding a meeting. E.g. `add n/Lecture u/https://zoom.com d/today dur/1.75 m/CS2103 r/Y`
+The user enters the command for adding a meeting, e.g. `add n/Lecture ...`
 
 Step 2:
-The user input is passed to the `LinkyTimeParser` for it to figure out what command this is.
+The user input is parsed through the `LinkyTimeParser`, which will then pass the user input to `AddMeetingCommandParser` to check if the user input is valid.
 
 Step 3:
-The `LinkyTimeParser` parses the user input into an `AddCommandParser` and thus creates an `AddCommandParser` object.
+Once the user input is successfully parsed, the `AddMeetingCommandParser` creates a `AddMeetingCommand` containing the meeting to be added.
 
 Step 4:
-The `LinkyTimeParser` passes the arguments of the user input to the `AddCommandParser` for the `AddCommandParser` to parse the arguments.
+The `LogicManager` subsequently invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the new meeting into the list.
 
 Step 5:
-The `AddCommandParser` parses the arguments and creates an `AddCommand` which contains the meeting to be added.
-
-Step 6:
-The `AddCommand` will now be executed at the `LogicManager` level and since it has `Model` passed into `AddCommand::execute`, it will be able to call `Model::addMeeting` to add the meeting into the list.
-
+The `Model` will then call its own `updateFilteredMeetingEntryList` method in order to show all the meetings, which will cause the newly added meeting to show as well.
 
 ##### Design considerations:
 
-**Aspect: How add a meeting:**
+**Aspect: How AddMeetingCommand executes:**
 
 * **Alternative 1 (current choice):** Let the `LogicManager` pass the model to the command to execute.
-  * Pros: Will not need to expose the model to the individual `AddCommand`.
+  * Pros: Will not need to expose the model to the individual `AddMeetingCommand`.
 
-* **Alternative 2:** Pass the model to the commands itself.
+* **Alternative 2:** Store the model in the `AddMeetingCommand` itself.
   * Pros: Easier to implement and trace.
-  * Cons: The `AddCommand` might be able to abuse the model by calling the model's other methods.
+  * Cons: The `AddMeetingCommand` might be able to abuse the model by calling the model's other methods.
   
 
 ### \[Proposed\] Data archiving

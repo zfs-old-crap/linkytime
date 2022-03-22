@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":LinkyTimeParser" as LinkyTimeParser LOGIC_COLOR
-participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
-participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":AddMeetingCommandParser" as AddMeetingCommandParser LOGIC_COLOR
+participant "a:AddMeetingCommand" as AddMeetingCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -19,50 +19,52 @@ activate LogicManager
 LogicManager -> LinkyTimeParser : parseCommand("add n/Lecture...")
 activate LinkyTimeParser
 
-create AddCommandParser
-LinkyTimeParser -> AddCommandParser
-activate AddCommandParser
+create AddMeetingCommandParser
+LinkyTimeParser -> AddMeetingCommandParser
+activate AddMeetingCommandParser
 
-AddCommandParser --> LinkyTimeParser
-deactivate AddCommandParser
+AddMeetingCommandParser --> LinkyTimeParser
+deactivate AddMeetingCommandParser
 
-LinkyTimeParser -> AddCommandParser : parse("n/Lecture...")
-activate AddCommandParser
+LinkyTimeParser -> AddMeetingCommandParser : parse("n/Lecture...")
+activate AddMeetingCommandParser
 
-create AddCommand
-AddCommandParser -> AddCommand
-activate AddCommand
+create AddMeetingCommand
+AddMeetingCommandParser -> AddMeetingCommand
+activate AddMeetingCommand
 
-AddCommand --> AddCommandParser : a
-deactivate AddCommand
+AddMeetingCommand --> AddMeetingCommandParser : a
+deactivate AddMeetingCommand
 
-AddCommandParser --> LinkyTimeParser : a
-deactivate AddCommandParser
+AddMeetingCommandParser --> LinkyTimeParser : a
+deactivate AddMeetingCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddCommandParser -[hidden]-> LinkyTimeParser
-destroy AddCommandParser
+AddMeetingCommandParser -[hidden]-> LinkyTimeParser
+destroy AddMeetingCommandParser
 
 LinkyTimeParser --> LogicManager : a
 deactivate LinkyTimeParser
 
-LogicManager -> AddCommand : execute()
-activate AddCommand
+LogicManager -> AddMeetingCommand : execute()
+activate AddMeetingCommand
 
-AddCommand -> Model : addMeetingEntry(toAdd)
+AddMeetingCommand -> Model : addMeetingEntry(toAdd)
 activate Model
 
-Model --> AddCommand
+Model -> Model : updateFilteredMeetingEntryList(PRED...)
+
+Model --> AddMeetingCommand
 deactivate Model
 
 create CommandResult
-AddCommand -> CommandResult
+AddMeetingCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddCommand
+CommandResult --> AddMeetingCommand
 deactivate CommandResult
 
-AddCommand --> LogicManager : result
-deactivate AddCommand
+AddMeetingCommand --> LogicManager : result
+deactivate AddMeetingCommand
 
 [<--LogicManager
 deactivate LogicManager
