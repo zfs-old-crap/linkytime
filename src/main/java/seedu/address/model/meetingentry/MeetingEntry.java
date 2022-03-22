@@ -66,19 +66,20 @@ public class MeetingEntry {
 
     private LocalDateTime getNextRecurrence() {
         final LocalDateTime today = LocalDateTime.now();
-        final long weeksElapsed = ChronoUnit.WEEKS.between(dateTime.datetime, today);
+        final LocalDateTime endDateTime = duration.getEndDateTime(dateTime.datetime);
+
+        final long weeksElapsed = ChronoUnit.WEEKS.between(endDateTime, today);
         if (weeksElapsed < 0) {
             return dateTime.datetime;
         }
-        final LocalDateTime recurringThisWeek = dateTime.datetime.plusWeeks(weeksElapsed);
-        if (today.isBefore(recurringThisWeek) || today.isEqual(recurringThisWeek)) {
-            return recurringThisWeek;
-        }
-        return recurringThisWeek.plusWeeks(1);
-    }
 
-    private LocalDateTime getEndDateTime() {
-        return duration.getEndDateTime(dateTime.datetime);
+        final LocalDateTime nextRecurrentStartDateTime = dateTime.datetime.plusWeeks(weeksElapsed);
+        final LocalDateTime nextRecurrentEndDateTime = endDateTime.plusWeeks(weeksElapsed);
+        if (today.isBefore(nextRecurrentEndDateTime) || today.isEqual(nextRecurrentEndDateTime)) {
+            return nextRecurrentStartDateTime;
+        }
+
+        return nextRecurrentStartDateTime.plusWeeks(1);
     }
 
     public MeetingDuration getDuration() {
