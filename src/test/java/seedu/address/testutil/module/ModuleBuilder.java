@@ -8,27 +8,27 @@ import seedu.address.model.module.Module;
 public class ModuleBuilder {
     public static final String DEFAULT_MODULE = "CS2103T";
 
-    private Module module;
+    private String code;
 
     /**
      * Creates a {@code ModuleBuilder} with the default details.
      */
     public ModuleBuilder() {
-        module = new Module(DEFAULT_MODULE);
+        code = DEFAULT_MODULE;
     }
 
     /**
      * Initializes the ModuleBuilder with the data of {@code moduleToCopy}.
      */
     public ModuleBuilder(Module moduleToCopy) {
-        module = moduleToCopy;
+        code = moduleToCopy.getCode();
     }
 
     /**
-     * Sets the {@code Module} of the {@code Module} that we are building.
+     * Sets the {@code code} of the {@code Module} that we are building.
      */
-    public ModuleBuilder withModule(String module) {
-        this.module = new Module(module);
+    public ModuleBuilder withCode(String code) {
+        this.code = code;
         return this;
     }
 
@@ -36,6 +36,6 @@ public class ModuleBuilder {
      * Creates the {@code Module} represented by this {@code ModuleBuilder} instance.
      */
     public Module build() {
-        return module;
+        return new Module(code);
     }
 }

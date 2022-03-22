@@ -23,32 +23,32 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in LinkyTime";
 
-    private final Module toAdd;
+    private final Module moduleToAdd;
 
     /**
      * Creates an AddModuleCommand to add the specified {@code Module}
      */
     public AddModuleCommand(Module entry) {
         requireNonNull(entry);
-        toAdd = entry;
+        moduleToAdd = entry;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasModule(toAdd)) {
+        if (model.hasModule(moduleToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
-        model.addModule(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addModule(moduleToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddModuleCommand // instanceof handles nulls
-                && toAdd.equals(((AddModuleCommand) other).toAdd));
+                && moduleToAdd.equals(((AddModuleCommand) other).moduleToAdd));
     }
 }

@@ -47,8 +47,8 @@ public class AddModuleCommandTest {
 
     @Test
     public void equals() {
-        final Module cs2103 = new ModuleBuilder().withModule("CS2103").build();
-        final Module cs2101 = new ModuleBuilder().withModule("CS2101").build();
+        final Module cs2103 = new ModuleBuilder().withCode("CS2103").build();
+        final Module cs2101 = new ModuleBuilder().withCode("CS2101").build();
         final AddModuleCommand addCS2103Command = new AddModuleCommand(cs2103);
         final AddModuleCommand addCS2101Command = new AddModuleCommand(cs2101);
 
