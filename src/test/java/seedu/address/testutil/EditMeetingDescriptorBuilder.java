@@ -91,7 +91,7 @@ public class EditMeetingDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditMeetingDescriptor}
      * that we are building.
      */
     public EditMeetingDescriptorBuilder withTags(String... tags) {

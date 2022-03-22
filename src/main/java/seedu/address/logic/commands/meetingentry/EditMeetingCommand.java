@@ -60,7 +60,7 @@ public class EditMeetingCommand extends Command {
     private final EditMeetingDescriptor editMeetingDescriptor;
 
     /**
-     * @param index                 of the meeting in the filtered meeting list to edit
+     * @param index of the meeting in the filtered meeting list to edit
      * @param editMeetingDescriptor details to edit the meeting with
      */
     public EditMeetingCommand(Index index, EditMeetingDescriptor editMeetingDescriptor) {
@@ -132,8 +132,8 @@ public class EditMeetingCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the meeting with. Each non-empty field value will replace the
+     * corresponding field value of the meeting.
      */
     public static class EditMeetingDescriptor {
         private MeetingName name;

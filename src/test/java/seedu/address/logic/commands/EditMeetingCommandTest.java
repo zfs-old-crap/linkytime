@@ -39,14 +39,14 @@ public class EditMeetingCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         final MeetingEntry editedMeeting = new MeetingEntryBuilder().build();
         final EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
-        final EditMeetingCommand editCommand = new EditMeetingCommand(INDEX_FIRST_MEETING_ENTRY, descriptor);
+        final EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_MEETING_ENTRY, descriptor);
 
         final String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
         final Model expectedModel = new ModelManager(new LinkyTime(model.getLinkyTime()), new UserPrefs());
         expectedModel.setMeetingEntry(model.getFilteredMeetingEntryList().get(0), editedMeeting);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

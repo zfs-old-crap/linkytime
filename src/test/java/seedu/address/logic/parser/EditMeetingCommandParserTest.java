@@ -42,7 +42,7 @@ import seedu.address.logic.parser.meetingentry.EditMeetingCommandParser;
 import seedu.address.model.meetingentry.MeetingDuration;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class EditMeetingCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMeetingCommand.MESSAGE_USAGE);
@@ -77,11 +77,10 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // TODO: Add more tests once we have more constraints on what is valid.
-
         // invalid duration
         assertParseFailure(parser, "1" + INVALID_DURATION_DESC, MeetingDuration.MESSAGE_CONSTRAINTS);
 
+        // TODO: Add more tests once we have more constraints on what is valid.
     }
 
     @Test

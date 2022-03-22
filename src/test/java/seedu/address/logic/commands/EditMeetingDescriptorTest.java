@@ -13,12 +13,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_LECTU
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.meetingentry.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
 
-/**
- * This class is a placeholder for EditMeetingDescriptorTest. For reference please refer to the obsolete package.
- */
 public class EditMeetingDescriptorTest {
 
     @Test
