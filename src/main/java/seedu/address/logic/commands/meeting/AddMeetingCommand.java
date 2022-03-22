@@ -41,32 +41,32 @@ public class AddMeetingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in LinkyTime";
 
-    private final Meeting toAdd;
+    private final Meeting meetingToAdd;
 
     /**
      * Creates an AddMeetingCommand to add the specified {@code Meeting}
      */
     public AddMeetingCommand(Meeting meeting) {
         requireNonNull(meeting);
-        toAdd = meeting;
+        meetingToAdd = meeting;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasMeeting(toAdd)) {
+        if (model.hasMeeting(meetingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
-        model.addMeeting(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addMeeting(meetingToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddMeetingCommand // instanceof handles nulls
-                && toAdd.equals(((AddMeetingCommand) other).toAdd));
+                && meetingToAdd.equals(((AddMeetingCommand) other).meetingToAdd));
     }
 }

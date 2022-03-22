@@ -2,7 +2,7 @@ package seedu.address.logic.commands.meeting;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showMeetingAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
+import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.typical.TypicalLinkyTime.getTypicalLinkyTime;
 
 import org.junit.jupiter.api.BeforeEach;

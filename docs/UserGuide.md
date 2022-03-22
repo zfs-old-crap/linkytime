@@ -116,7 +116,7 @@ Format: `find KEYWORD MORE_KEYWORDS...`
 
 Examples:
 
-* `find CS2101 Aaron` displays all meetings with fields that matches `CS2101` or `Aaron`.
+* `find CS2101 Aaron` displays all meetings with fields that matches `CS2101` and `Aaron`.
 
 #### Delete a meeting : `delete`
 

@@ -447,7 +447,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
-### UC-09: Access help
+### UC-009: Access help
 
 **MSS**
 
@@ -472,7 +472,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Meeting**: A meeting containing the details such as the meeting link, name, date, and other fields.
+* **Meeting**: An online class containing the details such as the meeting link, name, date, and other fields.
 * **NUS**: The National University of Singapore.
 * **Command**: A keyword that defines an action for the program to perform when entered into the CLI.
 * **Search Term**: A substring that is contained in the name/tags of a meeting.

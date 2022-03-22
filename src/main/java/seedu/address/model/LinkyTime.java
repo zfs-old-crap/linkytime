@@ -128,7 +128,7 @@ public class LinkyTime implements ReadOnlyLinkyTime {
 
     @Override
     public String toString() {
-        return meetings.asUnmodifiableObservableList().size() + " meeting\n"
+        return meetings.asUnmodifiableObservableList().size() + " meetings\n"
                 + modules.asUnmodifiableObservableList().size() + " modules";
         // TODO: refine later
     }
