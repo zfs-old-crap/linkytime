@@ -123,7 +123,7 @@ public class MeetingEntry {
         final MeetingEntry otherMeetingEntry = (MeetingEntry) other;
         return otherMeetingEntry.name.equals(this.name)
                 && otherMeetingEntry.url.equals(this.url)
-                && otherMeetingEntry.dateTime.equals(this.dateTime)
+                && otherMeetingEntry.getDateTime().equals(this.getDateTime())
                 && otherMeetingEntry.duration.equals(this.duration)
                 && otherMeetingEntry.moduleCode.equals(this.moduleCode)
                 && otherMeetingEntry.isRecurring.equals(this.isRecurring)
@@ -145,7 +145,7 @@ public class MeetingEntry {
                 .append("; Meeting URL: ")
                 .append(url)
                 .append("; Date and time: ")
-                .append(dateTime)
+                .append(getDateTime())
                 .append("; Is recurring: ")
                 .append(isRecurring);
 

@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tutorial "
             + PREFIX_URL + "https://www.zoom.com "
-            + PREFIX_DATETIME + "1 Apr 2022 10:40am "
+            + PREFIX_DATETIME + "1-4-2022 10:40am "
             + PREFIX_DURATION + "2 "
             + PREFIX_MODULE_CODE + "CS2103 "
             + PREFIX_RECURRING + "Y "

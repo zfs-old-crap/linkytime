@@ -14,8 +14,10 @@ import java.time.format.ResolverStyle;
  */
 public class MeetingDateTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "DateTime should be formatted as d MMM uuuu h:mma; e.g. 21 Apr 2021 2:30pm";
-    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("d MMM uuuu h:mma")
+            "DateTime should be formatted as d-M-uuuu h:mma; e.g. 4-5-2021 2:30pm";
+    public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("d-M-uuuu h:mma")
+            .withResolverStyle(ResolverStyle.STRICT);
+    public static final DateTimeFormatter DISPLAY_FORMAT = DateTimeFormatter.ofPattern("E d MMM uuuu h:mma")
             .withResolverStyle(ResolverStyle.STRICT);
 
     public final LocalDateTime datetime;
@@ -24,7 +26,7 @@ public class MeetingDateTime {
      * Constructs a {@code MeetingDateTime}.
      *
      * @param datetime A {@code String} representing the meeting date and time, formatted according
-     * to {@link #DATETIME_FORMAT}.
+     * to {@link #INPUT_FORMAT}.
      */
     public MeetingDateTime(String datetime) {
         requireNonNull(datetime);
@@ -66,7 +68,7 @@ public class MeetingDateTime {
      */
     public static boolean isValidDateTime(LocalDateTime test) {
         try {
-            parseDateTime(test.format(DATETIME_FORMAT));
+            parseDateTime(test.format(INPUT_FORMAT));
             return true;
         } catch (Exception e) {
             return false;
@@ -76,13 +78,13 @@ public class MeetingDateTime {
     /**
      * Converts the given string to its date and time representation.
      *
-     * @param dateTime The string to convert, formatted according to {@link #DATETIME_FORMAT}.
+     * @param dateTime The string to convert, formatted according to {@link #INPUT_FORMAT}.
      * @return A datetime representation of {@code dateTime}.
-     * @throws DateTimeParseException If {@code dateTime} is not formatted according to {@link #DATETIME_FORMAT}.
+     * @throws DateTimeParseException If {@code dateTime} is not formatted according to {@link #INPUT_FORMAT}.
      */
     public static LocalDateTime parseDateTime(String dateTime) {
         try {
-            return LocalDateTime.parse(dateTime, DATETIME_FORMAT);
+            return LocalDateTime.parse(dateTime, INPUT_FORMAT);
         } catch (DateTimeParseException e) {
             // TODO: update this once we've figured out exception handling.
             e.printStackTrace();
@@ -90,9 +92,14 @@ public class MeetingDateTime {
         }
     }
 
+    /**
+     * Returns a string representation of the meeting date and time.
+     *
+     * @return A string representation of the meeting date and time, formatted according to {@link #DISPLAY_FORMAT}.
+     */
     @Override
     public String toString() {
-        return datetime.format(DATETIME_FORMAT);
+        return datetime.format(DISPLAY_FORMAT);
     }
 
     @Override
