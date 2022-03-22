@@ -125,6 +125,9 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
         requireNonNull(predicate);
+        // Forces the GUI to perform a complete re-render to reflect updated recurrent meeting date and times.
+        // This is a temporary workaround until a coherent solution comes about.
+        filteredMeetingEntries.setPredicate(m -> false);
         filteredMeetingEntries.setPredicate(predicate);
     }
 
