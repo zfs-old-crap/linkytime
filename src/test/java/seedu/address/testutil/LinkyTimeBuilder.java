@@ -1,12 +1,12 @@
 package seedu.address.testutil;
 
 import seedu.address.model.LinkyTime;
-import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * A utility class to help with building a LinkyTime objects.
  * Example usage: <br>
- * {@code LinkyTime lt = new LinkyTimeBuilder().withEntry(cs2103tTutorial).withEntry(cs2106Lab).build();}
+ * {@code LinkyTime lt = new LinkyTimeBuilder().withMeeting(cs2103tTutorial).withMeeting(cs2106Lab).build();}
  */
 public class LinkyTimeBuilder {
     private LinkyTime linkyTime;
@@ -20,10 +20,10 @@ public class LinkyTimeBuilder {
     }
 
     /**
-     * Adds a new {@code MeetingEntry} to the {@code LinkyTime} that we are building.
+     * Adds a new {@code Meeting} to the {@code LinkyTime} that we are building.
      */
-    public LinkyTimeBuilder withEntry(MeetingEntry meetingEntry) {
-        linkyTime.addMeetingEntry(meetingEntry);
+    public LinkyTimeBuilder withMeeting(Meeting meeting) {
+        linkyTime.addMeeting(meeting);
         return this;
     }
 

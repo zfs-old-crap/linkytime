@@ -5,20 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING_ENTRY;
+import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MEETING;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.meetingentry.AddCommand;
-import seedu.address.logic.commands.meetingentry.DeleteCommand;
-import seedu.address.logic.commands.meetingentry.ListCommand;
+import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
+import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.testutil.MeetingEntryBuilder;
-import seedu.address.testutil.MeetingUtil;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.testutil.meeting.MeetingBuilder;
+import seedu.address.testutil.meeting.MeetingUtil;
 
 /**
  * Contains unit test for LinkyTimeParser
@@ -30,9 +30,9 @@ public class LinkyTimeParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        MeetingEntry person = new MeetingEntryBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(MeetingUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Meeting person = new MeetingBuilder().build();
+        AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(MeetingUtil.getAddMeetingCommand(person));
+        assertEquals(new AddMeetingCommand(person), command);
     }
 
     @Test
@@ -43,9 +43,9 @@ public class LinkyTimeParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_MEETING_ENTRY.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_MEETING_ENTRY), command);
+        DeleteMeetingCommand command = (DeleteMeetingCommand) parser.parseCommand(
+                DeleteMeetingCommand.COMMAND_WORD + " " + INDEX_FIRST_MEETING.getOneBased());
+        assertEquals(new DeleteMeetingCommand(INDEX_FIRST_MEETING), command);
     }
 
     @Test
@@ -62,8 +62,8 @@ public class LinkyTimeParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListMeetingCommand.COMMAND_WORD) instanceof ListMeetingCommand);
+        assertTrue(parser.parseCommand(ListMeetingCommand.COMMAND_WORD + " 3") instanceof ListMeetingCommand);
     }
 
     @Test

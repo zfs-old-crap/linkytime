@@ -15,7 +15,7 @@
 //
 //import org.junit.jupiter.api.Test;
 //
-//import seedu.address.logic.commands.person.FindCommand;
+//import seedu.address.logic.commands.person.FindMeetingCommand;
 //import seedu.address.model.LinkyTime;
 //import seedu.address.model.Model;
 //import seedu.address.model.ModelManager;
@@ -23,9 +23,9 @@
 //import seedu.address.model.person.NameContainsKeywordsPredicate;
 //
 ///**
-// * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+// * Contains integration tests (interaction with the Model) for {@code FindMeetingCommand}.
 // */
-//public class FindCommandTest {
+//public class FindMeetingCommandTest {
 //    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new LinkyTime());
 //    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new LinkyTime());
 //
@@ -36,14 +36,14 @@
 //        NameContainsKeywordsPredicate secondPredicate =
 //                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 //
-//        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-//        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+//        FindMeetingCommand findFirstCommand = new FindMeetingCommand(firstPredicate);
+//        FindMeetingCommand findSecondCommand = new FindMeetingCommand(secondPredicate);
 //
 //        // same object -> returns true
 //        assertTrue(findFirstCommand.equals(findFirstCommand));
 //
 //        // same values -> returns true
-//        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+//        FindMeetingCommand findFirstCommandCopy = new FindMeetingCommand(firstPredicate);
 //        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 //
 //        // different types -> returns false
@@ -60,7 +60,7 @@
 //    public void execute_zeroKeywords_noPersonFound() {
 //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
 //        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-//        FindCommand command = new FindCommand(predicate);
+//        FindMeetingCommand command = new FindMeetingCommand(predicate);
 //        expectedModel.updateFilteredPersonList(predicate);
 //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
 //        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -70,7 +70,7 @@
 //    public void execute_multipleKeywords_multiplePersonsFound() {
 //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
 //        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-//        FindCommand command = new FindCommand(predicate);
+//        FindMeetingCommand command = new FindMeetingCommand(predicate);
 //        expectedModel.updateFilteredPersonList(predicate);
 //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
 //        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());

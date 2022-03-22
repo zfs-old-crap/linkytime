@@ -48,12 +48,12 @@
         </StackPane>
 
         <SplitPane orientation="HORIZONTAL" VBox.vgrow="ALWAYS" minHeight="200">
-          <VBox fx:id="meetingEntryList" styleClass="pane-with-border" minWidth="320" prefWidth="320">
+          <VBox fx:id="meetingList" styleClass="pane-with-border" minWidth="320" prefWidth="320">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <Label styleClass="label-bright">Meetings</Label>
-            <StackPane fx:id="meetingEntryListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
           <VBox fx:id="moduleList" styleClass="pane-with-border" minWidth="160" prefWidth="160">

@@ -36,7 +36,7 @@ public class AddModuleCommandTest {
     }
 
     @Test
-    public void execute_duplicateMeetingEntry_throwsCommandException() {
+    public void execute_duplicateModule_throwsCommandException() {
         final Module validModule = new ModuleBuilder().build();
         final AddModuleCommand addModuleCommand = new AddModuleCommand(validModule);
         final ModelStubWithModule modelStub = new ModelStubWithModule(validModule);
@@ -65,7 +65,7 @@ public class AddModuleCommandTest {
         // null -> returns false
         assertFalse(addCS2103CommandCopy.equals(null));
 
-        // different meeting entry -> returns false
+        // different meeting -> returns false
         assertFalse(addCS2103Command.equals(addCS2101Command));
     }
 

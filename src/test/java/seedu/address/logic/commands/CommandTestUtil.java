@@ -18,7 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
-import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Contains helper methods for testing commands.
@@ -98,31 +98,31 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the {@code LinkyTime}, filtered meeting entry list and selected meeting entry remained unchanged
+     * - the {@code LinkyTime}, filtered meeting list and selected meeting remained unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
 
         final LinkyTime expectedLinkyTime = new LinkyTime(actualModel.getLinkyTime());
-        final List<MeetingEntry> expectedFilteredMeetingEntryList =
-                new ArrayList<>(actualModel.getFilteredMeetingEntryList());
+        final List<Meeting> expectedFilteredMeetingList =
+                new ArrayList<>(actualModel.getFilteredMeetingList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedLinkyTime, actualModel.getLinkyTime());
-        assertEquals(expectedFilteredMeetingEntryList, actualModel.getFilteredMeetingEntryList());
+        assertEquals(expectedFilteredMeetingList, actualModel.getFilteredMeetingList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the MeetingEntry at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the Meeting at the given {@code targetIndex} in the
      * {@code model}'s LinkyTime.
      */
-    public static void showMeetingEntryAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingEntryList().size());
+    public static void showMeetingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
 
-        final MeetingEntry meetingEntry = model.getFilteredMeetingEntryList().get(targetIndex.getZeroBased());
-        model.updateFilteredMeetingEntryList(meetingEntry::equals);
+        final Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        model.updateFilteredMeetingList(meeting::equals);
 
-        assertEquals(1, model.getFilteredMeetingEntryList().size());
+        assertEquals(1, model.getFilteredMeetingList().size());
     }
 
 }
