@@ -6,22 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ModelStub;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyLinkyTime;
-import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.module.Module;
 import seedu.address.testutil.meeting.MeetingBuilder;
 
 
@@ -40,7 +33,7 @@ public class AddMeetingCommandTest {
         final CommandResult commandResult = new AddMeetingCommand(validMeeting).execute(modelStub);
 
         assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
+        assertEquals(Arrays.asList(validMeeting), modelStub.meetingEntriesAdded);
     }
 
     @Test
@@ -78,97 +71,6 @@ public class AddMeetingCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getLinkyTimeFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setLinkyTimeFilePath(Path linkyTimeFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setLinkyTime(ReadOnlyLinkyTime linkyTime) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyLinkyTime getLinkyTime() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasMeeting(Meeting meeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteMeeting(Meeting target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addMeeting(Meeting meeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setMeeting(Meeting target, Meeting editedMeeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Meeting> getFilteredMeetingList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasModule(Module module) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Module> getFilteredModuleList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredModuleList(Predicate<Module> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-    }
-
-
-    /**
      * A Model stub that contains a single meeting.
      */
     private class ModelStubWithMeeting extends ModelStub {
@@ -191,18 +93,18 @@ public class AddMeetingCommandTest {
      * A Model stub that always accept the Meeting being added.
      */
     private class ModelStubAcceptingMeetingAdded extends ModelStub {
-        final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
+        final ArrayList<Meeting> meetingEntriesAdded = new ArrayList<>();
 
         @Override
         public boolean hasMeeting(Meeting meeting) {
             requireNonNull(meeting);
-            return meetingsAdded.stream().anyMatch(meeting::equals);
+            return meetingEntriesAdded.stream().anyMatch(meeting::equals);
         }
 
         @Override
         public void addMeeting(Meeting meeting) {
             requireNonNull(meeting);
-            meetingsAdded.add(meeting);
+            meetingEntriesAdded.add(meeting);
         }
     }
 

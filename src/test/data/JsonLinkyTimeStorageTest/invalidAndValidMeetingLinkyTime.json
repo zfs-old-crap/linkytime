@@ -15,5 +15,7 @@
     "isRecurring" : "Y",
     "tagged" : [ ]
   } ],
-  "modules" : [ ]
+  "modules" : [ {
+    "code": "CS2103T"
+  } ]
 }

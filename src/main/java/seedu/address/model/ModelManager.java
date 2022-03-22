@@ -136,6 +136,12 @@ public class ModelManager implements Model {
         return linkyTime.hasModule(module);
     }
 
+    @Override
+    public void addModule(Module module) {
+        linkyTime.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
     // =========== Filtered Module List Accessors ==========================================================
 
     @Override

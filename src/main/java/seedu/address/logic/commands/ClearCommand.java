@@ -6,12 +6,12 @@ import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
 
 /**
- * Clears the meeting list.
+ * Clears all data from LinkyTime.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Meeting list has been cleared!";
+    public static final String MESSAGE_SUCCESS = "LinkyTime has been cleared!";
 
 
     @Override

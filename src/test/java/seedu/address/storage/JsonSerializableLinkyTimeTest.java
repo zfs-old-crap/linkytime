@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.typical.TypicalLinkyTime.getTypicalLinkyTime;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.LinkyTime;
-import seedu.address.testutil.meeting.TypicalMeetings;
 
 public class JsonSerializableLinkyTimeTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableLinkyTimeTest");
@@ -24,8 +24,8 @@ public class JsonSerializableLinkyTimeTest {
         JsonSerializableLinkyTime dataFromFile = JsonUtil.readJsonFile(TYPICAL_MEETINGS_FILE,
                 JsonSerializableLinkyTime.class).get();
         LinkyTime linkyTimeFromFile = dataFromFile.toModelType();
-        LinkyTime typicalMeetingslinkyTime = TypicalMeetings.getTypicalLinkyTime();
-        assertEquals(linkyTimeFromFile, typicalMeetingslinkyTime);
+        LinkyTime typicallinkyTime = getTypicalLinkyTime();
+        assertEquals(linkyTimeFromFile, typicallinkyTime);
     }
 
     @Test

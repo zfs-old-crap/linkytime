@@ -1,4 +1,4 @@
-package seedu.address.testutil.meeting;
+package seedu.address.testutil.typical;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TUTORIAL;
@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.LinkyTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.testutil.meeting.MeetingBuilder;
 
 /**
  * A utility class containing a list of {@code Meeting} objects to be used in tests.
@@ -77,17 +77,6 @@ public class TypicalMeetings {
 
     private TypicalMeetings() {
     } // prevents instantiation
-
-    /**
-     * Returns a {@code LinkyTime} with all the typical meetings.
-     */
-    public static LinkyTime getTypicalLinkyTime() {
-        final LinkyTime lt = new LinkyTime();
-        for (final Meeting meeting : getTypicalMeetings()) {
-            lt.addMeeting(meeting);
-        }
-        return lt;
-    }
 
     public static List<Meeting> getTypicalMeetings() {
         return new ArrayList<>(Arrays.asList(CS2101, CS2105, CS2106, CS2030, CS2040, CS2100, CS1101S));

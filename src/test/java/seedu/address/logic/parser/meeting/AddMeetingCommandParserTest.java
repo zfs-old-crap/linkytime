@@ -26,8 +26,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_URL_LECTURE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.meeting.TypicalMeetings.CS2101;
-import static seedu.address.testutil.meeting.TypicalMeetings.CS2103;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2101;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2103;
 
 import org.junit.jupiter.api.Test;
 

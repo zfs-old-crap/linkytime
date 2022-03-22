@@ -57,5 +57,19 @@
       "tagged": [ "hartinmenz" ]
     }
   ],
-  "modules": [ ]
+  "modules" : [ {
+    "code": "CS2101"
+  }, {
+    "code": "CS2105"
+  }, {
+    "code": "CS2106"
+  }, {
+    "code": "CS2030"
+  }, {
+    "code": "CS2040"
+  }, {
+    "code": "CS2100"
+  }, {
+    "code": "CS1101S"
+  } ]
 }

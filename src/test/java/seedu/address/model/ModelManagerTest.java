@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.meeting.TypicalMeetings.CS2105;
-import static seedu.address.testutil.meeting.TypicalMeetings.CS2106;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2105;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2106;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

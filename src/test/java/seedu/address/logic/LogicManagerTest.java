@@ -10,7 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.RECURRING_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_LECTURE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.meeting.TypicalMeetings.CS2103;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2103;
 
 import java.io.IOException;
 import java.nio.file.Path;
