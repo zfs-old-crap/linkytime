@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TUTORIAL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_URL_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_URL_LECTURE;
 
 import org.junit.jupiter.api.Test;
 
