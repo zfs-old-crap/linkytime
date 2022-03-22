@@ -15,9 +15,10 @@ public class MeetingEntryContainsKeywordsPredicate implements Predicate<MeetingE
     }
 
     /**
-     * Tests if a {@code MeetingEntry}'s {@code MeetingName} or {@code Tags} matches any of the keywords.
+     * Tests if a {@code MeetingEntry}'s {@code MeetingName},
+     * {@code Module} or {@code Tags} matches any of the keywords.
      *
-     * @param meetingEntry Meeting entry whose meeting name and tags need to be checked
+     * @param meetingEntry Meeting entry whose meeting name, module and tags need to be checked
      *                     to see if they contain any of the keywords given.
      * @return True, if meeting entry's name or tags contains any of the keywords.
      */
