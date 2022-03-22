@@ -1,16 +1,16 @@
 ---
-layout: page
-title: User Guide
+layout: page title: User Guide
 ---
 
-* Table of Contents
-{:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
 
-**LinkyTime** is a desktop app for NUS students to organize their online meeting links, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
+**LinkyTime** is a desktop app for NUS students to organize their online meeting links, optimized for use via a Command
+Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **
+LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -22,13 +22,14 @@ title: User Guide
 
 3. Copy the file to the folder you want to use as the _home folder_ for the app.
 
-4. Double-click the file to start the app. A GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. A GUI similar to the one shown below should appear in a few seconds. Note how
+   the app contains some sample data.<br>
 
-    ![Ui](images/Ui.png)
+   ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all the meetings.<br>
 
-    Some example commands you can try:
+   Some example commands you can try:
 
     * `list` : Lists all meetings.
     * `add n/Tutorial u/https://www.zoom.com d/13mar2022 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with the module `CS2103` to the list of meetings.
@@ -105,6 +106,17 @@ Details include:
 * Meeting name
 * Meeting date and time
 
+#### Find a meeting : `find`
+
+Find meetings in the meeting list that matches the provided keywords and displays their respective details.
+
+Format: `find KEYWORD MORE_KEYWORDS...`
+
+* Displays all meetings with name, module code or tags that matches any of the provided keywords.
+
+Examples:
+
+* `find CS2101 Aaron` displays all meetings with fields that matches `CS2101` or `Aaron`.
 
 #### Delete a meeting : `delete`
 
@@ -168,7 +180,8 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty `app.json` data file it creates with the equivalent `app.json` data file from your previous LinkyTime installation.
+**A**: Install the app in the other computer and overwrite the empty `app.json` data file it creates with the
+equivalent `app.json` data file from your previous LinkyTime installation.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -176,13 +189,23 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                                                    |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz` |
-| **List**   | `list`                                                                                                                                                                              |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
-| **Clear**  | `clear`                                                                                                                                                                             |
-| **Edit**   | _Coming soon_                                                                                                                                                                       |
-| **Find**   | _Coming soon_                                                                                                                                                                       |
-| **Sort**   | _Coming soon_                                                                                                                                                                       |
-| **Open**   | _Coming soon_                                                                                                                                                                       |
-| **Help**   | `help`                                                                                                                                                                              |
-| **Exit**   | `exit`                                                                                                                                                                              |
+| **
+Add**    | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz` |
+| **
+List**   | `list`                                                                                                                                                                              |
+| **
+Find**   | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                          |
+| **
+Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
+| **
+Clear**  | `clear`                                                                                                                                                                             |
+| **Edit**   | _Coming
+soon_                                                                                                                                                                       |
+| **Sort**   | _Coming
+soon_                                                                                                                                                                       |
+| **Open**   | _Coming
+soon_                                                                                                                                                                       |
+| **
+Help**   | `help`                                                                                                                                                                              |
+| **
+Exit**   | `exit`                                                                                                                                                                              |

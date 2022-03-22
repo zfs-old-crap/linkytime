@@ -6,7 +6,7 @@
 //import seedu.address.logic.commands.Command;
 //import seedu.address.logic.commands.CommandResult;
 //import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.logic.commands.person.EditCommand;
+//import seedu.address.logic.commands.person.EditMeetingCommand;
 //import seedu.address.model.LinkyTime;
 //import seedu.address.model.Model;
 //import seedu.address.model.meetingentry.Meeting;
@@ -87,8 +87,8 @@
 //    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
 //    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 //
-//    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-//    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+//    public static final EditMeetingCommand.EditPersonDescriptor DESC_AMY;
+//    public static final EditMeetingCommand.EditPersonDescriptor DESC_BOB;
 //
 //    static {
 //        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

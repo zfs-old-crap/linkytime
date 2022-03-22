@@ -6,17 +6,19 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.ClearMeetingCommand;
 import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
+import seedu.address.logic.commands.meeting.FindMeetingCommand;
 import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.commands.module.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meeting.AddMeetingCommandParser;
 import seedu.address.logic.parser.meeting.DeleteMeetingCommandParser;
+import seedu.address.logic.parser.meeting.FindMeetingCommandParser;
 
 /**
  * Parses user input.
@@ -52,14 +54,16 @@ public class LinkyTimeParser {
             return new DeleteMeetingCommandParser().parse(arguments);
         case ListMeetingCommand.COMMAND_WORD:
             return new ListMeetingCommand();
+        case FindMeetingCommand.COMMAND_WORD:
+            return new FindMeetingCommandParser().parse(arguments);
 
         // Module Commands
         case ListModuleCommand.COMMAND_WORD:
             return new ListModuleCommand();
 
         // System Commands
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case ClearMeetingCommand.COMMAND_WORD:
+            return new ClearMeetingCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         case ExitCommand.COMMAND_WORD:

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.meeting.TypicalMeetings.CS2030;
-import static seedu.address.testutil.meeting.TypicalMeetings.CS2101;
 import static seedu.address.testutil.meeting.TypicalMeetings.CS2103;
+import static seedu.address.testutil.meeting.TypicalMeetings.CS2107;
 import static seedu.address.testutil.meeting.TypicalMeetings.getTypicalLinkyTime;
 
 import java.io.IOException;
@@ -49,14 +49,17 @@ public class JsonLinkyTimeStorageTest {
     public void read_notJsonFormat_exceptionThrown() {
         assertThrows(DataConversionException.class, () -> readLinkyTime("notJsonFormatLinkyTime.json"));
     }
+
     @Test
     public void readLinkyTime_invalidMeetingLinkyTime_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readLinkyTime("invalidMeetingLinkyTime.json"));
     }
+
     @Test
     public void readLinkyTime_invalidAndValidMeetingLinkyTime_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readLinkyTime("invalidAndValidMeetingLinkyTime.json"));
     }
+
     @Test
     public void readAndSaveLinkyTime_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempLinkyTime.json");
@@ -76,7 +79,7 @@ public class JsonLinkyTimeStorageTest {
         assertEquals(original, new LinkyTime(readBack));
 
         // Save and read without specifying file path
-        original.addMeeting(CS2101);
+        original.addMeeting(CS2107);
         jsonLinkyTimeStorage.saveLinkyTime(original); // file path not specified
         readBack = jsonLinkyTimeStorage.readLinkyTime().get(); // file path not specified
         assertEquals(original, new LinkyTime(readBack));

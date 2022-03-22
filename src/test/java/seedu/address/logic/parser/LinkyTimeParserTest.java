@@ -9,10 +9,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.ClearMeetingCommand;
 import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
 import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -37,8 +37,8 @@ public class LinkyTimeParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearMeetingCommand.COMMAND_WORD) instanceof ClearMeetingCommand);
+        assertTrue(parser.parseCommand(ClearMeetingCommand.COMMAND_WORD + " 3") instanceof ClearMeetingCommand);
     }
 
     @Test
