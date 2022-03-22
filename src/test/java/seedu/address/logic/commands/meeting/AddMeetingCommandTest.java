@@ -33,7 +33,7 @@ public class AddMeetingCommandTest {
         final CommandResult commandResult = new AddMeetingCommand(validMeeting).execute(modelStub);
 
         assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validMeeting), modelStub.meetingEntriesAdded);
+        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
     }
 
     @Test
@@ -93,18 +93,18 @@ public class AddMeetingCommandTest {
      * A Model stub that always accept the Meeting being added.
      */
     private class ModelStubAcceptingMeetingAdded extends ModelStub {
-        final ArrayList<Meeting> meetingEntriesAdded = new ArrayList<>();
+        final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
 
         @Override
         public boolean hasMeeting(Meeting meeting) {
             requireNonNull(meeting);
-            return meetingEntriesAdded.stream().anyMatch(meeting::equals);
+            return meetingsAdded.stream().anyMatch(meeting::equals);
         }
 
         @Override
         public void addMeeting(Meeting meeting) {
             requireNonNull(meeting);
-            meetingEntriesAdded.add(meeting);
+            meetingsAdded.add(meeting);
         }
     }
 

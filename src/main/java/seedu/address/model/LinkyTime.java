@@ -35,7 +35,7 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     public LinkyTime() {}
 
     /**
-     * Creates a LinkyTime using the Meetings in the {@code ReadOnlyLinkyTime}
+     * Creates a LinkyTime using the Meetings in the {@code toBeCopied}
      */
     public LinkyTime(ReadOnlyLinkyTime toBeCopied) {
         this();
