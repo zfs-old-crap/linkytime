@@ -12,11 +12,13 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.meetingentry.AddCommand;
 import seedu.address.logic.commands.meetingentry.DeleteCommand;
+import seedu.address.logic.commands.meetingentry.EditMeetingCommand;
 import seedu.address.logic.commands.meetingentry.ListCommand;
 import seedu.address.logic.commands.module.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meetingentry.AddCommandParser;
 import seedu.address.logic.parser.meetingentry.DeleteCommandParser;
+import seedu.address.logic.parser.meetingentry.EditMeetingCommandParser;
 
 /**
  * Parses user input.
@@ -50,6 +52,8 @@ public class LinkyTimeParser {
             return new AddCommandParser().parse(arguments);
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+        case EditMeetingCommand.COMMAND_WORD:
+            return new EditMeetingCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
