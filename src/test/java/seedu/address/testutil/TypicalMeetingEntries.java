@@ -21,6 +21,8 @@ import java.util.List;
 
 import seedu.address.model.LinkyTime;
 import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.module.Module;
+import seedu.address.testutil.module.TypicalModules;
 
 /**
  * A utility class containing a list of {@code MeetingEntry} objects to be used in tests.
@@ -46,7 +48,6 @@ public class TypicalMeetingEntries {
             .withUrl("https://www.zoom.com").withDateTime("Tuesday").withDuration("15")
             .withModule("CS2100")
             .withTags("aaron").build();
-
     public static final MeetingEntry CS2107 = new MeetingEntryBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("Thursday").withDuration("1.7")
             .withModule("CS2107")
@@ -57,7 +58,6 @@ public class TypicalMeetingEntries {
             .withUrl("https://www.zoom.com").withDateTime("Friday").withDuration("2")
             .withModule("PC1221")
             .withTags("proftay").build();
-
     public static final MeetingEntry CS1101S = new MeetingEntryBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("Thursday").withDuration("1.5")
             .withModule("CS1101S")
@@ -85,6 +85,9 @@ public class TypicalMeetingEntries {
         final LinkyTime lt = new LinkyTime();
         for (final MeetingEntry meetingEntry : getTypicalMeetingEntries()) {
             lt.addMeetingEntry(meetingEntry);
+        }
+        for (final Module module : TypicalModules.getTypicalModules()) {
+            lt.addModule(module);
         }
         return lt;
     }
