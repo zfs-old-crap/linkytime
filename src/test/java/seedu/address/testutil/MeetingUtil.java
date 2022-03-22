@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_URL;
 
 import seedu.address.logic.commands.meetingentry.AddCommand;
+import seedu.address.model.meetingentry.MeetingDateTime;
 import seedu.address.model.meetingentry.MeetingEntry;
 
 /**
@@ -23,7 +24,7 @@ public class MeetingUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + meetingEntry.getName().name + " ");
         sb.append(PREFIX_URL + meetingEntry.getUrl().toString() + " ");
-        sb.append(PREFIX_DATETIME + meetingEntry.getDateTime().toString() + " ");
+        sb.append(PREFIX_DATETIME + meetingEntry.getDateTime().datetime.format(MeetingDateTime.INPUT_FORMAT) + " ");
         sb.append(PREFIX_DURATION + String.valueOf(meetingEntry.getDuration().duration) + " ");
         sb.append(PREFIX_MODULE_CODE + meetingEntry.getModuleCode().code + " ");
         sb.append(PREFIX_RECURRING + meetingEntry.getIsRecurring().toString() + " ");
