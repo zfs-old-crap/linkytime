@@ -6,22 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.meetingentry.AddCommand;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyLinkyTime;
-import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.module.Module;
 import seedu.address.testutil.MeetingEntryBuilder;
 
 
@@ -76,97 +68,6 @@ public class AddCommandTest {
         // different meeting entry -> returns false
         assertFalse(addCS2103Command.equals(addCS2101Command));
     }
-
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getLinkyTimeFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setLinkyTimeFilePath(Path linkyTimeFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setLinkyTime(ReadOnlyLinkyTime linkyTime) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyLinkyTime getLinkyTime() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteMeetingEntry(MeetingEntry target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addMeetingEntry(MeetingEntry meetingEntry) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasModule(Module module) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Module> getFilteredModuleList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredModuleList(Predicate<Module> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-    }
-
 
     /**
      * A Model stub that contains a single meetingEntry.

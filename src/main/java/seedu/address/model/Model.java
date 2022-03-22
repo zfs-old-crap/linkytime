@@ -101,6 +101,12 @@ public interface Model {
      */
     boolean hasModule(Module module);
 
+    /**
+     * Adds the given module.
+     * {@code module} must not already exist in LinkyTime.
+     */
+    void addModule(Module module);
+
     // =========== Filtered Module List Accessors ==========================================================
 
     /** Returns an unmodifiable view of the filtered module list */
