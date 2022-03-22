@@ -12,7 +12,7 @@
 //
 //import org.junit.jupiter.api.Test;
 //
-//import seedu.address.logic.commands.person.EditCommand.EditPersonDescriptor;
+//import seedu.address.logic.commands.person.EditMeetingCommand.EditPersonDescriptor;
 //import seedu.address.testutil.EditPersonDescriptorBuilder;
 //
 //public class EditPersonDescriptorTest {

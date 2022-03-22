@@ -9,11 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meetingentry.IsRecurring;
-import seedu.address.model.meetingentry.MeetingDateTime;
-import seedu.address.model.meetingentry.MeetingDuration;
-import seedu.address.model.meetingentry.MeetingName;
-import seedu.address.model.meetingentry.MeetingUrl;
+import seedu.address.model.meeting.IsRecurring;
+import seedu.address.model.meeting.MeetingDateTime;
+import seedu.address.model.meeting.MeetingDuration;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.MeetingUrl;
 import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 

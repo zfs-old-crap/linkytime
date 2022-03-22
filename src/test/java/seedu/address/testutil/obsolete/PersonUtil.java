@@ -8,8 +8,8 @@
 //
 //import java.util.Set;
 //
-//import seedu.address.logic.commands.person.AddCommand;
-//import seedu.address.logic.commands.person.EditCommand.EditPersonDescriptor;
+//import seedu.address.logic.commands.person.AddMeetingCommand;
+//import seedu.address.logic.commands.person.EditMeetingCommand.EditPersonDescriptor;
 //import seedu.address.model.person.Person;
 //import seedu.address.model.tag.Tag;
 //
@@ -22,7 +22,7 @@
 //     * Returns an add command string for adding the {@code person}.
 //     */
 //    public static String getAddCommand(Person person) {
-//        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+//        return AddMeetingCommand.COMMAND_WORD + " " + getPersonDetails(person);
 //    }
 //
 //    /**

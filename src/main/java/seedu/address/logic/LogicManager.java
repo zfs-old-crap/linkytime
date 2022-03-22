@@ -14,7 +14,7 @@ import seedu.address.logic.parser.LinkyTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyLinkyTime;
-import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
 import seedu.address.storage.Storage;
 
@@ -61,8 +61,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
-        return model.getFilteredMeetingEntryList();
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return model.getFilteredMeetingList();
     }
 
     @Override

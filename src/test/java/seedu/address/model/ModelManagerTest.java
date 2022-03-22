@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETING_ENTRIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalMeetingEntries.CS2105;
-import static seedu.address.testutil.TypicalMeetingEntries.CS2106;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2105;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2106;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.meetingentry.MeetingEntryContainsKeywordsPredicate;
+import seedu.address.model.meeting.MeetingContainsKeywordsPredicate;
 import seedu.address.testutil.LinkyTimeBuilder;
 
 public class ModelManagerTest {
@@ -73,29 +73,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasMeetingEntry_nullMeetingEntry_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasMeetingEntry(null));
+    public void hasMeeting_nullMeeting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasMeeting(null));
     }
 
     @Test
-    public void hasMeetingEntry_meetingEntryNotInLinkyTime_returnsFalse() {
-        assertFalse(modelManager.hasMeetingEntry(CS2105));
+    public void hasMeeting_meetingNotInLinkyTime_returnsFalse() {
+        assertFalse(modelManager.hasMeeting(CS2105));
     }
 
     @Test
-    public void hasMeetingEntry_meetingEntryInLinkyTime_returnsTrue() {
-        modelManager.addMeetingEntry(CS2105);
-        assertTrue(modelManager.hasMeetingEntry(CS2105));
+    public void hasMeeting_meetingInLinkyTime_returnsTrue() {
+        modelManager.addMeeting(CS2105);
+        assertTrue(modelManager.hasMeeting(CS2105));
     }
 
     @Test
-    public void getFilteredMeetingEntryList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredMeetingEntryList().remove(0));
+    public void getFilteredMeetingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredMeetingList().remove(0));
     }
 
     @Test
     public void equals() {
-        final LinkyTime linkyTime = new LinkyTimeBuilder().withEntry(CS2105).withEntry(CS2106).build();
+        final LinkyTime linkyTime = new LinkyTimeBuilder().withMeeting(CS2105).withMeeting(CS2106).build();
         final LinkyTime differentLinkyTime = new LinkyTime();
         final UserPrefs userPrefs = new UserPrefs();
 
@@ -119,11 +119,11 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         final ArrayList<String> keywords = new ArrayList<>();
         keywords.add(CS2105.getModule().toString());
-        modelManager.updateFilteredMeetingEntryList(new MeetingEntryContainsKeywordsPredicate(keywords));
+        modelManager.updateFilteredMeetingList(new MeetingContainsKeywordsPredicate(keywords));
         assertFalse(modelManager.equals(new ModelManager(linkyTime, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredMeetingEntryList(PREDICATE_SHOW_ALL_MEETING_ENTRIES);
+        modelManager.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
 
         // different userPrefs -> returns false
         final UserPrefs differentUserPrefs = new UserPrefs();
