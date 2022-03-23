@@ -51,7 +51,12 @@ activate AddMeetingCommand
 AddMeetingCommand -> Model : addMeeting(toAdd)
 activate Model
 
+
 Model -> Model : updateFilteredMeetingList(PRED...)
+activate Model
+
+Model ---> Model
+deactivate Model
 
 Model --> AddMeetingCommand
 deactivate Model
