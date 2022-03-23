@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.meeting;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_LECTURE;
@@ -38,7 +38,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meeting.EditMeetingCommand;
 import seedu.address.logic.commands.meeting.EditMeetingCommand.EditMeetingDescriptor;
-import seedu.address.logic.parser.meeting.EditMeetingCommandParser;
 import seedu.address.model.meeting.MeetingDuration;
 import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
 
