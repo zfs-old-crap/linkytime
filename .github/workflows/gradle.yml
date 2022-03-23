@@ -18,6 +18,9 @@ jobs:
         with:
           ref: master
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+
       - name: Merge to master
         run: git checkout --progress --force ${{ github.sha }}
 
