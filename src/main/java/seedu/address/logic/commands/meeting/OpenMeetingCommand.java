@@ -21,8 +21,8 @@ public class OpenMeetingCommand extends Command {
     public static final String COMMAND_WORD = "open";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Opens the meeting entry identified by the index number used in the "
-            + "displayed meeting entry list in the system default browser.\n"
+            + ": Opens the meeting identified by the index number used in the "
+            + "displayed meeting list in the system default browser.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -49,8 +49,8 @@ public class OpenMeetingCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
-        final Meeting meetingEntryToOpen = lastShownList.get(targetIndex.getZeroBased());
-        final MeetingUrl meetingUrlToOpen = meetingEntryToOpen.getUrl();
+        final Meeting meetingToOpen = lastShownList.get(targetIndex.getZeroBased());
+        final MeetingUrl meetingUrlToOpen = meetingToOpen.getUrl();
 
         if (!Desktop.isDesktopSupported()) {
             throw new CommandException(MESSAGE_SYSTEM_UNSUPPORTED);
@@ -67,14 +67,14 @@ public class OpenMeetingCommand extends Command {
             final URI uri = meetingUrlToOpen.meetingUrl.toURI();
             desktop.browse(uri);
         } catch (URISyntaxException ex) {
-            throw new CommandException(MESSAGE_URL_UNABLE_TO_OPEN);
+            throw new CommandException(MESSAGE_URL_UNABLE_TO_OPEN, ex);
         } catch (IOException ex) {
-            throw new CommandException(MESSAGE_SYSTEM_BROWSER_ERROR);
+            throw new CommandException(MESSAGE_SYSTEM_BROWSER_ERROR, ex);
         } catch (SecurityException ex) {
-            throw new CommandException(MESSAGE_SYSTEM_PERMISSION_DENIED);
+            throw new CommandException(MESSAGE_SYSTEM_PERMISSION_DENIED, ex);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, meetingEntryToOpen));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToOpen));
     }
 
     @Override
