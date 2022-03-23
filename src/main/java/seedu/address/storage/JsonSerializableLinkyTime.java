@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.ReadOnlyLinkyTime;
-import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
 
 /**
@@ -19,21 +19,21 @@ import seedu.address.model.module.Module;
  */
 @JsonRootName(value = "linkytime")
 class JsonSerializableLinkyTime {
-    public static final String MESSAGE_DUPLICATE_MEETING_ENTRY =
-            "Meeting entries list contains duplicate meeting entry(s).";
+    public static final String MESSAGE_DUPLICATE_MEETING =
+            "Meetings list contains duplicate meeting(s).";
     public static final String MESSAGE_DUPLICATE_MODULE =
             "Modules list contains duplicate module(s).";
 
-    private final List<JsonAdaptedMeetingEntry> meetingEntries = new ArrayList<>();
+    private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableLinkyTime} with the given meeting entries.
+     * Constructs a {@code JsonSerializableLinkyTime} with the given meetings.
      */
     @JsonCreator
-    public JsonSerializableLinkyTime(@JsonProperty("meetingEntries") List<JsonAdaptedMeetingEntry> meetingEntries,
+    public JsonSerializableLinkyTime(@JsonProperty("meetings") List<JsonAdaptedMeeting> meetings,
                                      @JsonProperty("modules") List<JsonAdaptedModule> modules) {
-        this.meetingEntries.addAll(meetingEntries);
+        this.meetings.addAll(meetings);
         this.modules.addAll(modules);
     }
 
@@ -43,8 +43,8 @@ class JsonSerializableLinkyTime {
      * @param source future changes to this will not affect the created {@code JsonSerializableLinkyTime}.
      */
     public JsonSerializableLinkyTime(ReadOnlyLinkyTime source) {
-        meetingEntries.addAll(
-                source.getMeetingEntryList().stream().map(JsonAdaptedMeetingEntry::new).collect(Collectors.toList()));
+        meetings.addAll(
+                source.getMeetingList().stream().map(JsonAdaptedMeeting::new).collect(Collectors.toList()));
         modules.addAll(
                 source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
@@ -57,12 +57,12 @@ class JsonSerializableLinkyTime {
     public LinkyTime toModelType() throws IllegalValueException {
         final LinkyTime linkyTime = new LinkyTime();
 
-        for (final JsonAdaptedMeetingEntry jsonAdaptedMeetingEntry : meetingEntries) {
-            final MeetingEntry meetingEntry = jsonAdaptedMeetingEntry.toModelType();
-            if (linkyTime.hasMeetingEntry(meetingEntry)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_MEETING_ENTRY);
+        for (final JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {
+            final Meeting meeting = jsonAdaptedMeeting.toModelType();
+            if (linkyTime.hasMeeting(meeting)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MEETING);
             }
-            linkyTime.addMeetingEntry(meetingEntry);
+            linkyTime.addMeeting(meeting);
         }
 
         for (final JsonAdaptedModule jsonAdaptedModule : modules) {

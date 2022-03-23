@@ -10,16 +10,16 @@
 //import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 //import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 //import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+//import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_PERSON;
+//import static seedu.address.testutil.typical.TypicalIndexes.INDEX_SECOND_PERSON;
 //import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 //
 //import org.junit.jupiter.api.Test;
 //
 //import seedu.address.commons.core.Messages;
 //import seedu.address.commons.core.index.Index;
-//import seedu.address.logic.commands.person.EditCommand;
-//import seedu.address.logic.commands.person.EditCommand.EditPersonDescriptor;
+//import seedu.address.logic.commands.person.EditMeetingCommand;
+//import seedu.address.logic.commands.person.EditMeetingCommand.EditPersonDescriptor;
 //import seedu.address.model.LinkyTime;
 //import seedu.address.model.Model;
 //import seedu.address.model.ModelManager;
@@ -29,9 +29,9 @@
 //import seedu.address.testutil.PersonBuilder;
 //
 ///**
-// * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+// * Contains integration tests (interaction with the Model) and unit tests for EditMeetingCommand.
 // */
-//public class EditCommandTest {
+//public class EditMeetingCommandTest {
 //
 //    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new LinkyTime());
 //
@@ -39,9 +39,9 @@
 //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
 //        Person editedPerson = new PersonBuilder().build();
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+//        EditMeetingCommand editCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, descriptor);
 //
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+//        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
 //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
 //                new LinkyTime());
@@ -61,9 +61,9 @@
 //
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
 //                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-//        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+//        EditMeetingCommand editCommand = new EditMeetingCommand(indexLastPerson, descriptor);
 //
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+//        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
 //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
 //                new LinkyTime());
@@ -74,10 +74,10 @@
 //
 //    @Test
 //    public void execute_noFieldSpecifiedUnfilteredList_success() {
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+//        EditMeetingCommand editCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
 //        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 //
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+//        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
 //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
 //                new LinkyTime());
@@ -91,10 +91,10 @@
 //
 //        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 //        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+//        EditMeetingCommand editCommand = new EditMeetingCommand(INDEX_FIRST_PERSON,
 //                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 //
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+//        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
 //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
 //                new LinkyTime());
@@ -107,9 +107,9 @@
 //    public void execute_duplicatePersonUnfilteredList_failure() {
 //        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-//        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+//        EditMeetingCommand editCommand = new EditMeetingCommand(INDEX_SECOND_PERSON, descriptor);
 //
-//        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+//        assertCommandFailure(editCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_PERSON);
 //    }
 //
 //    @Test
@@ -118,17 +118,17 @@
 //
 //        // edit person in filtered list into a duplicate in address book
 //        Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+//        EditMeetingCommand editCommand = new EditMeetingCommand(INDEX_FIRST_PERSON,
 //                new EditPersonDescriptorBuilder(personInList).build());
 //
-//        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+//        assertCommandFailure(editCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_PERSON);
 //    }
 //
 //    @Test
 //    public void execute_invalidPersonIndexUnfilteredList_failure() {
 //        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
-//        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+//        EditMeetingCommand editCommand = new EditMeetingCommand(outOfBoundIndex, descriptor);
 //
 //        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 //    }
@@ -144,7 +144,7 @@
 //        // ensures that outOfBoundIndex is still in bounds of address book list
 //        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 //
-//        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+//        EditMeetingCommand editCommand = new EditMeetingCommand(outOfBoundIndex,
 //                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 //
 //        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -152,11 +152,11 @@
 //
 //    @Test
 //    public void equals() {
-//        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+//        final EditMeetingCommand standardCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, DESC_AMY);
 //
 //        // same values -> returns true
 //        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
-//        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+//        EditMeetingCommand commandWithSameValues = new EditMeetingCommand(INDEX_FIRST_PERSON, copyDescriptor);
 //        assertTrue(standardCommand.equals(commandWithSameValues));
 //
 //        // same object -> returns true
@@ -169,10 +169,10 @@
 //        assertFalse(standardCommand.equals(new ClearCommand()));
 //
 //        // different index -> returns false
-//        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+//        assertFalse(standardCommand.equals(new EditMeetingCommand(INDEX_SECOND_PERSON, DESC_AMY)));
 //
 //        // different descriptor -> returns false
-//        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+//        assertFalse(standardCommand.equals(new EditMeetingCommand(INDEX_FIRST_PERSON, DESC_BOB)));
 //    }
 //
 //}

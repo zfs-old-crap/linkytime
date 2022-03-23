@@ -154,8 +154,8 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-
 ### Meetings
+The Meetings component consists of the following set of features: List Meeting, Add Meeting, Edit Meeting, Delete Meeting, Find Meeting, and Opening Meeting URL.
 
 #### List Meetings feature
 This section explains the implementation of the List Meetings feature via the `list` command.
@@ -188,12 +188,55 @@ The `ListMeetingCommand` then creates a successful `CommandResult` and returns i
 
 **Alternative 1 (current choice):** `LinkyTimeParser` returns a `ListMeetingCommand` without having a parser.
 * Pros: Easier to implement and allows for more flexible user input.
-* Cons: All user inputs that contains `list` as its first word will result in the execution of `ListMeetingCommand`, 
-including those that don't make sense. E.g. `list abc`
+* Cons: All user inputs that contains `list` as its first word will result in the execution of `ListMeetingCommand`,
+  including those that don't make sense. E.g. `list abc`
 
 **Alternative 2:** `LinkyTimeParser` uses a `ListMeetingCommandParser` to enforce that the user input cannot have additional params.
 * Pros: Provides clear definition of what the user input for a `ListMeetingCommand` should be.
 * Cons: Harder to implement and more rigid in nature.
+
+#### Add Meeting feature
+
+This section explains the implementation of the Add Meeting feature via the `add` command.
+The `AddMeetingCommand` causes the specified meeting to be added to the application.
+This command requires several compulsory fields such as the meeting name, URL, date time, duration, module, and whether it is recurring.
+There is only one optional field which is the tags of the meeting.
+
+Below is the sequence diagram for the execution of `AddMeetingCommand`
+
+![`AddMeetingCommand` sequence diagram](images/AddMeetingSequenceDiagram.png)
+
+Step 1:
+The user enters the command for adding a meeting, e.g. `add n/Lecture ...`
+
+Step 2:
+The user input is parsed through the `LinkyTimeParser`, which will then pass the user input to `AddMeetingCommandParser` to check if the user input is valid.
+
+Step 3:
+Once the user input is successfully parsed, the `AddMeetingCommandParser` creates a `AddMeetingCommand` containing the meeting to be added.
+
+Step 4:
+The `LogicManager` subsequently invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the new meeting into the list.
+
+Step 5:
+The `Model` will then call its own `updateFilteredMeetingList` method in order to update the model's filter to display all meetings.
+
+##### Design considerations:
+
+**Aspect: How AddMeetingCommand executes:**
+
+* **Alternative 1 (current choice):** Let the `LogicManager` pass the model to the command to execute.
+  * Pros: Will not need to expose the model to the individual `AddMeetingCommand`.
+
+* **Alternative 2:** Store the model in the `AddMeetingCommand` itself.
+  * Pros: Easier to implement and trace.
+  * Cons: The `AddMeetingCommand` might be able to abuse the model by calling the model's other methods.
+  
+
+### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -227,18 +270,17 @@ Aiken Dueet is a Year 2 NUS Computer Science student. He is currently taking his
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …                      | I want to …                   | So that I can…                                         |
-|----------|-----------------------------|-------------------------------|--------------------------------------------------------|
-| `* * *`  | new user                    | see usage instructions        | refer to instructions if I forget how to use the App   |
-| `* * *`  | user                        | view all my entries           | view all my entries in one place                       |
-| `* * *`  | user                        | add a new entry               | add my online lecture details                          |
-| `* * *`  | user                        | edit an existing entry        | add my online lecture details                          |
-| `* * *`  | user                        | delete an entry               | remove old entries that I don’t need anymore           |
-| `* *`    | user with outdated meetings | clear all entries             | remove old entries from the previous semester          |
-| `* *`    | user                        | open a meeting link           | open my meeting quickly                                |
-| `* *`    | user with multiple meetings | search for entries            | find an entry matching a specific criteria             |
-| `*`      | user with multiple meetings | sort entries alphabetically   | easily sieve through my entries in a familiar order    |
-| `* *`    | user with multiple meetings | sort entries chronologically  | know what is my next upcoming meeting                  |
+| Priority | As a …                      | I want to …                   | So that I can…                                       |
+|----------|-----------------------------|-------------------------------|------------------------------------------------------|
+| `* * *`  | new user                    | see usage instructions        | refer to instructions if I forget how to use the App |
+| `* * *`  | user                        | view all my meetings          | view all my meetings in one place                    |
+| `* * *`  | user                        | add a new meeting             | add my online lecture details                        |
+| `* * *`  | user                        | edit an existing meeting      | add my online lecture details                        |
+| `* * *`  | user                        | delete a meeting              | remove old meetings that I don’t need anymore        |
+| `* *`    | user with outdated meetings | clear all meetings            | remove old meetings from the previous semester       |
+| `* *`    | user                        | open a meeting link           | open my meeting quickly                              |
+| `* *`    | user with multiple meetings | search for meetings           | find an meeting matching a specific criteria         |
+| `* *`    | user with multiple meetings | sort meetings chronologically | know what is my next upcoming meeting                |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -247,27 +289,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 For all use cases below, the **System** is `LinkyTime` and the **Actor** is the `user`, unless specified otherwise.
 All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
-### UC-001: List all entries
+### UC-001: List all meetings
 
 **MSS**
 
-1. User requests to list all entries.
-2. LinkyTime shows a list of all entries.
+1. User requests to list all meetings.
+2. LinkyTime shows a list of all meetings.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The meeting list is empty.
 
     Use case ends.
 
-### UC-002: Add an entry
+### UC-002: Add a meeting
 
 **MSS**
 
-1. User requests to add a new entry to the list.
-2. LinkyTime adds a new entry with given parameters in the list.
+1. User requests to add a new meeting to the meeting list.
+2. LinkyTime adds a new meeting with given parameters in the meeting list.
 
     Use case ends.
 
@@ -283,20 +325,20 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
-### UC-003: Edit an entry
+### UC-003: Edit a meeting
 
 **MSS**
 
-1. User requests to list entries.
-2. LinkyTime shows the list of entries.
-3. User requests to edit a specific entry based on the index from the list displayed in step 2.
-4. LinkyTime edits the entry and saves the changes.
+1. User requests to list meetings.
+2. LinkyTime shows the list of meetings.
+3. User requests to edit a specific meeting based on the index from the meeting list displayed in step 2.
+4. LinkyTime edits the meeting and saves the changes.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The meeting list is empty.
 
     Use case ends.
 
@@ -315,20 +357,20 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case resumes at step 2.
 
-### UC-004: Delete an entry
+### UC-004: Delete a meeting
 
 **MSS**
 
-1. User requests to list entries.
-2. LinkyTime shows a list of entries.
-3. User requests to delete a specific entry in the list based on the index from the list displayed in step 2.
-4. LinkyTime deletes the entry and saves the changes.
+1. User requests to list meetings.
+2. LinkyTime shows a list of meetings.
+3. User requests to delete a specific meeting in the meeting list based on the index from the meeting list displayed in step 2.
+4. LinkyTime deletes the meeting and saves the changes.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The meeting list is empty.
 
     Use case ends.
 
@@ -337,18 +379,18 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case resumes at step 2.
 
-### UC-005: Clear all entries
+### UC-005: Clear all meetings
 
 **MSS**
 
-1. User chooses to clear all entries in the list.
-2. LinkyTime deletes all entries and saves the changes.
+1. User chooses to clear all meetings in the list.
+2. LinkyTime deletes all meetings and saves the changes.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The meeting list is empty.
 
     Use case ends.
 
@@ -368,61 +410,43 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
-### UC-007: Find entries
+### UC-007: Find meetings
 
 **MSS**
 
-1. User searches for an entry by a search term.
-2. LinkyTime shows a list of entries whose name, tags, or date contains the search term.
+1. User searches for a meeting by a search term.
+2. LinkyTime shows a list of meetings whose name, tags, or date contains the search term.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. There are no entries matching the search term.
-  * 2a1. An empty list is displayed.
+* 2a. There are no meetings matching the search term.
+  * 2a1. An empty meeting list is displayed.
 
     Use case ends.
+  
 
-### UC-008: Sort entries alphabetically
+### UC-008: Sort meetings chronologically
 
 **MSS**
 
-1. User chooses to sort entries by A-Z.
-2. LinkyTime shows a list of entries that is sorted from A-Z.
+1. User chooses to sort meetings by the date.
+2. LinkyTime shows a list of meetings that is sorted in descending order.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The meeting list is empty.
 
     Use case ends.
 
-* 2b. The entries are already sorted from A-Z.
+* 2b. The meetings are already sorted by the date.
 
     Use case ends.
 
-### UC-009: Sort entries chronologically
-
-**MSS**
-
-1. User chooses to sort entries by the date.
-2. LinkyTime shows a list of entries that is sorted in descending order.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-    Use case ends.
-
-* 2b. The entries are already sorted by the date.
-
-    Use case ends.
-
-### UC-010: Access help
+### UC-009: Access help
 
 **MSS**
 
@@ -436,7 +460,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 entries without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 meetings without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user should be familiar with the basic commands within half an hour of usage.
 5. Should be portable to allow transferring of data between different computers.
@@ -447,8 +471,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Entry**: A meeting containing the details such as the meeting link, name, date, and other fields.
-* **List**: List of all entries that are currently saved in the program. May also be referred to as an entry list, or a meeting entry list.
+* **Meeting**: An online class containing the details such as the meeting link, name, date, and other fields.
 * **NUS**: The National University of Singapore.
 * **Command**: A keyword that defines an action for the program to perform when entered into the CLI.
 * **Search Term**: A substring that is contained in the name/tags of a meeting.
