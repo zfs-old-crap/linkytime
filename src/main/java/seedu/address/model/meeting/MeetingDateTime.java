@@ -87,8 +87,9 @@ public class MeetingDateTime {
             return LocalDateTime.parse(dateTime, INPUT_FORMAT);
         } catch (DateTimeParseException e) {
             // TODO: update this once we've figured out exception handling.
-            e.printStackTrace();
-            throw e;
+            // e.printStackTrace();
+            // throw e;
+            return null;
         }
     }
 
