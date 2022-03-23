@@ -1,8 +1,8 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.module.Module;
 
 /**
  * Unmodifiable view of LinkyTime data
@@ -10,14 +10,14 @@ import seedu.address.model.modulecode.ModuleCode;
 public interface ReadOnlyLinkyTime {
 
     /**
-     * Returns an unmodifiable view of the meeting entry list.
-     * This list will not contain any duplicate meeting entries.
+     * Returns an unmodifiable view of the meeting list.
+     * This list will not contain any duplicate meetings.
      */
-    ObservableList<MeetingEntry> getMeetingEntryList();
+    ObservableList<Meeting> getMeetingList();
 
     /**
-     * Returns an unmodifiable view of the module code list.
-     * This list will not contain any duplicate module codes.
+     * Returns an unmodifiable view of the module list.
+     * This list will not contain any duplicate modules.
      */
-    ObservableList<ModuleCode> getModuleCodeList();
+    ObservableList<Module> getModuleList();
 }

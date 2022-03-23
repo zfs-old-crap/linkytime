@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.regex.Matcher;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +19,7 @@ public class JsonAdaptedUserPrefs {
     private final String filePathString;
 
     /**
-     * Constructs a {@code JsonAdaptedUserPrefs} with the given module code details.
+     * Constructs a {@code JsonAdaptedUserPrefs} with the given user pref details.
      */
     @JsonCreator
     public JsonAdaptedUserPrefs(@JsonProperty("guiSettings") GuiSettings guiSettings,
@@ -36,7 +37,7 @@ public class JsonAdaptedUserPrefs {
     }
 
     /**
-     * Converts this Jackson-friendly adapted module code object into the model's {@code UserPrefs} object.
+     * Converts this Jackson-friendly adapted user pref object into the model's {@code UserPrefs} object.
      *
      * @throws DataConversionException if there were any data constraints violated in the adapted userPrefs.
      */
@@ -49,7 +50,7 @@ public class JsonAdaptedUserPrefs {
             final UserPrefs userPrefs = new UserPrefs();
             userPrefs.setGuiSettings(guiSettings);
             final String reliableFilePath = filePathString.replaceAll("[/\\\\]",
-                    "\\" + File.separator);
+                    Matcher.quoteReplacement(File.separator));
             userPrefs.setLinkyTimeFilePath(Paths.get(reliableFilePath));
             return userPrefs;
         } catch (Exception e) {

@@ -8,8 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyLinkyTime;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.module.Module;
 
 /**
  * API of the Logic component
@@ -31,11 +31,11 @@ public interface Logic {
      */
     ReadOnlyLinkyTime getLinkyTime();
 
-    /** Returns an unmodifiable view of the filtered list of meeting entries */
-    ObservableList<MeetingEntry> getFilteredMeetingEntryList();
+    /** Returns an unmodifiable view of the filtered list of meetings*/
+    ObservableList<Meeting> getFilteredMeetingList();
 
-    /** Returns an unmodifiable view of the filtered list of module codes */
-    ObservableList<ModuleCode> getFilteredModuleCodeList();
+    /** Returns an unmodifiable view of the filtered list of modules */
+    ObservableList<Module> getFilteredModuleList();
 
     /**
      * Returns the user prefs' LinkyTime file path.

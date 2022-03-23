@@ -1,52 +1,76 @@
 {
-  "meetingEntries" : [ {
-    "name" : "Lecture",
-    "url" : "https://www.zoom.com",
-    "dateTime" : "1-02-2022 1:00pm",
-    "duration" : "2.0",
-    "moduleCode" : "CS2105",
-    "isRecurring" : "Y",
-    "tagged" : [ "roger" ]
+  "meetings" : [
+    {
+      "name": "Tutorial",
+      "url": "https://www.zoom.com",
+      "dateTime": "1-02-2022 1:00pm",
+      "duration": "1.5",
+      "module": "CS2101",
+      "isRecurring": "N",
+      "tagged": [ "amy" ]
+    }, {
+      "name": "Lecture",
+      "url": "https://www.zoom.com",
+      "dateTime": "2-02-2022 1:00pm",
+      "duration": "2.0",
+      "module": "CS2105",
+      "isRecurring": "Y",
+      "tagged": [ "roger" ]
+    }, {
+      "name": "Lecture",
+      "url": "https://www.zoom.com",
+      "dateTime": "3-02-2022 1:00pm",
+      "duration": "2.0",
+      "module": "CS2106",
+      "isRecurring": "Y",
+      "tagged": [ "colin" ]
+    }, {
+      "name": "Lecture",
+      "url": "https://www.zoom.com",
+      "dateTime": "4-02-2022 1:00pm",
+      "duration": "2.0",
+      "module": "CS2030",
+      "isRecurring": "Y",
+      "tagged": [ "ooi" ]
+    }, {
+      "name": "Lecture",
+      "url": "https://www.zoom.com",
+      "dateTime": "5-02-2022 1:00pm",
+      "duration": "1.0",
+      "module": "CS2040",
+      "isRecurring": "Y",
+      "tagged": [ "CKF" ]
+    }, {
+      "name": "Lecture",
+      "url": "https://www.zoom.com",
+      "dateTime": "6-02-2022 1:00pm",
+      "duration": "15.0",
+      "module": "CS2100",
+      "isRecurring": "Y",
+      "tagged": [ "aaron" ]
+    }, {
+      "name": "Lecture",
+      "url": "https://www.zoom.com",
+      "dateTime": "7-02-2022 1:00pm",
+      "duration": "1.5",
+      "module": "CS1101S",
+      "isRecurring": "Y",
+      "tagged": [ "hartinmenz" ]
+    }
+  ],
+  "modules" : [ {
+    "code": "CS2101"
   }, {
-    "name" : "Lecture",
-    "url" : "https://www.zoom.com",
-    "dateTime" : "2-02-2022 2:00pm",
-    "duration" : "2.0",
-    "moduleCode" : "CS2106",
-    "isRecurring" : "Y",
-    "tagged" : [ "colin" ]
+    "code": "CS2105"
   }, {
-    "name" : "Lecture",
-    "url" : "https://www.zoom.com",
-    "dateTime" : "3-02-2022 3:00pm",
-    "duration" : "2.0",
-    "moduleCode" : "CS2030",
-    "isRecurring" : "Y",
-    "tagged" : [ "ooi" ]
+    "code": "CS2106"
   }, {
-    "name" : "Lecture",
-    "url" : "https://www.zoom.com",
-    "dateTime" : "4-02-2022 4:00pm",
-    "duration" : "1.0",
-    "moduleCode" : "CS2040",
-    "isRecurring" : "Y",
-    "tagged" : [ "CKF" ]
+    "code": "CS2030"
   }, {
-    "name" : "Lecture",
-    "url" : "https://www.zoom.com",
-    "dateTime" : "5-02-2022 5:00pm",
-    "duration" : "15.0",
-    "moduleCode" : "CS2100",
-    "isRecurring" : "Y",
-    "tagged" : [ "aaron" ]
+    "code": "CS2040"
   }, {
-    "name" : "Lecture",
-    "url" : "https://www.zoom.com",
-    "dateTime" : "6-02-2022 6:00pm",
-    "duration" : "1.5",
-    "moduleCode" : "CS1101S",
-    "isRecurring" : "Y",
-    "tagged" : [ "hartinmenz" ]
-  } ],
-  "moduleCodes" : [ ]
+    "code": "CS2100"
+  }, {
+    "code": "CS1101S"
+  } ]
 }

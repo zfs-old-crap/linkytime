@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -18,7 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
-import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * Contains helper methods for testing commands.
@@ -34,8 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_DATETIME_TUTORIAL = "18-03-2022 4:00pm";
     public static final String VALID_DURATION_LECTURE = "2";
     public static final String VALID_DURATION_TUTORIAL = "1.5";
-    public static final String VALID_MODULE_CODE_LECTURE = "CS2103";
-    public static final String VALID_MODULE_CODE_TUTORIAL = "CS2101";
+    public static final String VALID_MODULE_LECTURE = "CS2103";
+    public static final String VALID_MODULE_TUTORIAL = "CS2101";
     public static final String VALID_RECURRING_LECTURE = "Y";
     public static final String VALID_RECURRING_TUTORIAL = "N";
     public static final String VALID_TAG_LECTURE = "damith";
@@ -49,8 +49,8 @@ public class CommandTestUtil {
     public static final String DATETIME_DESC_TUTORIAL = " " + PREFIX_DATETIME + VALID_DATETIME_TUTORIAL;
     public static final String DURATION_DESC_LECTURE = " " + PREFIX_DURATION + VALID_DURATION_LECTURE;
     public static final String DURATION_DESC_TUTORIAL = " " + PREFIX_DURATION + VALID_DURATION_TUTORIAL;
-    public static final String MODULE_CODE_DESC_LECTURE = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_LECTURE;
-    public static final String MODULE_CODE_DESC_TUTORIAL = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_TUTORIAL;
+    public static final String MODULE_DESC_LECTURE = " " + PREFIX_MODULE + VALID_MODULE_LECTURE;
+    public static final String MODULE_DESC_TUTORIAL = " " + PREFIX_MODULE + VALID_MODULE_TUTORIAL;
     public static final String RECURRING_DESC_LECTURE = " " + PREFIX_RECURRING + VALID_RECURRING_LECTURE;
     public static final String RECURRING_DESC_TUTORIAL = " " + PREFIX_RECURRING + VALID_RECURRING_TUTORIAL;
     public static final String TAG_DESC_LECTURE = " " + PREFIX_TAG + VALID_TAG_LECTURE;
@@ -60,7 +60,7 @@ public class CommandTestUtil {
     //    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     //    public static final String INVALID_URL_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     //    public static final String INVALID_DATETIME_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    //    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_ADDRESS; // empty string not allowed
+    //    public static final String INVALID_MODULE_DESC = " " + PREFIX_ADDRESS; // empty string not allowed
     //    public static final String INVALID_RECURRING_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
     //    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "two"; // letters not allowed in duration
@@ -98,31 +98,31 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the {@code LinkyTime}, filtered meeting entry list and selected meeting entry remained unchanged
+     * - the {@code LinkyTime}, filtered meeting list and selected meeting remained unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
 
         final LinkyTime expectedLinkyTime = new LinkyTime(actualModel.getLinkyTime());
-        final List<MeetingEntry> expectedFilteredMeetingEntryList =
-                new ArrayList<>(actualModel.getFilteredMeetingEntryList());
+        final List<Meeting> expectedFilteredMeetingList =
+                new ArrayList<>(actualModel.getFilteredMeetingList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedLinkyTime, actualModel.getLinkyTime());
-        assertEquals(expectedFilteredMeetingEntryList, actualModel.getFilteredMeetingEntryList());
+        assertEquals(expectedFilteredMeetingList, actualModel.getFilteredMeetingList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the MeetingEntry at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the Meeting at the given {@code targetIndex} in the
      * {@code model}'s LinkyTime.
      */
-    public static void showMeetingEntryAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingEntryList().size());
+    public static void showMeetingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
 
-        final MeetingEntry meetingEntry = model.getFilteredMeetingEntryList().get(targetIndex.getZeroBased());
-        model.updateFilteredMeetingEntryList(meetingEntry::equals);
+        final Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        model.updateFilteredMeetingList(meeting::equals);
 
-        assertEquals(1, model.getFilteredMeetingEntryList().size());
+        assertEquals(1, model.getFilteredMeetingList().size());
     }
 
 }

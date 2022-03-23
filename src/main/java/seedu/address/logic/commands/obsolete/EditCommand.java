@@ -30,7 +30,7 @@
 ///**
 // * Edits the details of an existing person in the address book.
 // */
-//public class EditCommand extends Command {
+//public class EditMeetingCommand extends Command {
 //
 //    public static final String COMMAND_WORD = "edit";
 //
@@ -58,7 +58,7 @@
 //     * @param index of the person in the filtered person list to edit
 //     * @param editPersonDescriptor details to edit the person with
 //     */
-//    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+//    public EditMeetingCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
 //        requireNonNull(index);
 //        requireNonNull(editPersonDescriptor);
 //
@@ -111,12 +111,12 @@
 //        }
 //
 //        // instanceof handles nulls
-//        if (!(other instanceof EditCommand)) {
+//        if (!(other instanceof EditMeetingCommand)) {
 //            return false;
 //        }
 //
 //        // state check
-//        EditCommand e = (EditCommand) other;
+//        EditMeetingCommand e = (EditMeetingCommand) other;
 //        return index.equals(e.index)
 //                && editPersonDescriptor.equals(e.editPersonDescriptor);
 //    }

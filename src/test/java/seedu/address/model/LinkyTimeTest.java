@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalMeetingEntries.CS2103;
-import static seedu.address.testutil.TypicalMeetingEntries.getTypicalLinkyTime;
+import static seedu.address.testutil.typical.TypicalLinkyTime.getTypicalLinkyTime;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2103;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,16 +16,16 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.meetingentry.exceptions.DuplicateMeetingEntryException;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
+import seedu.address.model.module.Module;
 
 public class LinkyTimeTest {
     private final LinkyTime linkyTime = new LinkyTime();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), linkyTime.getMeetingEntryList());
+        assertEquals(Collections.emptyList(), linkyTime.getMeetingList());
     }
 
     @Test
@@ -41,52 +41,52 @@ public class LinkyTimeTest {
     }
 
     @Test
-    public void resetData_withDuplicateMeetings_throwsDuplicateMeetingEntryException() {
+    public void resetData_withDuplicateMeetings_throwsDuplicateMeetingException() {
         // Two meetings with the same identity fields
-        List<MeetingEntry> newMeetings = Arrays.asList(CS2103, CS2103);
+        List<Meeting> newMeetings = Arrays.asList(CS2103, CS2103);
         LinkyTimeStub newData = new LinkyTimeStub(newMeetings);
 
-        assertThrows(DuplicateMeetingEntryException.class, () -> linkyTime.resetData(newData));
+        assertThrows(DuplicateMeetingException.class, () -> linkyTime.resetData(newData));
     }
 
     @Test
     public void hasMeeting_nullMeeting_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> linkyTime.hasMeetingEntry(null));
+        assertThrows(NullPointerException.class, () -> linkyTime.hasMeeting(null));
     }
 
     @Test
     public void hasMeeting_meetingNotInLinkyTime_returnsFalse() {
-        assertFalse(linkyTime.hasMeetingEntry(CS2103));
+        assertFalse(linkyTime.hasMeeting(CS2103));
     }
 
     @Test
     public void hasMeeting_meetingInLinkyTime_returnsTrue() {
-        linkyTime.addMeetingEntry(CS2103);
-        assertTrue(linkyTime.hasMeetingEntry(CS2103));
+        linkyTime.addMeeting(CS2103);
+        assertTrue(linkyTime.hasMeeting(CS2103));
     }
 
     @Test
     public void getMeetingList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> linkyTime.getMeetingEntryList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> linkyTime.getMeetingList().remove(0));
     }
 
     /**
      * A stub ReadOnlyLinkyTime whose meeting list can violate interface constraints.
      */
     private static class LinkyTimeStub implements ReadOnlyLinkyTime {
-        private final ObservableList<MeetingEntry> meetings = FXCollections.observableArrayList();
-        private final ObservableList<ModuleCode> moduleCodes = FXCollections.observableArrayList();
+        private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
+        private final ObservableList<Module> modules = FXCollections.observableArrayList();
 
-        LinkyTimeStub(Collection<MeetingEntry> meetings) {
+        LinkyTimeStub(Collection<Meeting> meetings) {
             this.meetings.setAll(meetings);
         }
         @Override
-        public ObservableList<MeetingEntry> getMeetingEntryList() {
+        public ObservableList<Meeting> getMeetingList() {
             return meetings;
         }
         @Override
-        public ObservableList<ModuleCode> getModuleCodeList() {
-            return moduleCodes;
+        public ObservableList<Module> getModuleList() {
+            return modules;
         }
     }
 

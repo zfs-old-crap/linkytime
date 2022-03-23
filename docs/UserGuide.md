@@ -1,16 +1,16 @@
 ---
-layout: page
-title: User Guide
+layout: page title: User Guide
 ---
 
-* Table of Contents
-{:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
 
-**LinkyTime** is a desktop app for NUS students to organize their online meeting links, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
+**LinkyTime** is a desktop app for NUS students to organize their online meeting links, optimized for use via a Command
+Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **
+LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -22,17 +22,18 @@ title: User Guide
 
 3. Copy the file to the folder you want to use as the _home folder_ for the app.
 
-4. Double-click the file to start the app. A GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. A GUI similar to the one shown below should appear in a few seconds. Note how
+   the app contains some sample data.<br>
 
-    ![Ui](images/Ui.png)
+   ![Ui](images/Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all the entries.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all the meetings.<br>
 
-    Some example commands you can try:
+   Some example commands you can try:
 
-    * `list` : Lists all meeting entries.
-    * `add n/Tutorial u/https://www.zoom.com d/13mar2022 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with the module code `CS2103` to the list of meeting entries.
-    * `delete 3` : Deletes the 3rd entry shown in the current list.
+    * `list` : Lists all meetings.
+    * `add n/Tutorial u/https://www.zoom.com d/13mar2022 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with the module `CS2103` to the list of meetings.
+    * `delete 3` : Deletes the 3rd meeting shown in the current list.
     * `exit` : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
@@ -70,22 +71,22 @@ title: User Guide
 This section describes each of the commands and features available in **LinkyTime**.
 
 
-### Meeting Entry Management
+### Meeting Management
 
-#### Add a meeting entry: `add`
+#### Add a meeting: `add`
 
-Adds a meeting entry into the entry list.
+Adds a meeting into the meeting list.
 
-Format: `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...`
+Format: `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...`
 
 Parameters:
 
-* `MEETING_NAME` The name of the meeting entry.
+* `MEETING_NAME` The name of the meeting.
 * `URL` The URL to the online meeting.
 * `DATETIME` The date and starting time of the meeting.
-* `MODULE_CODE` The module code of the module that the meeting is for.
+* `MODULE_INDEX` The index of the module in the module list that the meeting is for.
 * `IS_RECURRING` Whether the meeting recurs every week. Given as `Y` or `N`.
-* `TAG` The tags associated with the meeting entry.
+* `TAG` The tags associated with the meeting.
 
 Examples:
 
@@ -93,9 +94,9 @@ Examples:
 * `add n/Midterm u/https://www.google.com d/13mar2022 10am m/CS2106 r/N`
 
 
-#### List all meeting entries : `list`
+#### List all meetings : `list`
 
-View all meeting entries in the entry list and display their respective details.
+View all meetings in the meeting list and display their respective details.
 
 Format: `list`
 
@@ -105,24 +106,35 @@ Details include:
 * Meeting name
 * Meeting date and time
 
+#### Find a meeting : `find`
 
-#### Delete a meeting entry : `delete`
+Find meetings in the meeting list that matches the provided keywords and displays their respective details.
 
-Deletes the specified meeting entry and all associated fields from the entry list.
+Format: `find KEYWORD MORE_KEYWORDS...`
+
+* Displays all meetings with name, module code or tags that matches any of the provided keywords.
+
+Examples:
+
+* `find CS2101 Aaron` displays all meetings with fields that matches `CS2101` and `Aaron`.
+
+#### Delete a meeting : `delete`
+
+Deletes the specified meeting and all associated fields from the meeting list.
 
 Format: `delete INDEX`
 
-* Deletes the meeting entry at the specified `INDEX`.
-* The index refers to the index number shown in the displayed entry list.
-* The index **must be a positive integer** 1, 2, 3, …​ that is within the range of entries.
+* Deletes the meeting at the specified `INDEX`.
+* The index refers to the index number shown in the displayed meeting list.
+* The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the meeting list.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd meeting entry in the entry list.
+* `list` followed by `delete 2` deletes the 2nd meeting in the meeting list.
 
 
-#### Clearing all entries : `clear`
+#### Clearing all meetings : `clear`
 
-Clears all meeting entries from the entry list.
+Clears all meetings from the meeting list.
 
 Format: `clear`
 
@@ -147,12 +159,12 @@ Format: `exit`
 
 #### Saving the data
 
-Your meeting entries are saved to your computer automatically upon running any command that changes the data. There is no need to save manually.
+Your meetings are saved to your computer automatically upon running any command that changes the data. There is no need to save manually.
 
 
 #### Editing the data file
 
-The meeting entries are saved in a JSON file at `[JAR file location]/data/app.json`. Advanced users are welcome to update their entries directly by editing that file.
+The meetings are saved in a JSON file at `[JAR file location]/data/app.json`. Advanced users are welcome to update their meetings directly by editing that file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
@@ -168,21 +180,32 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty `app.json` data file it creates with the equivalent `app.json` data file from your previous LinkyTime installation.
+**A**: Install the app in the other computer and overwrite the empty `app.json` data file it creates with the
+equivalent `app.json` data file from your previous LinkyTime installation.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_CODE r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
-**List** | `list`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Clear** | `clear`
-**Edit** | _Coming soon_
-**Find** | _Coming soon_
-**Sort** | _Coming soon_
-**Open** | _Coming soon_
-**Help** | `help`
-**Exit** | `exit`
+| Action     | Format, Examples                                                                                                                                                                    |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **
+Add**    | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz` |
+| **
+List**   | `list`                                                                                                                                                                              |
+| **
+Find**   | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                          |
+| **
+Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
+| **
+Clear**  | `clear`                                                                                                                                                                             |
+| **Edit**   | _Coming
+soon_                                                                                                                                                                       |
+| **Sort**   | _Coming
+soon_                                                                                                                                                                       |
+| **Open**   | _Coming
+soon_                                                                                                                                                                       |
+| **
+Help**   | `help`                                                                                                                                                                              |
+| **
+Exit**   | `exit`                                                                                                                                                                              |

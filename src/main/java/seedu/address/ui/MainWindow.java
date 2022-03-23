@@ -16,6 +16,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.meeting.MeetingListPanel;
+import seedu.address.ui.module.ModuleListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,8 +33,8 @@ public class MainWindow extends UiPart<Stage> {
     private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private MeetingEntryListPanel meetingEntryListPanel;
-    private ModuleCodeListPanel moduleCodeListPanel;
+    private MeetingListPanel meetingListPanel;
+    private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -43,10 +45,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane meetingEntryListPanelPlaceholder;
+    private StackPane meetingListPanelPlaceholder;
 
     @FXML
-    private StackPane moduleCodeListPanelPlaceholder;
+    private StackPane moduleListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,11 +116,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        meetingEntryListPanel = new MeetingEntryListPanel(logic.getFilteredMeetingEntryList());
-        meetingEntryListPanelPlaceholder.getChildren().add(meetingEntryListPanel.getRoot());
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
-        moduleCodeListPanel = new ModuleCodeListPanel(logic.getFilteredModuleCodeList());
-        moduleCodeListPanelPlaceholder.getChildren().add(moduleCodeListPanel.getRoot());
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -170,8 +172,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public MeetingEntryListPanel getMeetingEntryListPanel() {
-        return meetingEntryListPanel;
+    public MeetingListPanel getMeetingListPanel() {
+        return meetingListPanel;
     }
 
     /**

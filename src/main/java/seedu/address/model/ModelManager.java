@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.module.Module;
 
 /**
  * Represents the in-memory model of the LinkyTime data.
@@ -22,8 +22,8 @@ public class ModelManager implements Model {
 
     private final LinkyTime linkyTime;
     private final UserPrefs userPrefs;
-    private final FilteredList<MeetingEntry> filteredMeetingEntries;
-    private final FilteredList<ModuleCode> filteredModuleCodes;
+    private final FilteredList<Meeting> filteredMeetings;
+    private final FilteredList<Module> filteredModules;
 
     /**
      * Initializes a ModelManager with the given linkyTime and userPrefs.
@@ -34,8 +34,8 @@ public class ModelManager implements Model {
         logger.fine("Initializing with LinkyTime: " + linkyTime + " and user prefs " + userPrefs);
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredMeetingEntries = new FilteredList<>(this.linkyTime.getMeetingEntryList());
-        filteredModuleCodes = new FilteredList<>(this.linkyTime.getModuleCodeList());
+        filteredMeetings = new FilteredList<>(this.linkyTime.getMeetingList());
+        filteredModules = new FilteredList<>(this.linkyTime.getModuleList());
     }
 
     public ModelManager() {
@@ -89,67 +89,73 @@ public class ModelManager implements Model {
         return linkyTime;
     }
 
-    // =========== MeetingEntry ============================================================================
+    // =========== Meeting ============================================================================
 
     @Override
-    public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
-        requireNonNull(meetingEntry);
-        return linkyTime.hasMeetingEntry(meetingEntry);
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return linkyTime.hasMeeting(meeting);
     }
 
     @Override
-    public void deleteMeetingEntry(MeetingEntry target) {
-        linkyTime.removeMeetingEntry(target);
+    public void deleteMeeting(Meeting target) {
+        linkyTime.removeMeeting(target);
     }
 
     @Override
-    public void addMeetingEntry(MeetingEntry meetingEntry) {
-        linkyTime.addMeetingEntry(meetingEntry);
-        updateFilteredMeetingEntryList(PREDICATE_SHOW_ALL_MEETING_ENTRIES);
+    public void addMeeting(Meeting meeting) {
+        linkyTime.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     @Override
-    public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
-        requireAllNonNull(target, editedMeetingEntry);
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
 
-        linkyTime.setMeetingEntry(target, editedMeetingEntry);
+        linkyTime.setMeeting(target, editedMeeting);
     }
 
-    // =========== Filtered MeetingEntry List Accessors ====================================================
+    // =========== Filtered Meeting List Accessors ====================================================
 
     @Override
-    public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
-        return filteredMeetingEntries;
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
     }
 
     @Override
-    public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
         // Forces the GUI to perform a complete re-render to reflect updated recurrent meeting date and times.
         // This is a temporary workaround until a coherent solution comes about.
-        filteredMeetingEntries.setPredicate(m -> false);
-        filteredMeetingEntries.setPredicate(predicate);
+        filteredMeetings.setPredicate(m -> false);
+        filteredMeetings.setPredicate(predicate);
     }
 
-    // =========== ModuleCode ==============================================================================
+    // =========== Module ==================================================================================
 
     @Override
-    public boolean hasModuleCode(ModuleCode moduleCode) {
-        requireNonNull(moduleCode);
-        return linkyTime.hasModuleCode(moduleCode);
-    }
-
-    // =========== Filtered ModuleCode List Accessors ======================================================
-
-    @Override
-    public ObservableList<ModuleCode> getFilteredModuleCodeList() {
-        return filteredModuleCodes;
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return linkyTime.hasModule(module);
     }
 
     @Override
-    public void updateFilteredModuleCodeList(Predicate<ModuleCode> predicate) {
+    public void addModule(Module module) {
+        linkyTime.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    // =========== Filtered Module List Accessors ==========================================================
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
+    }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        filteredModuleCodes.setPredicate(predicate);
+        filteredModules.setPredicate(predicate);
     }
 
     @Override
@@ -167,8 +173,8 @@ public class ModelManager implements Model {
         // state check
         final ModelManager other = (ModelManager) obj;
         return userPrefs.equals(other.userPrefs)
-                && filteredMeetingEntries.equals(other.filteredMeetingEntries)
-                && filteredModuleCodes.equals(other.filteredModuleCodes);
+                && filteredMeetings.equals(other.filteredMeetings)
+                && filteredModules.equals(other.filteredModules);
     }
 
 }

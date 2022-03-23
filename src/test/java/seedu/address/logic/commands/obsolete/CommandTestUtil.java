@@ -6,10 +6,10 @@
 //import seedu.address.logic.commands.Command;
 //import seedu.address.logic.commands.CommandResult;
 //import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.logic.commands.person.EditCommand;
+//import seedu.address.logic.commands.person.EditMeetingCommand;
 //import seedu.address.model.LinkyTime;
 //import seedu.address.model.Model;
-//import seedu.address.model.meetingentry.MeetingEntry;
+//import seedu.address.model.meetingentry.Meeting;
 //import seedu.address.testutil.EditPersonDescriptorBuilder;
 //
 //import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -87,8 +87,8 @@
 //    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
 //    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 //
-//    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-//    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+//    public static final EditMeetingCommand.EditPersonDescriptor DESC_AMY;
+//    public static final EditMeetingCommand.EditPersonDescriptor DESC_BOB;
 //
 //    static {
 //        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -136,7 +136,7 @@
 //        // only do so by copying its components.
 //
 //        final LinkyTime expectedLinkyTime = new LinkyTime(actualModel.getLinkyTime());
-//        final List<MeetingEntry> expectedFilteredMeetingEntryList =
+//        final List<Meeting> expectedFilteredMeetingEntryList =
 //                new ArrayList<>(actualModel.getFilteredMeetingEntryList());
 //
 //        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
@@ -144,13 +144,13 @@
 //        assertEquals(expectedFilteredMeetingEntryList, actualModel.getFilteredMeetingEntryList());
 //    }
 //    /**
-//     * Updates {@code model}'s filtered list to show only the MeetingEntry at the given {@code targetIndex} in the
+//     * Updates {@code model}'s filtered list to show only the Meeting at the given {@code targetIndex} in the
 //     * {@code model}'s LinkyTime.
 //     */
 //    public static void showMeetingEntryAtIndex(Model model, Index targetIndex) {
 //        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingEntryList().size());
 //
-//        final MeetingEntry meetingEntry = model.getFilteredMeetingEntryList().get(targetIndex.getZeroBased());
+//        final Meeting meetingEntry = model.getFilteredMeetingEntryList().get(targetIndex.getZeroBased());
 //        model.updateFilteredMeetingEntryList(meetingEntry::equals);
 //
 //        assertEquals(1, model.getFilteredMeetingEntryList().size());

@@ -5,16 +5,16 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.meetingentry.MeetingEntry;
-import seedu.address.model.modulecode.ModuleCode;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.module.Module;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<MeetingEntry> PREDICATE_SHOW_ALL_MEETING_ENTRIES = unused -> true;
-    Predicate<ModuleCode> PREDICATE_SHOW_ALL_MODULE_CODES = unused -> true;
+    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     // =========== UserPrefs ===============================================================================
 
@@ -58,57 +58,63 @@ public interface Model {
     /** Returns LinkyTime */
     ReadOnlyLinkyTime getLinkyTime();
 
-    // =========== MeetingEntry ============================================================================
+    // =========== Meeting ============================================================================
 
     /**
-     * Returns true if a meeting entry that is identical to {@code meetingEntry} exists in LinkyTime.
+     * Returns true if a meeting that is identical to {@code meeting} exists in LinkyTime.
      */
-    boolean hasMeetingEntry(MeetingEntry meetingEntry);
+    boolean hasMeeting(Meeting meeting);
 
     /**
-     * Deletes the given meeting entry.
-     * The meeting entry must exist in LinkyTime.
+     * Deletes the given meeting.
+     * The meeting must exist in LinkyTime.
      */
-    void deleteMeetingEntry(MeetingEntry target);
+    void deleteMeeting(Meeting target);
 
     /**
-     * Adds the given meeting entry.
-     * {@code meetingEntry} must not already exist in LinkyTime.
+     * Adds the given meeting.
+     * {@code meeting} must not already exist in LinkyTime.
      */
-    void addMeetingEntry(MeetingEntry meetingEntry);
+    void addMeeting(Meeting meeting);
 
     /**
-     * Replaces the given meeting entry {@code target} with {@code editedMeetingEntry}.
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
      * {@code target} must exist in LinkyTime.
      */
-    void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry);
+    void setMeeting(Meeting target, Meeting editedMeeting);
 
-    // =========== Filtered MeetingEntry List Accessors ====================================================
+    // =========== Filtered Meeting List Accessors ====================================================
 
-    /** Returns an unmodifiable view of the filtered meeting entry list */
-    ObservableList<MeetingEntry> getFilteredMeetingEntryList();
+    /** Returns an unmodifiable view of the filtered meeting list */
+    ObservableList<Meeting> getFilteredMeetingList();
 
     /**
-     * Updates the filter of the filtered meeting entry list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate);
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
-    // =========== ModuleCode ==============================================================================
+    // =========== Module ==================================================================================
 
     /**
-     * Returns true if a module code that is identical to {@code moduleCode} exists in LinkyTime.
+     * Returns true if a module that is identical to {@code module} exists in LinkyTime.
      */
-    boolean hasModuleCode(ModuleCode moduleCode);
-
-    // =========== Filtered ModuleCode List Accessors ======================================================
-
-    /** Returns an unmodifiable view of the filtered module code list */
-    ObservableList<ModuleCode> getFilteredModuleCodeList();
+    boolean hasModule(Module module);
 
     /**
-     * Updates the filter of the filtered module code list to filter by the given {@code predicate}.
+     * Adds the given module.
+     * {@code module} must not already exist in LinkyTime.
+     */
+    void addModule(Module module);
+
+    // =========== Filtered Module List Accessors ==========================================================
+
+    /** Returns an unmodifiable view of the filtered module list */
+    ObservableList<Module> getFilteredModuleList();
+
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredModuleCodeList(Predicate<ModuleCode> predicate);
+    void updateFilteredModuleList(Predicate<Module> predicate);
 }
