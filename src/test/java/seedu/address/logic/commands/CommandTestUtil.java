@@ -31,12 +31,12 @@ public class CommandTestUtil {
     public static final String VALID_URL_LECTURE = "https://www.google.com";
     public static final String VALID_URL_TUTORIAL = "https://www.zoom.com";
     public static final String VALID_DATETIME_LECTURE = "18-03-2022 2:00pm";
-    public static final String VALID_DATETIME_TUTORIAL = "18-03-2022 4:00pm";
+    public static final String VALID_DATETIME_TUTORIAL = "1-2-2022 1:00pm";
     public static final String VALID_DURATION_LECTURE = "2";
     public static final String VALID_DURATION_TUTORIAL = "1.5";
     public static final String VALID_MODULE_LECTURE = "CS2103";
     public static final String VALID_MODULE_TUTORIAL = "CS2101";
-    public static final String VALID_RECURRING_LECTURE = "Y";
+    public static final String VALID_RECURRING_LECTURE = "N";
     public static final String VALID_RECURRING_TUTORIAL = "N";
     public static final String VALID_TAG_LECTURE = "damith";
     public static final String VALID_TAG_TUTORIAL = "amy";
