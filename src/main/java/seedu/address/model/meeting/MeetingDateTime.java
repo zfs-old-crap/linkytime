@@ -1,5 +1,7 @@
 package seedu.address.model.meeting;
 
+import seedu.address.model.meeting.exceptions.InvalidDateTimeException;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -86,10 +88,7 @@ public class MeetingDateTime {
         try {
             return LocalDateTime.parse(dateTime, INPUT_FORMAT);
         } catch (DateTimeParseException e) {
-            // TODO: update this once we've figured out exception handling.
-            // e.printStackTrace();
-            // throw e;
-            return null;
+            throw new InvalidDateTimeException(String.format("%s is not a valid date time", dateTime));
         }
     }
 
