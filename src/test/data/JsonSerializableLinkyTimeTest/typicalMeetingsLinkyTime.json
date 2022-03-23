@@ -3,7 +3,7 @@
     {
       "name": "Tutorial",
       "url": "https://www.zoom.com",
-      "dateTime": "1-02-2022 1:00pm",
+      "dateTime": "01-02-2022 1:00pm",
       "duration": "1.5",
       "module": "CS2101",
       "isRecurring": "N",
@@ -11,7 +11,7 @@
     }, {
       "name": "Lecture",
       "url": "https://www.zoom.com",
-      "dateTime": "2-02-2022 1:00pm",
+      "dateTime": "02-02-2022 1:00pm",
       "duration": "2.0",
       "module": "CS2105",
       "isRecurring": "N",
@@ -19,7 +19,7 @@
     }, {
       "name": "Lecture",
       "url": "https://www.zoom.com",
-      "dateTime": "3-02-2022 1:00pm",
+      "dateTime": "03-02-2022 1:00pm",
       "duration": "2.0",
       "module": "CS2106",
       "isRecurring": "N",
@@ -27,7 +27,7 @@
     }, {
       "name": "Lecture",
       "url": "https://www.zoom.com",
-      "dateTime": "4-02-2022 1:00pm",
+      "dateTime": "04-02-2022 1:00pm",
       "duration": "2.0",
       "module": "CS2030",
       "isRecurring": "N",
@@ -35,7 +35,7 @@
     }, {
       "name": "Lecture",
       "url": "https://www.zoom.com",
-      "dateTime": "5-02-2022 1:00pm",
+      "dateTime": "05-02-2022 1:00pm",
       "duration": "1.0",
       "module": "CS2040",
       "isRecurring": "N",
@@ -43,7 +43,7 @@
     }, {
       "name": "Lecture",
       "url": "https://www.zoom.com",
-      "dateTime": "6-02-2022 1:00pm",
+      "dateTime": "06-02-2022 1:00pm",
       "duration": "15.0",
       "module": "CS2100",
       "isRecurring": "N",
@@ -51,7 +51,7 @@
     }, {
       "name": "Lecture",
       "url": "https://www.zoom.com",
-      "dateTime": "7-02-2022 1:00pm",
+      "dateTime": "07-02-2022 1:00pm",
       "duration": "1.5",
       "module": "CS1101S",
       "isRecurring": "N",

@@ -27,38 +27,37 @@ import seedu.address.testutil.meeting.MeetingBuilder;
  */
 public class TypicalMeetings {
     public static final Meeting CS2105 = new MeetingBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("2-02-2022 1:00pm").withDuration("2")
+            .withUrl("https://www.zoom.com").withDateTime("02-02-2022 1:00pm").withDuration("2")
             .withModule("CS2105").withIsRecurring("N")
             .withTags("roger").build();
     public static final Meeting CS2106 = new MeetingBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("3-02-2022 1:00pm").withDuration("2")
+            .withUrl("https://www.zoom.com").withDateTime("03-02-2022 1:00pm").withDuration("2")
             .withModule("CS2106").withIsRecurring("N")
             .withTags("colin").build();
     public static final Meeting CS2030 = new MeetingBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("4-02-2022 1:00pm").withDuration("2")
+            .withUrl("https://www.zoom.com").withDateTime("04-02-2022 1:00pm").withDuration("2")
             .withModule("CS2030").withIsRecurring("N")
             .withTags("ooi").build();
     public static final Meeting CS2040 = new MeetingBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("5-02-2022 1:00pm").withDuration("1")
+            .withUrl("https://www.zoom.com").withDateTime("05-02-2022 1:00pm").withDuration("1")
             .withModule("CS2040").withIsRecurring("N")
             .withTags("CKF").build();
     public static final Meeting CS2100 = new MeetingBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("6-02-2022 1:00pm").withDuration("15")
+            .withUrl("https://www.zoom.com").withDateTime("06-02-2022 1:00pm").withDuration("15")
             .withModule("CS2100").withIsRecurring("N")
             .withTags("aaron").build();
     public static final Meeting CS2107 = new MeetingBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("7-02-2022 1:00pm").withDuration("1.7")
+            .withUrl("https://www.zoom.com").withDateTime("07-02-2022 1:00pm").withDuration("1.7")
             .withModule("CS2107").withIsRecurring("N")
             .withTags("sufatrio").build();
 
     // Manually added
     public static final Meeting PC1221 = new MeetingBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("7-02-2022 1:00pm").withDuration("2")
+            .withUrl("https://www.zoom.com").withDateTime("07-02-2022 1:00pm").withDuration("2")
             .withModule("PC1221").withIsRecurring("N")
             .withTags("proftay").build();
-
     public static final Meeting CS1101S = new MeetingBuilder().withName("Lecture")
-            .withUrl("https://www.zoom.com").withDateTime("7-02-2022 1:00pm").withDuration("1.5")
+            .withUrl("https://www.zoom.com").withDateTime("07-02-2022 1:00pm").withDuration("1.5")
             .withModule("CS1101S").withIsRecurring("N")
             .withTags("hartinmenz").build();
 
