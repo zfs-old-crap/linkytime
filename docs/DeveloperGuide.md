@@ -166,7 +166,7 @@ There is only one optional field which is the tags of the meeting.
 
 Below is the sequence diagram for the execution of `AddMeetingCommand`
 
-![`AddMeetingCommand` sequence diagram](images/AddSequenceDiagram.png)
+![`AddMeetingCommand` sequence diagram](images/AddMeetingSequenceDiagram.png)
 
 Step 1:
 The user enters the command for adding a meeting, e.g. `add n/Lecture ...`
@@ -181,7 +181,7 @@ Step 4:
 The `LogicManager` subsequently invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the new meeting into the list.
 
 Step 5:
-The `Model` will then call its own `updateFilteredMeetingEntryList` method in order to show all the meetings, which will cause the newly added meeting to show as well.
+The `Model` will then call its own `updateFilteredMeetingList` method in order to update the model's filter to display all meetings.
 
 ##### Design considerations:
 

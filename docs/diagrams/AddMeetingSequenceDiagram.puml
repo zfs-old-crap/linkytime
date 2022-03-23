@@ -48,10 +48,10 @@ deactivate LinkyTimeParser
 LogicManager -> AddMeetingCommand : execute()
 activate AddMeetingCommand
 
-AddMeetingCommand -> Model : addMeetingEntry(toAdd)
+AddMeetingCommand -> Model : addMeeting(toAdd)
 activate Model
 
-Model -> Model : updateFilteredMeetingEntryList(PRED...)
+Model -> Model : updateFilteredMeetingList(PRED...)
 
 Model --> AddMeetingCommand
 deactivate Model
