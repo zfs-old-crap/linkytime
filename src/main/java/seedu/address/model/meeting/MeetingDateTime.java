@@ -1,7 +1,5 @@
 package seedu.address.model.meeting;
 
-import seedu.address.model.meeting.exceptions.InvalidDateTimeException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,6 +7,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+
+import seedu.address.model.meeting.exceptions.InvalidDateTimeException;
 
 /**
  * Represents a Meeting's date and time in the meeting list.
