@@ -234,10 +234,44 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Modules
 
-_{Explain here how the data archiving feature will be implemented}_
+The Modules component consists of the following set of features: Add Module, Edit Module, Delete Module.
 
+All module-related commands are prefixed with an `m` to distinguish it from meeting-related commands.
+
+#### The Module class
+
+The Module class consists of a single field, and input validation happens directly inside the class via `Module::isValidModule`.
+
+The `Module` objects are stored in a `UniqueModuleList` which is held by `LinkyTime`.
+
+##### Design considerations:
+
+* **Alternative 1 (current choice):** Store the module code string directly in the Module object.
+  * Pros: Easy to implement and understand.
+  * Cons: Difficult to add additional fields in the future.
+* **Alternative 2:** Abstract the field out as a separate class.
+  * Pros: 
+    * More object-oriented approach.
+    * Responsibility of field verification would be done by the field class instead of the Module class.
+  * Cons:
+    * Over-abstraction of the Module class for the current implementation which consists of only one field.
+    * May not be intuitive to understand at first glance.
+
+As we do not intend to contain any additional fields within the Module object, we opted for a simpler approach in its design.
+
+#### Delete Module feature
+
+This section explains the implementation of the Delete Module feature via the `mdelete` command.
+
+The `DeleteModuleCommand` causes the specified module to be deleted from the application.
+
+If there are meetings that are tagged under this module, the command execution is blocked and an error message is displayed to the user. A proposed extension of this feature would be to include a flag that allows the user to force the deletion of the module and its associated meetings.
+
+This process is summarized in the diagram below.
+
+![DeleteModuleActivityDiagram](images/DeleteModuleActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
