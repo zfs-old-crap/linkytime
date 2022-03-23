@@ -34,7 +34,8 @@ public class SortMeetingCommandParser implements Parser<SortMeetingCommand> {
         case SortMeetingChronologicalCommand.SORT_FUNCTION_WORD:
             return new SortMeetingChronologicalCommand();
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_SORT_FUNCTION);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortMeetingCommand.MESSAGE_USAGE));
         }
     }
 }

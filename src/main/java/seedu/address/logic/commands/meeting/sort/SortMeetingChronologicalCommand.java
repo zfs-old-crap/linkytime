@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.module.Module;
+import seedu.address.model.meeting.MeetingDateTime;
 
 /**
  * Sorts and lists all upcoming meetings in LinkyTime in chronological order, starting from
@@ -19,9 +19,10 @@ public class SortMeetingChronologicalCommand extends SortMeetingCommand {
      */
     public SortMeetingChronologicalCommand() {
         super((o1, o2) -> {
-            Module m1 = o1.getModule();
-            Module m2 = o2.getModule();
-            return m1.compareTo(m2);
+            MeetingDateTime d1 = o1.getDateTime();
+            MeetingDateTime d2 = o2.getDateTime();
+            //return d1.compareTo(d2);
+            return 1;
         });
     }
 
