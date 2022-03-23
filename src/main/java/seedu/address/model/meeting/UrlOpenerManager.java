@@ -1,5 +1,7 @@
 package seedu.address.model.meeting;
 
+import static java.util.Objects.requireNonNull;
+
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -10,7 +12,7 @@ import seedu.address.model.meeting.exceptions.UnsupportedDesktopException;
 
 public class UrlOpenerManager implements UrlOpener {
     private final Desktop desktop;
-    private URI uri;
+    private final URI uri;
 
     /**
      * Creates a {@code UrlOpenerManager} and checks if the device supports
@@ -19,7 +21,10 @@ public class UrlOpenerManager implements UrlOpener {
      * @throws UnsupportedDesktopException thrown when the {@code Desktop} class or
      *                                     {@code Desktop::browse} method is unsupported
      */
-    public UrlOpenerManager() throws UnsupportedDesktopException {
+    public UrlOpenerManager(URL url) throws UnsupportedDesktopException, URISyntaxException {
+        requireNonNull(url);
+        uri = url.toURI();
+
         if (!Desktop.isDesktopSupported()) {
             throw new UnsupportedDesktopException();
         }
@@ -30,13 +35,25 @@ public class UrlOpenerManager implements UrlOpener {
     }
 
     @Override
-    public void setUri(URL url) throws URISyntaxException {
-        uri = url.toURI();
+    public void open() throws SecurityException, IOException {
+        desktop.browse(uri);
     }
 
     @Override
-    public void open() throws SecurityException, IOException {
-        desktop.browse(uri);
+    public String toString() {
+        return uri.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UrlOpenerManager // instanceof handles nulls
+                && uri.equals(((UrlOpenerManager) other).uri)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return uri.hashCode();
     }
 }
 

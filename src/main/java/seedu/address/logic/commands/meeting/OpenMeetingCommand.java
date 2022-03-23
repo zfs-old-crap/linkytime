@@ -53,13 +53,9 @@ public class OpenMeetingCommand extends Command {
 
         final UrlOpener urlOpener;
         try {
-            urlOpener = new UrlOpenerManager();
+            urlOpener = new UrlOpenerManager(urlToOpen);
         } catch (UnsupportedDesktopException ex) {
             throw new CommandException(ex.getMessage(), ex);
-        }
-
-        try {
-            urlOpener.setUri(urlToOpen);
         } catch (URISyntaxException ex) {
             throw new CommandException(MESSAGE_INVALID_URL);
         }
