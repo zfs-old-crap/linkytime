@@ -8,7 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.meetingentry.MeetingEntry;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
 
 /**
@@ -56,32 +56,32 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasMeetingEntry(MeetingEntry meetingEntry) {
+    public boolean hasMeeting(Meeting meeting) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void deleteMeetingEntry(MeetingEntry target) {
+    public void deleteMeeting(Meeting target) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void addMeetingEntry(MeetingEntry meetingEntry) {
+    public void addMeeting(Meeting meeting) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setMeetingEntry(MeetingEntry target, MeetingEntry editedMeetingEntry) {
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ObservableList<MeetingEntry> getFilteredMeetingEntryList() {
+    public ObservableList<Meeting> getFilteredMeetingList() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateFilteredMeetingEntryList(Predicate<MeetingEntry> predicate) {
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 

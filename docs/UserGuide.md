@@ -27,15 +27,13 @@ LinkyTime** can get your meeting management tasks done faster than traditional G
 
    ![Ui](images/Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will
-   list all the entries.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all the meetings.<br>
 
    Some example commands you can try:
 
-    * `list` : Lists all meeting entries.
-    * `add n/Tutorial u/https://www.zoom.com d/13mar2022 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with
-      the module `CS2103` to the list of meeting entries.
-    * `delete 3` : Deletes the 3rd entry shown in the current list.
+    * `list` : Lists all meetings.
+    * `add n/Tutorial u/https://www.zoom.com d/13mar2022 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with the module `CS2103` to the list of meetings.
+    * `delete 3` : Deletes the 3rd meeting shown in the current list.
     * `exit` : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
@@ -72,22 +70,23 @@ LinkyTime** can get your meeting management tasks done faster than traditional G
 
 This section describes each of the commands and features available in **LinkyTime**.
 
-### Meeting Entry Management
 
-#### Add a meeting entry: `add`
+### Meeting Management
 
-Adds a meeting entry into the entry list.
+#### Add a meeting: `add`
+
+Adds a meeting into the meeting list.
 
 Format: `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...`
 
 Parameters:
 
-* `MEETING_NAME` The name of the meeting entry.
+* `MEETING_NAME` The name of the meeting.
 * `URL` The URL to the online meeting.
 * `DATETIME` The date and starting time of the meeting.
 * `MODULE_INDEX` The index of the module in the module list that the meeting is for.
 * `IS_RECURRING` Whether the meeting recurs every week. Given as `Y` or `N`.
-* `TAG` The tags associated with the meeting entry.
+* `TAG` The tags associated with the meeting.
 
 Examples:
 
@@ -95,9 +94,9 @@ Examples:
 * `add n/Midterm u/https://www.google.com d/13mar2022 10am m/CS2106 r/N`
 
 
-#### List all meeting entries : `list`
+#### List all meetings : `list`
 
-View all meeting entries in the entry list and display their respective details.
+View all meetings in the meeting list and display their respective details.
 
 Format: `list`
 
@@ -107,9 +106,9 @@ Details include:
 * Meeting name
 * Meeting date and time
 
-#### Find a meeting entry : `find`
+#### Find a meeting : `find`
 
-Find meetings in the entry list that matches the provided keywords and displays their respective details.
+Find meetings in the meeting list that matches the provided keywords and displays their respective details.
 
 Format: `find KEYWORD MORE_KEYWORDS...`
 
@@ -117,25 +116,25 @@ Format: `find KEYWORD MORE_KEYWORDS...`
 
 Examples:
 
-* `find CS2101 Aaron` displays all meetings with fields that matches `CS2101` or `Aaron`.
+* `find CS2101 Aaron` displays all meetings with fields that matches `CS2101` and `Aaron`.
 
-#### Delete a meeting entry : `delete`
+#### Delete a meeting : `delete`
 
-Deletes the specified meeting entry and all associated fields from the entry list.
+Deletes the specified meeting and all associated fields from the meeting list.
 
 Format: `delete INDEX`
 
-* Deletes the meeting entry at the specified `INDEX`.
-* The index refers to the index number shown in the displayed entry list.
-* The index **must be a positive integer** 1, 2, 3, …​ that is within the range of entries.
+* Deletes the meeting at the specified `INDEX`.
+* The index refers to the index number shown in the displayed meeting list.
+* The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the meeting list.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd meeting entry in the entry list.
+* `list` followed by `delete 2` deletes the 2nd meeting in the meeting list.
 
 
-#### Clearing all entries : `clear`
+#### Clearing all meetings : `clear`
 
-Clears all meeting entries from the entry list.
+Clears all meetings from the meeting list.
 
 Format: `clear`
 
@@ -160,12 +159,12 @@ Format: `exit`
 
 #### Saving the data
 
-Your meeting entries are saved to your computer automatically upon running any command that changes the data. There is no need to save manually.
+Your meetings are saved to your computer automatically upon running any command that changes the data. There is no need to save manually.
 
 
 #### Editing the data file
 
-The meeting entries are saved in a JSON file at `[JAR file location]/data/app.json`. Advanced users are welcome to update their entries directly by editing that file.
+The meetings are saved in a JSON file at `[JAR file location]/data/app.json`. Advanced users are welcome to update their meetings directly by editing that file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.

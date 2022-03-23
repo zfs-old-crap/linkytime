@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.regex.Matcher;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -49,7 +50,7 @@ public class JsonAdaptedUserPrefs {
             final UserPrefs userPrefs = new UserPrefs();
             userPrefs.setGuiSettings(guiSettings);
             final String reliableFilePath = filePathString.replaceAll("[/\\\\]",
-                    "\\" + File.separator);
+                    Matcher.quoteReplacement(File.separator));
             userPrefs.setLinkyTimeFilePath(Paths.get(reliableFilePath));
             return userPrefs;
         } catch (Exception e) {
