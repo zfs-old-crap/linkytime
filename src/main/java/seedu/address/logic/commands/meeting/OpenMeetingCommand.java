@@ -2,10 +2,9 @@ package seedu.address.logic.commands.meeting;
 
 import static java.util.Objects.requireNonNull;
 
-import java.awt.Desktop;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -15,7 +14,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.MeetingUrl;
+import seedu.address.model.meeting.UrlOpener;
+import seedu.address.model.meeting.UrlOpenerManager;
+import seedu.address.model.meeting.exceptions.UnsupportedDesktopException;
 
 public class OpenMeetingCommand extends Command {
     public static final String COMMAND_WORD = "open";
@@ -27,12 +28,9 @@ public class OpenMeetingCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Opened Meeting Entry: %1$s";
-
-    public static final String MESSAGE_URL_UNABLE_TO_OPEN = "URL provided cannot be opened!";
-    public static final String MESSAGE_SYSTEM_UNSUPPORTED = "Unsupported by user system!";
+    public static final String MESSAGE_INVALID_URL = "URL provided cannot be opened!";
     public static final String MESSAGE_SYSTEM_PERMISSION_DENIED = "Permission denied by user system!";
     public static final String MESSAGE_SYSTEM_BROWSER_ERROR = "Unable to launch default system browser!";
-
 
     private final Index targetIndex;
 
@@ -50,28 +48,28 @@ public class OpenMeetingCommand extends Command {
         }
 
         final Meeting meetingToOpen = lastShownList.get(targetIndex.getZeroBased());
-        final MeetingUrl meetingUrlToOpen = meetingToOpen.getUrl();
+        final URL urlToOpen = meetingToOpen.getUrl().meetingUrl;
+        requireNonNull(urlToOpen);
 
-        if (!Desktop.isDesktopSupported()) {
-            throw new CommandException(MESSAGE_SYSTEM_UNSUPPORTED);
+        final UrlOpener urlOpener;
+        try {
+            urlOpener = new UrlOpenerManager();
+        } catch (UnsupportedDesktopException ex) {
+            throw new CommandException(ex.getMessage(), ex);
         }
-        final Desktop desktop = Desktop.getDesktop();
-
-        if (!desktop.isSupported(Desktop.Action.BROWSE)) {
-            throw new CommandException(MESSAGE_SYSTEM_UNSUPPORTED);
-        }
-
-        requireNonNull(meetingUrlToOpen.meetingUrl);
 
         try {
-            final URI uri = meetingUrlToOpen.meetingUrl.toURI();
-            desktop.browse(uri);
+            urlOpener.setUri(urlToOpen);
         } catch (URISyntaxException ex) {
-            throw new CommandException(MESSAGE_URL_UNABLE_TO_OPEN, ex);
+            throw new CommandException(MESSAGE_INVALID_URL);
+        }
+
+        try {
+            urlOpener.open();
         } catch (IOException ex) {
-            throw new CommandException(MESSAGE_SYSTEM_BROWSER_ERROR, ex);
+            throw new CommandException(MESSAGE_SYSTEM_BROWSER_ERROR);
         } catch (SecurityException ex) {
-            throw new CommandException(MESSAGE_SYSTEM_PERMISSION_DENIED, ex);
+            throw new CommandException(MESSAGE_SYSTEM_PERMISSION_DENIED);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToOpen));
