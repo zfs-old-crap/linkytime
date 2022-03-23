@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -96,6 +97,14 @@ public class LinkyTime implements ReadOnlyLinkyTime {
         requireNonNull(editedMeeting);
 
         meetings.setMeeting(target, editedMeeting);
+    }
+
+    /**
+     * Sorts the meeting list according to the {@code sortFunction}
+     * @param sortFunction the function to sort the meeting list by.
+     */
+    public void sortMeetings(Comparator<Meeting> sortFunction) {
+        meetings.sort(sortFunction);
     }
 
     /**

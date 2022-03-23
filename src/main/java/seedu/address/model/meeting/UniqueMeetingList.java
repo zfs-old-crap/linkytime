@@ -3,6 +3,7 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -63,6 +64,15 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
 
         internalList.set(index, editedMeeting);
+    }
+
+    /**
+     * Sorts the internal meeting list according to the {@code sortFunction}
+     * provided.
+     * The {@code sortFunction} must not be null.
+     */
+    public void sort(Comparator<Meeting> sortFunction) {
+        internalList.sort(sortFunction);
     }
 
     /**
