@@ -157,6 +157,30 @@ This section describes some noteworthy details on how certain features are imple
 ### Meetings
 The Meetings component consists of the following set of features: List Meeting, Add Meeting, Edit Meeting, Delete Meeting, Find Meeting, and Opening Meeting URL.
 
+#### The Meeting class
+The Meeting class consists of getter methods for its properties.
+
+##### Recurring Meetings
+This section describes how the start and end date time of a recurring meeting is computed. The core logic is implemented
+in `getNextRecurrence`, a helper method that `getStartDateTime` and `getEndDateTime` depends upon.
+
+Below is the activity diagram describing the execution of `getNextRecurrence`.
+
+![`getNextRecurrence` sequence diagram](images/GetNextRecurrenceActivityDiagram.png)
+
+#### Design considerations:
+**Aspect: How the notion of recurrence is implemented:**
+
+**Alternative 1 (current choice):** `getStartDateTime` and `getEndDateTime` will return their respective date times
+relative to the current date time.
+* Pros: Easier to implement and reduces inter-operational challenges with the GUI and storage components.
+* Cons: Unit-testing is less trivial since `getStartDateTime` and `getEndDateTime` would return different date times 
+depending on when their test cases are executed.
+
+**Alternative 2:** Generate the next set of recurring meetings to replace the existing ones. This is done at the start 
+of the program and after each command execution.
+* Cons: Implementation would sprawl across different components and more effort is required to ensure correctness.
+
 #### List Meetings feature
 This section explains the implementation of the List Meetings feature via the `list` command.
 The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.

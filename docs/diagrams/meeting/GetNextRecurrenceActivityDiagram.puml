@@ -1,0 +1,27 @@
+@startuml
+!include ../style.puml
+start
+:Get the current datetime;
+:Compute the meeting's end datetime;
+:Find the number of weeks elapsed between
+ the current datetime and the meeting's end datetime;
+if () then ([Weeks Elapsed >= 0])
+:Find the meeting's next recurrence's
+end datetime by adding the weeks elapsed
+to the meeting's end datetime;
+if () then ([Current datetime <= Recurrence's end datetime])
+:Return the next recurrence's start datetime
+by adding the weeks elapsed to the meeting's
+start datetime;
+stop
+else ([else])
+:Return the next recurrence's start datetime
+by adding the weeks elapsed and another week
+to the meeting's start datetime;
+stop
+endif
+else ([else])
+:Return the meeting's start datetime;
+stop
+endif
+@enduml
