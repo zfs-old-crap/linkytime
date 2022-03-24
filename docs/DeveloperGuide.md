@@ -239,29 +239,30 @@ all meetings.
 #### Delete Meeting feature
 
 This section explains the implementation of the Delete Meeting feature via the `delete` command.
-The `DeleteMeetingCommand` removes the meeting with the given index from the meeting list. This command requires a
-single field: the index of the meeting to be deleted.
+The `DeleteMeetingCommand` causes the meeting indexed by the given index in the meeting list to be removed permanently.
+This command requires a single field: the index of the meeting to be deleted.
 
 Below is the sequence diagram for the execution of an `DeleteMeetingCommand`.
 
 ![`DeleteMeetingCommand` Sequence Diagram](images/DeleteMeetingSequenceDiagram.png)
 
 Step 1:
-The user enters a command for deleting a meeting, e.g. `delete 1`.
+The user enters a command to the command line, e.g. `delete 1`.
 
 Step 2:
 The user input is passed to `LogicManager`, which passes the user input to `LinkyTimeParser` to parse and identify the
 command type.
 
 Step 3:
-`LinkyTimeParser` passes the user input to `DeleteMeetingCommandParser` to check if the user input is valid.
+`LinkyTimeParser` creates a new `DeleteMeetingCommandParser` and passes the user input to it to parse.
 
 Step 4:
-`DeleteMeetingCommandParser` parses the user input and creates a new `DeleteMeetingCommand`.
+`DeleteMeetingCommandParser` parses the user input and creates a new `DeleteMeetingCommand` containing information on
+the meeting to be deleted.
 
 Step 5:
-The `LogicManager` calls `DeleteMeetingCommand::execute` which calls `Model::deleteMeeting` to delete the meeting from
-the meeting list.
+The `LogicManager` receives the `DeleteMeetingCommand` and calls `DeleteMeetingCommand::execute` which
+calls `model::deleteMeeting`.
 
 Step 6:
 The `DeleteMeetingCommand` creates a `CommandResult` and passes it back to the `LogicManager`.
