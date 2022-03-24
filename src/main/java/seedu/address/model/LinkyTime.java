@@ -100,11 +100,10 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     }
 
     /**
-     * Sorts the meeting list according to the {@code sortFunction}
-     * @param sortFunction the function to sort the meeting list by.
+     * Sorts the meeting list according to the in built sort function.
      */
-    public void sortMeetings(Comparator<Meeting> sortFunction) {
-        meetings.sort(sortFunction);
+    public void sortMeetings() {
+        meetings.sortMeetings();
     }
 
     /**

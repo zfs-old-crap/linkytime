@@ -101,18 +101,18 @@ public class ModelManager implements Model {
     @Override
     public void deleteMeeting(Meeting target) {
         linkyTime.removeMeeting(target);
+        linkyTime.sortMeetings();
     }
 
     @Override
     public void addMeeting(Meeting meeting) {
         linkyTime.addMeeting(meeting);
-        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        linkyTime.sortMeetings();
     }
 
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-
         linkyTime.setMeeting(target, editedMeeting);
     }
 
@@ -130,12 +130,6 @@ public class ModelManager implements Model {
         // This is a temporary workaround until a coherent solution comes about.
         filteredMeetings.setPredicate(m -> false);
         filteredMeetings.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredMeetingList(Comparator<Meeting> comparator) {
-        requireNonNull(comparator);
-        linkyTime.sortMeetings(comparator);
     }
 
     // =========== Module ==================================================================================

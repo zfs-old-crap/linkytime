@@ -95,8 +95,6 @@ public interface Model {
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
-    void updateFilteredMeetingList(Comparator<Meeting> comparator);
-
     // =========== Module ==================================================================================
 
     /**

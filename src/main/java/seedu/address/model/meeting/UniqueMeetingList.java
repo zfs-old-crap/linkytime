@@ -22,7 +22,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
     private final ObservableList<Meeting> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
+    private final Comparator<Meeting> meetingComparator = Meeting::compareTo;
     /**
      * Returns true if the list contains an equivalent meeting as the given argument.
      */
@@ -71,8 +71,8 @@ public class UniqueMeetingList implements Iterable<Meeting> {
      * provided.
      * The {@code sortFunction} must not be null.
      */
-    public void sort(Comparator<Meeting> sortFunction) {
-        internalList.sort(sortFunction);
+    public void sortMeetings() {
+        internalList.sort(meetingComparator);
     }
 
     /**
