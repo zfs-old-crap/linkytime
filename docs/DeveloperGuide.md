@@ -232,6 +232,42 @@ The `Model` will then call its own `updateFilteredMeetingList` method in order t
   * Pros: Easier to implement and trace.
   * Cons: The `AddMeetingCommand` might be able to abuse the model by calling the model's other methods.
   
+#### Delete Meeting feature
+
+This section explains the implementation of the Delete Meeting feature via the `delete` command.
+The `DeleteMeetingCommand` causes the meeting indexed by the given index in the meeting list to be removed permanently.
+This command requires a single field: the index of the meeting to be deleted.
+
+Below is the sequence diagram for the execution of an `DeleteMeetingCommand`.
+
+![`DeleteMeetingCommand` Sequence Diagram](images/DeleteMeetingSequenceDiagram.png)
+
+Step 1:
+The user enters a command to the command line, e.g. `delete 1`.
+
+Step 2:
+The user input is passed to `LogicManager`, which passes the user input to `LinkyTimeParser` to parse and identify the
+command type.
+
+Step 3:
+`LinkyTimeParser` creates a new `DeleteMeetingCommandParser` and passes the user input to it to parse.
+
+Step 4:
+`DeleteMeetingCommandParser` parses the user input and creates a new `DeleteMeetingCommand` containing information on
+the meeting to be deleted.
+
+Step 5:
+The `LogicManager` receives the `DeleteMeetingCommand` and calls `DeleteMeetingCommand::execute` which
+calls `model::deleteMeeting`.
+
+Step 6:
+The `DeleteMeetingCommand` creates a `CommandResult` and passes it back to the `LogicManager`.
+
+#### Design considerations:
+
+**Aspect: How `DeleteMeetingCommand` executes:**
+
+* Similar to `AddMeetingCommand`'s considerations concerning storage and modification of underlying model object.
 
 ### Modules
 
