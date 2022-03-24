@@ -233,6 +233,42 @@ The `Model` will then call its own `updateFilteredMeetingList` method in order t
   * Cons: The `AddMeetingCommand` might be able to abuse the model by calling the model's other methods.
   
 
+#### Find Meeting feature
+
+This section explains the implementation of the Find Meeting feature via the `find` command. The `FindMeetingCommand`
+causes the GUI to only show meetings that matches the given keywords.
+
+Below is the sequence diagram for the execution of the `FindMeetingCommand`.
+
+![`FindMeetingCommand` sequence diagram](images/FindMeetingSequenceDiagram.png)
+
+Step 1:
+The user enters the command for finding meetings, e.g. `find cs2103t tutorial`.
+
+Step 2:
+The user input is passed to the `LogicManager`, which passes it to the `LinkyTimeParser` to parse.
+
+Step 3:
+`LinkyTimeParser` parses the user input and creates a new `FindMeetingCommandParser`, then passes the remaining user
+input to it to be parsed.
+
+Step 4:
+`FindMeetingCommandParser` parses the user input and creates a new `FindMeetingCommand` with a predicate describing the
+criteria for the meetings to be shown.
+
+Step 5:
+`LogicManager` receives the `FindMeetingCommand` and calls `FindMeetingCommand::execute`, which
+calls `Model::updateFilteredMeetingList` with the predicate.
+
+Step 6:
+The `FindMeetingCommand` creates a new `CommandResult` and returns it to the `LogicManager`.
+
+##### Design considerations:
+
+**Aspect: How FindMeetingCommand executes:**
+
+* Similar to `AddMeetingCommand` considerations concerning model storage and modification of underlying model object.
+
 ### Modules
 
 The Modules component consists of the following set of features: Add Module, Edit Module, Delete Module.
