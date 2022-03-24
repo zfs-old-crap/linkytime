@@ -142,6 +142,7 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         linkyTime.addModule(module);
+        linkyTime.sortModules();
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 

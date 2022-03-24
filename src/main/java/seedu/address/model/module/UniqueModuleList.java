@@ -9,7 +9,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
@@ -25,11 +24,10 @@ import seedu.address.model.module.exceptions.ModuleNotFoundException;
  * @see Module#equals(Object)
  */
 public class UniqueModuleList implements Iterable<Module> {
-    private final Comparator<Module> comparator = Module::compareTo;
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
-    private final SortedList<Module> internalSortedList = new SortedList<>(internalList, comparator);
     private final ObservableList<Module> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalSortedList);
+            FXCollections.unmodifiableObservableList(internalList);
+    private final Comparator<Module> comparator = Module::compareTo;
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.
@@ -99,8 +97,15 @@ public class UniqueModuleList implements Iterable<Module> {
         if (!modulesAreUnique(modules)) {
             throw new DuplicateModuleException();
         }
-
         internalList.setAll(modules);
+    }
+
+    /**
+     * Sorts the modules in the internal list by the comparator.
+     * Sorts by alphabetical order, case-insensitive.
+     */
+    public void sortModules() {
+        internalList.sort(comparator);
     }
 
     /**
