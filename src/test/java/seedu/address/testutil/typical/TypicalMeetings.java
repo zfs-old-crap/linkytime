@@ -28,37 +28,37 @@ import seedu.address.testutil.meeting.MeetingBuilder;
 public class TypicalMeetings {
     public static final Meeting CS2105 = new MeetingBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("02-02-2022 1300").withDuration("2")
-            .withModule("CS2105").withIsRecurring("N")
+            .withModule("CS2105").withIsRecurring("Y")
             .withTags("roger").build();
     public static final Meeting CS2106 = new MeetingBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("03-02-2022 1300").withDuration("2")
-            .withModule("CS2106").withIsRecurring("N")
+            .withModule("CS2106").withIsRecurring("Y")
             .withTags("colin").build();
     public static final Meeting CS2030 = new MeetingBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("04-02-2022 1300").withDuration("2")
-            .withModule("CS2030").withIsRecurring("N")
+            .withModule("CS2030").withIsRecurring("Y")
             .withTags("ooi").build();
     public static final Meeting CS2040 = new MeetingBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("05-02-2022 1300").withDuration("1")
-            .withModule("CS2040").withIsRecurring("N")
+            .withModule("CS2040").withIsRecurring("Y")
             .withTags("CKF").build();
     public static final Meeting CS2100 = new MeetingBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("06-02-2022 1300").withDuration("15")
-            .withModule("CS2100").withIsRecurring("N")
+            .withModule("CS2100").withIsRecurring("Y")
             .withTags("aaron").build();
     public static final Meeting CS2107 = new MeetingBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("07-02-2022 1300").withDuration("1.7")
-            .withModule("CS2107").withIsRecurring("N")
+            .withModule("CS2107").withIsRecurring("Y")
             .withTags("sufatrio").build();
 
     // Manually added
     public static final Meeting PC1221 = new MeetingBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("07-02-2022 1300").withDuration("2")
-            .withModule("PC1221").withIsRecurring("N")
+            .withModule("PC1221").withIsRecurring("Y")
             .withTags("proftay").build();
     public static final Meeting CS1101S = new MeetingBuilder().withName("Lecture")
             .withUrl("https://www.zoom.com").withDateTime("07-02-2022 1300").withDuration("1.5")
-            .withModule("CS1101S").withIsRecurring("N")
+            .withModule("CS1101S").withIsRecurring("Y")
             .withTags("hartinmenz").build();
 
     // Manually added - Meeting's details found in {@code CommandTestUtil}

@@ -5,7 +5,7 @@
     "dateTime" : "18-03-2022 1500",
     "duration" : "2.0",
     "module" : "CS2103T",
-    "isRecurring" : "N",
+    "isRecurring" : "Y",
     "tagged" : [ ]
   } ],
   "modules" : [ {

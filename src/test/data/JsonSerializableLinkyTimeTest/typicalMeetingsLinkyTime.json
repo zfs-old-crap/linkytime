@@ -14,7 +14,7 @@
       "dateTime": "02-02-2022 1300",
       "duration": "2.0",
       "module": "CS2105",
-      "isRecurring": "N",
+      "isRecurring": "Y",
       "tagged": [ "roger" ]
     }, {
       "name": "Lecture",
@@ -22,7 +22,7 @@
       "dateTime": "03-02-2022 1300",
       "duration": "2.0",
       "module": "CS2106",
-      "isRecurring": "N",
+      "isRecurring": "Y",
       "tagged": [ "colin" ]
     }, {
       "name": "Lecture",
@@ -30,7 +30,7 @@
       "dateTime": "04-02-2022 1300",
       "duration": "2.0",
       "module": "CS2030",
-      "isRecurring": "N",
+      "isRecurring": "Y",
       "tagged": [ "ooi" ]
     }, {
       "name": "Lecture",
@@ -38,7 +38,7 @@
       "dateTime": "05-02-2022 1300",
       "duration": "1.0",
       "module": "CS2040",
-      "isRecurring": "N",
+      "isRecurring": "Y",
       "tagged": [ "CKF" ]
     }, {
       "name": "Lecture",
@@ -46,7 +46,7 @@
       "dateTime": "06-02-2022 1300",
       "duration": "15.0",
       "module": "CS2100",
-      "isRecurring": "N",
+      "isRecurring": "Y",
       "tagged": [ "aaron" ]
     }, {
       "name": "Lecture",
@@ -54,7 +54,7 @@
       "dateTime": "07-02-2022 1300",
       "duration": "1.5",
       "module": "CS1101S",
-      "isRecurring": "N",
+      "isRecurring": "Y",
       "tagged": [ "hartinmenz" ]
     }
   ],

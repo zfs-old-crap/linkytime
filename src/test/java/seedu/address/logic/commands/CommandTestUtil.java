@@ -36,7 +36,7 @@ public class CommandTestUtil {
     public static final String VALID_DURATION_TUTORIAL = "1.5";
     public static final String VALID_MODULE_LECTURE = "CS2103";
     public static final String VALID_MODULE_TUTORIAL = "CS2101";
-    public static final String VALID_RECURRING_LECTURE = "N";
+    public static final String VALID_RECURRING_LECTURE = "Y";
     public static final String VALID_RECURRING_TUTORIAL = "N";
     public static final String VALID_TAG_LECTURE = "damith";
     public static final String VALID_TAG_TUTORIAL = "amy";

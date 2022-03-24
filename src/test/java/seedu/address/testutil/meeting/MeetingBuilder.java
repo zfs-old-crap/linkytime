@@ -22,7 +22,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_DATETIME = "18-03-2022 1500";
     public static final String DEFAULT_DURATION = "2";
     public static final String DEFAULT_MODULE = "CS2103";
-    public static final String DEFAULT_RECURRENCE = "N";
+    public static final String DEFAULT_RECURRENCE = "Y";
 
     private MeetingName name;
     private MeetingUrl url;
