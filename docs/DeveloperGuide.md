@@ -261,7 +261,7 @@ The `Module` objects are stored in a `UniqueModuleList` which is held by `LinkyT
 
 As we do not intend to contain any additional fields within the Module object, we opted for a simpler approach in its design.
 
-#### Delete Module feature
+#### \[Proposed\] Delete Module feature
 
 This section explains the implementation of the Delete Module feature via the `mdelete` command.
 
