@@ -24,8 +24,8 @@ public class JsonSerializableLinkyTimeTest {
         JsonSerializableLinkyTime dataFromFile = JsonUtil.readJsonFile(TYPICAL_MEETINGS_FILE,
                 JsonSerializableLinkyTime.class).get();
         LinkyTime linkyTimeFromFile = dataFromFile.toModelType();
-        LinkyTime typicallinkyTime = getTypicalLinkyTime();
-        assertEquals(linkyTimeFromFile, typicallinkyTime);
+        LinkyTime typicalLinkyTime = getTypicalLinkyTime();
+        assertEquals(linkyTimeFromFile, typicalLinkyTime);
     }
 
     @Test

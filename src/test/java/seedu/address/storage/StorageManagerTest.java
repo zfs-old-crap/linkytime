@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.typical.TypicalLinkyTime.getTypicalLinkyTime;
 
 import java.nio.file.Path;
 
@@ -14,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.ReadOnlyLinkyTime;
 import seedu.address.model.UserPrefs;
+import seedu.address.testutil.typical.TypicalLinkyTime;
 
 public class StorageManagerTest {
 
@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonLinkyTimeStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonLinkyTimeStorageTest} class.
          */
-        LinkyTime original = getTypicalLinkyTime();
+        LinkyTime original = TypicalLinkyTime.getTypicalLinkyTime();
         storageManager.saveLinkyTime(original);
         ReadOnlyLinkyTime retrieved = storageManager.readLinkyTime().get();
         assertEquals(original, new LinkyTime(retrieved));

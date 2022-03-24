@@ -30,8 +30,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_TUTORIAL = "Tutorial";
     public static final String VALID_URL_LECTURE = "https://www.google.com";
     public static final String VALID_URL_TUTORIAL = "https://www.zoom.com";
-    public static final String VALID_DATETIME_LECTURE = "Friday";
-    public static final String VALID_DATETIME_TUTORIAL = "Tuesday";
+    public static final String VALID_DATETIME_LECTURE = "18-03-2022 1400";
+    public static final String VALID_DATETIME_TUTORIAL = "01-02-2022 1300";
     public static final String VALID_DURATION_LECTURE = "2";
     public static final String VALID_DURATION_TUTORIAL = "1.5";
     public static final String VALID_MODULE_LECTURE = "CS2103";

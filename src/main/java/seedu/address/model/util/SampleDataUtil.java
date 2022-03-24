@@ -24,7 +24,7 @@ public class SampleDataUtil {
             new Meeting(
                 new MeetingName("CS2103T Lecture"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/344299221?pwd=F3a99221"),
-                new MeetingDateTime("18mar20223pm"),
+                new MeetingDateTime("18-03-2022 1500"),
                 new MeetingDuration("2"),
                 new Module("CS2103T"),
                 new IsRecurring("Y"),
@@ -33,7 +33,7 @@ public class SampleDataUtil {
             new Meeting(
                 new MeetingName("CS2101 Tutorial"),
                 new MeetingUrl("https://meet.google.com/omg-look-ma"),
-                new MeetingDateTime("19mar20222pm"),
+                new MeetingDateTime("19-03-2022 1400"),
                 new MeetingDuration("1"),
                 new Module("CS2101"),
                 new IsRecurring("Y"),
@@ -42,7 +42,7 @@ public class SampleDataUtil {
             new Meeting(
                 new MeetingName("TokTik Rejection Interview"),
                 new MeetingUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
-                new MeetingDateTime("20mar20221am"),
+                new MeetingDateTime("20-03-2022 1200"),
                 new MeetingDuration("1.5"),
                 new Module("Intern"),
                 new IsRecurring("N"),
