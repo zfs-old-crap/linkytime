@@ -51,7 +51,7 @@ public class MeetingBuilder {
     public MeetingBuilder(Meeting meetingToCopy) {
         name = meetingToCopy.getName();
         url = meetingToCopy.getUrl();
-        dateTime = meetingToCopy.getDateTime();
+        dateTime = meetingToCopy.getStartDateTime();
         duration = meetingToCopy.getDuration();
         module = meetingToCopy.getModule();
         isRecurring = meetingToCopy.getIsRecurring();

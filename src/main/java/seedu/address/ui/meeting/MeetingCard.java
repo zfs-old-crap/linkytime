@@ -53,7 +53,7 @@ public class MeetingCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         module.setText(meeting.getModule().code);
         name.setText(meeting.getName().name);
-        dateTime.setText(meeting.getDateTime().toString());
+        dateTime.setText(meeting.getStartDateTime().toString());
         url.setText(meeting.getUrl().meetingUrl.toString());
         isRecurring.setVisible(meeting.getIsRecurring().isRecurring);
         if (meeting.getIsRecurring().isRecurring) {
