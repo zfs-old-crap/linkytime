@@ -158,13 +158,18 @@ This section describes some noteworthy details on how certain features are imple
 The Meetings component consists of the following set of features: List Meeting, Add Meeting, Edit Meeting, Delete Meeting, Find Meeting, and Opening Meeting URL.
 
 #### The Meeting class
-The Meeting class consists of getter methods for its properties.
+The Meeting class is made up of a `MeetingName`, `MeetingUrl`, `MeetingDateTime`, `Module`, `MeetingDuration`, `IsRecurring`,
+`Set<Tag>`, and a set of getter methods that corresponds to these fields.
 
 ##### Recurring Meetings
-This section describes how the start and end date time of a recurring meeting is computed. The core logic is implemented
-in `getNextRecurrence`, a helper method that `getStartDateTime` and `getEndDateTime` depends upon.
+A meeting is recurring if it's set to repeat on a weekly basis. Such meetings would never expire.
 
-Below is the activity diagram describing the execution of `getNextRecurrence`.
+This section describes how the start and end date time of a recurring meeting is computed. The key implementation lies in
+`getNextRecurrence`, a helper method which computes the next recurrence relative to the current date and time. Since 
+`getStartDateTime` and `getEndDateTime` utilises `getNextRecurrence`, they inherit the side effect of depending
+on the current date and time as well.
+
+Below is an activity diagram describing the execution of `getNextRecurrence`.
 
 ![`getNextRecurrence` sequence diagram](images/GetNextRecurrenceActivityDiagram.png)
 
@@ -173,7 +178,7 @@ Below is the activity diagram describing the execution of `getNextRecurrence`.
 
 **Alternative 1 (current choice):** `getStartDateTime` and `getEndDateTime` will return their respective date times
 relative to the current date time.
-* Pros: Easier to implement and reduces inter-operational challenges with the GUI and storage components.
+* Pros: Easier to implement and integrate with other components such as GUI and storage.
 * Cons: Unit-testing is less trivial since `getStartDateTime` and `getEndDateTime` would return different date times 
 depending on when their test cases are executed.
 
