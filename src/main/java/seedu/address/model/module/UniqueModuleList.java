@@ -3,11 +3,13 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
@@ -23,10 +25,11 @@ import seedu.address.model.module.exceptions.ModuleNotFoundException;
  * @see Module#equals(Object)
  */
 public class UniqueModuleList implements Iterable<Module> {
-
+    private final Comparator<Module> comparator = Module::compareTo;
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
+    private final SortedList<Module> internalSortedList = new SortedList<>(internalList, comparator);
     private final ObservableList<Module> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(internalSortedList);
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.
