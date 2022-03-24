@@ -71,6 +71,22 @@ public class Meeting {
     }
 
     /**
+     * Returns the end date and time of the meeting.
+     *
+     * @return The end date and time of the meeting if the meeting isn't recurring. Otherwise, the
+     * end date and time of the next upcoming recurrence is returned.
+     */
+    public MeetingDateTime getEndDateTime() {
+        LocalDateTime endDateTime;
+        if (isRecurring.isRecurring) {
+            endDateTime = duration.getEndDateTime(getNextRecurrence());
+        } else {
+            endDateTime = duration.getEndDateTime(startDateTime.datetime);
+        }
+        return new MeetingDateTime(endDateTime);
+    }
+
+    /**
      * Computes the next recurrence of the meeting relative to the current date and time.
      * If the current meeting is over, the next recurrence would be seven days from the
      * start date and time of the meeting. Otherwise, the meeting isn't over and its
