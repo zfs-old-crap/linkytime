@@ -65,6 +65,6 @@ public class Module implements Comparable<Module> {
 
     @Override
     public int compareTo(Module o) {
-        return code.compareTo(o.code);
+        return code.compareToIgnoreCase(o.code);
     }
 }

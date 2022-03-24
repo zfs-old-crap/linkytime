@@ -19,10 +19,18 @@ public class SortMeetingChronologicalCommand extends SortMeetingCommand {
      */
     public SortMeetingChronologicalCommand() {
         super((o1, o2) -> {
-            MeetingDateTime d1 = o1.getDateTime();
-            MeetingDateTime d2 = o2.getDateTime();
-            //return d1.compareTo(d2);
-            return 1;
+            MeetingDateTime startDateTime1 = o1.getStartDateTime();
+            MeetingDateTime startDateTime2 = o2.getStartDateTime();
+
+            int result = startDateTime1.compareTo(startDateTime2);
+            if (result != 0) {
+                return result;
+            }
+
+            MeetingDateTime endDateTime1 = o1.getEndDateTime();
+            MeetingDateTime endDateTime2 = o2.getEndDateTime();
+
+            return endDateTime1.compareTo(endDateTime2);
         });
     }
 

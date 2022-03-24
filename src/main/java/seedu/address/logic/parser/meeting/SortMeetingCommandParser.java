@@ -35,7 +35,7 @@ public class SortMeetingCommandParser implements Parser<SortMeetingCommand> {
             return new SortMeetingChronologicalCommand();
         default:
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortMeetingCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_UNKNOWN_SORT_FUNCTION, SortMeetingCommand.MESSAGE_USAGE));
         }
     }
 }
