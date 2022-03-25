@@ -247,17 +247,17 @@ equivalent `app.json` data file from your previous LinkyTime installation.
 
 ## Command summary
 
-| Action                 | Format, Examples                                                                                                                                                                    |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Action                 | Format, Examples                                                                                                                                                                                         |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add a meeting**      | `add n/MEETING_NAME u/URL d/DATETIME dur/DURATION m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz` |
-| **List all meetings**  | `list`                                                                                                                                                                              |
-| **Find meetings**      | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                          |
-| **Open a meeting URL** | `open INDEX`<br> e.g. `open 2`                                                                                                                                                      |
-| **Edit a meeting**     | `edit`                                                                                                                                                                              |
-| **Delete a meeting**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
-| **Add a module**       | `madd m/MODULE_NAME`                                                                                                                                                                |
-| **Edit a module**      | `medit`                                                                                                                                                                             |
-| **Delete a module**    | `mdelete INDEX`<br> e.g., `mdelete 3`                                                                                                                                               |
-| **Show help**          | `help`                                                                                                                                                                              |
-| **Clear all data**     | `clear`                                                                                                                                                                             |
-| **Exit**               | `exit`                                                                                                                                                                              |
+| **List all meetings**  | `list`                                                                                                                                                                                                   |
+| **Find meetings**      | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                                               |
+| **Open a meeting URL** | `open INDEX`<br> e.g. `open 2`                                                                                                                                                                           |
+| **Edit a meeting**     | `edit`                                                                                                                                                                                                   |
+| **Delete a meeting**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                      |
+| **Add a module**       | `madd m/MODULE_NAME`                                                                                                                                                                                     |
+| **Edit a module**      | `medit`                                                                                                                                                                                                  |
+| **Delete a module**    | `mdelete INDEX`<br> e.g., `mdelete 3`                                                                                                                                                                    |
+| **Show help**          | `help`                                                                                                                                                                                                   |
+| **Clear all data**     | `clear`                                                                                                                                                                                                  |
+| **Exit**               | `exit`                                                                                                                                                                                                   |
