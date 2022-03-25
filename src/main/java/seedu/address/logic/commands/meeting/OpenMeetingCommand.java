@@ -3,7 +3,6 @@ package seedu.address.logic.commands.meeting;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
@@ -38,8 +37,32 @@ public class OpenMeetingCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Creates a {@code UrlOpenerManager} which checks the local environment for desktop functionality support and
+     * passes it to {@code OpenMeetingCommand::executeWithUrlOpener}.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        final UrlOpener urlOpener;
+        try {
+            urlOpener = new UrlOpenerManager();
+        } catch (UnsupportedDesktopException ex) {
+            throw new CommandException(ex.getMessage(), ex);
+        }
+
+        return executeWithUrlOpener(model, urlOpener);
+    }
+
+    /**
+     * The logic of {@code OpenMeetingCommand::execute} is abstracted into this method to isolate the command
+     * logic from depending on the environment for testing purposes. This method should ideally be private/protected
+     * but is made public for testing purposes.
+     */
+    public CommandResult executeWithUrlOpener(Model model, UrlOpener urlOpener) throws CommandException {
         requireNonNull(model);
         final List<Meeting> lastShownList = model.getFilteredMeetingList();
 
@@ -51,17 +74,8 @@ public class OpenMeetingCommand extends Command {
         final URL urlToOpen = meetingToOpen.getUrl().meetingUrl;
         requireNonNull(urlToOpen);
 
-        final UrlOpener urlOpener;
         try {
-            urlOpener = new UrlOpenerManager(urlToOpen);
-        } catch (UnsupportedDesktopException ex) {
-            throw new CommandException(ex.getMessage(), ex);
-        } catch (URISyntaxException ex) {
-            throw new CommandException(MESSAGE_INVALID_URL);
-        }
-
-        try {
-            urlOpener.open();
+            urlOpener.open(urlToOpen);
         } catch (IOException ex) {
             throw new CommandException(MESSAGE_SYSTEM_BROWSER_ERROR);
         } catch (SecurityException ex) {

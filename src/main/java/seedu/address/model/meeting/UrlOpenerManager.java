@@ -1,7 +1,5 @@
 package seedu.address.model.meeting;
 
-import static java.util.Objects.requireNonNull;
-
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -11,8 +9,9 @@ import java.net.URL;
 import seedu.address.model.meeting.exceptions.UnsupportedDesktopException;
 
 public class UrlOpenerManager implements UrlOpener {
-    private final Desktop desktop;
-    private final URI uri;
+    private static final String MESSAGES_INVALID_URL = "Invalid URL provided";
+    private Desktop desktop;
+    private URI uri;
 
     /**
      * Creates a {@code UrlOpenerManager} and checks if the device supports
@@ -21,27 +20,35 @@ public class UrlOpenerManager implements UrlOpener {
      * @throws UnsupportedDesktopException thrown when the {@code Desktop} class or
      *                                     {@code Desktop::browse} method is unsupported
      */
-    public UrlOpenerManager(URL url) throws UnsupportedDesktopException, URISyntaxException {
-        requireNonNull(url);
-        uri = url.toURI();
-
-        if (!Desktop.isDesktopSupported()) {
-            throw new UnsupportedDesktopException();
-        }
-        desktop = Desktop.getDesktop();
-        if (!desktop.isSupported(Desktop.Action.BROWSE)) {
+    public UrlOpenerManager() throws UnsupportedDesktopException {
+        if (!checkAndSetDesktop()) {
             throw new UnsupportedDesktopException();
         }
     }
 
     @Override
-    public void open() throws SecurityException, IOException {
+    public void open(URL url) throws SecurityException, IOException {
+        if (!checkAndSetUrl(url)) {
+            throw new IllegalArgumentException(MESSAGES_INVALID_URL);
+        }
         desktop.browse(uri);
     }
 
-    @Override
-    public String toString() {
-        return uri.toString();
+    private boolean checkAndSetDesktop() {
+        if (!Desktop.isDesktopSupported()) {
+            return false;
+        }
+        desktop = Desktop.getDesktop();
+        return desktop.isSupported(Desktop.Action.BROWSE);
+    }
+
+    private boolean checkAndSetUrl(URL url) {
+        try {
+            uri = url.toURI();
+            return true;
+        } catch (URISyntaxException ex) {
+            return false;
+        }
     }
 
     @Override
