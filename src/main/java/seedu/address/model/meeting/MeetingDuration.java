@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  */
 public class MeetingDuration {
     public static final String MESSAGE_CONSTRAINTS =
-            "Duration should be given in hours and range from 1 to 24 inclusive";
+            "Duration should be a decimal number given in hours and range from 0 < duration <= 24";
 
     public final float duration;
 
