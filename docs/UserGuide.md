@@ -101,15 +101,15 @@ Parameters:
 * `MEETING_NAME` The name of the meeting.
 * `URL` The URL to the online meeting.
 * `DATETIME` The date and starting time of the meeting.
-* `DURATION` The duration of the meeting in hours.
+* `DURATION` The duration of the meeting in hours. Must be a decimal number between `0 < duration <= 24`. E.g., `2`, `1.5`.
 * `MODULE_INDEX` The index of the module in the module list that the meeting is for.
 * `IS_RECURRING` Whether the meeting recurs every week. Given as `Y` or `N`.
 * `TAG` The tags associated with the meeting.
 
 Examples:
 
-* `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`
-* `add n/Midterm u/https://meet.google.com d/13-03-2022 1000 dur/2 m/2 r/N`
+* `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/2 m/1 r/Y t/recorded t/lecturequiz`
+* `add n/Midterm u/https://meet.google.com d/13-03-2022 1000 dur/1.5 m/2 r/N`
 
 #### List all meetings : `list`
 
@@ -249,7 +249,7 @@ equivalent `app.json` data file from your previous LinkyTime installation.
 
 | Action                 | Format, Examples                                                                                                                                                                    |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add a meeting**      | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz` |
+| **Add a meeting**      | `add n/MEETING_NAME u/URL d/DATETIME dur/DURATION m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz` |
 | **List all meetings**  | `list`                                                                                                                                                                              |
 | **Find meetings**      | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                          |
 | **Open a meeting URL** | `open INDEX`<br> e.g. `open 2`                                                                                                                                                      |
