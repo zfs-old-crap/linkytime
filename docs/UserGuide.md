@@ -11,8 +11,8 @@ title: User Guide
 ## Introduction
 
 **LinkyTime** is a desktop app for NUS students to organize their online meeting links, optimized for use via a Command
-Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **
-LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
+Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
+**LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ LinkyTime** can get your meeting management tasks done faster than traditional G
    Some example commands you can try:
 
     * `list` : Lists all meetings.
-    * `add n/Tutorial u/https://www.zoom.com d/13mar2022 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with the module `CS2103` to the list of meetings.
+    * `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/2 m/1 r/Y t/Quiz` : Adds a meeting named `Tutorial` to the list of meetings.
     * `delete 3` : Deletes the 3rd meeting shown in the current list.
     * `exit` : Exits the app.
 
@@ -68,10 +68,24 @@ LinkyTime** can get your meeting management tasks done faster than traditional G
 
 </div>
 
+### Command Parameters
+
+Most LinkyTime commands use various parameters. Their formats and constraints are provided in the table below.
+
+| Parameter | Prefix | Used in | Description |
+|-----------|--------|---------|-------------|
+| `MEETING_NAME` | `n/`          | `add` `edit`          | The name of a meeting. <ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li></ul> |
+| `URL`          | `u/`          | `add` `edit`          | The URL/link to a meeting. <ul><li> Must include the full URL link, i.e. starts with `https://`. </li><li> Must not be blank. </li></ul> |
+| `DATETIME`     | `d/`          | `add` `edit`          | The date and time of a meeting. <ul><li> Must be of the following format: `dd-MM-yyyy HHmm`. </li><li> `dd` - 2 digit day, e.g. `01`, `28`. </li><li> `MM` - 2 digit month, e.g. `01`, `12`. </li><li> `yyyy` - 4 digit year, e.g. `2022`. </li><li> `HHmm` - 24-hour time, e.g. `0800`, `1430`, `2359`. </li><li> Must not be blank. </li></ul> |
+| `DURATION`     | `dur/`        | `add` `edit`          | The duration of a meeting in hours. <ul><li> Must be a decimal number greater than 0 and less than 24, e.g. `1`, `2.5`. </li><li> Accepts up to 4 decimal places. </li><li> Must not be blank. </li></ul> |
+| `MODULE_INDEX` | `m/`          | `add` `edit`          | The index number of a module as shown in the displayed list. <ul><li> Must be a positive integer, e.g. 1, 2, 3, ... </li><li> Must not be blank. </li></ul> |
+| `IS_RECURRING` | `r/`          | `add` `edit`          | The recurrence of a meeting. If specified as `Y`, i.e. set to recur every week, the meeting will not expire and will be set to automatically repeat weekly. <ul><li> Must be given as `Y` or `N`. </li><li> Input is not case-sensitive. </li><li> Must not be blank. </li></ul> |
+| `TAG`          | `t/`          | `add` `edit`          | The tag(s) assigned to a meeting. <ul><li> Accepts only alphanumeric characters. </li><li> Spaces are not allowed. </li></ul> |
+_More to be added..._
+
 ## Features
 
 This section describes each of the commands and features available in **LinkyTime**.
-
 
 ### Meeting Management
 
@@ -79,21 +93,22 @@ This section describes each of the commands and features available in **LinkyTim
 
 Adds a meeting into the meeting list.
 
-Format: `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...`
+Format: `add n/MEETING_NAME u/URL d/DATETIME dur/DURATION m/MODULE_INDEX r/IS_RECURRING [t/TAG]...`
 
 Parameters:
 
 * `MEETING_NAME` The name of the meeting.
 * `URL` The URL to the online meeting.
 * `DATETIME` The date and starting time of the meeting.
+* `DURATION` The duration of the meeting in hours.
 * `MODULE_INDEX` The index of the module in the module list that the meeting is for.
 * `IS_RECURRING` Whether the meeting recurs every week. Given as `Y` or `N`.
 * `TAG` The tags associated with the meeting.
 
 Examples:
 
-* `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
-* `add n/Midterm u/https://www.google.com d/13mar2022 10am m/CS2106 r/N`
+* `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`
+* `add n/Midterm u/https://meet.google.com d/13-03-2022 1000 dur/2 m/2 r/N`
 
 
 #### List all meetings : `list`
@@ -104,9 +119,10 @@ Format: `list`
 
 Details include:
 
-* Meeting url
+* Meeting link
 * Meeting name
 * Meeting date and time
+* Module the meeting is assigned to
 
 #### Find a meeting : `find`
 
@@ -114,7 +130,7 @@ Find meetings in the meeting list that matches the provided keywords and display
 
 Format: `find KEYWORD MORE_KEYWORDS...`
 
-* Displays all meetings with name, module code or tags that matches any of the provided keywords.
+* Displays all meetings with name, module code or tags that matches all of the provided keywords.
 
 Examples:
 
@@ -122,7 +138,7 @@ Examples:
 
 #### Delete a meeting : `delete`
 
-Deletes the specified meeting and all associated fields from the meeting list.
+Deletes the specified meeting from the meeting list.
 
 Format: `delete INDEX`
 
@@ -136,7 +152,7 @@ Examples:
 
 #### Clearing all meetings : `clear`
 
-Clears all meetings from the meeting list.
+Clears all meetings and modules from the application.
 
 Format: `clear`
 
@@ -172,11 +188,6 @@ The meetings are saved in a JSON file at `[JAR file location]/data/app.json`. Ad
 If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
 </div>
 
-
-#### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -191,23 +202,12 @@ equivalent `app.json` data file from your previous LinkyTime installation.
 
 | Action     | Format, Examples                                                                                                                                                                    |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **
-Add**    | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz` |
-| **
-List**   | `list`                                                                                                                                                                              |
-| **
-Find**   | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                          |
-| **
-Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
-| **
-Clear**  | `clear`                                                                                                                                                                             |
-| **Edit**   | _Coming
-soon_                                                                                                                                                                       |
-| **Sort**   | _Coming
-soon_                                                                                                                                                                       |
-| **Open**   | _Coming
-soon_                                                                                                                                                                       |
-| **
-Help**   | `help`                                                                                                                                                                              |
-| **
-Exit**   | `exit`                                                                                                                                                                              |
+| **Add meeting**    | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz` |
+| **List all meetings**   | `list`                                                                                                                                                                              |
+| **Find meetings**   | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                          |
+| **Delete a meeting** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
+| **Edit**   | _Comingsoon_                                                                                                                                                                       |
+| **Open a meeting URL**   | _Comingsoon_                                                                                                                                                                       |
+| **Show help**   | `help`                                                                                                                                                                              |
+| **Clear all data**  | `clear`                                                                                                                                                                             |
+| **Exit**   | `exit`                                                                                                                                                                              |
