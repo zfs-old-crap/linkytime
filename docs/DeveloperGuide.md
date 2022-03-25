@@ -239,28 +239,67 @@ Step 1:
 The user enters the command for adding a meeting, e.g. `add n/Lecture ...`
 
 Step 2:
-The user input is parsed through the `LinkyTimeParser`, which will then pass the user input to `AddMeetingCommandParser` to check if the user input is valid.
+The user input is parsed through the `LinkyTimeParser`, which will then pass the user input to `AddMeetingCommandParser`
+to check if the user input is valid.
 
 Step 3:
-Once the user input is successfully parsed, the `AddMeetingCommandParser` creates a `AddMeetingCommand` containing the meeting to be added.
+Once the user input is successfully parsed, the `AddMeetingCommandParser` creates a `AddMeetingCommand` containing the
+meeting to be added.
 
 Step 4:
-The `LogicManager` subsequently invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the new meeting into the list.
+The `LogicManager` subsequently invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the
+new meeting into the list.
 
 Step 5:
-The `Model` will then call its own `updateFilteredMeetingList` method in order to update the model's filter to display all meetings.
+The `Model` will then call its own `updateFilteredMeetingList` method in order to update the model's filter to display
+all meetings.
 
 ##### Design considerations:
 
 **Aspect: How AddMeetingCommand executes:**
 
 * **Alternative 1 (current choice):** Let the `LogicManager` pass the model to the command to execute.
-  * Pros: Will not need to expose the model to the individual `AddMeetingCommand`.
+    * Pros: Will not need to expose the model to the individual `AddMeetingCommand`.
 
 * **Alternative 2:** Store the model in the `AddMeetingCommand` itself.
-  * Pros: Easier to implement and trace.
-  * Cons: The `AddMeetingCommand` might be able to abuse the model by calling the model's other methods.
-  
+    * Pros: Easier to implement and trace.
+    * Cons: The `AddMeetingCommand` might be able to abuse the model by calling the model's other methods.
+
+#### Delete Meeting feature
+
+This section explains the implementation of the Delete Meeting feature via the `delete` command.
+The `DeleteMeetingCommand` removes the meeting with the given index from the meeting list. This command requires a
+single field: the index of the meeting to be deleted.
+
+Below is the sequence diagram for the execution of an `DeleteMeetingCommand`.
+
+![`DeleteMeetingCommand` Sequence Diagram](images/DeleteMeetingSequenceDiagram.png)
+
+Step 1:
+The user enters a command for deleting a meeting, e.g. `delete 1`.
+
+Step 2:
+The user input is passed to `LogicManager`, which passes the user input to `LinkyTimeParser` to parse and identify the
+command type.
+
+Step 3:
+`LinkyTimeParser` passes the user input to `DeleteMeetingCommandParser` to check if the user input is valid.
+
+Step 4:
+`DeleteMeetingCommandParser` parses the user input, creates a new `DeleteMeetingCommand` and returns it
+to `LogicManager`.
+
+Step 5:
+The `LogicManager` calls `DeleteMeetingCommand::execute` which calls `Model::deleteMeeting`.
+
+Step 6:
+The `DeleteMeetingCommand` creates a `CommandResult` and passes it back to the `LogicManager`.
+
+#### Design considerations:
+
+**Aspect: How `DeleteMeetingCommand` executes:**
+
+* Similar to `AddMeetingCommand`'s considerations concerning storage and modification of underlying model object.
 
 ### Modules
 
