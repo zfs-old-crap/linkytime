@@ -77,7 +77,7 @@ public class OpenMeetingCommandTest {
 
     @Test
     public void executeWithUrlOpener_validIndexFilteredList_success() {
-        showMeetingAtIndex(model, INDEX_FIRST_MEETING);
+        showMeetingAtIndex(model, INDEX_SECOND_MEETING);
 
         final Meeting meetingToOpen = model.getFilteredMeetingList()
                 .get(INDEX_FIRST_MEETING.getZeroBased());
@@ -88,7 +88,7 @@ public class OpenMeetingCommandTest {
 
         // OpenMeetingCommand::execute should not modify model
         final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
-        showMeetingAtIndex(expectedModel, INDEX_FIRST_MEETING);
+        showMeetingAtIndex(expectedModel, INDEX_SECOND_MEETING);
 
         CommandResult commandResult;
         try {

@@ -25,7 +25,6 @@ import seedu.address.model.meeting.exceptions.UnsupportedDesktopException;
  */
 public class OpenMeetingCommand extends Command {
     public static final String COMMAND_WORD = "open";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Opens the meeting identified by the index number used in the "
             + "displayed meeting list in the system default browser.\n"

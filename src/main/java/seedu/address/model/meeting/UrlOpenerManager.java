@@ -51,16 +51,3 @@ public class UrlOpenerManager implements UrlOpener {
                 && uri.equals(((UrlOpenerManager) other).uri)); // state check
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
