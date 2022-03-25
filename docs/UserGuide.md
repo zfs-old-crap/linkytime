@@ -117,9 +117,9 @@ View all meetings in the meeting list and display their respective details.
 
 Format: `list`
 
-Details include:
+Some details include:
 
-* Meeting link
+* Meeting URL
 * Meeting name
 * Meeting date and time
 * Module the meeting is assigned to
