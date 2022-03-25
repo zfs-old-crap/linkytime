@@ -299,7 +299,8 @@ The `DeleteMeetingCommand` creates a `CommandResult` and passes it back to the `
 
 **Aspect: How `DeleteMeetingCommand` executes:**
 
-* Similar to `AddMeetingCommand`'s considerations concerning storage and modification of underlying model object.
+* Similar to the considerations of the `AddMeetingCommand`, this command is also concerned with the model storage and
+  the modification of the underlying model object.
 
 #### Find Meeting feature
 
@@ -336,7 +337,8 @@ The `FindMeetingCommand` creates a new `CommandResult` and returns it to the `Lo
 
 **Aspect: How FindMeetingCommand executes:**
 
-* Similar to `AddMeetingCommand`'s considerations concerning model storage and modification of underlying model object.
+* Similar to the considerations of the `AddMeetingCommand`, this command is also concerned with the model storage and
+  the modification of the underlying model object.
 
 **Aspect : Behaviour of find command when multiple keywords are provided:**
 
