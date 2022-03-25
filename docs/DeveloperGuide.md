@@ -154,90 +154,191 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Meetings
+The Meetings component consists of the following set of features: List Meeting, Add Meeting, Edit Meeting, Delete Meeting, Find Meeting, and Opening Meeting URL.
 
-#### Proposed Implementation
+#### The Meeting class
+The Meeting class is made up of a `MeetingName`, `MeetingUrl`, `MeetingDateTime`, `Module`, `MeetingDuration`, `IsRecurring`,
+`Set<Tag>`, and a set of getter methods that corresponds to these fields.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+##### Recurring Meetings
+A meeting is recurring if it's set to repeat on a weekly basis. Such meetings would never expire.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+This section describes how the start and end date time of a recurring meeting is computed. The key implementation lies in
+`getNextRecurrence`, a helper method which computes the next recurrence relative to the current date and time. Since 
+`getStartDateTime` and `getEndDateTime` utilises `getNextRecurrence`, they inherit the side effect of depending
+on the current date and time as well.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Below is an activity diagram describing the execution of `getNextRecurrence`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+![`getNextRecurrence` sequence diagram](images/GetNextRecurrenceActivityDiagram.png)
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### Design considerations:
+**Aspect: How the notion of recurrence is implemented:**
 
-![UndoRedoState0](images/UndoRedoState0.png)
+**Alternative 1 (current choice):** `getStartDateTime` and `getEndDateTime` will return their respective date times
+relative to the current date time.
+* Pros: Easier to implement and integrate with other components such as GUI and storage.
+* Cons: Unit-testing is less trivial since `getStartDateTime` and `getEndDateTime` would return different date times 
+depending on when their test cases are executed.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+**Alternative 2:** Generate the next set of recurring meetings to replace the existing ones. This is done at the start 
+of the program and after each command execution.
+* Cons: Implementation would sprawl across different components and more effort is required to ensure correctness.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+#### List Meetings feature
+This section explains the implementation of the List Meetings feature via the `list` command.
+The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Below is the sequence diagram for the execution of `ListMeetingCommand` after user input is sent to `LogicManager`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![`ListMeetingCommand` sequence diagram](images/ListMeetingSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Step 1:
+The user enters the command for listing all upcoming meetings which is then passed to the `LogicManager`. E.g. `list`
 
-</div>
+Step 2:
+The `LogicManager` then calls `LinkyTimeParser::parseCommand` for it to figure out what command this is.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 3:
+The `LinkyTimeParser` parses the user input and creates a `ListMeetingCommand` object.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Step 4:
+The `ListMeetingCommand` is then returned to the `LogicManager` which calls `ListMeetingCommand::execute` to execute the command.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+Step 5:
+The `ListMeetingCommand` then calls `Model::updateFileredMeetingList` to update the model's filter to display all upcoming meetings.
 
-</div>
+Step 6:
+The `ListMeetingCommand` then creates a successful `CommandResult` and returns it to the UI.
 
-The following sequence diagram shows how the undo operation works:
+#### Design considerations:
+**Aspect: How `ListMeetingCommand` executes:**
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+**Alternative 1 (current choice):** `LinkyTimeParser` returns a `ListMeetingCommand` without having a parser.
+* Pros: Easier to implement and allows for more flexible user input.
+* Cons: All user inputs that contains `list` as its first word will result in the execution of `ListMeetingCommand`,
+  including those that don't make sense. E.g. `list abc`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Alternative 2:** `LinkyTimeParser` uses a `ListMeetingCommandParser` to enforce that the user input cannot have additional params.
+* Pros: Provides clear definition of what the user input for a `ListMeetingCommand` should be.
+* Cons: Harder to implement and more rigid in nature.
 
-</div>
+#### Add Meeting feature
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+This section explains the implementation of the Add Meeting feature via the `add` command.
+The `AddMeetingCommand` causes the specified meeting to be added to the application.
+This command requires several compulsory fields such as the meeting name, URL, date time, duration, module, and whether it is recurring.
+There is only one optional field which is the tags of the meeting.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+Below is the sequence diagram for the execution of `AddMeetingCommand`
 
-</div>
+![`AddMeetingCommand` sequence diagram](images/AddMeetingSequenceDiagram.png)
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 1:
+The user enters the command for adding a meeting, e.g. `add n/Lecture ...`
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Step 2:
+The user input is parsed through the `LinkyTimeParser`, which will then pass the user input to `AddMeetingCommandParser`
+to check if the user input is valid.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 3:
+Once the user input is successfully parsed, the `AddMeetingCommandParser` creates a `AddMeetingCommand` containing the
+meeting to be added.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+Step 4:
+The `LogicManager` subsequently invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the
+new meeting into the list.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+Step 5:
+The `Model` will then call its own `updateFilteredMeetingList` method in order to update the model's filter to display
+all meetings.
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+##### Design considerations:
+
+**Aspect: How AddMeetingCommand executes:**
+
+* **Alternative 1 (current choice):** Let the `LogicManager` pass the model to the command to execute.
+    * Pros: Will not need to expose the model to the individual `AddMeetingCommand`.
+
+* **Alternative 2:** Store the model in the `AddMeetingCommand` itself.
+    * Pros: Easier to implement and trace.
+    * Cons: The `AddMeetingCommand` might be able to abuse the model by calling the model's other methods.
+
+#### Delete Meeting feature
+
+This section explains the implementation of the Delete Meeting feature via the `delete` command.
+The `DeleteMeetingCommand` removes the meeting with the given index from the meeting list. This command requires a
+single field: the index of the meeting to be deleted.
+
+Below is the sequence diagram for the execution of an `DeleteMeetingCommand`.
+
+![`DeleteMeetingCommand` Sequence Diagram](images/DeleteMeetingSequenceDiagram.png)
+
+Step 1:
+The user enters a command for deleting a meeting, e.g. `delete 1`.
+
+Step 2:
+The user input is passed to `LogicManager`, which passes the user input to `LinkyTimeParser` to parse and identify the
+command type.
+
+Step 3:
+`LinkyTimeParser` passes the user input to `DeleteMeetingCommandParser` to check if the user input is valid.
+
+Step 4:
+`DeleteMeetingCommandParser` parses the user input, creates a new `DeleteMeetingCommand` and returns it
+to `LogicManager`.
+
+Step 5:
+The `LogicManager` calls `DeleteMeetingCommand::execute` which calls `Model::deleteMeeting`.
+
+Step 6:
+The `DeleteMeetingCommand` creates a `CommandResult` and passes it back to the `LogicManager`.
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How `DeleteMeetingCommand` executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* Similar to `AddMeetingCommand`'s considerations concerning storage and modification of underlying model object.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+### Modules
 
-_{more aspects and alternatives to be added}_
+The Modules component consists of the following set of features: Add Module, Edit Module, Delete Module.
 
-### \[Proposed\] Data archiving
+All module-related commands are prefixed with an `m` to distinguish it from meeting-related commands.
 
-_{Explain here how the data archiving feature will be implemented}_
+#### The Module class
 
+The Module class consists of a single field, and input validation happens directly inside the class via `Module::isValidModule`.
+
+The `Module` objects are stored in a `UniqueModuleList` which is held by `LinkyTime`.
+
+##### Design considerations:
+
+* **Alternative 1 (current choice):** Store the module code string directly in the Module object.
+  * Pros: Easy to implement and understand.
+  * Cons: Difficult to add additional fields in the future.
+* **Alternative 2:** Abstract the field out as a separate class.
+  * Pros: 
+    * More object-oriented approach.
+    * Responsibility of field verification would be done by the field class instead of the Module class.
+  * Cons:
+    * Over-abstraction of the Module class for the current implementation which consists of only one field.
+    * May not be intuitive to understand at first glance.
+
+As we do not intend to contain any additional fields within the Module object, we opted for a simpler approach in its design.
+
+#### \[Proposed\] Delete Module feature
+
+This section explains the implementation of the Delete Module feature via the `mdelete` command.
+
+The `DeleteModuleCommand` causes the specified module to be deleted from the application.
+
+If there are meetings that are tagged under this module, the command execution is blocked and an error message is displayed to the user. A proposed extension of this feature would be to include a flag that allows the user to force the deletion of the module and its associated meetings.
+
+This process is summarized in the diagram below.
+
+![DeleteModuleActivityDiagram](images/DeleteModuleActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
