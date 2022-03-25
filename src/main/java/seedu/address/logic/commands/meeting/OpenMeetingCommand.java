@@ -18,6 +18,11 @@ import seedu.address.model.meeting.UrlOpener;
 import seedu.address.model.meeting.UrlOpenerManager;
 import seedu.address.model.meeting.exceptions.UnsupportedDesktopException;
 
+/**
+ * Opens a meeting's URL on the device's default browser. <br>
+ * The {@code execute} method of this class creates a {@code UrlOpenerManager} which checks the running environment for desktop functionality support and
+ * passes it to {@code executeWithUrlOpener}.
+ */
 public class OpenMeetingCommand extends Command {
     public static final String COMMAND_WORD = "open";
 
