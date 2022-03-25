@@ -3,6 +3,7 @@ package seedu.address.logic.commands.meeting;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
@@ -38,12 +39,8 @@ public class OpenMeetingCommand extends Command {
     }
 
     /**
-     * Creates a {@code UrlOpenerManager} which checks the local environment for desktop functionality support and
+     * Creates a {@code UrlOpenerManager} which checks the running environment for desktop functionality support and
      * passes it to {@code OpenMeetingCommand::executeWithUrlOpener}.
-     *
-     * @param model {@code Model} which the command should operate on.
-     * @return
-     * @throws CommandException
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -59,7 +56,7 @@ public class OpenMeetingCommand extends Command {
 
     /**
      * The logic of {@code OpenMeetingCommand::execute} is abstracted into this method to isolate the command
-     * logic from depending on the environment for testing purposes. This method should ideally be private/protected
+     * logic from the running environment for testing purposes. This method should ideally be private/protected
      * but is made public for testing purposes.
      */
     public CommandResult executeWithUrlOpener(Model model, UrlOpener urlOpener) throws CommandException {
@@ -76,6 +73,8 @@ public class OpenMeetingCommand extends Command {
 
         try {
             urlOpener.open(urlToOpen);
+        } catch (URISyntaxException ex) {
+            throw new CommandException(MESSAGE_INVALID_URL);
         } catch (IOException ex) {
             throw new CommandException(MESSAGE_SYSTEM_BROWSER_ERROR);
         } catch (SecurityException ex) {

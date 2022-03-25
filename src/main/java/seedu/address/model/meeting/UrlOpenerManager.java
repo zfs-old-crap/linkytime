@@ -21,34 +21,27 @@ public class UrlOpenerManager implements UrlOpener {
      *                                     {@code Desktop::browse} method is unsupported
      */
     public UrlOpenerManager() throws UnsupportedDesktopException {
-        if (!checkAndSetDesktop()) {
+        checkAndSetDesktop();
+    }
+
+    @Override
+    public void open(URL url) throws SecurityException, IOException, URISyntaxException {
+        checkAndSetUrl(url);
+        desktop.browse(uri);
+    }
+
+    private void checkAndSetDesktop() throws UnsupportedDesktopException {
+        if (!Desktop.isDesktopSupported()) {
+            throw new UnsupportedDesktopException();
+        }
+        desktop = Desktop.getDesktop();
+        if (!desktop.isSupported(Desktop.Action.BROWSE)) {
             throw new UnsupportedDesktopException();
         }
     }
 
-    @Override
-    public void open(URL url) throws SecurityException, IOException {
-        if (!checkAndSetUrl(url)) {
-            throw new IllegalArgumentException(MESSAGES_INVALID_URL);
-        }
-        desktop.browse(uri);
-    }
-
-    private boolean checkAndSetDesktop() {
-        if (!Desktop.isDesktopSupported()) {
-            return false;
-        }
-        desktop = Desktop.getDesktop();
-        return desktop.isSupported(Desktop.Action.BROWSE);
-    }
-
-    private boolean checkAndSetUrl(URL url) {
-        try {
-            uri = url.toURI();
-            return true;
-        } catch (URISyntaxException ex) {
-            return false;
-        }
+    private void checkAndSetUrl(URL url) throws URISyntaxException {
+        uri = url.toURI();
     }
 
     @Override
@@ -56,11 +49,6 @@ public class UrlOpenerManager implements UrlOpener {
         return other == this // short circuit if same object
                 || (other instanceof UrlOpenerManager // instanceof handles nulls
                 && uri.equals(((UrlOpenerManager) other).uri)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return uri.hashCode();
     }
 }
 

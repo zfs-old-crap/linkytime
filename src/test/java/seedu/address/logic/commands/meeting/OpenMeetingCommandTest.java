@@ -1,10 +1,13 @@
 package seedu.address.logic.commands.meeting;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showMeetingAtIndex;
+import static seedu.address.logic.commands.meeting.OpenMeetingCommand.MESSAGE_INVALID_URL;
+import static seedu.address.logic.commands.meeting.OpenMeetingCommand.MESSAGE_SYSTEM_BROWSER_ERROR;
+import static seedu.address.logic.commands.meeting.OpenMeetingCommand.MESSAGE_SYSTEM_PERMISSION_DENIED;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.typical.TypicalIndexes.INDEX_SECOND_MEETING;
 import static seedu.address.testutil.typical.TypicalLinkyTime.getTypicalLinkyTime;
@@ -13,10 +16,17 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.UrlOpenerStub;
+import seedu.address.logic.commands.UrlOpenerStubThrowsIoException;
+import seedu.address.logic.commands.UrlOpenerStubThrowsSecurityException;
+import seedu.address.logic.commands.UrlOpenerStubThrowsUriSyntaxException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.UrlOpener;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -27,9 +37,10 @@ import seedu.address.model.meeting.Meeting;
  */
 public class OpenMeetingCommandTest {
     private final Model model = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
+    private final UrlOpener urlOpenerStubThrowsIoException = new UrlOpenerStubThrowsIoException();
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void executeWithUrlOpener_validIndexUnfilteredList_success() {
         final Meeting meetingToOpen = model.getFilteredMeetingList()
                 .get(INDEX_FIRST_MEETING.getZeroBased());
         final OpenMeetingCommand openMeetingCommand = new OpenMeetingCommand(INDEX_FIRST_MEETING);
@@ -40,19 +51,32 @@ public class OpenMeetingCommandTest {
         // OpenMeetingCommand::execute should not modify model
         final ModelManager expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
 
-        assertCommandSuccess(openMeetingCommand, model, expectedMessage, expectedModel);
+        CommandResult commandResult;
+        try {
+            commandResult = openMeetingCommand.executeWithUrlOpener(model, new UrlOpenerStub());
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertEquals(commandResult, expectedCommandResult);
+        assertEquals(model, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void executeWithUrlOpener_invalidIndexUnfilteredList_throwsCommandException() {
         final Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);
         final OpenMeetingCommand openMeetingCommand = new OpenMeetingCommand(outOfBoundIndex);
 
-        assertCommandFailure(openMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
+
+        String expectedMessage = Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
+        assertThrows(CommandException.class, expectedMessage, () ->
+                openMeetingCommand.executeWithUrlOpener(model, new UrlOpenerStub()));
+        assertEquals(model, expectedModel);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void executeWithUrlOpener_validIndexFilteredList_success() {
         showMeetingAtIndex(model, INDEX_FIRST_MEETING);
 
         final Meeting meetingToOpen = model.getFilteredMeetingList()
@@ -66,11 +90,19 @@ public class OpenMeetingCommandTest {
         final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
         showMeetingAtIndex(expectedModel, INDEX_FIRST_MEETING);
 
-        assertCommandSuccess(openMeetingCommand, model, expectedMessage, expectedModel);
+        CommandResult commandResult;
+        try {
+            commandResult = openMeetingCommand.executeWithUrlOpener(model, new UrlOpenerStub());
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertEquals(commandResult, expectedCommandResult);
+        assertEquals(model, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void executeWithUrlOpener_invalidIndexFilteredList_throwsCommandException() {
         showMeetingAtIndex(model, INDEX_FIRST_MEETING);
 
         final Index outOfBoundIndex = INDEX_SECOND_MEETING;
@@ -79,7 +111,46 @@ public class OpenMeetingCommandTest {
 
         final OpenMeetingCommand openMeetingCommand = new OpenMeetingCommand(outOfBoundIndex);
 
-        assertCommandFailure(openMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
+        showMeetingAtIndex(expectedModel, INDEX_FIRST_MEETING);
+
+        String expectedMessage = Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
+        assertThrows(CommandException.class, expectedMessage, () ->
+                openMeetingCommand.executeWithUrlOpener(model, new UrlOpenerStub()));
+        assertEquals(model, expectedModel);
+    }
+
+    @Test
+    public void executeWithUrlOpener_urlOpenerStubThrowsUriSyntaxException_throwsCommandException() {
+        final OpenMeetingCommand openMeetingCommand = new OpenMeetingCommand(INDEX_FIRST_MEETING);
+
+        final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
+
+        assertThrows(CommandException.class, MESSAGE_INVALID_URL, () ->
+                openMeetingCommand.executeWithUrlOpener(model, new UrlOpenerStubThrowsUriSyntaxException()));
+        assertEquals(model, expectedModel);
+    }
+
+    @Test
+    public void executeWithUrlOpener_urlOpenerStubThrowsIoException_throwsCommandException() {
+        final OpenMeetingCommand openMeetingCommand = new OpenMeetingCommand(INDEX_FIRST_MEETING);
+
+        final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
+
+        assertThrows(CommandException.class, MESSAGE_SYSTEM_BROWSER_ERROR, () ->
+                openMeetingCommand.executeWithUrlOpener(model, new UrlOpenerStubThrowsIoException()));
+        assertEquals(model, expectedModel);
+    }
+
+    @Test
+    public void executeWithUrlOpener_urlOpenerStubThrowsSecurityException_throwsCommandException() {
+        final OpenMeetingCommand openMeetingCommand = new OpenMeetingCommand(INDEX_FIRST_MEETING);
+
+        final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
+
+        assertThrows(CommandException.class, MESSAGE_SYSTEM_PERMISSION_DENIED, () ->
+                openMeetingCommand.executeWithUrlOpener(model, new UrlOpenerStubThrowsSecurityException()));
+        assertEquals(model, expectedModel);
     }
 
     @Test
