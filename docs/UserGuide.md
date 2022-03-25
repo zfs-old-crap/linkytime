@@ -173,12 +173,12 @@ Format: `madd m/MODULE_NAME`
 
 Parameters:
 
-* `MEETING_NAME` The name or identifier of the module.
+* `MODULE_NAME` The name or identifier of the module.
 
 Examples:
 
 * `madd m/CS2103T`
-* `madd m/ST2334`
+* `madd m/Internship`
 
 #### Edit a module: `medit`
 
