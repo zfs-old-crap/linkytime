@@ -102,7 +102,8 @@ public class EditMeetingCommand extends Command {
 
         final MeetingName updatedName = editMeetingDescriptor.getName().orElse(meetingToEdit.getName());
         final MeetingUrl updatedUrl = editMeetingDescriptor.getUrl().orElse(meetingToEdit.getUrl());
-        final MeetingDateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
+        final MeetingDateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit
+                .getStartDateTime());
         final MeetingDuration updatedDuration = editMeetingDescriptor.getDuration().orElse(meetingToEdit.getDuration());
         final Module updatedModule = editMeetingDescriptor.getModule().orElse(meetingToEdit.getModule());
         final IsRecurring updatedIsRecurring = editMeetingDescriptor.getIsRecurring().orElse(meetingToEdit

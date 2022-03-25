@@ -35,7 +35,7 @@ public class EditMeetingDescriptorBuilder {
         descriptor = new EditMeetingDescriptor();
         descriptor.setName(meeting.getName());
         descriptor.setUrl(meeting.getUrl());
-        descriptor.setDateTime(meeting.getDateTime());
+        descriptor.setDateTime(meeting.getStartDateTime());
         descriptor.setDuration(meeting.getDuration());
         descriptor.setModule(meeting.getModule());
         descriptor.setIsRecurring(meeting.getIsRecurring());

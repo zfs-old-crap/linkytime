@@ -23,6 +23,12 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meeting.IsRecurring;
+import seedu.address.model.meeting.MeetingDateTime;
+import seedu.address.model.meeting.MeetingDuration;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.MeetingUrl;
+import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -51,25 +57,31 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
 
         final EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editMeetingDescriptor.setName(ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NAME).get()));
+            final MeetingName name = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NAME).get());
+            editMeetingDescriptor.setName(name);
         }
         if (argMultimap.getValue(PREFIX_URL).isPresent()) {
-            editMeetingDescriptor.setUrl(ParserUtil.parseMeetingUrl(argMultimap.getValue(PREFIX_URL).get()));
+            final MeetingUrl url = ParserUtil.parseMeetingUrl(argMultimap.getValue(PREFIX_URL).get());
+            editMeetingDescriptor.setUrl(url);
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
-            editMeetingDescriptor.setDateTime(ParserUtil.parseMeetingDateTime(argMultimap.getValue(PREFIX_DATETIME)
-                    .get()));
+            final MeetingDateTime dateTime = ParserUtil.parseMeetingDateTime(argMultimap.getValue(PREFIX_DATETIME)
+                    .get());
+            editMeetingDescriptor.setDateTime(dateTime);
         }
         if (argMultimap.getValue(PREFIX_DURATION).isPresent()) {
-            editMeetingDescriptor.setDuration(ParserUtil.parseMeetingDuration(argMultimap.getValue(PREFIX_DURATION)
-                    .get()));
+            final MeetingDuration duration = ParserUtil.parseMeetingDuration(argMultimap.getValue(PREFIX_DURATION)
+                    .get());
+            editMeetingDescriptor.setDuration(duration);
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            editMeetingDescriptor.setModule(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get()));
+            final Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
+            editMeetingDescriptor.setModule(module);
         }
         if (argMultimap.getValue(PREFIX_RECURRING).isPresent()) {
-            editMeetingDescriptor.setIsRecurring(ParserUtil.parseRecurringStatus(argMultimap.getValue(PREFIX_RECURRING)
-                    .get()));
+            final IsRecurring isRecurring = ParserUtil.parseRecurringStatus(argMultimap.getValue(PREFIX_RECURRING)
+                    .get());
+            editMeetingDescriptor.setIsRecurring(isRecurring);
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editMeetingDescriptor::setTags);
 

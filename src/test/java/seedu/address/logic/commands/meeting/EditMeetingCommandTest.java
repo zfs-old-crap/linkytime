@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TUTORIAL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_URL_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -56,10 +56,10 @@ public class EditMeetingCommandTest {
 
         final MeetingBuilder meetingInList = new MeetingBuilder(lastMeeting);
         final Meeting editedMeeting = meetingInList.withName(VALID_NAME_LECTURE).withUrl(VALID_URL_LECTURE)
-                .withTags(VALID_DATETIME_LECTURE).build();
+                .withTags(VALID_TAG_LECTURE).build();
 
         final EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withName(VALID_NAME_LECTURE)
-                .withUrl(VALID_URL_LECTURE).withTags(VALID_DATETIME_LECTURE).build();
+                .withUrl(VALID_URL_LECTURE).withTags(VALID_TAG_LECTURE).build();
         final EditMeetingCommand editMeetingCommand = new EditMeetingCommand(indexLastMeeting, descriptor);
 
         final String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);

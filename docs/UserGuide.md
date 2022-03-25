@@ -149,14 +149,14 @@ Format: `edit INDEX [n/MEETING_NAME] [u/URL] [d/DATETIME] [dur/DURATION] [m/MODU
 * Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the meeting will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the meeting will be removed, i.e., adding of tags is not cumulative.
 * You can remove all the meeting’s tags by typing t/ without specifying any tags after it.
 
 Examples:
 
 * `edit 1 t/ ` Removes all tags from the meeting at `INDEX` 1
-* `edit 2 n/Midterm` Changes the name of the meeting at `INDEX` 2 to `midterm`
-* `edit 3 n/Recitation dur/1 t/Optional t/Recorded` Changes the name of the meeting at `INDEX` 3 to `Recitation` and also changes the tags to be `Optional` and `Recorded`.
+* `edit 2 n/Midterm` Changes the name of the meeting at `INDEX` 2 to `Midterm`
+* `edit 3 n/Recitation dur/1 t/Optional t/Recorded` Changes the name of the meeting at `INDEX` 3 to `Recitation`, duration of the meeting to 1 hour, and the tags to be `Optional` and `Recorded`.
 
 #### Delete a meeting : `delete`
 
