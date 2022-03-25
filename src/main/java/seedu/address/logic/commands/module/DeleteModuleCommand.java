@@ -14,7 +14,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
 
 /**
- * Deletes a meeting identified using its displayed index from LinkyTime.
+ * Deletes a module identified using its displayed index from LinkyTime.
  */
 public class DeleteModuleCommand extends Command {
     public static final String COMMAND_WORD = "mdelete";

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 //import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
-import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MEETING;
-import static seedu.address.testutil.typical.TypicalIndexes.INDEX_SECOND_MEETING;
+import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MODULE;
+import static seedu.address.testutil.typical.TypicalIndexes.INDEX_SECOND_MODULE;
 import static seedu.address.testutil.typical.TypicalLinkyTime.getTypicalLinkyTime;
 
 import org.junit.jupiter.api.Test;
@@ -73,11 +73,11 @@ public class DeleteModuleCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showModuleAtIndex(model, INDEX_FIRST_MEETING);
+        showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
-        final Index outOfBoundIndex = INDEX_SECOND_MEETING;
+        final Index outOfBoundIndex = INDEX_SECOND_MODULE;
         // ensures that outOfBoundIndex is still in bounds of LinkyTime list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getLinkyTime().getMeetingList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getLinkyTime().getModuleList().size());
 
         final DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(outOfBoundIndex);
 
@@ -86,14 +86,14 @@ public class DeleteModuleCommandTest {
 
     @Test
     public void equals() {
-        final DeleteModuleCommand deleteFirstCommand = new DeleteModuleCommand(INDEX_FIRST_MEETING);
-        final DeleteModuleCommand deleteSecondCommand = new DeleteModuleCommand(INDEX_SECOND_MEETING);
+        final DeleteModuleCommand deleteFirstCommand = new DeleteModuleCommand(INDEX_FIRST_MODULE);
+        final DeleteModuleCommand deleteSecondCommand = new DeleteModuleCommand(INDEX_SECOND_MODULE);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        final DeleteModuleCommand deleteFirstCommandCopy = new DeleteModuleCommand(INDEX_FIRST_MEETING);
+        final DeleteModuleCommand deleteFirstCommandCopy = new DeleteModuleCommand(INDEX_FIRST_MODULE);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -102,7 +102,7 @@ public class DeleteModuleCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different meeting -> returns false
+        // different module -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

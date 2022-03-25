@@ -14,8 +14,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DeleteModuleCommandParser implements Parser<DeleteModuleCommand> {
 
     /**
-     * Parses the given string {@code String} of arguments in the context of the DeleteMeetingCommand
-     * and returns a DeleteMeetingCommand object for execution.
+     * Parses the given string {@code String} of arguments in the context of the DeleteModuleCommand
+     * and returns a DeleteModuleCommand object for execution.
      *
      * @throws ParseException if the user input does not conform to the expected format
      */
