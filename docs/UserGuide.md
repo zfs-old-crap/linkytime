@@ -140,9 +140,23 @@ Examples:
 
 Opens a meeting URL link in the default web browser.
 
-#### Edit a meeting: `edit`
+#### Edit a meeting : `edit`
 
-Edits the specified meeting in the meeting list.
+Edits a meeting in the meeting list.
+
+Format: `edit INDEX [n/MEETING_NAME] [u/URL] [d/DATETIME] [dur/DURATION] [m/MODULE_INDEX] [r/IS_RECURRING] [t/TAG]...`
+
+* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the meeting will be removed, i.e., adding of tags is not cumulative.
+* You can remove all the meeting’s tags by typing t/ without specifying any tags after it.
+
+Examples:
+
+* `edit 1 t/ ` Removes all tags from the meeting at `INDEX` 1
+* `edit 2 n/Midterm` Changes the name of the meeting at `INDEX` 2 to `Midterm`
+* `edit 3 n/Recitation dur/1 t/Optional t/Recorded` Changes the name of the meeting at `INDEX` 3 to `Recitation`, duration of the meeting to 1 hour, and the tags to be `Optional` and `Recorded`.
 
 #### Delete a meeting : `delete`
 
@@ -253,7 +267,7 @@ equivalent `app.json` data file from your previous LinkyTime installation.
 | **List all meetings**  | `list`                                                                                                                                                                                                   |
 | **Find meetings**      | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                                               |
 | **Open a meeting URL** | `open INDEX`<br> e.g. `open 2`                                                                                                                                                                           |
-| **Edit a meeting**     | `edit`                                                                                                                                                                                                   |
+| **Edit a meeting**     | `edit INDEX [n/MEETING_NAME] [u/URL] [d/DATETIME] [dur/DURATION] [m/MODULE_INDEX] [r/IS_RECURRING] [t/TAG]...` <br> e.g.,  `edit 1 n/Recitation dur/1`                                                   |
 | **Delete a meeting**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                      |
 | **Add a module**       | `madd m/MODULE_NAME`                                                                                                                                                                                     |
 | **Edit a module**      | `medit`                                                                                                                                                                                                  |
