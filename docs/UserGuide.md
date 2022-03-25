@@ -72,15 +72,16 @@ Line Interface (CLI) while still having the benefits of a Graphical User Interfa
 
 Most LinkyTime commands use various parameters. Their formats and constraints are provided in the table below.
 
-| Parameter | Prefix | Used in | Description |
-|-----------|--------|---------|-------------|
-| `MEETING_NAME` | `n/`          | `add` `edit`          | The name of a meeting. <ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li></ul> |
-| `URL`          | `u/`          | `add` `edit`          | The URL/link to a meeting. <ul><li> Must include the full URL link, i.e. starts with `https://`. </li><li> Must not be blank. </li></ul> |
-| `DATETIME`     | `d/`          | `add` `edit`          | The date and time of a meeting. <ul><li> Must be of the following format: `dd-MM-yyyy HHmm`. </li><li> `dd` - 2 digit day, e.g. `01`, `28`. </li><li> `MM` - 2 digit month, e.g. `01`, `12`. </li><li> `yyyy` - 4 digit year, e.g. `2022`. </li><li> `HHmm` - 24-hour time, e.g. `0800`, `1430`, `2359`. </li><li> Must not be blank. </li></ul> |
-| `DURATION`     | `dur/`        | `add` `edit`          | The duration of a meeting in hours. <ul><li> Must be a decimal number greater than 0 and less than 24, e.g. `1`, `2.5`. </li><li> Accepts up to 4 decimal places. </li><li> Must not be blank. </li></ul> |
-| `MODULE_INDEX` | `m/`          | `add` `edit`          | The index number of a module as shown in the displayed list. <ul><li> Must be a positive integer, e.g. 1, 2, 3, ... </li><li> Must not be blank. </li></ul> |
-| `IS_RECURRING` | `r/`          | `add` `edit`          | The recurrence of a meeting. If specified as `Y`, i.e. set to recur every week, the meeting will not expire and will be set to automatically repeat weekly. <ul><li> Must be given as `Y` or `N`. </li><li> Input is not case-sensitive. </li><li> Must not be blank. </li></ul> |
-| `TAG`          | `t/`          | `add` `edit`          | The tag(s) assigned to a meeting. <ul><li> Accepts only alphanumeric characters. </li><li> Spaces are not allowed. </li></ul> |
+| Parameter      | Prefix | Used in      | Description                                                                                                                                                                                                                                                                                                                                      |
+| -------------- | ------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `MEETING_NAME` | `n/`   | `add` `edit` | The name of a meeting. <ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li></ul>                                                                                                                                                                                                                         |
+| `URL`          | `u/`   | `add` `edit` | The URL/link to a meeting. <ul><li> Must include the full URL link, i.e. starts with `https://`. </li><li> Must not be blank. </li></ul>                                                                                                                                                                                                         |
+| `DATETIME`     | `d/`   | `add` `edit` | The date and time of a meeting. <ul><li> Must be of the following format: `dd-MM-yyyy HHmm`. </li><li> `dd` - 2 digit day, e.g. `01`, `28`. </li><li> `MM` - 2 digit month, e.g. `01`, `12`. </li><li> `yyyy` - 4 digit year, e.g. `2022`. </li><li> `HHmm` - 24-hour time, e.g. `0800`, `1430`, `2359`. </li><li> Must not be blank. </li></ul> |
+| `DURATION`     | `dur/` | `add` `edit` | The duration of a meeting in hours. <ul><li> Must be a decimal number greater than 0 and less than 24, e.g. `1`, `2.5`. </li><li> Accepts up to 4 decimal places. </li><li> Must not be blank. </li></ul>                                                                                                                                        |
+| `MODULE_INDEX` | `m/`   | `add` `edit` | The index number of a module as shown in the displayed list. <ul><li> Must be a positive integer, e.g. 1, 2, 3, ... </li><li> Must not be blank. </li></ul>                                                                                                                                                                                      |
+| `IS_RECURRING` | `r/`   | `add` `edit` | The recurrence of a meeting. If specified as `Y`, i.e. set to recur every week, the meeting will not expire and will be set to automatically repeat weekly. <ul><li> Must be given as `Y` or `N`. </li><li> Input is not case-sensitive. </li><li> Must not be blank. </li></ul>                                                                 |
+| `TAG`          | `t/`   | `add` `edit` | The tag(s) assigned to a meeting. <ul><li> Accepts only alphanumeric characters. </li><li> Spaces are not allowed. </li></ul>                                                                                                                                                                                                                    |
+
 _More to be added..._
 
 ## Features
@@ -110,7 +111,6 @@ Examples:
 * `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`
 * `add n/Midterm u/https://meet.google.com d/13-03-2022 1000 dur/2 m/2 r/N`
 
-
 #### List all meetings : `list`
 
 View all meetings in the meeting list and display their respective details.
@@ -136,6 +136,14 @@ Examples:
 
 * `find CS2101 Aaron` displays all meetings with fields that matches `CS2101` and `Aaron`.
 
+#### Open a meeting URL: `open`
+
+Opens a meeting URL link in the default web browser.
+
+#### Edit a meeting: `edit`
+
+Edits the specified meeting in the meeting list.
+
 #### Delete a meeting : `delete`
 
 Deletes the specified meeting from the meeting list.
@@ -149,13 +157,47 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd meeting in the meeting list.
 
+### Module Management
 
-#### Clearing all meetings : `clear`
+<div markdown="block" class="alert alert-info">
 
-Clears all meetings and modules from the application.
+:information_source: Modules are always sorted in alphabetical order.
 
-Format: `clear`
+</div>
 
+#### Add a module: `madd`
+
+Adds a module into the module list.
+
+Format: `madd m/MODULE_NAME`
+
+Parameters:
+
+* `MEETING_NAME` The name or identifier of the module.
+
+Examples:
+
+* `madd m/CS2103T`
+* `madd m/ST2334`
+
+#### Edit a module: `medit`
+
+Edits the module specified in the module list.
+
+#### Delete a module: `mdelete`
+
+Deletes the specified module from the module list.
+
+Format: `mdelete INDEX`
+
+* Deletes the module at the specified `INDEX`.
+  * If there are meetings that are currently assigned to the specified module, deletion would fail due to dependencies.
+* The index refers to the index number shown in the displayed module list.
+* The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the module list.
+
+Examples:
+
+* `mdelete 2` deletes the 2nd module in the module list, provided there are no dependent meetings.
 
 ### General
 
@@ -167,6 +209,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+#### Clearing all data : `clear`
+
+Clears all meetings and modules from the application.
+
+Format: `clear`
 
 #### Exiting the program : `exit`
 
@@ -200,14 +247,17 @@ equivalent `app.json` data file from your previous LinkyTime installation.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                    |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add meeting**    | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz` |
-| **List all meetings**   | `list`                                                                                                                                                                              |
-| **Find meetings**   | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                          |
-| **Delete a meeting** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
-| **Edit**   | _Comingsoon_                                                                                                                                                                       |
-| **Open a meeting URL**   | _Comingsoon_                                                                                                                                                                       |
-| **Show help**   | `help`                                                                                                                                                                              |
-| **Clear all data**  | `clear`                                                                                                                                                                             |
-| **Exit**   | `exit`                                                                                                                                                                              |
+| Action                 | Format, Examples                                                                                                                                                                    |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Add a meeting**      | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz` |
+| **List all meetings**  | `list`                                                                                                                                                                              |
+| **Find meetings**      | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                          |
+| **Open a meeting URL** | `open INDEX`<br> e.g. `open 2`                                                                                                                                                      |
+| **Edit a meeting**     | `edit`                                                                                                                                                                              |
+| **Delete a meeting**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
+| **Add a module**       | `madd m/MODULE_NAME`                                                                                                                                                                |
+| **Edit a module**      | `medit`                                                                                                                                                                             |
+| **Delete a module**    | `mdelete INDEX`<br> e.g., `mdelete 3`                                                                                                                                               |
+| **Show help**          | `help`                                                                                                                                                                              |
+| **Clear all data**     | `clear`                                                                                                                                                                             |
+| **Exit**               | `exit`                                                                                                                                                                              |
