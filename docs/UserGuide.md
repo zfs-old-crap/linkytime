@@ -34,7 +34,7 @@ LinkyTime** can get your meeting management tasks done faster than traditional G
    Some example commands you can try:
 
     * `list` : Lists all meetings.
-    * `add n/Tutorial u/https://www.zoom.com d/13mar2022 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with the module `CS2103` to the list of meetings.
+    * `add n/Tutorial u/https://www.zoom.com d/13mar2022 dur/2 m/CS2103 r/Y t/Boring` : Adds a meeting named `Tutorial` with the module `CS2103` to the list of meetings.
     * `delete 3` : Deletes the 3rd meeting shown in the current list.
     * `exit` : Exits the app.
 
@@ -79,21 +79,22 @@ This section describes each of the commands and features available in **LinkyTim
 
 Adds a meeting into the meeting list.
 
-Format: `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...`
+Format: `add n/MEETING_NAME u/URL d/DATETIME dur/DURATION m/MODULE_INDEX r/IS_RECURRING [t/TAG]...`
 
 Parameters:
 
 * `MEETING_NAME` The name of the meeting.
 * `URL` The URL to the online meeting.
 * `DATETIME` The date and starting time of the meeting.
+* `DURATION` The duration of the meeting. Given in numerical form, must be between 1 and 24 inclusive. E.g., `2`, `1.5`.
 * `MODULE_INDEX` The index of the module in the module list that the meeting is for.
 * `IS_RECURRING` Whether the meeting recurs every week. Given as `Y` or `N`.
 * `TAG` The tags associated with the meeting.
 
 Examples:
 
-* `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz`
-* `add n/Midterm u/https://www.google.com d/13mar2022 10am m/CS2106 r/N`
+* `add n/Lecture u/https://www.zoom.com d/Friday 2pm dur/2.0 m/CS2103 r/Y t/recorded t/lecturequiz`
+* `add n/Midterm u/https://www.google.com d/13mar2022 10am dur/1.5 m/CS2106 r/N`
 
 
 #### List all meetings : `list`
@@ -189,25 +190,15 @@ equivalent `app.json` data file from your previous LinkyTime installation.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                    |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **
-Add**    | `add n/MEETING_NAME u/URL d/DATETIME m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm m/CS2103 r/Y t/recorded t/lecturequiz` |
-| **
-List**   | `list`                                                                                                                                                                              |
-| **
-Find**   | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                          |
-| **
-Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
-| **
-Clear**  | `clear`                                                                                                                                                                             |
-| **Edit**   | _Coming
-soon_                                                                                                                                                                       |
-| **Sort**   | _Coming
-soon_                                                                                                                                                                       |
-| **Open**   | _Coming
-soon_                                                                                                                                                                       |
-| **
-Help**   | `help`                                                                                                                                                                              |
-| **
-Exit**   | `exit`                                                                                                                                                                              |
+| Action     | Format, Examples                                                                                                                                                                                       |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/MEETING_NAME u/URL d/DATETIME dur/DURATION m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/Friday 2pm dur/2 m/CS2103 r/Y t/recorded t/lecturequiz` |
+| **List**   | `list`                                                                                                                                                                                                 |
+| **Find**   | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                                             |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                    |
+| **Clear**  | `clear`                                                                                                                                                                                                |
+| **Edit**   | _Coming soon_                                                                                                                                                                       |
+| **Sort**   | _Coming soon_                                                                                                                                                                       |
+| **Open**   | _Coming soon_                                                                                                                                                                                          |
+| **Help**   | `help`                                                                                                                                                                                                 |
+| **Exit**   | `exit`                                                                                                                                                                                                 |
