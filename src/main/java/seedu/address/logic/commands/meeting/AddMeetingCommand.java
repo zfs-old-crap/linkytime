@@ -32,7 +32,7 @@ public class AddMeetingCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tutorial "
             + PREFIX_URL + "https://www.zoom.com "
-            + PREFIX_DATETIME + "13mar2022 "
+            + PREFIX_DATETIME + "30-04-2022 1400 "
             + PREFIX_DURATION + "2 "
             + PREFIX_MODULE + "CS2103 "
             + PREFIX_RECURRING + "Y "

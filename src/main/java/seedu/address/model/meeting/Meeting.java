@@ -2,6 +2,8 @@ package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -19,7 +21,7 @@ public class Meeting {
     // Identity fields
     private final MeetingName name;
     private final MeetingUrl url;
-    private final MeetingDateTime dateTime;
+    private final MeetingDateTime startDateTime;
     private final Module module;
     private final MeetingDuration duration;
 
@@ -32,15 +34,15 @@ public class Meeting {
      *
      * @param name          The name of the meeting.
      * @param url           The URL link of the meeting.
-     * @param dateTime      The date and time of the meeting.
+     * @param startDateTime The start date and time of the meeting.
      * @param isRecurring   Whether the meeting is recurring.
      */
-    public Meeting(MeetingName name, MeetingUrl url, MeetingDateTime dateTime, MeetingDuration duration,
+    public Meeting(MeetingName name, MeetingUrl url, MeetingDateTime startDateTime, MeetingDuration duration,
                    Module module, IsRecurring isRecurring, Set<Tag> tags) {
-        requireAllNonNull(name, url, dateTime, isRecurring, tags);
+        requireAllNonNull(name, url, startDateTime, isRecurring, tags);
         this.name = name;
         this.url = url;
-        this.dateTime = dateTime;
+        this.startDateTime = startDateTime;
         this.duration = duration;
         this.module = module;
         this.isRecurring = isRecurring;
@@ -55,8 +57,59 @@ public class Meeting {
         return url;
     }
 
-    public MeetingDateTime getDateTime() {
-        return dateTime;
+    /**
+     * Returns the start date and time of the meeting.
+     *
+     * @return The start date and time of the meeting if the meeting isn't recurring. Otherwise, the
+     * start date and time of the next upcoming recurrence is returned.
+     */
+    public MeetingDateTime getStartDateTime() {
+        if (!isRecurring.isRecurring) {
+            return startDateTime;
+        }
+        return new MeetingDateTime(getNextRecurrence());
+    }
+
+    /**
+     * Returns the end date and time of the meeting.
+     *
+     * @return The end date and time of the meeting if the meeting isn't recurring. Otherwise, the
+     * end date and time of the next upcoming recurrence is returned.
+     */
+    public MeetingDateTime getEndDateTime() {
+        LocalDateTime endDateTime;
+        if (isRecurring.isRecurring) {
+            endDateTime = duration.getEndDateTime(getNextRecurrence());
+        } else {
+            endDateTime = duration.getEndDateTime(startDateTime.datetime);
+        }
+        return new MeetingDateTime(endDateTime);
+    }
+
+    /**
+     * Computes the next recurrence of the meeting relative to the current date and time.
+     * If the current meeting is over, the next recurrence would be seven days from the
+     * start date and time of the meeting. Otherwise, the meeting isn't over and its
+     * current start date and time would be the next upcoming recurrence.
+     *
+     * @return The next recurrence of the meeting.
+     */
+    private LocalDateTime getNextRecurrence() {
+        final LocalDateTime today = LocalDateTime.now();
+        final LocalDateTime endDateTime = duration.getEndDateTime(startDateTime.datetime);
+
+        final long weeksElapsed = ChronoUnit.WEEKS.between(endDateTime, today);
+        if (weeksElapsed < 0) {
+            return startDateTime.datetime;
+        }
+
+        final LocalDateTime nextRecurrentStartDateTime = startDateTime.datetime.plusWeeks(weeksElapsed);
+        final LocalDateTime nextRecurrentEndDateTime = endDateTime.plusWeeks(weeksElapsed);
+        if (today.isBefore(nextRecurrentEndDateTime) || today.isEqual(nextRecurrentEndDateTime)) {
+            return nextRecurrentStartDateTime;
+        }
+
+        return nextRecurrentStartDateTime.plusWeeks(1);
     }
 
     public MeetingDuration getDuration() {
@@ -99,7 +152,7 @@ public class Meeting {
         final Meeting otherMeeting = (Meeting) other;
         return otherMeeting.name.equals(this.name)
                 && otherMeeting.url.equals(this.url)
-                && otherMeeting.dateTime.equals(this.dateTime)
+                && otherMeeting.getStartDateTime().equals(this.getStartDateTime())
                 && otherMeeting.duration.equals(this.duration)
                 && otherMeeting.module.equals(this.module)
                 && otherMeeting.isRecurring.equals(this.isRecurring)
@@ -108,7 +161,7 @@ public class Meeting {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, url, dateTime, duration, module, isRecurring, tags);
+        return Objects.hash(name, url, startDateTime, duration, module, isRecurring, tags);
     }
 
     // Not updating to show the duration for now
@@ -121,7 +174,7 @@ public class Meeting {
                 .append("; Meeting URL: ")
                 .append(url)
                 .append("; Date and time: ")
-                .append(dateTime)
+                .append(getStartDateTime())
                 .append("; Is recurring: ")
                 .append(isRecurring);
 
