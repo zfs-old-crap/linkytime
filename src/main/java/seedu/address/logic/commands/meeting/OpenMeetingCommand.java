@@ -38,10 +38,6 @@ public class OpenMeetingCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
-    /**
-     * Creates a {@code UrlOpenerManager} which checks the running environment for desktop functionality support and
-     * passes it to {@code OpenMeetingCommand::executeWithUrlOpener}.
-     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         final UrlOpener urlOpener;
