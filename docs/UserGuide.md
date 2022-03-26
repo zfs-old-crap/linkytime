@@ -198,6 +198,16 @@ Examples:
 
 Edits the module specified in the module list.
 
+Format: `medit INDEX m/MODULE_NAME`
+
+* Edits the module at the specified `INDEX`. The index refers to the index number shown in the displayed module list. The index **must be a positive integer** 1, 2, 3, …​
+* The Existing value will be updated to the input value.
+
+Examples:
+
+* `medit 1 m/CS2101`
+* `medit 2 m/Internship`
+
 #### Delete a module: `mdelete`
 
 Deletes the specified module from the module list.
@@ -262,7 +272,7 @@ equivalent `app.json` data file from your previous LinkyTime installation.
 ## Command summary
 
 | Action                 | Format, Examples                                                                                                                                                                                         |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add a meeting**      | `add n/MEETING_NAME u/URL d/DATETIME dur/DURATION m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz` |
 | **List all meetings**  | `list`                                                                                                                                                                                                   |
 | **Find meetings**      | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T CS2101 Aaron`                                                                                                                               |
@@ -270,7 +280,7 @@ equivalent `app.json` data file from your previous LinkyTime installation.
 | **Edit a meeting**     | `edit INDEX [n/MEETING_NAME] [u/URL] [d/DATETIME] [dur/DURATION] [m/MODULE_INDEX] [r/IS_RECURRING] [t/TAG]...` <br> e.g.,  `edit 1 n/Recitation dur/1`                                                   |
 | **Delete a meeting**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                      |
 | **Add a module**       | `madd m/MODULE_NAME`                                                                                                                                                                                     |
-| **Edit a module**      | `medit`                                                                                                                                                                                                  |
+| **Edit a module**      | `medit INDEX m/MODULE_NAME` <br> e.g., `medit 1 m/CS2101`                                                                                                                                                |
 | **Delete a module**    | `mdelete INDEX`<br> e.g., `mdelete 3`                                                                                                                                                                    |
 | **Show help**          | `help`                                                                                                                                                                                                   |
 | **Clear all data**     | `clear`                                                                                                                                                                                                  |
