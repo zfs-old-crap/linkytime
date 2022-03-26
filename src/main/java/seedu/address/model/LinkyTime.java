@@ -124,6 +124,16 @@ public class LinkyTime implements ReadOnlyLinkyTime {
         modules.add(module);
     }
 
+    /**
+     * Replaces the given module {@code target} in the list with {@code editedModule}.
+     * {@code target} must exist in LinkyTime.
+     */
+    public void setModule(Module target, Module editedModule) {
+        requireNonNull(editedModule);
+
+        modules.setModule(target, editedModule);
+    }
+
     //// util methods
 
     @Override

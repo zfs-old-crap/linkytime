@@ -96,6 +96,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setModule(Module target, Module editedModule) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Module> getFilteredModuleList() {
         throw new AssertionError("This method should not be called.");
     }

@@ -111,7 +111,6 @@ public class ModelManager implements Model {
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-
         linkyTime.setMeeting(target, editedMeeting);
     }
 
@@ -143,6 +142,12 @@ public class ModelManager implements Model {
     public void addModule(Module module) {
         linkyTime.addModule(module);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+        linkyTime.setModule(target, editedModule);
     }
 
     // =========== Filtered Module List Accessors ==========================================================

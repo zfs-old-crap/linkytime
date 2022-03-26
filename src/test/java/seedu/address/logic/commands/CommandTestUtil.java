@@ -17,10 +17,13 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.meeting.EditMeetingCommand;
+import seedu.address.logic.commands.module.EditModuleCommand;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.module.Module;
 import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
+import seedu.address.testutil.module.EditModuleDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -66,12 +69,15 @@ public class CommandTestUtil {
     //    public static final String INVALID_RECURRING_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
     //    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "two"; // letters not allowed in duration
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE; // empty string not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditMeetingCommand.EditMeetingDescriptor DESC_LECTURE;
     public static final EditMeetingCommand.EditMeetingDescriptor DESC_TUTORIAL;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2103;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2101;
 
     static {
         DESC_LECTURE = new EditMeetingDescriptorBuilder().withName(VALID_NAME_LECTURE)
@@ -82,6 +88,8 @@ public class CommandTestUtil {
                 .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_TUTORIAL).withDuration(VALID_DURATION_TUTORIAL)
                 .withModule(VALID_MODULE_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
                 .withTags(VALID_TAG_TUTORIAL).build();
+        DESC_CS2103 = new EditModuleDescriptorBuilder().withCode(VALID_MODULE_LECTURE).build();
+        DESC_CS2101 = new EditModuleDescriptorBuilder().withCode(VALID_MODULE_TUTORIAL).build();
     }
 
     /**
@@ -141,4 +149,16 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredMeetingList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the Module at the given {@code targetIndex} in the
+     * {@code model}'s LinkyTime.
+     */
+    public static void showModuleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+
+        final Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        model.updateFilteredModuleList(module::equals);
+
+        assertEquals(1, model.getFilteredModuleList().size());
+    }
 }

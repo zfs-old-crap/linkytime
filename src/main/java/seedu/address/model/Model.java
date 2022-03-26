@@ -107,6 +107,12 @@ public interface Model {
      */
     void addModule(Module module);
 
+    /**
+     * Replaces the given module {@code target} with {@code editedModule}.
+     * {@code target} must exist in LinkyTime.
+     */
+    void setModule(Module target, Module editedModule);
+
     // =========== Filtered Module List Accessors ==========================================================
 
     /** Returns an unmodifiable view of the filtered module list */
