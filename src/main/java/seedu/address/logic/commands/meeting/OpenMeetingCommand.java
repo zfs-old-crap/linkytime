@@ -26,12 +26,12 @@ import seedu.address.model.meeting.exceptions.UnsupportedDesktopException;
 public class OpenMeetingCommand extends Command {
     public static final String COMMAND_WORD = "open";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Opens the meeting identified by the index number used in the "
+            + ": Opens the URL of the meeting identified by the index number used in the "
             + "displayed meeting list in the system default browser.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Opened Meeting Entry: %1$s";
+    public static final String MESSAGE_SUCCESS = "Opened Meeting URL: %1$s";
     public static final String MESSAGE_INVALID_URL = "URL provided cannot be opened!";
     public static final String MESSAGE_SYSTEM_PERMISSION_DENIED = "Permission denied by user system!";
     public static final String MESSAGE_SYSTEM_BROWSER_ERROR = "Unable to launch default system browser!";
