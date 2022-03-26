@@ -74,7 +74,7 @@ public class EditModuleCommand extends Command {
      * edited with {@code editModuleDescriptor}.
      */
     private static Module createEditedModule(Module moduleToEdit,
-                                               EditModuleDescriptor editModuleDescriptor) {
+            EditModuleDescriptor editModuleDescriptor) {
         assert moduleToEdit != null;
 
         final String updatedCode = editModuleDescriptor.getCode().orElse(moduleToEdit.getCode());
@@ -96,8 +96,7 @@ public class EditModuleCommand extends Command {
 
         // state check
         final EditModuleCommand e = (EditModuleCommand) other;
-        return index.equals(e.index)
-                && editModuleDescriptor.equals(e.editModuleDescriptor);
+        return index.equals(e.index) && editModuleDescriptor.equals(e.editModuleDescriptor);
     }
 
     /**
