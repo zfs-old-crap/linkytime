@@ -9,11 +9,27 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_URL;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.IsRecurring;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDateTime;
+import seedu.address.model.meeting.MeetingDuration;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.MeetingUrl;
+import seedu.address.model.module.Module;
+import seedu.address.model.tag.Tag;
 
 /**
  * Adds a meeting to LinkyTime.
@@ -26,7 +42,7 @@ public class AddMeetingCommand extends Command {
             + PREFIX_URL + "URL "
             + PREFIX_DATETIME + "DATETIME "
             + PREFIX_DURATION + "DURATION "
-            + PREFIX_MODULE + "MODULE "
+            + PREFIX_MODULE + "MODULE_INDEX "
             + PREFIX_RECURRING + "IS_RECURRING "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -34,26 +50,36 @@ public class AddMeetingCommand extends Command {
             + PREFIX_URL + "https://www.zoom.com "
             + PREFIX_DATETIME + "30-04-2022 1400 "
             + PREFIX_DURATION + "2 "
-            + PREFIX_MODULE + "CS2103 "
+            + PREFIX_MODULE + "1 "
             + PREFIX_RECURRING + "Y "
             + PREFIX_TAG + "Boring";
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in LinkyTime";
 
-    private final Meeting meetingToAdd;
+    private final AddMeetingDescriptor addMeetingDescriptor;
 
     /**
      * Creates an AddMeetingCommand to add the specified {@code Meeting}
      */
-    public AddMeetingCommand(Meeting meeting) {
-        requireNonNull(meeting);
-        meetingToAdd = meeting;
+    public AddMeetingCommand(AddMeetingDescriptor addMeetingDescriptor) {
+        requireNonNull(addMeetingDescriptor);
+        this.addMeetingDescriptor = addMeetingDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        final List<Module> lastShownModuleList = model.getFilteredModuleList();
+        final Index moduleIndex = addMeetingDescriptor.getModuleIndex().get();
+
+        if (moduleIndex.getZeroBased() >= lastShownModuleList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        }
+
+        final Module module = lastShownModuleList.get(moduleIndex.getZeroBased());
+        final Meeting meetingToAdd = AddMeetingDescriptor.createMeeting(addMeetingDescriptor, module);
 
         if (model.hasMeeting(meetingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
@@ -67,6 +93,161 @@ public class AddMeetingCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddMeetingCommand // instanceof handles nulls
-                && meetingToAdd.equals(((AddMeetingCommand) other).meetingToAdd));
+                && addMeetingDescriptor.equals(((AddMeetingCommand) other).addMeetingDescriptor));
+    }
+
+    public static class AddMeetingDescriptor {
+        private MeetingName name;
+        private MeetingUrl url;
+        private MeetingDateTime dateTime;
+        private MeetingDuration duration;
+        private Index moduleIndex;
+        private IsRecurring isRecurring;
+        private Set<Tag> tags;
+
+        public AddMeetingDescriptor() {}
+
+        /**
+         * Constructs a AddMeetingDescriptor.
+         * Used in AddMeetingCommandParser.
+         */
+        public AddMeetingDescriptor(MeetingName name, MeetingUrl url, MeetingDateTime dateTime,
+                                    MeetingDuration duration, Index moduleIndex, IsRecurring isRecurring,
+                                    Set<Tag> tags) {
+            this.name = name;
+            this.url = url;
+            this.dateTime = dateTime;
+            this.duration = duration;
+            this.moduleIndex = moduleIndex;
+            this.isRecurring = isRecurring;
+            this.tags = tags;
+        }
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public AddMeetingDescriptor(AddMeetingDescriptor toCopy) {
+            setName(toCopy.name);
+            setUrl(toCopy.url);
+            setDateTime(toCopy.dateTime);
+            setDuration(toCopy.duration);
+            setModuleIndex(toCopy.moduleIndex);
+            setIsRecurring(toCopy.isRecurring);
+            setTags(toCopy.tags);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(name, url, dateTime, duration, moduleIndex, isRecurring, tags);
+        }
+
+        public void setName(MeetingName name) {
+            this.name = name;
+        }
+
+        public Optional<MeetingName> getName() {
+            return Optional.ofNullable(name);
+        }
+
+        public void setUrl(MeetingUrl url) {
+            this.url = url;
+        }
+
+        public Optional<MeetingUrl> getUrl() {
+            return Optional.ofNullable(url);
+        }
+
+        public void setDateTime(MeetingDateTime dateTime) {
+            this.dateTime = dateTime;
+        }
+
+        public Optional<MeetingDateTime> getDateTime() {
+            return Optional.ofNullable(dateTime);
+        }
+
+        public void setDuration(MeetingDuration duration) {
+            this.duration = duration;
+        }
+
+        public Optional<MeetingDuration> getDuration() {
+            return Optional.ofNullable(duration);
+        }
+
+        public void setModuleIndex(Index moduleIndex) {
+            this.moduleIndex = moduleIndex;
+        }
+
+        public Optional<Index> getModuleIndex() {
+            return Optional.ofNullable(moduleIndex);
+        }
+
+        public void setIsRecurring(IsRecurring isRecurring) {
+            this.isRecurring = isRecurring;
+        }
+
+        public Optional<IsRecurring> getIsRecurring() {
+            return Optional.ofNullable(isRecurring);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Creates and returns a {@code Meeting} with the given {@code addMeetingDescriptor} and {@code module}.
+         */
+        public static Meeting createMeeting(AddMeetingDescriptor addMeetingDescriptor, Module module) {
+            assert module != null;
+
+            final MeetingName name = addMeetingDescriptor.getName().get();
+            final MeetingUrl url = addMeetingDescriptor.getUrl().get();
+            final MeetingDateTime dateTime = addMeetingDescriptor.getDateTime().get();
+            final MeetingDuration duration = addMeetingDescriptor.getDuration().get();
+            final IsRecurring isRecurring = addMeetingDescriptor.getIsRecurring().get();
+            final Set<Tag> tags = addMeetingDescriptor.getTags().get();
+
+            return new Meeting(name, url, dateTime, duration, module, isRecurring, tags);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof AddMeetingDescriptor)) {
+                return false;
+            }
+
+            // state check
+            final AddMeetingDescriptor a = (AddMeetingDescriptor) other;
+
+            return getName().equals(a.getName())
+                    && getUrl().equals(a.getUrl())
+                    && getDateTime().equals(a.getDateTime())
+                    && getDuration().equals(a.getDuration())
+                    && getModuleIndex().equals(a.getModuleIndex())
+                    && getIsRecurring().equals(a.getIsRecurring())
+                    && getTags().equals(a.getTags());
+        }
+
     }
 }

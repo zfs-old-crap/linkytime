@@ -115,6 +115,7 @@ public class Meeting {
     public MeetingDuration getDuration() {
         return duration;
     }
+
     public Module getModule() {
         return module;
     }
