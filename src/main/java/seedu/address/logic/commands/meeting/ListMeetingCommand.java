@@ -11,11 +11,8 @@ import seedu.address.model.Model;
  * Lists all meetings in the LinkyTime meeting list to the user.
  */
 public class ListMeetingCommand extends Command {
-
     public static final String COMMAND_WORD = "list";
-
     public static final String MESSAGE_SUCCESS = "Listed all meetings";
-
 
     @Override
     public CommandResult execute(Model model) {
