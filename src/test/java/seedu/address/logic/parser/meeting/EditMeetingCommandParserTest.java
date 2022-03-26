@@ -18,7 +18,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTUR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_TUTORIAL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_INDEX_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_LECTURE;
@@ -91,7 +91,7 @@ public class EditMeetingCommandParserTest {
 
         final EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withName(VALID_NAME_LECTURE)
                 .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_LECTURE).withDuration(VALID_DURATION_LECTURE)
-                .withModule(VALID_MODULE_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE)
+                .withModule(VALID_MODULE_INDEX_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE)
                 .withTags(VALID_TAG_LECTURE).build();
         final EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
 
@@ -139,7 +139,7 @@ public class EditMeetingCommandParserTest {
 
         // module
         userInput = targetIndex.getOneBased() + MODULE_DESC_LECTURE;
-        descriptor = new EditMeetingDescriptorBuilder().withModule(VALID_MODULE_LECTURE).build();
+        descriptor = new EditMeetingDescriptorBuilder().withModule(VALID_MODULE_INDEX_LECTURE).build();
         expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

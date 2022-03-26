@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_URL;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -72,7 +71,7 @@ public class AddMeetingCommand extends Command {
         requireNonNull(model);
 
         final List<Module> lastShownModuleList = model.getFilteredModuleList();
-        final Index moduleIndex = addMeetingDescriptor.getModuleIndex().get();
+        final Index moduleIndex = addMeetingDescriptor.getModuleIndex();
 
         if (moduleIndex.getZeroBased() >= lastShownModuleList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
@@ -124,80 +123,34 @@ public class AddMeetingCommand extends Command {
         }
 
         /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public AddMeetingDescriptor(AddMeetingDescriptor toCopy) {
-            setName(toCopy.name);
-            setUrl(toCopy.url);
-            setDateTime(toCopy.dateTime);
-            setDuration(toCopy.duration);
-            setModuleIndex(toCopy.moduleIndex);
-            setIsRecurring(toCopy.isRecurring);
-            setTags(toCopy.tags);
-        }
-
-        /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, url, dateTime, duration, moduleIndex, isRecurring, tags);
         }
 
-        public void setName(MeetingName name) {
-            this.name = name;
+        public MeetingName getName() {
+            return name;
         }
 
-        public Optional<MeetingName> getName() {
-            return Optional.ofNullable(name);
+        public MeetingUrl getUrl() {
+            return url;
         }
 
-        public void setUrl(MeetingUrl url) {
-            this.url = url;
+        public MeetingDateTime getDateTime() {
+            return dateTime;
         }
 
-        public Optional<MeetingUrl> getUrl() {
-            return Optional.ofNullable(url);
+        public MeetingDuration getDuration() {
+            return duration;
         }
 
-        public void setDateTime(MeetingDateTime dateTime) {
-            this.dateTime = dateTime;
+        public Index getModuleIndex() {
+            return moduleIndex;
         }
 
-        public Optional<MeetingDateTime> getDateTime() {
-            return Optional.ofNullable(dateTime);
-        }
-
-        public void setDuration(MeetingDuration duration) {
-            this.duration = duration;
-        }
-
-        public Optional<MeetingDuration> getDuration() {
-            return Optional.ofNullable(duration);
-        }
-
-        public void setModuleIndex(Index moduleIndex) {
-            this.moduleIndex = moduleIndex;
-        }
-
-        public Optional<Index> getModuleIndex() {
-            return Optional.ofNullable(moduleIndex);
-        }
-
-        public void setIsRecurring(IsRecurring isRecurring) {
-            this.isRecurring = isRecurring;
-        }
-
-        public Optional<IsRecurring> getIsRecurring() {
-            return Optional.ofNullable(isRecurring);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public IsRecurring getIsRecurring() {
+            return isRecurring;
         }
 
         /**
@@ -215,11 +168,11 @@ public class AddMeetingCommand extends Command {
         public static Meeting createMeeting(AddMeetingDescriptor addMeetingDescriptor, Module module) {
             assert module != null;
 
-            final MeetingName name = addMeetingDescriptor.getName().get();
-            final MeetingUrl url = addMeetingDescriptor.getUrl().get();
-            final MeetingDateTime dateTime = addMeetingDescriptor.getDateTime().get();
-            final MeetingDuration duration = addMeetingDescriptor.getDuration().get();
-            final IsRecurring isRecurring = addMeetingDescriptor.getIsRecurring().get();
+            final MeetingName name = addMeetingDescriptor.getName();
+            final MeetingUrl url = addMeetingDescriptor.getUrl();
+            final MeetingDateTime dateTime = addMeetingDescriptor.getDateTime();
+            final MeetingDuration duration = addMeetingDescriptor.getDuration();
+            final IsRecurring isRecurring = addMeetingDescriptor.getIsRecurring();
             final Set<Tag> tags = addMeetingDescriptor.getTags().get();
 
             return new Meeting(name, url, dateTime, duration, module, isRecurring, tags);

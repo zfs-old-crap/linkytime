@@ -36,8 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_DATETIME_TUTORIAL = "01-02-2022 1300";
     public static final String VALID_DURATION_LECTURE = "2";
     public static final String VALID_DURATION_TUTORIAL = "1.5";
-    public static final String VALID_MODULE_LECTURE = "CS2103";
-    public static final String VALID_MODULE_TUTORIAL = "CS2101";
+    public static final String VALID_MODULE_INDEX_LECTURE = "1";
+    public static final String VALID_MODULE_INDEX_TUTORIAL = "2";
     public static final String VALID_RECURRING_LECTURE = "Y";
     public static final String VALID_RECURRING_TUTORIAL = "N";
     public static final String VALID_TAG_LECTURE = "damith";
@@ -51,8 +51,8 @@ public class CommandTestUtil {
     public static final String DATETIME_DESC_TUTORIAL = " " + PREFIX_DATETIME + VALID_DATETIME_TUTORIAL;
     public static final String DURATION_DESC_LECTURE = " " + PREFIX_DURATION + VALID_DURATION_LECTURE;
     public static final String DURATION_DESC_TUTORIAL = " " + PREFIX_DURATION + VALID_DURATION_TUTORIAL;
-    public static final String MODULE_DESC_LECTURE = " " + PREFIX_MODULE + VALID_MODULE_LECTURE;
-    public static final String MODULE_DESC_TUTORIAL = " " + PREFIX_MODULE + VALID_MODULE_TUTORIAL;
+    public static final String MODULE_DESC_LECTURE = " " + PREFIX_MODULE + VALID_MODULE_INDEX_LECTURE;
+    public static final String MODULE_DESC_TUTORIAL = " " + PREFIX_MODULE + VALID_MODULE_INDEX_TUTORIAL;
     public static final String RECURRING_DESC_LECTURE = " " + PREFIX_RECURRING + VALID_RECURRING_LECTURE;
     public static final String RECURRING_DESC_TUTORIAL = " " + PREFIX_RECURRING + VALID_RECURRING_TUTORIAL;
     public static final String TAG_DESC_LECTURE = " " + PREFIX_TAG + VALID_TAG_LECTURE;
@@ -76,11 +76,11 @@ public class CommandTestUtil {
     static {
         DESC_LECTURE = new EditMeetingDescriptorBuilder().withName(VALID_NAME_LECTURE)
                 .withUrl(VALID_URL_LECTURE).withDateTime(VALID_DATETIME_LECTURE).withDuration(VALID_DURATION_LECTURE)
-                .withModule(VALID_MODULE_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE).withTags(VALID_TAG_LECTURE)
+                .withModule(VALID_MODULE_INDEX_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE).withTags(VALID_TAG_LECTURE)
                 .build();
         DESC_TUTORIAL = new EditMeetingDescriptorBuilder().withName(VALID_NAME_TUTORIAL)
                 .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_TUTORIAL).withDuration(VALID_DURATION_TUTORIAL)
-                .withModule(VALID_MODULE_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
+                .withModule(VALID_MODULE_INDEX_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
                 .withTags(VALID_TAG_TUTORIAL).build();
     }
 

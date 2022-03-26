@@ -4,8 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTUR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_TUTORIAL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LECTURE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_INDEX_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_INDEX_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_LECTURE;
@@ -64,11 +64,11 @@ public class TypicalMeetings {
     // Manually added - Meeting's details found in {@code CommandTestUtil}
     public static final Meeting CS2101 = new MeetingBuilder().withName(VALID_NAME_TUTORIAL)
             .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_TUTORIAL).withDuration(VALID_DURATION_TUTORIAL)
-            .withModule(VALID_MODULE_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
+            .withModule(VALID_MODULE_INDEX_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
             .withTags(VALID_TAG_TUTORIAL).build();
     public static final Meeting CS2103 = new MeetingBuilder().withName(VALID_NAME_LECTURE)
             .withUrl(VALID_URL_LECTURE).withDateTime(VALID_DATETIME_LECTURE).withDuration(VALID_DURATION_LECTURE)
-            .withModule(VALID_MODULE_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE)
+            .withModule(VALID_MODULE_INDEX_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE)
             .withTags(VALID_TAG_LECTURE).build();
 
     public static final String KEYWORD_MATCHING_TUTORIAL = "Tutorial"; // A keyword that matches TUTORIAL
