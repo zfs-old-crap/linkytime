@@ -1,7 +1,6 @@
 package seedu.address.ui.meeting;
 
-import static seedu.address.model.meeting.MeetingDateTime.isSameDay;
-
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -10,6 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDateTime;
 import seedu.address.ui.UiPart;
 
 
@@ -58,11 +58,7 @@ public class MeetingCard extends UiPart<Region> {
         module.setText(meeting.getModule().code);
         name.setText(meeting.getName().name);
         startDateTime.setText(meeting.getStartDateTime().toString());
-        if (isSameDay(meeting.getStartDateTime(), meeting.getEndDateTime())) {
-            endDateTime.setText(meeting.getEndDateTime().toStringTime());
-        } else {
-            endDateTime.setText(meeting.getEndDateTime().toString());
-        }
+        endDateTime.setText(formatEndDateTime(meeting));
         url.setText(meeting.getUrl().meetingUrl.toString());
         isRecurring.setVisible(meeting.getIsRecurring().isRecurring);
         if (meeting.getIsRecurring().isRecurring) {
@@ -90,5 +86,17 @@ public class MeetingCard extends UiPart<Region> {
         final MeetingCard card = (MeetingCard) other;
         return id.getText().equals(card.id.getText())
                 && meeting.equals(card.meeting);
+    }
+
+    private String formatEndDateTime(Meeting meeting) {
+        final DateTimeFormatter displayTimeFormat = DateTimeFormatter.ofPattern("h:mma");
+        final MeetingDateTime start = meeting.getStartDateTime();
+        final MeetingDateTime end = meeting.getEndDateTime();
+
+        if (start.datetime.toLocalDate().isEqual(end.datetime.toLocalDate())) {
+            return end.datetime.format(displayTimeFormat);
+        } else {
+            return end.toString();
+        }
     }
 }
