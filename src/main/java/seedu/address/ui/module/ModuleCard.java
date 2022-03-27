@@ -11,7 +11,7 @@ import seedu.address.ui.UiPart;
  * An UI component that displays information of a {@code ModuleCard}.
  */
 public class ModuleCard extends UiPart<Region> {
-    private static final String FXML = "ModuleListCard.fxml";
+    private static final String FXML = "ModuleCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

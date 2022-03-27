@@ -30,7 +30,9 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" />
+        <Label fx:id="startDateTime" styleClass="cell_small_label" text="\$startDateTime" />
+        <Label styleClass="label-bright"> - </Label>
+        <Label fx:id="endDateTime" styleClass="cell_small_label" text="\$endDateTime" />
         <Label fx:id="isRecurring" text="\$isRecurring" />
       </HBox>
       <Label fx:id="url" styleClass="cell_small_label" text="\$url" />

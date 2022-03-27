@@ -2,6 +2,7 @@ package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,6 +21,8 @@ public class MeetingDateTime {
     public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
             .withResolverStyle(ResolverStyle.STRICT);
     public static final DateTimeFormatter DISPLAY_FORMAT = DateTimeFormatter.ofPattern("E d MMM uuuu h:mma")
+            .withResolverStyle(ResolverStyle.STRICT);
+    public static final DateTimeFormatter DISPLAY_TIME_FORMAT = DateTimeFormatter.ofPattern("h:mma")
             .withResolverStyle(ResolverStyle.STRICT);
 
     public final LocalDateTime datetime;
@@ -90,6 +93,27 @@ public class MeetingDateTime {
         } catch (DateTimeParseException e) {
             throw new InvalidDateTimeException(String.format("%s is not a valid date time", dateTime));
         }
+    }
+
+    /**
+     * Checks if two {@code MeetingDateTime} objects fall on the same day.
+     *
+     * @param start The first {@code MeetingDateTime} to check.
+     * @param end   The second {@code MeetingDateTime} to check.
+     * @return      True, if they both fall on the same day.
+     */
+    public static boolean isSameDay(MeetingDateTime start, MeetingDateTime end) {
+        requireAllNonNull(start, end);
+        return start.datetime.toLocalDate().isEqual(end.datetime.toLocalDate());
+    }
+
+    /**
+     * Returns a string representation of the meeting time.
+     *
+     * @return A string representation of the meeting time, formatted according to {@link #DISPLAY_TIME_FORMAT}
+     */
+    public String toStringTime() {
+        return datetime.format(DISPLAY_TIME_FORMAT);
     }
 
     /**
