@@ -66,7 +66,7 @@ public class MeetingCard extends UiPart<Region> {
         url.setText(meeting.getUrl().meetingUrl.toString());
         isRecurring.setVisible(meeting.getIsRecurring().isRecurring);
         if (meeting.getIsRecurring().isRecurring) {
-            isRecurring.setText("Recurring");
+            isRecurring.setText("R");
         }
         isRecurring.managedProperty().bind(isRecurring.visibleProperty());
         meeting.getTags().stream()
