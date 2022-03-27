@@ -1,6 +1,7 @@
 package seedu.address.ui.meeting;
 
-import java.time.format.DateTimeFormatter;
+import static seedu.address.model.meeting.MeetingDateTime.DISPLAY_TIME_FORMAT;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -89,12 +90,11 @@ public class MeetingCard extends UiPart<Region> {
     }
 
     private String formatEndDateTime(Meeting meeting) {
-        final DateTimeFormatter displayTimeFormat = DateTimeFormatter.ofPattern("h:mma");
         final MeetingDateTime start = meeting.getStartDateTime();
         final MeetingDateTime end = meeting.getEndDateTime();
 
         if (start.datetime.toLocalDate().isEqual(end.datetime.toLocalDate())) {
-            return end.datetime.format(displayTimeFormat);
+            return end.datetime.format(DISPLAY_TIME_FORMAT);
         } else {
             return end.toString();
         }
