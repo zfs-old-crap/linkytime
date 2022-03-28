@@ -115,7 +115,7 @@ public class ModelManager implements Model {
         linkyTime.setMeeting(target, editedMeeting);
     }
 
-    // =========== Filtered Meeting List Accessors ====================================================
+    // =========== Meeting List Accessors ====================================================
 
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
@@ -129,6 +129,11 @@ public class ModelManager implements Model {
         // This is a temporary workaround until a coherent solution comes about.
         filteredMeetings.setPredicate(m -> false);
         filteredMeetings.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return linkyTime.getMeetingList();
     }
 
     // =========== Module ==================================================================================

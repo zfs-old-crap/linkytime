@@ -12,7 +12,9 @@ import seedu.address.model.module.Module;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
@@ -55,7 +57,9 @@ public interface Model {
      */
     void setLinkyTime(ReadOnlyLinkyTime linkyTime);
 
-    /** Returns LinkyTime */
+    /**
+     * Returns LinkyTime
+     */
     ReadOnlyLinkyTime getLinkyTime();
 
     // =========== Meeting ============================================================================
@@ -83,16 +87,24 @@ public interface Model {
      */
     void setMeeting(Meeting target, Meeting editedMeeting);
 
-    // =========== Filtered Meeting List Accessors ====================================================
+    // =========== Meeting List Accessors ====================================================
 
-    /** Returns an unmodifiable view of the filtered meeting list */
+    /**
+     * Returns an unmodifiable view of the filtered meeting list
+     */
     ObservableList<Meeting> getFilteredMeetingList();
 
     /**
      * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    /**
+     * Returns an unmodifiable view of the unfiltered meeting list.
+     */
+    ObservableList<Meeting> getMeetingList();
 
     // =========== Module ==================================================================================
 
@@ -115,11 +127,14 @@ public interface Model {
 
     // =========== Filtered Module List Accessors ==========================================================
 
-    /** Returns an unmodifiable view of the filtered module list */
+    /**
+     * Returns an unmodifiable view of the filtered module list
+     */
     ObservableList<Module> getFilteredModuleList();
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<Module> predicate);

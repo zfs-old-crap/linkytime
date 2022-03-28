@@ -21,8 +21,10 @@ public class DeleteModuleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the module identified by the index number used in the displayed module list.\n"
+            + "The module must not have any associated upcoming meetings.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 1\n"
+            + "Note: Add the 'f/' flag to forcibly delete the module and all associated meetings.";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
@@ -30,9 +32,11 @@ public class DeleteModuleCommand extends Command {
             + "There are meetings assigned to this module.\n";
 
     private final Index targetIndex;
+    private final boolean isForced;
 
-    public DeleteModuleCommand(Index targetIndex) {
+    public DeleteModuleCommand(Index targetIndex, boolean isForced) {
         this.targetIndex = targetIndex;
+        this.isForced = isForced;
     }
 
     @Override
@@ -45,10 +49,14 @@ public class DeleteModuleCommand extends Command {
         }
 
         final Module moduleToDelete = lastShownModuleList.get(targetIndex.getZeroBased());
-        final List<Meeting> lastShownMeetingList = model.getFilteredMeetingList();
+        final List<Meeting> lastShownMeetingList = model.getMeetingList();
 
-        if (hasDependentMeetings(lastShownMeetingList, moduleToDelete)) {
+        if (!isForced && hasDependentMeetings(lastShownMeetingList, moduleToDelete)) {
             throw new CommandException(String.format(MESSAGE_DELETE_MODULE_RESTRICTED, moduleToDelete));
+        }
+
+        if (isForced) {
+            deleteAssociatedMeetings(model, moduleToDelete);
         }
 
         model.deleteModule(moduleToDelete);
@@ -59,17 +67,31 @@ public class DeleteModuleCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteModuleCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteModuleCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((DeleteModuleCommand) other).targetIndex)
+                && isForced == ((DeleteModuleCommand) other).isForced); // state check
     }
 
     /**
      * Checks if the given module has meetings assigned to it.
      *
-     * @param meetings  The list of meetings to check.
-     * @param module    The module to search for.
-     * @return          True, if there are dependent meetings in the list.
+     * @param meetings The list of meetings to check.
+     * @param module   The module to search for.
+     * @return True, if there are dependent meetings in the list.
      */
     private boolean hasDependentMeetings(List<Meeting> meetings, Module module) {
         return meetings.stream().anyMatch(meeting -> meeting.getModule().equals(module));
+    }
+
+    /**
+     * Deletes all meetings associated with the given module.
+     *
+     * @param model  The model containing the list of meetings to check.
+     * @param module The module to check against.
+     */
+    private void deleteAssociatedMeetings(Model model, Module module) {
+        model.getMeetingList()
+                .stream()
+                .filter(meeting -> meeting.getModule().equals(module))
+                .forEach(model::deleteMeeting);
     }
 }
