@@ -203,13 +203,6 @@ public class AddMeetingCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, url, dateTime, duration, moduleIndex, isRecurring, tags);
-        }
-
-        /**
          * Creates and returns a {@code Meeting} with the given {@code addMeetingDescriptor} and {@code module}.
          */
         public static Meeting createMeeting(AddMeetingDescriptor addMeetingDescriptor, Module module) {
