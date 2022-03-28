@@ -20,6 +20,7 @@ import seedu.address.logic.commands.meeting.EditMeetingCommand;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.module.Module;
 import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
 
 /**
@@ -128,6 +129,7 @@ public class CommandTestUtil {
         assertEquals(expectedLinkyTime, actualModel.getLinkyTime());
         assertEquals(expectedFilteredMeetingList, actualModel.getFilteredMeetingList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the Meeting at the given {@code targetIndex} in the
      * {@code model}'s LinkyTime.
@@ -141,4 +143,16 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredMeetingList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the Module at the given {@code targetIndex} in the
+     * {@code model}'s LinkyTime.
+     */
+    public static void showModuleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+
+        final Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        model.updateFilteredModuleList(module::equals);
+
+        assertEquals(1, model.getFilteredModuleList().size());
+    }
 }

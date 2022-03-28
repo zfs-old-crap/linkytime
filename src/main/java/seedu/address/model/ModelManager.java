@@ -145,6 +145,11 @@ public class ModelManager implements Model {
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
+    @Override
+    public void deleteModule(Module target) {
+        linkyTime.removeModule(target);
+    }
+
     // =========== Filtered Module List Accessors ==========================================================
 
     @Override
