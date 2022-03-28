@@ -299,7 +299,58 @@ The `DeleteMeetingCommand` creates a `CommandResult` and passes it back to the `
 
 **Aspect: How `DeleteMeetingCommand` executes:**
 
-* Similar to `AddMeetingCommand`'s considerations concerning storage and modification of underlying model object.
+* Similar to the considerations of the `AddMeetingCommand`, this command is also concerned with the model storage and
+  the modification of the underlying model object.
+
+#### Find Meeting feature
+
+This section explains the implementation of the Find Meeting feature via the `find` command. The `FindMeetingCommand`
+causes the GUI to only show meetings that matches the given keywords.
+
+Below is the sequence diagram for the execution of the `FindMeetingCommand`.
+
+![`FindMeetingCommand` sequence diagram](images/FindMeetingSequenceDiagram.png)
+
+Step 1:
+The user enters the command for finding meetings, e.g. `find cs2103t tutorial`.
+
+Step 2:
+The user input is passed to the `LogicManager`, which passes it to the `LinkyTimeParser`.
+
+Step 3:
+`LinkyTimeParser` consumes the user input then passes the remaining input to a new `FindMeetingCommandParser`.
+
+Step 4:
+`FindMeetingCommandParser` consumes the user input and creates a new `FindMeetingCommand` with a predicate that
+describes the criteria for the meetings to be shown.
+
+Step 5:
+The `FindMeetingCommand` is passed to `LogicManager`.
+
+Step 6:
+`LogicManager` calls `FindMeetingCommand::execute`, which calls `Model::updateFilteredMeetingList` with the predicate.
+
+Step 7:
+The `FindMeetingCommand` creates a new `CommandResult` and returns it to the `LogicManager`.
+
+##### Design considerations:
+
+**Aspect: How FindMeetingCommand executes:**
+
+* Similar to the considerations of the `AddMeetingCommand`, this command is also concerned with the model storage and
+  the modification of the underlying model object.
+
+**Aspect : Behaviour of find command when multiple keywords are provided:**
+
+* **Alternative 1 (current choice):** Command will return meetings which match **all** the given keywords.
+    * Pros: Command can be used to narrow down a search to a small set of desired meetings.
+    * Cons: Command may be too restrictive, requiring users to ensure that all keywords provided match the desired
+      meetings.
+
+* **Alternative 2:** Command will return meetings which match **at least one** of the given keywords.
+    * Pros: Command can be used to find a diverse set of meetings that users may be interested in.
+    * Cons: Command cannot be used to narrow down the search; adding more keywords may increase the number of meetings
+      returned.
 
 ### Modules
 
