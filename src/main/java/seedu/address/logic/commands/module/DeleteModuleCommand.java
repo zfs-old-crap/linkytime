@@ -34,6 +34,12 @@ public class DeleteModuleCommand extends Command {
     private final Index targetIndex;
     private final boolean isForced;
 
+    /**
+     * Creates a new {@code DeleteModuleCommand}.
+     *
+     * @param targetIndex Index of module to be deleted.
+     * @param isForced    To indicate if the deletion is forced.
+     */
     public DeleteModuleCommand(Index targetIndex, boolean isForced) {
         this.targetIndex = targetIndex;
         this.isForced = isForced;

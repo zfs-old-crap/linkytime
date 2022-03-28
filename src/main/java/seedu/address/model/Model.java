@@ -125,10 +125,10 @@ public interface Model {
      */
     void deleteModule(Module target);
 
-    // =========== Filtered Module List Accessors ==========================================================
+    // =========== Module List Accessors ==========================================================
 
     /**
-     * Returns an unmodifiable view of the filtered module list
+     * Returns an unmodifiable view of the filtered module list.
      */
     ObservableList<Module> getFilteredModuleList();
 
@@ -138,4 +138,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
+
+    /**
+     * Returns an unmodifiable view of the module list.
+     *
+     * @return
+     */
+    ObservableList<Module> getModuleList();
 }
