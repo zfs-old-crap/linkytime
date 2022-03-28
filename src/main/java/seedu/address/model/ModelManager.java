@@ -150,6 +150,11 @@ public class ModelManager implements Model {
         linkyTime.setModule(target, editedModule);
     }
 
+    @Override
+    public void deleteModule(Module target) {
+        linkyTime.removeModule(target);
+    }
+
     // =========== Filtered Module List Accessors ==========================================================
 
     @Override

@@ -134,6 +134,14 @@ public class LinkyTime implements ReadOnlyLinkyTime {
         modules.setModule(target, editedModule);
     }
 
+    /**
+     * Removes {@code key} from {@code LinkyTime}.
+     * {@code key} must exist in LinkyTime.
+     */
+    public void removeModule(Module key) {
+        modules.remove(key);
+    }
+
     //// util methods
 
     @Override

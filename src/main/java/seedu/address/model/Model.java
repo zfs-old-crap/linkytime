@@ -113,6 +113,12 @@ public interface Model {
      */
     void setModule(Module target, Module editedModule);
 
+    /**
+     * Deletes the given module.
+     * The module must exist in LinkyTime.
+     */
+    void deleteModule(Module target);
+
     // =========== Filtered Module List Accessors ==========================================================
 
     /** Returns an unmodifiable view of the filtered module list */
