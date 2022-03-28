@@ -14,7 +14,6 @@ import seedu.address.model.module.Module;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    // Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
     Predicate<Meeting> PREDICATE_SHOW_ALL_UNCOMPLETED_MEETINGS =
         m -> m.getIsRecurring().isRecurring || LocalDateTime.now().isBefore(m.getEndDateTime().datetime);
     Predicate<Meeting> PREDICATE_SHOW_ALL_COMPLETED_MEETINGS =
