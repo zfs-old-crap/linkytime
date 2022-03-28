@@ -37,7 +37,7 @@ public class EditMeetingDescriptorBuilder {
         descriptor.setUrl(meeting.getUrl());
         descriptor.setDateTime(meeting.getStartDateTime());
         descriptor.setDuration(meeting.getDuration());
-        descriptor.setModuleIndex(meeting.getModule());
+        descriptor.setModule(meeting.getModule());
         descriptor.setIsRecurring(meeting.getIsRecurring());
         descriptor.setTags(meeting.getTags());
     }
@@ -78,7 +78,7 @@ public class EditMeetingDescriptorBuilder {
      * Sets the {@code Module} of the {@code EditMeetingDescriptor} that we are building.
      */
     public EditMeetingDescriptorBuilder withModule(String module) {
-        descriptor.setModuleIndex(new Module(module));
+        descriptor.setModule(new Module(module));
         return this;
     }
 
