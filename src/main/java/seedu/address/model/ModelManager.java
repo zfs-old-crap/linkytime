@@ -25,7 +25,6 @@ public class ModelManager implements Model {
     private final FilteredList<Meeting> filteredMeetings;
     private final FilteredList<Module> filteredModules;
     private Predicate<Meeting> invariantPredicate = PREDICATE_SHOW_ALL_UNCOMPLETED_MEETINGS;
-    private boolean isFirstLoad = true;
 
     /**
      * Initializes a ModelManager with the given linkyTime and userPrefs.
@@ -38,6 +37,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMeetings = new FilteredList<>(this.linkyTime.getMeetingList());
         filteredModules = new FilteredList<>(this.linkyTime.getModuleList());
+        refreshFilteredMeetingList();
     }
 
     public ModelManager() {
@@ -123,10 +123,6 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
-        if (isFirstLoad) {
-            refreshFilteredMeetingList();
-            isFirstLoad = false;
-        }
         return filteredMeetings;
     }
 
