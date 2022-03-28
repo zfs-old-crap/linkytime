@@ -16,7 +16,7 @@ import seedu.address.model.meeting.exceptions.InvalidDateTimeException;
  */
 public class MeetingDateTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "DateTime should be formatted as dd-MM-uuuu HHmm; e.g. 30-04-2022 1400";
+            "DateTime should be formatted as dd-MM-yyyy HHmm; e.g. 30-04-2022 1400";
     public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
             .withResolverStyle(ResolverStyle.STRICT);
     public static final DateTimeFormatter DISPLAY_FORMAT = DateTimeFormatter.ofPattern("E d MMM uuuu h:mma")

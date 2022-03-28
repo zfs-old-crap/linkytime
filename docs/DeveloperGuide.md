@@ -157,6 +157,35 @@ This section describes some noteworthy details on how certain features are imple
 ### Meetings
 The Meetings component consists of the following set of features: List Meeting, Add Meeting, Edit Meeting, Delete Meeting, Find Meeting, and Opening Meeting URL.
 
+#### The Meeting class
+The Meeting class is made up of a `MeetingName`, `MeetingUrl`, `MeetingDateTime`, `Module`, `MeetingDuration`, `IsRecurring`,
+`Set<Tag>`, and a set of getter methods that corresponds to these fields.
+
+##### Recurring Meetings
+A meeting is recurring if it's set to repeat on a weekly basis. Such meetings would never expire.
+
+This section describes how the start and end date time of a recurring meeting is computed. The key implementation lies in
+`getNextRecurrence`, a helper method which computes the next recurrence relative to the current date and time. Since 
+`getStartDateTime` and `getEndDateTime` utilises `getNextRecurrence`, they inherit the side effect of depending
+on the current date and time as well.
+
+Below is an activity diagram describing the execution of `getNextRecurrence`.
+
+![`getNextRecurrence` sequence diagram](images/GetNextRecurrenceActivityDiagram.png)
+
+#### Design considerations:
+**Aspect: How the notion of recurrence is implemented:**
+
+**Alternative 1 (current choice):** `getStartDateTime` and `getEndDateTime` will return their respective date times
+relative to the current date time.
+* Pros: Easier to implement and integrate with other components such as GUI and storage.
+* Cons: Unit-testing is less trivial since `getStartDateTime` and `getEndDateTime` would return different date times 
+depending on when their test cases are executed.
+
+**Alternative 2:** Generate the next set of recurring meetings to replace the existing ones. This is done at the start 
+of the program and after each command execution.
+* Cons: Implementation would sprawl across different components and more effort is required to ensure correctness.
+
 #### List Meetings feature
 This section explains the implementation of the List Meetings feature via the `list` command.
 The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.
@@ -210,28 +239,118 @@ Step 1:
 The user enters the command for adding a meeting, e.g. `add n/Lecture ...`
 
 Step 2:
-The user input is parsed through the `LinkyTimeParser`, which will then pass the user input to `AddMeetingCommandParser` to check if the user input is valid.
+The user input is parsed through the `LinkyTimeParser`, which will then pass the user input to `AddMeetingCommandParser`
+to check if the user input is valid.
 
 Step 3:
-Once the user input is successfully parsed, the `AddMeetingCommandParser` creates a `AddMeetingCommand` containing the meeting to be added.
+Once the user input is successfully parsed, the `AddMeetingCommandParser` creates a `AddMeetingCommand` containing the
+meeting to be added.
 
 Step 4:
-The `LogicManager` subsequently invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the new meeting into the list.
+The `LogicManager` subsequently invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the
+new meeting into the list.
 
 Step 5:
-The `Model` will then call its own `updateFilteredMeetingList` method in order to update the model's filter to display all meetings.
+The `Model` will then call its own `updateFilteredMeetingList` method in order to update the model's filter to display
+all meetings.
 
 ##### Design considerations:
 
 **Aspect: How AddMeetingCommand executes:**
 
 * **Alternative 1 (current choice):** Let the `LogicManager` pass the model to the command to execute.
-  * Pros: Will not need to expose the model to the individual `AddMeetingCommand`.
+    * Pros: Will not need to expose the model to the individual `AddMeetingCommand`.
 
 * **Alternative 2:** Store the model in the `AddMeetingCommand` itself.
-  * Pros: Easier to implement and trace.
-  * Cons: The `AddMeetingCommand` might be able to abuse the model by calling the model's other methods.
-  
+    * Pros: Easier to implement and trace.
+    * Cons: The `AddMeetingCommand` might be able to abuse the model by calling the model's other methods.
+
+#### Delete Meeting feature
+
+This section explains the implementation of the Delete Meeting feature via the `delete` command.
+The `DeleteMeetingCommand` removes the meeting with the given index from the meeting list. This command requires a
+single field: the index of the meeting to be deleted.
+
+Below is the sequence diagram for the execution of an `DeleteMeetingCommand`.
+
+![`DeleteMeetingCommand` Sequence Diagram](images/DeleteMeetingSequenceDiagram.png)
+
+Step 1:
+The user enters a command for deleting a meeting, e.g. `delete 1`.
+
+Step 2:
+The user input is passed to `LogicManager`, which passes the user input to `LinkyTimeParser` to parse and identify the
+command type.
+
+Step 3:
+`LinkyTimeParser` passes the user input to `DeleteMeetingCommandParser` to check if the user input is valid.
+
+Step 4:
+`DeleteMeetingCommandParser` parses the user input, creates a new `DeleteMeetingCommand` and returns it
+to `LogicManager`.
+
+Step 5:
+The `LogicManager` calls `DeleteMeetingCommand::execute` which calls `Model::deleteMeeting`.
+
+Step 6:
+The `DeleteMeetingCommand` creates a `CommandResult` and passes it back to the `LogicManager`.
+
+#### Design considerations:
+
+**Aspect: How `DeleteMeetingCommand` executes:**
+
+* Similar to the considerations of the `AddMeetingCommand`, this command is also concerned with the model storage and
+  the modification of the underlying model object.
+
+#### Find Meeting feature
+
+This section explains the implementation of the Find Meeting feature via the `find` command. The `FindMeetingCommand`
+causes the GUI to only show meetings that matches the given keywords.
+
+Below is the sequence diagram for the execution of the `FindMeetingCommand`.
+
+![`FindMeetingCommand` sequence diagram](images/FindMeetingSequenceDiagram.png)
+
+Step 1:
+The user enters the command for finding meetings, e.g. `find cs2103t tutorial`.
+
+Step 2:
+The user input is passed to the `LogicManager`, which passes it to the `LinkyTimeParser`.
+
+Step 3:
+`LinkyTimeParser` consumes the user input then passes the remaining input to a new `FindMeetingCommandParser`.
+
+Step 4:
+`FindMeetingCommandParser` consumes the user input and creates a new `FindMeetingCommand` with a predicate that
+describes the criteria for the meetings to be shown.
+
+Step 5:
+The `FindMeetingCommand` is passed to `LogicManager`.
+
+Step 6:
+`LogicManager` calls `FindMeetingCommand::execute`, which calls `Model::updateFilteredMeetingList` with the predicate.
+
+Step 7:
+The `FindMeetingCommand` creates a new `CommandResult` and returns it to the `LogicManager`.
+
+##### Design considerations:
+
+**Aspect: How FindMeetingCommand executes:**
+
+* Similar to the considerations of the `AddMeetingCommand`, this command is also concerned with the model storage and
+  the modification of the underlying model object.
+
+**Aspect : Behaviour of find command when multiple keywords are provided:**
+
+* **Alternative 1 (current choice):** Command will return meetings which match **all** the given keywords.
+    * Pros: Command can be used to narrow down a search to a small set of desired meetings.
+    * Cons: Command may be too restrictive, requiring users to ensure that all keywords provided match the desired
+      meetings.
+
+* **Alternative 2:** Command will return meetings which match **at least one** of the given keywords.
+    * Pros: Command can be used to find a diverse set of meetings that users may be interested in.
+    * Cons: Command cannot be used to narrow down the search; adding more keywords may increase the number of meetings
+      returned.
 
 ### Modules
 

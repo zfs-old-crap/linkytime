@@ -16,9 +16,12 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.meeting.EditMeetingCommand;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.module.Module;
+import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -68,6 +71,20 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final EditMeetingCommand.EditMeetingDescriptor DESC_LECTURE;
+    public static final EditMeetingCommand.EditMeetingDescriptor DESC_TUTORIAL;
+
+    static {
+        DESC_LECTURE = new EditMeetingDescriptorBuilder().withName(VALID_NAME_LECTURE)
+                .withUrl(VALID_URL_LECTURE).withDateTime(VALID_DATETIME_LECTURE).withDuration(VALID_DURATION_LECTURE)
+                .withModule(VALID_MODULE_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE).withTags(VALID_TAG_LECTURE)
+                .build();
+        DESC_TUTORIAL = new EditMeetingDescriptorBuilder().withName(VALID_NAME_TUTORIAL)
+                .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_TUTORIAL).withDuration(VALID_DURATION_TUTORIAL)
+                .withModule(VALID_MODULE_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
+                .withTags(VALID_TAG_TUTORIAL).build();
+    }
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -112,6 +129,7 @@ public class CommandTestUtil {
         assertEquals(expectedLinkyTime, actualModel.getLinkyTime());
         assertEquals(expectedFilteredMeetingList, actualModel.getFilteredMeetingList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the Meeting at the given {@code targetIndex} in the
      * {@code model}'s LinkyTime.
@@ -125,4 +143,16 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredMeetingList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the Module at the given {@code targetIndex} in the
+     * {@code model}'s LinkyTime.
+     */
+    public static void showModuleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+
+        final Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        model.updateFilteredModuleList(module::equals);
+
+        assertEquals(1, model.getFilteredModuleList().size());
+    }
 }
