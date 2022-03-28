@@ -93,86 +93,19 @@ The commands in this user guide follow this format:
 
 Most LinkyTime commands use various parameters. Their formats and constraints are provided in the table below.
 
-<table>
-    <tr>
-        <td>Parameter</td>
-        <td>Prefix</td>
-        <td>Used in</td>
-        <td>Description</td>
-    </tr>
-    <tr>
-        <td>`MEETING_NAME`</td>
-        <td>`n/`</td>
-        <td>`add` `edit`</td>
-        <td>The name of a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`MODULE_NAME`</td>
-        <td>`n/`</td>
-        <td>`madd` `medit`</td>
-        <td>The name of a module. {::nomarkdown}<ul><li> Must be unique. </li><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`URL`</td>
-        <td>`u/`</td>
-        <td>`add` `edit`</td>
-        <td>The URL/link to a meeting. {::nomarkdown}<ul><li> Must include the full URL link, i.e. starts with `https://`. </li><li> Must not be blank. </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`DATETIME`</td>
-        <td>`d/`</td>
-        <td>`add` `edit`</td>
-        <td>The date and time of a meeting. {::nomarkdown}<ul><li> Must be of the following format: `dd-MM-yyyy HHmm`. </li><li> `dd` - 2 digit day, e.g. `01`, `28`. </li><li> `MM` - 2 digit month, e.g. `01`, `12`. </li><li> `yyyy` - 4 digit year, e.g. `2022`. </li><li> `HHmm` - 24-hour time, e.g. `0800`, `1430`, `2359`. </li><li> Must not be blank. </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`DURATION`</td>
-        <td>`dur/`</td>
-        <td>`add` `edit`</td>
-        <td>The duration of a meeting in hours. {::nomarkdown}<ul><li> Must be a decimal number greater than 0 and less than 24, e.g. `1`, `2.5`. </li><li> Accepts up to 4 decimal places. </li><li> Must not be blank. </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`MODULE_INDEX`</td>
-        <td>`m/`</td>
-        <td>`add` `edit`</td>
-        <td>The index number of a m-odule as shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer, e.g. 1, 2, 3, ... </li><li> Must not be blank. </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`IS_RECURRING`</td>
-        <td>`r/`</td>
-        <td>`add` `edit`</td>
-        <td>The recurrence of a meeting. If specified as `Y`, i.e. set to recur every week, the meeting will not expire and will be set to automatically repeat weekly. {::nomarkdown}<ul><li> Must be given as `Y` or `N`. </li><li> Input is not case-sensitive. </li><li> Must not be blank. </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`INDEX`</td>
-        <td>-</td>
-        <td>`edit` `delete` `medit` `mdelete`</td>
-        <td>The index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3... </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`MODULE_INDEX`</td>
-        <td>`m/`</td>
-        <td>`edit` `delete`</td>
-        <td>The module's index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3... </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`KEYWORD`</td>
-        <td>-</td>
-        <td>`find`</td>
-        <td>A keyword used in the find command. {::nomarkdown}<ul><li> Must be given as a single word without spaces. </li><li> Input is not case-sensitive. </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`TAG`</td>
-        <td>`t/`</td>
-        <td>`add` `edit`</td>
-        <td>The tag(s) assigned to a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters. </li><li> Spaces are not allowed. </li></ul>{:/}</td>
-    </tr>
-    <tr>
-        <td>`FORCE_DELETE`</td>
-        <td>`f/`</td>
-        <td>`mdelete`</td>
-        <td>The indication of whether to force the deletion of a module and meetings assigned to it.</td>
-    </tr>
-</table>
+| Parameter      | Prefix | Used in                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| -------------- | ------ | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `MEETING_NAME` | `n/`   | `add` `edit`                      | The name of a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li></ul>{:/}                                                                                                                                                                                                                                                                                                                  |
+| `MODULE_NAME`  | `n/`   | `madd` `medit`                    | The name of a module. {::nomarkdown}<ul><li> Must be unique. </li><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                          |
+| `URL`          | `u/`   | `add` `edit`                      | The URL/link to a meeting. {::nomarkdown}<ul><li> Must include the full URL link, i.e. starts with {:/}`https://`{::nomarkdown}. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                 |
+| `DATETIME`     | `d/`   | `add` `edit`                      | The date and time of a meeting. {::nomarkdown}<ul><li> Must be of the following format: {:/}`dd-MM-yyyy HHmm`{::nomarkdown}. </li><li> {:/}`dd` - 2 digit day, e.g. `01`, `28`{::nomarkdown}. </li><li> {:/}`MM` - 2 digit month, e.g. `01`, `12`{::nomarkdown}. </li><li> {:/}`yyyy` - 4 digit year, e.g. `2022`{::nomarkdown}. </li><li> {:/}`HHmm` - 24-hour time, e.g. `0800`, `1430`, `2359`{::nomarkdown}. </li><li> Must not be blank.</li></ul>{:/} |
+| `DURATION`     | `dur/` | `add` `edit`                      | The duration of a meeting in hours. {::nomarkdown}<ul><li> Must be a decimal number greater than 0 and less than 24, e.g. {:/}`1`, `2.5`{::nomarkdown}. </li><li> Accepts up to 4 decimal places. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                |
+| `MODULE_INDEX` | `m/`   | `add` `edit`                      | The index number of a module as shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer, e.g. 1, 2, 3, ...  Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                         |
+| `IS_RECURRING` | `r/`   | `add` `edit`                      | The recurrence of a meeting. If specified as `Y`, i.e. set to recur every week, the meeting will not expire and will be set to automatically repeat weekly. {::nomarkdown}<ul><li> Must be given as {:/}`Y` or `N`{::nomarkdown}. </li><li> Input is not case-sensitive. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                         |
+| `INDEX`        | -      | `edit` `delete` `medit` `mdelete` | The index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                   |
+| `MODULE_INDEX` | `m/`   | `edit` `delete`                   | The module's index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                          |
+| `KEYWORD`      | -      | `find`                            | A keyword used in the find command. {::nomarkdown}<ul><li> Must be given as a single word without spaces. </li><li> Input is not case-sensitive.</li></ul>{:/}                                                                                                                                                                                                                                                                                              |
+| `TAG`          | `t/`   | `add` `edit`                      | The tag(s) assigned to a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters. </li><li> Spaces are not allowed.</li></ul>{:/}                                                                                                                                                                                                                                                                                                              |
 
 ## Features
 
@@ -180,7 +113,13 @@ This section describes each of the commands and features available in **LinkyTim
 
 ### Meeting Management
 
-#### Add a meeting: `add`
+<div markdown="block" class="alert alert-info">
+
+:information_source: Meetings are always sorted in chronological order.
+
+</div>
+
+#### Add a meeting : `add`
 
 Adds a meeting into the meeting list.
 
@@ -214,12 +153,6 @@ Some details include:
 * Meeting date and time
 * Module the meeting is assigned to
 
-#### List all archived meetings : `archive`
-
-View all elapsed meetings in the meeting list and display their respective details.
-
-Format: `archive`
-
 #### Find a meeting : `find`
 
 Find meetings in the meeting list that matches the provided keywords and displays their respective details.
@@ -232,9 +165,19 @@ Examples:
 
 * `find CS2101 Aaron` displays all meetings with fields that matches `CS2101` and `Aaron`.
 
-#### Open a meeting URL: `open`
+#### Open a meeting URL : `open`
 
 Opens a meeting URL link in the default web browser.
+
+Format: `open INDEX`
+
+* Opens the meeting at the specified `INDEX`.
+* The index refers to the index number shown in the displayed meeting list.
+* The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the meeting list.
+
+Examples:
+
+* `list` followed by `open 2` opens the 2nd meeting in the meeting list.
 
 #### Edit a meeting : `edit`
 
@@ -250,9 +193,9 @@ Format: `edit INDEX [n/MEETING_NAME] [u/URL] [d/DATETIME] [dur/DURATION] [m/MODU
 
 Examples:
 
-* `edit 1 t/ ` Removes all tags from the meeting at `INDEX` 1
-* `edit 2 n/Midterm` Changes the name of the meeting at `INDEX` 2 to `Midterm`
-* `edit 3 n/Recitation dur/1 t/Optional t/Recorded` Changes the name of the meeting at `INDEX` 3 to `Recitation`, duration of the meeting to 1 hour, and the tags to be `Optional` and `Recorded`.
+* `edit 1 t/` removes all tags from the meeting at `INDEX` 1
+* `edit 2 n/Midterm` changes the name of the meeting at `INDEX` 2 to `Midterm`
+* `edit 3 n/Recitation dur/1 t/Optional t/Recorded` changes the name of the meeting at `INDEX` 3 to `Recitation`, duration of the meeting to 1 hour, and the tags to be `Optional` and `Recorded`.
 
 #### Delete a meeting : `delete`
 
@@ -265,7 +208,14 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the meeting list.
 
 Examples:
+
 * `list` followed by `delete 2` deletes the 2nd meeting in the meeting list.
+
+#### List all archived meetings : `archive`
+
+View all elapsed meetings in the meeting list and display their respective details.
+
+Format: `archive`
 
 ### Module Management
 
@@ -275,7 +225,7 @@ Examples:
 
 </div>
 
-#### Add a module: `madd`
+#### Add a module : `madd`
 
 Adds a module into the module list.
 
@@ -290,34 +240,38 @@ Examples:
 * `madd n/CS2103T`
 * `madd n/Internship`
 
-#### Edit a module: `medit`
+#### Edit a module : `medit`
 
 Edits the module specified in the module list.
 
 Format: `medit INDEX n/MODULE_NAME`
 
-* Edits the module at the specified `INDEX`. The index refers to the index number shown in the displayed module list. The index **must be a positive integer** 1, 2, 3, …​
-* The Existing value will be updated to the input value.
+* Edits the module at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed module list. 
+* The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the module list.
+* The existing value will be updated to the input value.
 
 Examples:
 
 * `medit 1 n/CS2101`
 * `medit 2 n/Internship`
 
-#### Delete a module: `mdelete`
+#### Delete a module : `mdelete`
 
 Deletes the specified module from the module list.
 
-Format: `mdelete INDEX`
+Format: `mdelete INDEX [f/]`
 
 * Deletes the module at the specified `INDEX`.
-  * If there are meetings that are currently assigned to the specified module, deletion would fail due to dependencies.
+  * If there are meetings that are currently assigned to the specified module, deletion would fail due to dependent meetings.
+  * You may choose to also force delete all associated meetings with the `f/` flag. This action is irreversible!
 * The index refers to the index number shown in the displayed module list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the module list.
 
 Examples:
 
-* `mdelete 2` deletes the 2nd module in the module list, provided there are no dependent meetings.
+* `mdelete 2` deletes the 2nd module in the module list, provided there are no associated meetings.
+* `mdelete 1 f/` deletes the 1st module in the module list and all associated meetings, if any.
 
 ### General
 
@@ -341,11 +295,9 @@ Exits the program.
 
 Format: `exit`
 
-
 #### Saving the data
 
 Your meetings are saved to your computer automatically upon running any command that changes the data. There is no need to save manually.
-
 
 #### Editing the data file
 
@@ -371,13 +323,13 @@ equivalent `app.json` data file from your previous LinkyTime installation.
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add a meeting**              | `add n/MEETING_NAME u/URL d/DATETIME dur/DURATION m/MODULE_INDEX r/IS_RECURRING [t/TAG]...` <br> e.g., `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz` |
 | **List all meetings**          | `list`                                                                                                                                                                                                   |
-| **List all archived meetings** | `archive`                                                                                                                                                                                                |
 | **Find meetings**              | `find [keyword] [more keywords...]` <br> e.g., `find CS2103T lecture`                                                                                                                                    |
 | **Open a meeting URL**         | `open INDEX`<br> e.g. `open 2`                                                                                                                                                                           |
 | **Edit a meeting**             | `edit INDEX [n/MEETING_NAME] [u/URL] [d/DATETIME] [dur/DURATION] [m/MODULE_INDEX] [r/IS_RECURRING] [t/TAG]...` <br> e.g.,  `edit 1 n/Recitation dur/1`                                                   |
 | **Delete a meeting**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                      |
+| **List all archived meetings** | `archive`                                                                                                                                                                                                |
 | **Add a module**               | `madd n/MODULE_NAME`                                                                                                                                                                                     |
-| **Edit a module**              | `medit INDEX m/MODULE_NAME` <br> e.g., `medit 1 m/CS2101`                                                                                                                                                |
+| **Edit a module**              | `medit INDEX n/MODULE_NAME` <br> e.g., `medit 1 n/CS2101`                                                                                                                                                |
 | **Delete a module**            | `mdelete INDEX`<br> e.g., `mdelete 3`                                                                                                                                                                    |
 | **Show help**                  | `help`                                                                                                                                                                                                   |
 | **Clear all data**             | `clear`                                                                                                                                                                                                  |
