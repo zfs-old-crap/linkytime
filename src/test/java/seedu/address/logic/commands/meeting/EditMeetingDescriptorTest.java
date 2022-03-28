@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_LECTURE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_INDEX_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
@@ -55,7 +55,7 @@ public class EditMeetingDescriptorTest {
         assertFalse(DESC_TUTORIAL.equals(editedTutorial));
 
         // different module -> returns false
-        editedTutorial = new EditMeetingDescriptorBuilder(DESC_TUTORIAL).withModule(VALID_MODULE_INDEX_LECTURE).build();
+        editedTutorial = new EditMeetingDescriptorBuilder(DESC_TUTORIAL).withModule(VALID_MODULE_LECTURE).build();
         assertFalse(DESC_TUTORIAL.equals(editedTutorial));
 
         // different recurrence -> returns false

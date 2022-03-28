@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_URL;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -123,34 +124,65 @@ public class AddMeetingCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
          */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, url, dateTime, duration, moduleIndex, isRecurring, tags);
+        public AddMeetingDescriptor(AddMeetingDescriptor toCopy) {
+            this.name = toCopy.name;
+            this.url = toCopy.url;
+            this.dateTime = toCopy.dateTime;
+            this.duration = toCopy.duration;
+            this.moduleIndex = toCopy.moduleIndex;
+            this.isRecurring = toCopy.isRecurring;
+            this.tags = toCopy.tags;
         }
 
         public MeetingName getName() {
             return name;
         }
 
+        public void setName(MeetingName name) {
+            this.name = name;
+        }
+
         public MeetingUrl getUrl() {
             return url;
+        }
+
+        public void setUrl(MeetingUrl url) {
+            this.url = url;
         }
 
         public MeetingDateTime getDateTime() {
             return dateTime;
         }
 
+        public void setDateTime(MeetingDateTime dateTime) {
+            this.dateTime = dateTime;
+        }
+
         public MeetingDuration getDuration() {
             return duration;
+        }
+
+        public void setDuration(MeetingDuration duration) {
+            this.duration = duration;
         }
 
         public Index getModuleIndex() {
             return moduleIndex;
         }
 
+        public void setModuleIndex(Index moduleIndex) {
+            this.moduleIndex = moduleIndex;
+        }
+
         public IsRecurring getIsRecurring() {
             return isRecurring;
+        }
+
+        public void setIsRecurring(IsRecurring isRecurring) {
+            this.isRecurring = isRecurring;
         }
 
         /**
@@ -160,6 +192,21 @@ public class AddMeetingCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(name, url, dateTime, duration, moduleIndex, isRecurring, tags);
         }
 
         /**
@@ -201,6 +248,5 @@ public class AddMeetingCommand extends Command {
                     && getIsRecurring().equals(a.getIsRecurring())
                     && getTags().equals(a.getTags());
         }
-
     }
 }

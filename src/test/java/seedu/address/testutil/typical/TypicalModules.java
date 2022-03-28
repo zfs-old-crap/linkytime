@@ -1,7 +1,7 @@
 package seedu.address.testutil.typical;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_INDEX_LECTURE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_INDEX_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TUTORIAL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,8 +26,8 @@ public class TypicalModules {
     public static final Module CS2107 = new ModuleBuilder().withCode("CS2107").build();
 
     // Manually added - Module's details found in {@code CommandTestUtil}
-    public static final Module CS2103 = new ModuleBuilder().withCode(VALID_MODULE_INDEX_LECTURE).build();
-    public static final Module CS2101 = new ModuleBuilder().withCode(VALID_MODULE_INDEX_TUTORIAL).build();
+    public static final Module CS2103 = new ModuleBuilder().withCode(VALID_MODULE_LECTURE).build();
+    public static final Module CS2101 = new ModuleBuilder().withCode(VALID_MODULE_TUTORIAL).build();
 
     public static final String KEYWORD_MATCHING_CS2106 = "CS2106"; // A keyword that matches CS2106
 

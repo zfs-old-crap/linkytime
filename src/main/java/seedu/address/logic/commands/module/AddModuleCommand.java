@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.module;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -16,9 +16,9 @@ public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "madd";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to LinkyTime. "
             + "Parameters: "
-            + PREFIX_MODULE + "MODULE_CODE "
+            + PREFIX_NAME + "MODULE_CODE "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T";
+            + PREFIX_NAME + "CS2103T";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in LinkyTime";

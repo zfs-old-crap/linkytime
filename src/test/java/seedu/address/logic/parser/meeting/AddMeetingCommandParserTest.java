@@ -18,7 +18,7 @@ import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.URL_DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_LECTURE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_INDEX_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
@@ -120,7 +120,7 @@ public class AddMeetingCommandParserTest {
 
         // missing module prefix
         assertParseFailure(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE + DATETIME_DESC_LECTURE
-                        + DURATION_DESC_LECTURE + VALID_MODULE_INDEX_LECTURE + RECURRING_DESC_LECTURE,
+                        + DURATION_DESC_LECTURE + VALID_MODULE_LECTURE + RECURRING_DESC_LECTURE,
                 expectedMessage);
 
         // missing recurrence prefix
