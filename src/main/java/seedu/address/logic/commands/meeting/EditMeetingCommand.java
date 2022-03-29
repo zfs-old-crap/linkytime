@@ -44,7 +44,7 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_URL + "URL] "
             + "[" + PREFIX_DATETIME + "DATETIME] "
             + "[" + PREFIX_DURATION + "DURATION] "
-            + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_MODULE + "MODULE_INDEX] "
             + "[" + PREFIX_RECURRING + "IS_RECURRING] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -73,14 +73,26 @@ public class EditMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        final List<Meeting> lastShownList = model.getFilteredMeetingList();
+        final List<Meeting> lastShownMeetingList = model.getFilteredMeetingList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownMeetingList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
-        final Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
-        final Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
+        final List<Module> lastShownModuleList = model.getFilteredModuleList();
+        final Optional<Index> moduleIndex = editMeetingDescriptor.getModuleIndex();
+        final Optional<Module> editedModule;
+
+        if (moduleIndex.isEmpty()) {
+            editedModule = Optional.empty();
+        } else if (moduleIndex.get().getZeroBased() >= lastShownModuleList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        } else {
+            editedModule = Optional.ofNullable(lastShownModuleList.get(moduleIndex.get().getZeroBased()));
+        }
+
+        final Meeting meetingToEdit = lastShownMeetingList.get(index.getZeroBased());
+        final Meeting editedMeeting = createEditedMeeting(meetingToEdit, editedModule, editMeetingDescriptor);
 
         if (!meetingToEdit.equals(editedMeeting) && model.hasMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
@@ -92,9 +104,9 @@ public class EditMeetingCommand extends Command {
 
     /**
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
-     * edited with {@code editMeetingDescriptor}.
+     * edited with {@code editMeetingDescriptor} and {@code editedModule}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit,
+    private static Meeting createEditedMeeting(Meeting meetingToEdit, Optional<Module> editedModule,
             EditMeetingDescriptor editMeetingDescriptor) {
         assert meetingToEdit != null;
 
@@ -103,7 +115,7 @@ public class EditMeetingCommand extends Command {
         final MeetingDateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit
                 .getStartDateTime());
         final MeetingDuration updatedDuration = editMeetingDescriptor.getDuration().orElse(meetingToEdit.getDuration());
-        final Module updatedModule = editMeetingDescriptor.getModule().orElse(meetingToEdit.getModule());
+        final Module updatedModule = editedModule.orElse(meetingToEdit.getModule());
         final IsRecurring updatedIsRecurring = editMeetingDescriptor.getIsRecurring().orElse(meetingToEdit
                 .getIsRecurring());
         final Set<Tag> updatedTags = editMeetingDescriptor.getTags().orElse(meetingToEdit.getTags());
@@ -139,7 +151,7 @@ public class EditMeetingCommand extends Command {
         private MeetingUrl url;
         private MeetingDateTime dateTime;
         private MeetingDuration duration;
-        private Module module;
+        private Index moduleIndex;
         private IsRecurring isRecurring;
         private Set<Tag> tags;
 
@@ -155,7 +167,7 @@ public class EditMeetingCommand extends Command {
             setUrl(toCopy.url);
             setDateTime(toCopy.dateTime);
             setDuration(toCopy.duration);
-            setModule(toCopy.module);
+            setModuleIndex(toCopy.moduleIndex);
             setIsRecurring(toCopy.isRecurring);
             setTags(toCopy.tags);
         }
@@ -164,7 +176,7 @@ public class EditMeetingCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, url, dateTime, duration, module, isRecurring, tags);
+            return CollectionUtil.isAnyNonNull(name, url, dateTime, duration, moduleIndex, isRecurring, tags);
         }
 
         public void setName(MeetingName name) {
@@ -199,12 +211,12 @@ public class EditMeetingCommand extends Command {
             return Optional.ofNullable(duration);
         }
 
-        public void setModule(Module module) {
-            this.module = module;
+        public void setModuleIndex(Index moduleIndex) {
+            this.moduleIndex = moduleIndex;
         }
 
-        public Optional<Module> getModule() {
-            return Optional.ofNullable(module);
+        public Optional<Index> getModuleIndex() {
+            return Optional.ofNullable(moduleIndex);
         }
 
         public void setIsRecurring(IsRecurring isRecurring) {
@@ -251,7 +263,7 @@ public class EditMeetingCommand extends Command {
                     && getUrl().equals(e.getUrl())
                     && getDateTime().equals(e.getDateTime())
                     && getDuration().equals(e.getDuration())
-                    && getModule().equals(e.getModule())
+                    && getModuleIndex().equals(e.getModuleIndex())
                     && getIsRecurring().equals(e.getIsRecurring())
                     && getTags().equals(e.getTags());
         }

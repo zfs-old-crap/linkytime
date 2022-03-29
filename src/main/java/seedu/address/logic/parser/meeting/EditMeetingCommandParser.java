@@ -28,7 +28,6 @@ import seedu.address.model.meeting.MeetingDateTime;
 import seedu.address.model.meeting.MeetingDuration;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.MeetingUrl;
-import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -75,8 +74,8 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
             editMeetingDescriptor.setDuration(duration);
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            final Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
-            editMeetingDescriptor.setModule(module);
+            final Index moduleIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MODULE).get());
+            editMeetingDescriptor.setModuleIndex(moduleIndex);
         }
         if (argMultimap.getValue(PREFIX_RECURRING).isPresent()) {
             final IsRecurring isRecurring = ParserUtil.parseRecurringStatus(argMultimap.getValue(PREFIX_RECURRING)
