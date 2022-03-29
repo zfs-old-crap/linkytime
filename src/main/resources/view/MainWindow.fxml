@@ -11,8 +11,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
-
 <?import javafx.scene.layout.HBox?>
+
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="LinkyTime App" minWidth="520" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -54,7 +54,8 @@
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-              <Label styleClass="label-bright">Meetings</Label> <Label fx:id="meetingListStatus">Upcoming</Label>
+              <Label styleClass="label-bright">Meetings</Label>
+              <Label fx:id="meetingListStatus">Upcoming</Label>
             </HBox>
               <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
