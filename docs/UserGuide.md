@@ -35,7 +35,7 @@ Line Interface (CLI) while still having the benefits of a Graphical User Interfa
 
     * `list` : Lists all meetings.
     * `madd m/CS2105` : Adds a module called `CS2105` to the list of modules.
-    * `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/2 m/1 r/Y t/Quiz` : Adds a meeting named `Tutorial` to the list of meetings.
+    * `add n/Tutorial u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/Quiz` : Adds a meeting named `Tutorial` to the list of meetings.
     * `delete 3` : Deletes the 3rd meeting shown in the current list.
     * `exit` : Exits the app.
 
@@ -72,16 +72,16 @@ Here are the steps to follow if you are using LinkyTime for the first time. You 
 The commands in this user guide follow this format:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add u/URL`, `URL` is a parameter which can be used as `add u/https://meet.google.com`.
+  e.g. in `add n/MEETING_NAME`, `MEETING_NAME` is a parameter which can be used as `add n/Lecture`.
 
 * Items in square brackets are optional.<br>
-  e.g. `u/URL [t/TAG]` can be used as `u/https://meet.google.com t/midterm` or as `u/https://meet.google.com`.
+  e.g. `n/MEETING_NAME [t/TAG]` can be used as `n/Lecture t/midterm` or as `n/Lecture`.
 
 * Items with `…`​ after them can be used zero or more times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/recorded`, `t/recorded t/lecturequiz` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `u/URL n/MEETING_NAME`, `n/MEETING_NAME u/URL` is also acceptable.
+  e.g. if the command specifies `n/MEETING_NAME u/URL`, `u/URL n/MEETING_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/Lecture n/Tutorial`, only `n/Tutorial` will be taken.
@@ -137,8 +137,8 @@ Parameters:
 
 Examples:
 
-* `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/2 m/1 r/Y t/recorded t/lecturequiz`
-* `add n/Midterm u/https://meet.google.com d/13-03-2022 1000 dur/1.5 m/2 r/N`
+* `add n/Lecture u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/recorded t/lecturequiz`
+* `add n/Midterm u/https://meet.google.com d/13-05-2022 1000 dur/1.5 m/2 r/N`
 
 #### List all meetings : `list`
 
@@ -157,7 +157,7 @@ Some details include:
 
 Find meetings in the meeting list that matches the provided keywords and displays their respective details.
 
-Format: `find KEYWORD MORE_KEYWORDS...`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 * Displays all meetings with name, module code or tags that matches all of the provided keywords.
 

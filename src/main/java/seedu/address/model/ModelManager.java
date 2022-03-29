@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Meeting> filteredMeetings;
     private final FilteredList<Module> filteredModules;
+    private Predicate<Meeting> invariantPredicate = PREDICATE_SHOW_ALL_UNCOMPLETED_MEETINGS;
 
     /**
      * Initializes a ModelManager with the given linkyTime and userPrefs.
@@ -35,7 +36,9 @@ public class ModelManager implements Model {
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMeetings = new FilteredList<>(this.linkyTime.getMeetingList());
+        this.linkyTime.sortModules();
         filteredModules = new FilteredList<>(this.linkyTime.getModuleList());
+        refreshFilteredMeetingList();
     }
 
     public ModelManager() {
@@ -100,12 +103,13 @@ public class ModelManager implements Model {
     @Override
     public void deleteMeeting(Meeting target) {
         linkyTime.removeMeeting(target);
+        refreshFilteredMeetingList();
     }
 
     @Override
     public void addMeeting(Meeting meeting) {
         linkyTime.addMeeting(meeting);
-        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        refreshFilteredMeetingList();
     }
 
     @Override
@@ -113,9 +117,10 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedMeeting);
 
         linkyTime.setMeeting(target, editedMeeting);
+        refreshFilteredMeetingList();
     }
 
-    // =========== Filtered Meeting List Accessors ====================================================
+    // =========== Meeting List Accessors ====================================================
 
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
@@ -128,7 +133,24 @@ public class ModelManager implements Model {
         // Forces the GUI to perform a complete re-render to reflect updated recurrent meeting date and times.
         // This is a temporary workaround until a coherent solution comes about.
         filteredMeetings.setPredicate(m -> false);
-        filteredMeetings.setPredicate(predicate);
+
+        filteredMeetings.setPredicate(invariantPredicate.and(predicate));
+    }
+
+    @Override
+    public void showCompletedMeetings(boolean showCompleted) {
+        invariantPredicate = showCompleted
+                ? PREDICATE_SHOW_ALL_COMPLETED_MEETINGS : PREDICATE_SHOW_ALL_UNCOMPLETED_MEETINGS;
+        refreshFilteredMeetingList();
+    }
+
+    private void refreshFilteredMeetingList() {
+        updateFilteredMeetingList(m -> true);
+    }
+
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return linkyTime.getMeetingList();
     }
 
     // =========== Module ==================================================================================
@@ -142,6 +164,7 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         linkyTime.addModule(module);
+        linkyTime.sortModules();
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
@@ -150,7 +173,7 @@ public class ModelManager implements Model {
         linkyTime.removeModule(target);
     }
 
-    // =========== Filtered Module List Accessors ==========================================================
+    // =========== Module List Accessors ==========================================================
 
     @Override
     public ObservableList<Module> getFilteredModuleList() {
@@ -161,6 +184,11 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return linkyTime.getModuleList();
     }
 
     @Override

@@ -115,11 +115,11 @@ public class EditMeetingCommandTest {
     // TODO MODULE INDEX: fix
     //@Test
     //public void execute_duplicateMeetingFilteredList_failure() {
+    //    final Meeting meetingInList = model.getFilteredMeetingList().get(INDEX_SECOND_MEETING.getZeroBased());
+    //
     //    showMeetingAtIndex(model, INDEX_FIRST_MEETING);
     //
     //    // edit meeting in filtered list into a duplicate in LinkyTime
-    //    final Meeting meetingInList = model.getLinkyTime().getMeetingList().get(INDEX_SECOND_MEETING
-    //            .getZeroBased());
     //    final EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_MEETING,
     //            new EditMeetingDescriptorBuilder(meetingInList).build());
     //

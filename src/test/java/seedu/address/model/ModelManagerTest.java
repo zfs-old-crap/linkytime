@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.typical.TypicalMeetings.CS2105;
 import static seedu.address.testutil.typical.TypicalMeetings.CS2106;
@@ -122,8 +121,9 @@ public class ModelManagerTest {
         modelManager.updateFilteredMeetingList(new MeetingContainsKeywordsPredicate(keywords));
         assertFalse(modelManager.equals(new ModelManager(linkyTime, userPrefs)));
 
+        // TODO: Check if this is still needed after the implementation of invariant filtering for meetings.
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        // modelManager.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
 
         // different userPrefs -> returns false
         final UserPrefs differentUserPrefs = new UserPrefs();
