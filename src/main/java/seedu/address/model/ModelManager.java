@@ -120,7 +120,7 @@ public class ModelManager implements Model {
         refreshFilteredMeetingList();
     }
 
-    // =========== Filtered Meeting List Accessors ====================================================
+    // =========== Meeting List Accessors ====================================================
 
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
@@ -148,6 +148,11 @@ public class ModelManager implements Model {
         updateFilteredMeetingList(m -> true);
     }
 
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return linkyTime.getMeetingList();
+    }
+
     // =========== Module ==================================================================================
 
     @Override
@@ -168,7 +173,7 @@ public class ModelManager implements Model {
         linkyTime.removeModule(target);
     }
 
-    // =========== Filtered Module List Accessors ==========================================================
+    // =========== Module List Accessors ==========================================================
 
     @Override
     public ObservableList<Module> getFilteredModuleList() {
@@ -179,6 +184,11 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return linkyTime.getModuleList();
     }
 
     @Override

@@ -128,7 +128,7 @@ public class ParserUtil {
      * Parses a {@code String module} into a {@code Module}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code meetingDateTime} is invalid.
+     * @throws ParseException if the given {@code module} is invalid.
      */
     public static Module parseModule(String module) throws ParseException {
         requireNonNull(module);
