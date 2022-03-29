@@ -45,9 +45,9 @@ public class DeleteModuleCommand extends Command {
         }
 
         final Module moduleToDelete = lastShownModuleList.get(targetIndex.getZeroBased());
-        final List<Meeting> lastShownMeetingList = model.getFilteredMeetingList();
+        final List<Meeting> allMeetings = model.getLinkyTime().getMeetingList();
 
-        if (hasDependentMeetings(lastShownMeetingList, moduleToDelete)) {
+        if (hasDependentMeetings(allMeetings, moduleToDelete)) {
             throw new CommandException(String.format(MESSAGE_DELETE_MODULE_RESTRICTED, moduleToDelete));
         }
 
