@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -13,8 +14,13 @@ import seedu.address.model.module.Module;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
+    /* Invariant predicates that will always be executed after every command. */
+    Predicate<Meeting> PREDICATE_SHOW_ALL_UNCOMPLETED_MEETINGS =
+        m -> m.getIsRecurring().isRecurring || LocalDateTime.now().isBefore(m.getEndDateTime().datetime);
+    Predicate<Meeting> PREDICATE_SHOW_ALL_COMPLETED_MEETINGS =
+        m -> !m.getIsRecurring().isRecurring && LocalDateTime.now().isAfter(m.getEndDateTime().datetime);
 
     // =========== UserPrefs ===============================================================================
 
@@ -93,6 +99,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    /**
+     * Toggles the filtered meeting list to ensure all meeting entries are always either completed or uncompleted.
+     *
+     * @param showCompleted Determines whether the filtered meeting entries are always either completed or uncompleted.
+     */
+    void showCompletedMeetings(boolean showCompleted);
 
     // =========== Module ==================================================================================
 

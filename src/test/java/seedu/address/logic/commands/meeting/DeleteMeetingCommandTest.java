@@ -61,7 +61,6 @@ public class DeleteMeetingCommandTest {
 
         final Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
         expectedModel.deleteMeeting(meetingToDelete);
-        showNoMeeting(expectedModel);
 
         assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
     }

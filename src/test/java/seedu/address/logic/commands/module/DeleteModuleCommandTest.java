@@ -45,7 +45,7 @@ public class DeleteModuleCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        final Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);
+        final Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
         final DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteModuleCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
