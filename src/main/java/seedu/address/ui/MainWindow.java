@@ -194,9 +194,20 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-            if (!commandResult.getMeetingListStatus().equals("")) {
-                meetingListStatus.setText(commandResult.getMeetingListStatus());
+
+            switch (commandResult.getMeetingListStatus()) {
+            case UPCOMING:
+                meetingListStatus.setText("Upcoming");
+                meetingListStatus.setStyle("-fx-background-color: gray;");
+                break;
+            case ARCHIVE:
+                meetingListStatus.setText("Archive");
+                meetingListStatus.setStyle("-fx-background-color: #FC8709;");
+                break;
+            default:
+                break;
             }
+
             if (commandResult.isExit()) {
                 handleExit();
             }

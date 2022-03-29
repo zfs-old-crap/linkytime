@@ -22,7 +22,7 @@ public class ListMeetingCommandTest {
         Model model = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
         Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
         assertCommandSuccess(new ListMeetingCommand(), model, new CommandResult(ListMeetingCommand.MESSAGE_SUCCESS,
-                ListMeetingCommand.MEETING_LIST_STATUS), expectedModel);
+                CommandResult.MeetingListStatusResult.UPCOMING), expectedModel);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class ListMeetingCommandTest {
         Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
         showMeetingAtIndex(model, INDEX_FIRST_MEETING);
         assertCommandSuccess(new ListMeetingCommand(), model, new CommandResult(ListMeetingCommand.MESSAGE_SUCCESS,
-                ListMeetingCommand.MEETING_LIST_STATUS), expectedModel);
+                CommandResult.MeetingListStatusResult.UPCOMING), expectedModel);
     }
 
     // This section is to be uncommented and filled up once all features have been integrated and merged.

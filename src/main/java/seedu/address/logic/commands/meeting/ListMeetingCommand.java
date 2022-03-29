@@ -12,12 +12,11 @@ import seedu.address.model.Model;
 public class ListMeetingCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String MESSAGE_SUCCESS = "Listed all upcoming meetings";
-    public static final String MEETING_LIST_STATUS = "Upcoming";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.showCompletedMeetings(false);
-        return new CommandResult(MESSAGE_SUCCESS, MEETING_LIST_STATUS);
+        return new CommandResult(MESSAGE_SUCCESS, CommandResult.MeetingListStatusResult.UPCOMING);
     }
 }

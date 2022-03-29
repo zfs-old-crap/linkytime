@@ -12,12 +12,11 @@ import seedu.address.model.Model;
 public class ArchiveMeetingCommand extends Command {
     public static final String COMMAND_WORD = "archive";
     public static final String MESSAGE_SUCCESS = "Listed all archived meetings";
-    public static final String MEETING_LIST_STATUS = "Archive";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.showCompletedMeetings(true);
-        return new CommandResult(MESSAGE_SUCCESS, MEETING_LIST_STATUS);
+        return new CommandResult(MESSAGE_SUCCESS, CommandResult.MeetingListStatusResult.ARCHIVE);
     }
 }

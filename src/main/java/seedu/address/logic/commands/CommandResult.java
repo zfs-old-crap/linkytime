@@ -9,6 +9,12 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    public enum MeetingListStatusResult {
+        UNCHANGED,
+        UPCOMING,
+        ARCHIVE
+    }
+
     private final String feedbackToUser;
 
     /**
@@ -24,12 +30,13 @@ public class CommandResult {
     /**
      * Status of the meeting list displayed to the user.
      */
-    private final String meetingListStatus;
+    private final MeetingListStatusResult meetingListStatus;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, String meetingListStatus) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         MeetingListStatusResult meetingListStatus) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -41,7 +48,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, "");
+        this(feedbackToUser, false, false, MeetingListStatusResult.UNCHANGED);
     }
 
     /**
@@ -50,7 +57,7 @@ public class CommandResult {
      * @param feedbackToUser Feedback of the command to be displayed to the user.
      * @param meetingListStatus Status of the meeting list to be displayed to the user.
      */
-    public CommandResult(String feedbackToUser, String meetingListStatus) {
+    public CommandResult(String feedbackToUser, MeetingListStatusResult meetingListStatus) {
         this(feedbackToUser, false, false, meetingListStatus);
     }
 
@@ -62,7 +69,7 @@ public class CommandResult {
      * @param exit Whether the program should exit.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, "");
+        this(feedbackToUser, showHelp, exit, MeetingListStatusResult.UNCHANGED);
     }
 
     public String getFeedbackToUser() {
@@ -77,7 +84,7 @@ public class CommandResult {
         return exit;
     }
 
-    public String getMeetingListStatus() {
+    public MeetingListStatusResult getMeetingListStatus() {
         return meetingListStatus;
     }
 
@@ -92,7 +99,7 @@ public class CommandResult {
             return false;
         }
 
-        CommandResult otherCommandResult = (CommandResult) other;
+        final CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
