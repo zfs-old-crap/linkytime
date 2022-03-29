@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -54,8 +53,8 @@ public class CommandTestUtil {
     public static final String DATETIME_DESC_TUTORIAL = " " + PREFIX_DATETIME + VALID_DATETIME_TUTORIAL;
     public static final String DURATION_DESC_LECTURE = " " + PREFIX_DURATION + VALID_DURATION_LECTURE;
     public static final String DURATION_DESC_TUTORIAL = " " + PREFIX_DURATION + VALID_DURATION_TUTORIAL;
-    public static final String MODULE_DESC_LECTURE = " " + PREFIX_MODULE + VALID_MODULE_LECTURE;
-    public static final String MODULE_DESC_TUTORIAL = " " + PREFIX_MODULE + VALID_MODULE_TUTORIAL;
+    public static final String MODULE_DESC_LECTURE = " " + PREFIX_NAME + VALID_MODULE_LECTURE;
+    public static final String MODULE_DESC_TUTORIAL = " " + PREFIX_NAME + VALID_MODULE_TUTORIAL;
     public static final String RECURRING_DESC_LECTURE = " " + PREFIX_RECURRING + VALID_RECURRING_LECTURE;
     public static final String RECURRING_DESC_TUTORIAL = " " + PREFIX_RECURRING + VALID_RECURRING_TUTORIAL;
     public static final String TAG_DESC_LECTURE = " " + PREFIX_TAG + VALID_TAG_LECTURE;
@@ -69,7 +68,7 @@ public class CommandTestUtil {
     //    public static final String INVALID_RECURRING_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
     //    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "two"; // letters not allowed in duration
-    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE; // empty string not allowed
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_NAME; // empty string not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
