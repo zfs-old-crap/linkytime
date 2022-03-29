@@ -35,6 +35,7 @@ public class ModelManager implements Model {
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMeetings = new FilteredList<>(this.linkyTime.getMeetingList());
+        this.linkyTime.sortModules();
         filteredModules = new FilteredList<>(this.linkyTime.getModuleList());
     }
 

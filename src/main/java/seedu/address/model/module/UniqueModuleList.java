@@ -3,7 +3,7 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,7 +27,6 @@ public class UniqueModuleList implements Iterable<Module> {
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final Comparator<Module> comparator = Module::compareTo;
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.
@@ -101,11 +100,10 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Sorts the modules in the internal list by the comparator.
-     * Sorts by alphabetical order, case-insensitive.
+     * Sorts the modules in the internal list by alphabetical order, case-insensitive.
      */
     public void sortModules() {
-        internalList.sort(comparator);
+        Collections.sort(internalList);
     }
 
     /**
