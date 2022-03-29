@@ -34,6 +34,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with LinkyTime: " + linkyTime + " and user prefs " + userPrefs);
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.linkyTime.sortMeetings();
         filteredMeetings = new FilteredList<>(this.linkyTime.getMeetingList());
         this.linkyTime.sortModules();
         filteredModules = new FilteredList<>(this.linkyTime.getModuleList());
@@ -114,6 +115,7 @@ public class ModelManager implements Model {
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
         linkyTime.setMeeting(target, editedMeeting);
+        linkyTime.sortMeetings();
     }
 
     // =========== Filtered Meeting List Accessors ====================================================
