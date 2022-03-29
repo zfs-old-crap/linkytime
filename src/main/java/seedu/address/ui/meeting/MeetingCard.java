@@ -1,5 +1,7 @@
 package seedu.address.ui.meeting;
 
+import static seedu.address.model.meeting.MeetingDateTime.DISPLAY_TIME_FORMAT;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -8,13 +10,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDateTime;
 import seedu.address.ui.UiPart;
+
 
 /**
  * An UI component that displays information of a {@code Meeting}.
  */
 public class MeetingCard extends UiPart<Region> {
-
     private static final String FXML = "MeetingCard.fxml";
 
     /**
@@ -36,7 +39,9 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label dateTime;
+    private Label startDateTime;
+    @FXML
+    private Label endDateTime;
     @FXML
     private Label url;
     @FXML
@@ -45,7 +50,7 @@ public class MeetingCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code MeetingCode} with the given {@code Meeting} and index to display.
+     * Creates a {@code MeetingCard} with the given {@code Meeting} and index to display.
      */
     public MeetingCard(Meeting meeting, int displayedIndex) {
         super(FXML);
@@ -53,11 +58,12 @@ public class MeetingCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         module.setText(meeting.getModule().code);
         name.setText(meeting.getName().name);
-        dateTime.setText(meeting.getStartDateTime().toString());
+        startDateTime.setText(meeting.getStartDateTime().toString());
+        endDateTime.setText(formatEndDateTime(meeting));
         url.setText(meeting.getUrl().meetingUrl.toString());
         isRecurring.setVisible(meeting.getIsRecurring().isRecurring);
         if (meeting.getIsRecurring().isRecurring) {
-            isRecurring.setText("Recurring");
+            isRecurring.setText("R");
         }
         isRecurring.managedProperty().bind(isRecurring.visibleProperty());
         meeting.getTags().stream()
@@ -81,5 +87,16 @@ public class MeetingCard extends UiPart<Region> {
         final MeetingCard card = (MeetingCard) other;
         return id.getText().equals(card.id.getText())
                 && meeting.equals(card.meeting);
+    }
+
+    private String formatEndDateTime(Meeting meeting) {
+        final MeetingDateTime start = meeting.getStartDateTime();
+        final MeetingDateTime end = meeting.getEndDateTime();
+
+        if (start.datetime.toLocalDate().isEqual(end.datetime.toLocalDate())) {
+            return end.datetime.format(DISPLAY_TIME_FORMAT);
+        } else {
+            return end.toString();
+        }
     }
 }

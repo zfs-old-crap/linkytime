@@ -142,6 +142,14 @@ public class LinkyTime implements ReadOnlyLinkyTime {
         modules.remove(key);
     }
 
+    /**
+     * Sorts all the modules in LinkyTime by alphabetical order.
+     * It is case insensitive.
+     */
+    public void sortModules() {
+        modules.sortModules();
+    }
+
     //// util methods
 
     @Override
