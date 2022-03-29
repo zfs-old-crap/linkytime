@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.module;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
@@ -26,9 +26,9 @@ public class EditModuleCommand extends Command {
             + "by the index number used in the displayed list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_MODULE + "MODULE_CODE "
+            + PREFIX_NAME + "MODULE_CODE "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_MODULE + "CS2103T";
+            + PREFIX_NAME + "CS2103T";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -112,11 +112,11 @@ public class EditModuleCommand extends Command {
      * @param module   The module to search for.
      * @return True, if there are dependent meetings in the list.
      */
-    private boolean hasDependentMeetings(List<Meeting> meetings, Module module) {
+    protected boolean hasDependentMeetings(List<Meeting> meetings, Module module) {
         return meetings.stream().anyMatch(meeting -> meeting.getModule().equals(module));
     }
 
-    private void editAssociatedMeetings(Model model, Module toEdit, Module edited) {
+    protected void editAssociatedMeetings(Model model, Module toEdit, Module edited) {
         model.getMeetingList()
                 .stream()
                 .filter(meeting -> meeting.getModule().equals(toEdit))

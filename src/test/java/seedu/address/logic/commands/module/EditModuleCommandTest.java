@@ -42,14 +42,11 @@ public class EditModuleCommandTest {
 
         final Model expectedModel = new ModelManager(new LinkyTime(model.getLinkyTime()), new UserPrefs());
         expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
-        if (expectedModel.getMeetingList().stream().anyMatch(meeting -> meeting.getModule().equals(model
-                .getFilteredModuleList().get(0)))) {
-            expectedModel.getMeetingList()
-                    .stream()
-                    .filter(meeting -> meeting.getModule().equals(model.getFilteredModuleList().get(0)))
-                    .forEach((meeting)-> {
-                        editModuleCommand.changeModule(expectedModel, meeting, editedModule);
-                    });
+
+        // This is for the side effect of editing the meetings that are dependent on this module
+        if (editModuleCommand.hasDependentMeetings(expectedModel.getFilteredMeetingList(),
+                model.getFilteredModuleList().get(0))) {
+            editModuleCommand.editAssociatedMeetings(expectedModel, model.getFilteredModuleList().get(0), editedModule);
         }
 
         assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
@@ -83,14 +80,11 @@ public class EditModuleCommandTest {
 
         final Model expectedModel = new ModelManager(new LinkyTime(model.getLinkyTime()), new UserPrefs());
         expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
-        if (expectedModel.getMeetingList().stream().anyMatch(meeting -> meeting.getModule().equals(model
-                .getFilteredModuleList().get(0)))) {
-            expectedModel.getMeetingList()
-                    .stream()
-                    .filter(meeting -> meeting.getModule().equals(model.getFilteredModuleList().get(0)))
-                    .forEach((meeting)-> {
-                        editModuleCommand.changeModule(expectedModel, meeting, editedModule);
-                    });
+
+        // This is for the side effect of editing the meetings that are dependent on this module
+        if (editModuleCommand.hasDependentMeetings(expectedModel.getFilteredMeetingList(),
+                model.getFilteredModuleList().get(0))) {
+            editModuleCommand.editAssociatedMeetings(expectedModel, model.getFilteredModuleList().get(0), editedModule);
         }
 
         assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);

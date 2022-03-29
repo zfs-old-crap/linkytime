@@ -2,7 +2,7 @@ package seedu.address.logic.parser.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.module.EditModuleCommand;
@@ -27,7 +27,7 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
     public EditModuleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         final ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MODULE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
         final Index index;
 
         try {
@@ -38,8 +38,8 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
         }
 
         final EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
-        if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            final Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            final Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_NAME).get());
             editModuleDescriptor.setCode(module.getCode());
         }
 

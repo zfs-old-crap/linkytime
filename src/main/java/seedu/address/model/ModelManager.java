@@ -171,6 +171,7 @@ public class ModelManager implements Model {
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
         linkyTime.setModule(target, editedModule);
+        linkyTime.sortModules();
     }
 
     @Override
