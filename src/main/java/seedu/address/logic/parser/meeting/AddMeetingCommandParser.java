@@ -12,7 +12,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_URL;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.AddMeetingCommand.AddMeetingDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -20,12 +22,10 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.IsRecurring;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDateTime;
 import seedu.address.model.meeting.MeetingDuration;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.MeetingUrl;
-import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -53,15 +53,15 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         final MeetingUrl url = ParserUtil.parseMeetingUrl(argMultimap.getValue(PREFIX_URL).get());
         final MeetingDateTime dateTime = ParserUtil.parseMeetingDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
         final MeetingDuration duration = ParserUtil.parseMeetingDuration(argMultimap.getValue(PREFIX_DURATION).get());
-        final Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
+        final Index moduleIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MODULE).get());
         final IsRecurring recurringStatus = ParserUtil.parseRecurringStatus(argMultimap
                 .getValue(PREFIX_RECURRING).get());
         final Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        final Meeting meeting = new Meeting(name, url, dateTime, duration,
-                module, recurringStatus, tagList);
+        final AddMeetingDescriptor addMeetingDescriptor =
+                new AddMeetingDescriptor(name, url, dateTime, duration, moduleIndex, recurringStatus, tagList);
 
-        return new AddMeetingCommand(meeting);
+        return new AddMeetingCommand(addMeetingDescriptor);
     }
 
     /**
