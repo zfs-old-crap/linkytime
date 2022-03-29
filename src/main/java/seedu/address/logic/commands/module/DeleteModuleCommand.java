@@ -55,9 +55,9 @@ public class DeleteModuleCommand extends Command {
         }
 
         final Module moduleToDelete = lastShownModuleList.get(targetIndex.getZeroBased());
-        final List<Meeting> lastShownMeetingList = model.getMeetingList();
+        final List<Meeting> allMeetings = model.getMeetingList();
 
-        if (!isForced && hasDependentMeetings(lastShownMeetingList, moduleToDelete)) {
+        if (!isForced && hasDependentMeetings(allMeetings, moduleToDelete)) {
             throw new CommandException(String.format(MESSAGE_DELETE_MODULE_RESTRICTED, moduleToDelete));
         }
 
