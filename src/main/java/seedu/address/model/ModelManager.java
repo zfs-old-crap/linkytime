@@ -35,6 +35,7 @@ public class ModelManager implements Model {
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredMeetings = new FilteredList<>(this.linkyTime.getMeetingList());
+        this.linkyTime.sortModules();
         filteredModules = new FilteredList<>(this.linkyTime.getModuleList());
     }
 
@@ -147,6 +148,7 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         linkyTime.addModule(module);
+        linkyTime.sortModules();
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 

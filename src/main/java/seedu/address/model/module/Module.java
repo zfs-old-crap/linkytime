@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Module in the Module list.
  * Guarantees: immutable; is valid as declared in {@link #isValidModule(String)}
  */
-public class Module {
+public class Module implements Comparable<Module> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Modules should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -61,6 +61,11 @@ public class Module {
     @Override
     public int hashCode() {
         return code.hashCode();
+    }
+
+    @Override
+    public int compareTo(Module other) {
+        return code.compareToIgnoreCase(other.code);
     }
 
 }
