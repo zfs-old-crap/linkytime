@@ -5,9 +5,9 @@ import static seedu.address.logic.commands.CommandTestUtil.showMeetingAtIndex;
 import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.typical.TypicalLinkyTime.getTypicalLinkyTime;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -17,23 +17,31 @@ import seedu.address.model.UserPrefs;
  */
 public class ListMeetingCommandTest {
 
-    private Model model;
-    private Model expectedModel;
-
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
-        expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
-    }
-
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListMeetingCommand(), model, ListMeetingCommand.MESSAGE_SUCCESS, expectedModel);
+        Model model = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
+        assertCommandSuccess(new ListMeetingCommand(), model, new CommandResult(ListMeetingCommand.MESSAGE_SUCCESS,
+                ListMeetingCommand.MEETING_LIST_STATUS), expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
+        Model model = new ModelManager(getTypicalLinkyTime(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getLinkyTime(), new UserPrefs());
         showMeetingAtIndex(model, INDEX_FIRST_MEETING);
-        assertCommandSuccess(new ListMeetingCommand(), model, ListMeetingCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListMeetingCommand(), model, new CommandResult(ListMeetingCommand.MESSAGE_SUCCESS,
+                ListMeetingCommand.MEETING_LIST_STATUS), expectedModel);
     }
+
+    // This section is to be uncommented and filled up once all features have been integrated and merged.
+    // @Test
+    // public void execute_listHasOneCompletedMeeting_showsNothing() {
+    //
+    // }
+    //
+    // @Test
+    // public void execute_listHasOneCompletedAndUncompletedMeeting_showsOneMeeting() {
+    //
+    // }
 }

@@ -7,17 +7,17 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all upcoming meetings in the LinkyTime meeting list to the user.
+ * Lists all archived meetings in the LinkyTime meeting list to the user.
  */
-public class ListMeetingCommand extends Command {
-    public static final String COMMAND_WORD = "list";
-    public static final String MESSAGE_SUCCESS = "Listed all upcoming meetings";
-    public static final String MEETING_LIST_STATUS = "Upcoming";
+public class ArchiveMeetingCommand extends Command {
+    public static final String COMMAND_WORD = "archive";
+    public static final String MESSAGE_SUCCESS = "Listed all archived meetings";
+    public static final String MEETING_LIST_STATUS = "Archive";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.showCompletedMeetings(false);
+        model.showCompletedMeetings(true);
         return new CommandResult(MESSAGE_SUCCESS, MEETING_LIST_STATUS);
     }
 }

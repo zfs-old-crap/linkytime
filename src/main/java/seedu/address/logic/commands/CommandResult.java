@@ -22,12 +22,18 @@ public class CommandResult {
     private final boolean exit;
 
     /**
+     * Status of the meeting list displayed to the user.
+     */
+    private final String meetingListStatus;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, String meetingListStatus) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.meetingListStatus = meetingListStatus;
     }
 
     /**
@@ -35,7 +41,28 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, "");
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code meetingListStatus}
+     * and other fields set to their default value.
+     * @param feedbackToUser Feedback of the command to be displayed to the user.
+     * @param meetingListStatus Status of the meeting list to be displayed to the user.
+     */
+    public CommandResult(String feedbackToUser, String meetingListStatus) {
+        this(feedbackToUser, false, false, meetingListStatus);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code showHelp} and
+     * {@code meetingListStatus}. {@code meetListStatus} is set to its default value.
+     * @param feedbackToUser Feedback of the command to be displayed to the user.
+     * @param showHelp Whether the help window should be displayed to the user.
+     * @param exit Whether the program should exit.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, "");
     }
 
     public String getFeedbackToUser() {
@@ -48,6 +75,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public String getMeetingListStatus() {
+        return meetingListStatus;
     }
 
     @Override
@@ -64,12 +95,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && meetingListStatus == otherCommandResult.meetingListStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, meetingListStatus);
     }
 
     @Override
