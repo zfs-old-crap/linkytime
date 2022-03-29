@@ -21,7 +21,7 @@ public class DeleteModuleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the module identified by the index number used in the displayed module list.\n"
-            + "The module must not have any associated upcoming meetings.\n"
+            + "The module must not have any associated upcoming or expired meetings.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1\n"
             + "Note: Add the 'f/' flag to forcibly delete the module and all associated meetings.";

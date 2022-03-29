@@ -140,9 +140,7 @@ public interface Model {
     void updateFilteredModuleList(Predicate<Module> predicate);
 
     /**
-     * Returns an unmodifiable view of the module list.
-     *
-     * @return
+     * Returns an unmodifiable view of the unfiltered module list.
      */
     ObservableList<Module> getModuleList();
 }
