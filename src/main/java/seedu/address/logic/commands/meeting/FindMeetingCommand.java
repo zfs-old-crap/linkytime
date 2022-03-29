@@ -15,7 +15,6 @@ import seedu.address.model.meeting.MeetingContainsAllKeywordsPredicate;
  */
 public class FindMeetingCommand extends Command {
     public static final String COMMAND_WORD = "find";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all meetings whose names, modules "
             + "and tags together contain all of the specified keywords (case-insensitive) and "
             + "displays them as a list with index numbers.\n"

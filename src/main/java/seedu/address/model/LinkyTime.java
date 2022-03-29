@@ -131,6 +131,22 @@ public class LinkyTime implements ReadOnlyLinkyTime {
         modules.add(module);
     }
 
+    /**
+     * Removes {@code key} from {@code LinkyTime}.
+     * {@code key} must exist in LinkyTime.
+     */
+    public void removeModule(Module key) {
+        modules.remove(key);
+    }
+
+    /**
+     * Sorts all the modules in LinkyTime by alphabetical order.
+     * It is case insensitive.
+     */
+    public void sortModules() {
+        modules.sortModules();
+    }
+
     //// util methods
 
     @Override
