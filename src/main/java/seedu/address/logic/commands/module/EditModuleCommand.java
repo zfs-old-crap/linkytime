@@ -14,6 +14,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
 
 /**
@@ -64,8 +65,13 @@ public class EditModuleCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
-        model.setModule(moduleToEdit, editedModule);
+        final List<Meeting> lastShownMeetingList = model.getFilteredMeetingList();
+        if (hasDependentMeetings(lastShownMeetingList, moduleToEdit)) {
+            editAssociatedMeetings(model, moduleToEdit, editedModule);
+        }
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        model.setModule(moduleToEdit, editedModule);
+
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
 
@@ -97,6 +103,30 @@ public class EditModuleCommand extends Command {
         // state check
         final EditModuleCommand e = (EditModuleCommand) other;
         return index.equals(e.index) && editModuleDescriptor.equals(e.editModuleDescriptor);
+    }
+
+    /**
+     * Checks if the given module has meetings assigned to it.
+     *
+     * @param meetings The list of meetings to check.
+     * @param module   The module to search for.
+     * @return True, if there are dependent meetings in the list.
+     */
+    private boolean hasDependentMeetings(List<Meeting> meetings, Module module) {
+        return meetings.stream().anyMatch(meeting -> meeting.getModule().equals(module));
+    }
+
+    private void editAssociatedMeetings(Model model, Module toEdit, Module edited) {
+        model.getMeetingList()
+                .stream()
+                .filter(meeting -> meeting.getModule().equals(toEdit))
+                .forEach((meeting)->changeModule(model, meeting, edited));
+    }
+
+    protected void changeModule(Model model, Meeting meeting, Module module) {
+        Meeting newMeeting = new Meeting(meeting.getName(), meeting.getUrl(), meeting.getStartDateTime(),
+                meeting.getDuration(), module, meeting.getIsRecurring(), meeting.getTags());
+        model.setMeeting(meeting, newMeeting);
     }
 
     /**
