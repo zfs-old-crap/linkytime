@@ -3,7 +3,6 @@ package seedu.address.logic.commands.module;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
 import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.typical.TypicalIndexes.INDEX_SECOND_MODULE;
@@ -45,10 +44,12 @@ public class DeleteModuleCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        final Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);
-        final DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(outOfBoundIndex);
+        final Index outOfBoundIndex = Index.fromOneBased(model.getModuleList().size() + 1);
+        final DeleteModuleCommand deleteFirstCommand = new DeleteModuleCommand(outOfBoundIndex, true);
+        final DeleteModuleCommand deleteSecondCommand = new DeleteModuleCommand(outOfBoundIndex, false);
 
-        assertCommandFailure(deleteModuleCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteFirstCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteSecondCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
 
     /*
@@ -77,23 +78,26 @@ public class DeleteModuleCommandTest {
 
         final Index outOfBoundIndex = INDEX_SECOND_MODULE;
         // ensures that outOfBoundIndex is still in bounds of LinkyTime list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getLinkyTime().getModuleList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getModuleList().size());
 
-        final DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(outOfBoundIndex);
+        final DeleteModuleCommand deleteFirstCommand = new DeleteModuleCommand(outOfBoundIndex, true);
+        final DeleteModuleCommand deleteSecondCommand = new DeleteModuleCommand(outOfBoundIndex, false);
 
-        assertCommandFailure(deleteModuleCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteFirstCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteSecondCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final DeleteModuleCommand deleteFirstCommand = new DeleteModuleCommand(INDEX_FIRST_MODULE);
-        final DeleteModuleCommand deleteSecondCommand = new DeleteModuleCommand(INDEX_SECOND_MODULE);
+        final DeleteModuleCommand deleteFirstCommand = new DeleteModuleCommand(INDEX_FIRST_MODULE, false);
+        final DeleteModuleCommand deleteSecondCommand = new DeleteModuleCommand(INDEX_SECOND_MODULE, false);
+        final DeleteModuleCommand deleteThirdCommand = new DeleteModuleCommand(INDEX_FIRST_MODULE, true);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        final DeleteModuleCommand deleteFirstCommandCopy = new DeleteModuleCommand(INDEX_FIRST_MODULE);
+        final DeleteModuleCommand deleteFirstCommandCopy = new DeleteModuleCommand(INDEX_FIRST_MODULE, false);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -104,6 +108,9 @@ public class DeleteModuleCommandTest {
 
         // different module -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+
+        // different isForced value -> returns false
+        assertFalse(deleteFirstCommand.equals(deleteThirdCommand));
     }
 
 
