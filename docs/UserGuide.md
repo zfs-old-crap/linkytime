@@ -29,6 +29,35 @@ The LinkyTime User Guide utilizes various visual cues to supplement the informat
 | **<div markdown="span" class="alert alert-info"> :information_source: Note </div>** | Information of special interest or importance.                   |
 | **<div markdown="span" class="alert alert-warning"> :exclamation: Warning </div>**  | Potentially irreversible action that may result in loss of data. |
 
+## Graphical User Interface
+
+<!-- todo: add SS of annotated GUI here -->
+
+LinkyTime's graphical user interface consists of 4 main components:
+
+* Command Box
+* Result Display
+* Meeting List Panel
+* Module List Panel
+
+You may type your commands in the **Command Box** and pressing Enter to execute it. The result message will be displayed in the **Result Display** box.
+
+Your meetings are displayed on the left in the **Meeting List Panel**, and your modules are displayed on the right in the **Module List Panel**.
+
+### Meeting List Panel
+
+<!-- todo include SS with annotations -->
+
+At the top of the list, there is a flag that indicates whether you are viewing your upcoming and ongoing meetings, or whether you are viewing your past meetings.
+
+Each meeting is displayed in a row as shown in the example above.
+
+### Module List Panel
+
+<!-- todo include SS with annotations -->
+
+Similar to the **Meeting List Panel**, each module is displayed in a row as shown in the example above.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
