@@ -35,6 +35,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with LinkyTime: " + linkyTime + " and user prefs " + userPrefs);
         this.linkyTime = new LinkyTime(linkyTime);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.linkyTime.sortMeetings();
         filteredMeetings = new FilteredList<>(this.linkyTime.getMeetingList());
         this.linkyTime.sortModules();
         filteredModules = new FilteredList<>(this.linkyTime.getModuleList());
@@ -102,21 +103,24 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteMeeting(Meeting target) {
+        requireNonNull(target);
         linkyTime.removeMeeting(target);
         refreshFilteredMeetingList();
     }
 
     @Override
     public void addMeeting(Meeting meeting) {
+        requireNonNull(meeting);
         linkyTime.addMeeting(meeting);
+        linkyTime.sortMeetings();
         refreshFilteredMeetingList();
     }
 
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-
         linkyTime.setMeeting(target, editedMeeting);
+        linkyTime.sortMeetings();
         refreshFilteredMeetingList();
     }
 
@@ -166,6 +170,13 @@ public class ModelManager implements Model {
         linkyTime.addModule(module);
         linkyTime.sortModules();
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+    }
+
+    @Override
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+        linkyTime.setModule(target, editedModule);
+        linkyTime.sortModules();
     }
 
     @Override

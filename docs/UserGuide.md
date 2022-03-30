@@ -101,7 +101,7 @@ Here are the steps to follow if you are using LinkyTime for the first time. You 
 
 4. You can use the `list` or `archive` commands to view upcoming meetings or meetings that have passed respectively.
 
-5. You can also use other commands such as `find` and `open` to help you search for and open your desired zoom meetings. 
+5. You can also use other commands such as `find` and `open` to help you search for and open your desired zoom meetings.
 
 6. If you need to update a meeting information or remove a meeting, you can use the `edit` and `delete` commands.
 
@@ -292,8 +292,8 @@ Edits the module specified in the module list.
 
 Format: `medit INDEX n/MODULE_NAME`
 
-* Edits the module at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed module list. 
+* Edits the module at the specified `INDEX`.
+* The index refers to the index number shown in the displayed module list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the module list.
 * The existing value will be updated to the input value.
 

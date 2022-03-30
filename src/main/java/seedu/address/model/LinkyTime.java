@@ -99,6 +99,13 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     }
 
     /**
+     * Sorts the meeting list according to the in built sort function.
+     */
+    public void sortMeetings() {
+        meetings.sortMeetings();
+    }
+
+    /**
      * Removes {@code key} from {@code LinkyTime}.
      * {@code key} must exist in LinkyTime.
      */
@@ -122,6 +129,15 @@ public class LinkyTime implements ReadOnlyLinkyTime {
      */
     public void addModule(Module module) {
         modules.add(module);
+    }
+
+    /**
+     * Replaces the given module {@code target} in the list with {@code editedModule}.
+     * {@code target} must exist in LinkyTime.
+     */
+    public void setModule(Module target, Module editedModule) {
+        requireNonNull(editedModule);
+        modules.setModule(target, editedModule);
     }
 
     /**

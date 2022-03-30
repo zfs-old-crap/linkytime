@@ -1,5 +1,6 @@
 package seedu.address.model.meeting;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Meeting in the meeting list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Meeting {
+public class Meeting implements Comparable<Meeting> {
 
     // Identity fields
     private final MeetingName name;
@@ -187,4 +188,21 @@ public class Meeting {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Meeting other) {
+        requireNonNull(other);
+
+        MeetingDateTime startDateTime1 = getStartDateTime();
+        MeetingDateTime startDateTime2 = other.getStartDateTime();
+        int result = startDateTime1.compareTo(startDateTime2);
+
+        if (result != 0) {
+            return result;
+        }
+
+        MeetingDateTime endDateTime1 = getEndDateTime();
+        MeetingDateTime endDateTime2 = other.getEndDateTime();
+
+        return endDateTime1.compareTo(endDateTime2);
+    }
 }
