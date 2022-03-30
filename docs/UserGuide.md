@@ -15,6 +15,8 @@ LinkyTime is a desktop app for NUS students to organize their online meeting lin
 Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 LinkyTime can get your meeting management tasks done faster than traditional GUI apps.
 
+<!-- todo elaborate more in the introduction -->
+
 ### How to use the User Guide
 
 You may refer to the [Table of Contents](#table-of-contents) to quickly navigate around the User Guide.
