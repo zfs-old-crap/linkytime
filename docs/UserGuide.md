@@ -3,6 +3,7 @@ layout: page
 title: User Guide
 ---
 
+#### Table of Contents
 * Table of Contents
 {:toc}
 
@@ -10,26 +11,40 @@ title: User Guide
 
 ## Introduction
 
-**LinkyTime** is a desktop app for NUS students to organize their online meeting links, optimized for use via a Command
+LinkyTime is a desktop app for NUS students to organize their online meeting links, optimized for use via a Command
 Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
-**LinkyTime** can get your meeting management tasks done faster than traditional GUI apps.
+LinkyTime can get your meeting management tasks done faster than traditional GUI apps.
+
+### How to use the User Guide
+
+You may refer to the [Table of Contents](#table-of-contents) to quickly navigate around the User Guide.
+
+The LinkyTime User Guide utilizes various visual cues to supplement the information presented. The following table provides an overview of the common typographical conventions used.
+
+| Convention                                                                          | Description                                                      |
+| ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `Monospace`                                                                         | Command inputs and syntax, file paths.                           |
+| [Hyperlink]()                                                                       | Hyperlinks to external websites or within the user guide itself. |
+| **Bold text**                                                                       | Important keywords to take note of.                              |
+| **<div markdown="span" class="alert alert-info"> :information_source: Note </div>** | Information of special interest or importance.                   |
+| **<div markdown="span" class="alert alert-warning"> :exclamation: Warning </div>**  | Potentially irreversible action that may result in loss of data. |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
 
-1. Ensure you have [Java `11`](https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=406&field_operating_system_target_id=All&field_architecture_target_id=All&field_java_package_target_id=401) or above installed in your computer.
+1. Ensure you have [**Java 11**](https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=406&field_operating_system_target_id=All&field_architecture_target_id=All&field_java_package_target_id=401) or above installed in your computer.
 
 2. Download the latest `linkytime.jar` from [here](https://github.com/AY2122S2-CS2103T-T13-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for the app.
+3. Copy the file to the folder you want to use as the **home folder** for the app.
 
 4. Double-click the file to start the app. A GUI similar to the one shown below should appear in a few seconds. Note how
    the app contains some sample data.<br>
 
    ![Ui](images/Ui.png)
    
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all the upcoming meetings.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing `list` and pressing Enter will list all the upcoming meetings.<br>
 
    Some example commands you can try:
 
@@ -71,7 +86,7 @@ Here are the steps to follow if you are using LinkyTime for the first time. You 
 
 The commands in this user guide follow this format:
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters that you can specify.<br>
   e.g. in `add n/MEETING_NAME`, `MEETING_NAME` is a parameter which can be used as `add n/Lecture`.
 
 * Items in square brackets are optional.<br>
@@ -109,7 +124,7 @@ Most LinkyTime commands use various parameters. Their formats and constraints ar
 
 ## Features
 
-This section describes each of the commands and features available in **LinkyTime**.
+This section describes each of the commands and features available in LinkyTime.
 
 ### Meeting Management
 
@@ -137,7 +152,7 @@ Parameters:
 
 Examples:
 
-* `add n/Lecture u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/recorded t/lecturequiz` creates a meeting called `Lecture`, set to start on 25 April at 2pm and repeats weekly, and is assigned to the first module in the module list.
+* `add n/Lecture u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/recorded t/lecturequiz` creates a meeting called `Lecture` with the tags `recorded` and `lecturequiz`, set to start on `25 April 2022 at 2pm` for `2` hours, and is assigned to the first module in the module list. This meeting is set to repeat weekly.
 * `add n/Midterm u/https://meet.google.com d/13-05-2022 1000 dur/1.5 m/2 r/N` creates a meeting called `Midterm` on 13 May at 10am and is assigned to the second module in the module list.
 
 #### List all meetings : `list`
@@ -264,9 +279,10 @@ Format: `mdelete INDEX [f/]`
 
 * Deletes the module at the specified `INDEX`.
   * If there are meetings that are currently assigned to the specified module, deletion would fail due to dependent meetings.
-  * You may choose to also force delete all associated meetings with the `f/` flag. This action is irreversible!
 * The index refers to the index number shown in the displayed module list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the module list.
+* Use the `f/` flag to force delete the module and all its associated meetings.
+  * <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** This action is irreversible, and it is not possible to recover the deleted meetings and module. </div>
 
 Examples:
 
