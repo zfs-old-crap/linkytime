@@ -18,7 +18,7 @@ Line Interface (CLI) while still having the benefits of a Graphical User Interfa
 
 ## Quick Start
 
-1. Ensure you have Java `11` or above installed in your computer.
+1. Ensure you have [Java `11`](https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=406&field_operating_system_target_id=All&field_architecture_target_id=All&field_java_package_target_id=401) or above installed in your computer.
 
 2. Download the latest `linkytime.jar` from [here](https://github.com/AY2122S2-CS2103T-T13-3/tp/releases).
 
@@ -137,8 +137,8 @@ Parameters:
 
 Examples:
 
-* `add n/Lecture u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/recorded t/lecturequiz`
-* `add n/Midterm u/https://meet.google.com d/13-05-2022 1000 dur/1.5 m/2 r/N`
+* `add n/Lecture u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/recorded t/lecturequiz` creates a meeting called `Lecture`, set to start on 25 April at 2pm and repeats weekly, and is assigned to the first module in the module list.
+* `add n/Midterm u/https://meet.google.com d/13-05-2022 1000 dur/1.5 m/2 r/N` creates a meeting called `Midterm` on 13 May at 10am and is assigned to the second module in the module list.
 
 #### List all meetings : `list`
 
@@ -177,7 +177,7 @@ Format: `open INDEX`
 
 Examples:
 
-* `list` followed by `open 2` opens the 2nd meeting in the meeting list.
+* `list` followed by `open 2` opens the 2nd meeting's URL in the meeting list.
 
 #### Edit a meeting : `edit`
 
@@ -193,8 +193,8 @@ Format: `edit INDEX [n/MEETING_NAME] [u/URL] [d/DATETIME] [dur/DURATION] [m/MODU
 
 Examples:
 
-* `edit 1 t/` removes all tags from the meeting at `INDEX` 1
-* `edit 2 n/Midterm` changes the name of the meeting at `INDEX` 2 to `Midterm`
+* `edit 1 t/` removes all tags from the meeting at `INDEX` 1.
+* `edit 2 n/Midterm` changes the name of the meeting at `INDEX` 2 to `Midterm`.
 * `edit 3 n/Recitation dur/1 t/Optional t/Recorded` changes the name of the meeting at `INDEX` 3 to `Recitation`, duration of the meeting to 1 hour, and the tags to be `Optional` and `Recorded`.
 
 #### Delete a meeting : `delete`
@@ -221,7 +221,7 @@ Format: `archive`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Modules are always sorted in alphabetical order, case-insensitive.
+:information_source: Modules are always sorted in a case-insensitive alphabetical order.
 
 </div>
 
@@ -237,8 +237,8 @@ Parameters:
 
 Examples:
 
-* `madd n/CS2103T`
-* `madd n/Internship`
+* `madd n/CS2103T` creates a module called `CS2103T` in the module list.
+* `madd n/Internship` creates a module called `Internship` in the module list.
 
 #### Edit a module : `medit`
 
@@ -253,8 +253,8 @@ Format: `medit INDEX n/MODULE_NAME`
 
 Examples:
 
-* `medit 1 n/CS2101`
-* `medit 2 n/Internship`
+* `medit 1 n/CS2101` changes the name of the module at `INDEX` 1 to `CS2101`.
+* `medit 2 n/Side Hustle` changes the name of the module at `INDEX` 2 to `Side Hustle`.
 
 #### Delete a module : `mdelete`
 
@@ -286,6 +286,10 @@ Format: `help`
 #### Clearing all data : `clear`
 
 Clears all meetings and modules from the application.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This action is irreversible, and it is not possible to recover your data once it is cleared.
+</div>
 
 Format: `clear`
 
