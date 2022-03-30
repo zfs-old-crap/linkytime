@@ -11,7 +11,7 @@ import seedu.address.model.meeting.MeetingDateTime;
 import seedu.address.model.meeting.MeetingDuration;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.MeetingUrl;
-import seedu.address.model.module.Module;
+//import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,7 +37,8 @@ public class EditMeetingDescriptorBuilder {
         descriptor.setUrl(meeting.getUrl());
         descriptor.setDateTime(meeting.getStartDateTime());
         descriptor.setDuration(meeting.getDuration());
-        descriptor.setModule(meeting.getModule());
+        // TODO MODULE INDEX: fix
+        // descriptor.setModule(meeting.getModule());
         descriptor.setIsRecurring(meeting.getIsRecurring());
         descriptor.setTags(meeting.getTags());
     }
@@ -78,7 +79,8 @@ public class EditMeetingDescriptorBuilder {
      * Sets the {@code Module} of the {@code EditMeetingDescriptor} that we are building.
      */
     public EditMeetingDescriptorBuilder withModule(String module) {
-        descriptor.setModule(new Module(module));
+        // TODO MODULE INDEX: fix
+        // descriptor.setModule(new Module(module));
         return this;
     }
 

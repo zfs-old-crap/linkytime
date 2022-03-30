@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.ArchiveMeetingCommand;
 import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
 import seedu.address.logic.commands.meeting.EditMeetingCommand;
 import seedu.address.logic.commands.meeting.FindMeetingCommand;
@@ -18,6 +19,7 @@ import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.commands.meeting.OpenMeetingCommand;
 import seedu.address.logic.commands.module.AddModuleCommand;
 import seedu.address.logic.commands.module.DeleteModuleCommand;
+import seedu.address.logic.commands.module.EditModuleCommand;
 import seedu.address.logic.commands.module.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meeting.AddMeetingCommandParser;
@@ -27,7 +29,7 @@ import seedu.address.logic.parser.meeting.FindMeetingCommandParser;
 import seedu.address.logic.parser.meeting.OpenMeetingCommandParser;
 import seedu.address.logic.parser.module.AddModuleCommandParser;
 import seedu.address.logic.parser.module.DeleteModuleCommandParser;
-
+import seedu.address.logic.parser.module.EditModuleCommandParser;
 
 /**
  * Parses user input.
@@ -59,6 +61,8 @@ public class LinkyTimeParser {
         // Meeting Commands
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingCommandParser().parse(arguments);
+        case ArchiveMeetingCommand.COMMAND_WORD:
+            return new ArchiveMeetingCommand();
         case DeleteMeetingCommand.COMMAND_WORD:
             return new DeleteMeetingCommandParser().parse(arguments);
         case EditMeetingCommand.COMMAND_WORD:
@@ -75,6 +79,8 @@ public class LinkyTimeParser {
             return new AddModuleCommandParser().parse(arguments);
         case DeleteModuleCommand.COMMAND_WORD:
             return new DeleteModuleCommandParser().parse(arguments);
+        case EditModuleCommand.COMMAND_WORD:
+            return new EditModuleCommandParser().parse(arguments);
         case ListModuleCommand.COMMAND_WORD:
             return new ListModuleCommand();
 

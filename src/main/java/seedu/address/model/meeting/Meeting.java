@@ -116,6 +116,7 @@ public class Meeting implements Comparable<Meeting> {
     public MeetingDuration getDuration() {
         return duration;
     }
+
     public Module getModule() {
         return module;
     }

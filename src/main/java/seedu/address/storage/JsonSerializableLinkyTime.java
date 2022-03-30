@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,10 +20,9 @@ import seedu.address.model.module.Module;
  */
 @JsonRootName(value = "linkytime")
 class JsonSerializableLinkyTime {
-    public static final String MESSAGE_DUPLICATE_MEETING =
-            "Meetings list contains duplicate meeting(s).";
-    public static final String MESSAGE_DUPLICATE_MODULE =
-            "Modules list contains duplicate module(s).";
+    public static final String MESSAGE_DUPLICATE_MEETING = "Meetings list contains duplicate meeting(s).";
+    public static final String MESSAGE_DUPLICATE_MODULE = "Modules list contains duplicate module(s).";
+    public static final String MESSAGE_MODULE_NOT_FOUND = "Meeting assigned to module that does not exist.";
 
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
@@ -56,14 +56,7 @@ class JsonSerializableLinkyTime {
      */
     public LinkyTime toModelType() throws IllegalValueException {
         final LinkyTime linkyTime = new LinkyTime();
-
-        for (final JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {
-            final Meeting meeting = jsonAdaptedMeeting.toModelType();
-            if (linkyTime.hasMeeting(meeting)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_MEETING);
-            }
-            linkyTime.addMeeting(meeting);
-        }
+        final HashSet<Module> moduleHashSet = new HashSet<>();
 
         for (final JsonAdaptedModule jsonAdaptedModule : modules) {
             final Module module = jsonAdaptedModule.toModelType();
@@ -71,9 +64,20 @@ class JsonSerializableLinkyTime {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
             linkyTime.addModule(module);
+            moduleHashSet.add(module);
+        }
+
+        for (final JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {
+            final Meeting meeting = jsonAdaptedMeeting.toModelType();
+            if (linkyTime.hasMeeting(meeting)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MEETING);
+            }
+            if (!moduleHashSet.contains(meeting.getModule())) {
+                throw new IllegalValueException(MESSAGE_MODULE_NOT_FOUND);
+            }
+            linkyTime.addMeeting(meeting);
         }
 
         return linkyTime;
     }
-
 }
