@@ -99,6 +99,13 @@ public class LinkyTime implements ReadOnlyLinkyTime {
     }
 
     /**
+     * Sorts the meeting list according to the in built sort function.
+     */
+    public void sortMeetings() {
+        meetings.sortMeetings();
+    }
+
+    /**
      * Removes {@code key} from {@code LinkyTime}.
      * {@code key} must exist in LinkyTime.
      */

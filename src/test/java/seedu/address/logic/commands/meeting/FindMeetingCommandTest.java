@@ -15,12 +15,14 @@ import static seedu.address.testutil.typical.TypicalMeetings.CS2106;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingContainsAllKeywordsPredicate;
 
 public class FindMeetingCommandTest {
@@ -74,8 +76,9 @@ public class FindMeetingCommandTest {
 
         expectedModel.updateFilteredMeetingList(firstPredicate);
         assertCommandSuccess(firstCommand, model, expectedFirstMessage, expectedModel);
-        assertEquals(Arrays.asList(CS2105, CS2106, CS2030, CS2040, CS2100, CS1101S),
-                model.getFilteredMeetingList());
+        List<Meeting> sortedList = Arrays.asList(CS2105, CS2106, CS2030, CS2040, CS2100, CS1101S);
+        Collections.sort(sortedList);
+        assertEquals(sortedList, model.getFilteredMeetingList());
 
         // predicate containing keywords matching meeting name, tag
         final String expectedSecondMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 1);

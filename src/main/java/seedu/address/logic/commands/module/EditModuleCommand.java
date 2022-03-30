@@ -64,7 +64,7 @@ public class EditModuleCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
-        final List<Meeting> lastShownMeetingList = model.getFilteredMeetingList();
+        final List<Meeting> lastShownMeetingList = model.getMeetingList();
         if (hasDependentMeetings(lastShownMeetingList, moduleToEdit)) {
             editAssociatedMeetings(model, moduleToEdit, editedModule);
         }
