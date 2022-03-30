@@ -11,11 +11,16 @@ title: User Guide
 
 ## Introduction
 
-LinkyTime is a desktop app for NUS students to organize their online meeting links, optimized for use via a Command
-Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
-LinkyTime can get your meeting management tasks done faster than traditional GUI apps.
+LinkyTime is a meetings link management system tailored for NUS students. It serves as a centralized platform for students to easily organize their online classes.
 
-<!-- todo elaborate more in the introduction -->
+As NUS students, a common problem we face during this era of home-based learning is that the online lecture and tutorial links are disseminated across different platforms, such as via emails and LumiNUS. With LinkyTime, it provides a solution to help students to easily keep track of these meetings in one place.
+
+The app is optimized for use via a Command-Line Interface while still having the benefits of a Graphical User Interface. 
+
+If you're not familiar with using a Command-Line Interface, this User Guide can help you get up and running in no time.
+
+<!-- If you can type fast,
+LinkyTime can get your meeting management tasks done faster than traditional GUI apps. -->
 
 ### How to use the User Guide
 
@@ -26,7 +31,7 @@ The LinkyTime User Guide utilizes various visual cues to supplement the informat
 | Convention                                                                          | Description                                                      |
 | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `Monospace`                                                                         | Command inputs and syntax, file paths.                           |
-| [Hyperlink]()                                                                       | Hyperlinks to external websites or within the user guide itself. |
+| [Hyperlink](#)                                                                      | Hyperlinks to external websites or within the user guide itself. |
 | **Bold text**                                                                       | Important keywords to take note of.                              |
 | **<div markdown="span" class="alert alert-info"> :information_source: Note </div>** | Information of special interest or importance.                   |
 | **<div markdown="span" class="alert alert-warning"> :exclamation: Warning </div>**  | Potentially irreversible action that may result in loss of data. |
@@ -48,7 +53,7 @@ Your meetings are displayed on the left in the **Meeting List Panel**, and your 
 
 ### Meeting List Panel
 
-<!-- todo include SS with annotations -->
+![Ui](images/AnnotatedUi.png)
 
 At the top of the list, there is a flag that indicates whether you are viewing your upcoming and ongoing meetings, or whether you are viewing your past meetings.
 
@@ -313,7 +318,7 @@ Format: `mdelete INDEX [f/]`
 * The index refers to the index number shown in the displayed module list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the module list.
 * Use the `f/` flag to force delete the module and all its associated meetings.
-  * <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** This action is irreversible, and it is not possible to recover the deleted meetings and module. </div>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** This action is irreversible, and it is not possible to recover the deleted meetings and module. </div>
 
 Examples:
 
