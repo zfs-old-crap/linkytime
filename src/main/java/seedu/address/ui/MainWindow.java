@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -55,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Label meetingListStatus;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -189,6 +193,19 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            switch (commandResult.getMeetingListStatus()) {
+            case UPCOMING:
+                meetingListStatus.setText("Upcoming");
+                meetingListStatus.setStyle("-fx-background-color: gray;");
+                break;
+            case ARCHIVE:
+                meetingListStatus.setText("Archive");
+                meetingListStatus.setStyle("-fx-background-color: #FC8709;");
+                break;
+            default:
+                break;
             }
 
             if (commandResult.isExit()) {

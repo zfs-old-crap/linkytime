@@ -165,7 +165,7 @@ The Meeting class is made up of a `MeetingName`, `MeetingUrl`, `MeetingDateTime`
 A meeting is recurring if it's set to repeat on a weekly basis. Such meetings would never expire.
 
 This section describes how the start and end date time of a recurring meeting is computed. The key implementation lies in
-`getNextRecurrence`, a helper method which computes the next recurrence relative to the current date and time. Since 
+`getNextRecurrence`, a helper method which computes the next recurrence relative to the current date and time. Since
 `getStartDateTime` and `getEndDateTime` utilises `getNextRecurrence`, they inherit the side effect of depending
 on the current date and time as well.
 
@@ -179,10 +179,10 @@ Below is an activity diagram describing the execution of `getNextRecurrence`.
 **Alternative 1 (current choice):** `getStartDateTime` and `getEndDateTime` will return their respective date times
 relative to the current date time.
 * Pros: Easier to implement and integrate with other components such as GUI and storage.
-* Cons: Unit-testing is less trivial since `getStartDateTime` and `getEndDateTime` would return different date times 
+* Cons: Unit-testing is less trivial since `getStartDateTime` and `getEndDateTime` would return different date times
 depending on when their test cases are executed.
 
-**Alternative 2:** Generate the next set of recurring meetings to replace the existing ones. This is done at the start 
+**Alternative 2:** Generate the next set of recurring meetings to replace the existing ones. This is done at the start
 of the program and after each command execution.
 * Cons: Implementation would sprawl across different components and more effort is required to ensure correctness.
 
@@ -370,7 +370,7 @@ The `Module` objects are stored in a `UniqueModuleList` which is held by `LinkyT
   * Pros: Easy to implement and understand.
   * Cons: Difficult to add additional fields in the future.
 * **Alternative 2:** Abstract the field out as a separate class.
-  * Pros: 
+  * Pros:
     * More object-oriented approach.
     * Responsibility of field verification would be done by the field class instead of the Module class.
   * Cons:
@@ -578,7 +578,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
   * 2a1. An empty meeting list is displayed.
 
     Use case ends.
-  
+
 
 ### UC-008: Sort meetings chronologically
 
