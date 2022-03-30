@@ -117,7 +117,7 @@ public class MeetingDateTime implements Comparable<MeetingDateTime> {
     }
 
     @Override
-    public int compareTo(MeetingDateTime o) {
-        return datetime.compareTo(o.datetime);
+    public int compareTo(MeetingDateTime other) {
+        return datetime.compareTo(other.datetime);
     }
 }

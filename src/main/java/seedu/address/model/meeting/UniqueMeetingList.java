@@ -3,7 +3,7 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,7 +22,6 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
     private final ObservableList<Meeting> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final Comparator<Meeting> meetingComparator = Meeting::compareTo;
     /**
      * Returns true if the list contains an equivalent meeting as the given argument.
      */
@@ -67,12 +66,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Sorts the internal meeting list according to the {@code sortFunction}
-     * provided.
-     * The {@code sortFunction} must not be null.
+     * Sorts the internal meeting list chronologically.
      */
     public void sortMeetings() {
-        internalList.sort(meetingComparator);
+        Collections.sort(internalList);
     }
 
     /**

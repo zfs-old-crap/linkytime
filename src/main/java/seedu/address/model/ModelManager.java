@@ -103,13 +103,14 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteMeeting(Meeting target) {
+        requireNonNull(target);
         linkyTime.removeMeeting(target);
-        linkyTime.sortMeetings();
         refreshFilteredMeetingList();
     }
 
     @Override
     public void addMeeting(Meeting meeting) {
+        requireNonNull(meeting);
         linkyTime.addMeeting(meeting);
         linkyTime.sortMeetings();
         refreshFilteredMeetingList();
