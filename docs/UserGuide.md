@@ -38,7 +38,7 @@ The LinkyTime User Guide utilizes various visual cues to supplement the informat
 
 ## Graphical User Interface
 
-<!-- todo: add SS of annotated GUI here -->
+![Ui](images/AnnotatedUi.png)
 
 LinkyTime's graphical user interface consists of 4 main components:
 
@@ -53,7 +53,7 @@ Your meetings are displayed on the left in the **Meeting List Panel**, and your 
 
 ### Meeting List Panel
 
-![Ui](images/AnnotatedUi.png)
+<!-- todo -->
 
 At the top of the list, there is a flag that indicates whether you are viewing your upcoming and ongoing meetings, or whether you are viewing your past meetings.
 
