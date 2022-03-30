@@ -130,7 +130,6 @@ public class LinkyTime implements ReadOnlyLinkyTime {
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
-
         modules.setModule(target, editedModule);
     }
 

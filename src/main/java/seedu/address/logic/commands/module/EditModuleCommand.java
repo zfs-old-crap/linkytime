@@ -22,11 +22,10 @@ import seedu.address.model.module.Module;
  */
 public class EditModuleCommand extends Command {
     public static final String COMMAND_WORD = "medit";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the code of the module identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the name of the module identified "
             + "by the index number used in the displayed list. "
-            + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_NAME + "MODULE_CODE "
+            + PREFIX_NAME + "MODULE_NAME "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "CS2103T";
 
@@ -120,7 +119,7 @@ public class EditModuleCommand extends Command {
         model.getMeetingList()
                 .stream()
                 .filter(meeting -> meeting.getModule().equals(toEdit))
-                .forEach((meeting)->changeModule(model, meeting, edited));
+                .forEach((meeting) -> changeModule(model, meeting, edited));
     }
 
     protected void changeModule(Model model, Meeting meeting, Module module) {

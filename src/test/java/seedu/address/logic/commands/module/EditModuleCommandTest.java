@@ -63,8 +63,6 @@ public class EditModuleCommandTest {
         final Model expectedModel = new ModelManager(new LinkyTime(model.getLinkyTime()), new UserPrefs());
 
         assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
-
-
     }
 
     @Test
