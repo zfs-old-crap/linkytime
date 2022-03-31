@@ -13,7 +13,7 @@ title: User Guide
 
 LinkyTime is a meetings link management system tailored for NUS students. It serves as a centralized platform for students to easily organize their online classes.
 
-As NUS students, a common problem we face during this era of home-based learning is that the online lecture and tutorial links are disseminated across different platforms, such as via emails and LumiNUS. With LinkyTime, it provides a solution to help students to easily keep track of these meetings in one place.
+As NUS students, a common problem we face during this era of home-based learning is that the online lecture and tutorial links are disseminated across different platforms, such as via emails and LumiNUS. LinkyTime solves this problem by providing a platform for students to easily keep track of these meetings in one place.
 
 The app is optimized for use via a Command-Line Interface while still having the benefits of a Graphical User Interface. 
 
@@ -24,9 +24,9 @@ LinkyTime can get your meeting management tasks done faster than traditional GUI
 
 ### How to use the User Guide
 
-You may refer to the [Table of Contents](#table-of-contents) to quickly navigate around the User Guide.
+You may refer to the [Table of Contents](#table-of-contents) to quickly navigate the User Guide.
 
-The LinkyTime User Guide utilizes various visual cues to supplement the information presented. The following table provides an overview of the common typographical conventions used.
+The LinkyTime User Guide utilizes various visual cues to supplement the information presented. The following table provides an overview of all the typographical conventions used.
 
 | Convention                                                                          | Description                                                      |
 | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -48,11 +48,11 @@ LinkyTime's graphical user interface consists of 4 main components:
   * Meeting List State
 * Module List Panel
 
-You may type your commands in the **Command Box** and pressing Enter to execute it. The result message will be displayed in the **Result Display** box.
+You may type your commands in the **Command Box** and press Enter to execute it. The result message is displayed in the **Result Display** box.
 
 Your meetings are displayed on the left in the **Meeting List Panel**, and your modules are displayed on the right in the **Module List Panel**.
 
-At the top of the **Meeting List Panel**, there is a **Meeting List State** label that indicates whether you are viewing your upcoming and ongoing meetings or your archived meetings.
+At the top of the **Meeting List Panel**, the **Meeting List State** label indicates whether you are viewing your ongoing and upcoming meetings or your archived meetings.
 
 ### Meeting Card
 
@@ -81,7 +81,7 @@ Each module is displayed as shown in the example above.
 
    ![Ui](images/Ui.png)
    
-5. Type the command in the command box and press Enter to execute it. e.g. typing `list` and pressing Enter will list all the upcoming meetings.<br>
+5. Type a command in the command box and press Enter to execute it. e.g. typing `list` and pressing Enter will list all upcoming meetings.<br>
 
    Some example commands you can try:
 
@@ -123,8 +123,8 @@ Here are the steps to follow if you are using LinkyTime for the first time. You 
 
 The commands in this user guide follow this format:
 
-* Words in `UPPER_CASE` are the parameters that you can specify.<br>
-  e.g. in `add n/MEETING_NAME`, `MEETING_NAME` is a parameter which can be used as `add n/Lecture`.
+* Words in `UPPER_CASE` are parameters that you can specify.<br>
+  e.g. in `add n/MEETING_NAME`, `MEETING_NAME` is a parameter which can be specified, such as `add n/Lecture`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/MEETING_NAME [t/TAG]` can be used as `n/Lecture t/midterm` or as `n/Lecture`.
@@ -273,7 +273,7 @@ Format: `archive`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Modules are always sorted in a case-insensitive alphabetical order.
+:information_source: Modules are always sorted in case-insensitive alphabetical order.
 
 </div>
 
@@ -289,8 +289,8 @@ Parameters:
 
 Examples:
 
-* `madd n/CS2103T` creates a module called `CS2103T` in the module list.
-* `madd n/Internship` creates a module called `Internship` in the module list.
+* `madd n/CS2103T` creates a module named `CS2103T` in the module list.
+* `madd n/Internship` creates a module named `Internship` in the module list.
 
 #### Edit a module : `medit`
 
@@ -319,7 +319,7 @@ Format: `mdelete INDEX [f/]`
 * The index refers to the index number shown in the displayed module list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the module list.
 * Use the `f/` flag to force delete the module and all its associated meetings.
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** This action is irreversible, and it is not possible to recover the deleted meetings and module. </div>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** This action is irreversible, and it is not possible to recover any deleted meetings and module. </div>
 
 Examples:
 
