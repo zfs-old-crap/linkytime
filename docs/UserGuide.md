@@ -45,25 +45,26 @@ LinkyTime's graphical user interface consists of 4 main components:
 * Command Box
 * Result Display
 * Meeting List Panel
+  * Meeting List State
 * Module List Panel
 
 You may type your commands in the **Command Box** and pressing Enter to execute it. The result message will be displayed in the **Result Display** box.
 
 Your meetings are displayed on the left in the **Meeting List Panel**, and your modules are displayed on the right in the **Module List Panel**.
 
-### Meeting List Panel
+At the top of the **Meeting List Panel**, there is a **Meeting List State** label that indicates whether you are viewing your upcoming and ongoing meetings or your archived meetings.
 
-<!-- todo -->
+### Meeting Card
 
-At the top of the list, there is a flag that indicates whether you are viewing your upcoming and ongoing meetings, or whether you are viewing your past meetings.
+![Meeting Card](images/MeetingCard.png)
 
-Each meeting is displayed in a row as shown in the example above.
+Each meeting is displayed as shown in the example above.
 
-### Module List Panel
+### Module Card
 
-<!-- todo include SS with annotations -->
+![Module Card](images/ModuleCard.png)
 
-Similar to the **Meeting List Panel**, each module is displayed in a row as shown in the example above.
+Each module is displayed as shown in the example above.
 
 --------------------------------------------------------------------------------------------------------------------
 
