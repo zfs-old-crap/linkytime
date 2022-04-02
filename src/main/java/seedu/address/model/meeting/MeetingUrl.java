@@ -47,7 +47,7 @@ public class MeetingUrl {
      * @return True if the URL {@code String} is valid.
      */
     public static boolean isValidUrl(String test) {
-        test = checkAndAppendHttps(test);
+        test = checkAndPrependHttps(test);
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -59,7 +59,7 @@ public class MeetingUrl {
      */
     public static URL parseUrl(String url) {
         try {
-            url = checkAndAppendHttps(url);
+            url = checkAndPrependHttps(url);
             return new URL(url);
         } catch (MalformedURLException e) {
             throw new InvalidUrlException(String.format("%s is not a valid URL", url));
@@ -72,7 +72,7 @@ public class MeetingUrl {
      * @param url The string to check.
      * @return The url string with https:// prefixed to it.
      */
-    public static String checkAndAppendHttps(String url) {
+    public static String checkAndPrependHttps(String url) {
         if (!url.matches(HTTP_REGEX)) {
             url = "https://" + url;
         }
