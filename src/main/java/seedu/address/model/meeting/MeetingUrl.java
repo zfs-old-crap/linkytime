@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import seedu.address.model.meeting.exceptions.InvalidUrlException;
+
 /**
  * Represents a Meeting's URL in the meeting list.
  * Guarantees: immutable; is valid as declared in {@link #isValidUrl(String)}
@@ -14,6 +16,16 @@ public class MeetingUrl {
 
     public static final String MESSAGE_CONSTRAINTS =
             "URLs should be a valid link, and it should not be blank";
+
+    /* Regex to check if a string starts with `http[s]://`. */
+    public static final String HTTP_REGEX = "^(https?)://.*$";
+
+    /* Adapted from Diego Perini https://gist.github.com/dperini/729294 */
+    public static final String VALIDATION_REGEX = "^(?:(?:(?:https?):)?\\/\\/)(?:\\S+(?::\\S*)?@)?(?:(?!(?:10|127)"
+            + "(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])"
+            + "(?:\\.\\d{1,3}){2})(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}"
+            + "(?:\\.(?:[1-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z0-9\\u00a1-\\uffff][a-z0-9\\u00a1-\\uffff_-]"
+            + "{0,62})?[a-z0-9\\u00a1-\\uffff]\\.)+(?:[a-z\\u00a1-\\uffff]{2,}\\.?))(?::\\d{2,5})?(?:[/?#]\\S*)?$";
 
     public final URL meetingUrl;
 
@@ -35,12 +47,8 @@ public class MeetingUrl {
      * @return True if the URL {@code String} is valid.
      */
     public static boolean isValidUrl(String test) {
-        try {
-            new URL(test).toURI();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        test = checkAndAppendHttps(test);
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -51,14 +59,25 @@ public class MeetingUrl {
      */
     public static URL parseUrl(String url) {
         try {
+            url = checkAndAppendHttps(url);
             return new URL(url);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
-            // TODO: update this once we've figured out exception handling
-            return null;
+            throw new InvalidUrlException(String.format("%s is not a valid URL", url));
         }
     }
 
+    /**
+     * Appends `https://` to {@code url} if it does not start with it.
+     *
+     * @param url The string to check.
+     * @return The url string with https:// prefixed to it.
+     */
+    public static String checkAndAppendHttps(String url) {
+        if (!url.matches(HTTP_REGEX)) {
+            url = "https://" + url;
+        }
+        return url;
+    }
 
     @Override
     public String toString() {
