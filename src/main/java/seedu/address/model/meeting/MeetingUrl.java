@@ -17,9 +17,6 @@ public class MeetingUrl {
     public static final String MESSAGE_CONSTRAINTS =
             "URLs should be a valid link, and it should not be blank";
 
-    /* Regex to check if a string starts with `http[s]://`. */
-    public static final String HTTP_REGEX = "^(https?)://.*$";
-
     /* Adapted from Diego Perini https://gist.github.com/dperini/729294 */
     public static final String VALIDATION_REGEX = "^(?:(?:(?:https?):)?\\/\\/)(?:\\S+(?::\\S*)?@)?(?:(?!(?:10|127)"
             + "(?:\\.\\d{1,3}){3})(?!(?:169\\.254|192\\.168)(?:\\.\\d{1,3}){2})(?!172\\.(?:1[6-9]|2\\d|3[0-1])"
