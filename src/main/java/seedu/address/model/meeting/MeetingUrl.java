@@ -67,10 +67,10 @@ public class MeetingUrl {
     }
 
     /**
-     * Appends `https://` to {@code url} if it does not start with it.
+     * Prepends `https://` to {@code url} if it does not start with it.
      *
      * @param url The string to check.
-     * @return The url string with https:// prefixed to it.
+     * @return The url string with https:// prepended to it.
      */
     public static String checkAndPrependHttps(String url) {
         if (!url.matches(HTTP_REGEX)) {
