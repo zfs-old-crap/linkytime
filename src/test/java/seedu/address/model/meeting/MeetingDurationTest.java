@@ -46,6 +46,7 @@ public class MeetingDurationTest {
         assertTrue(MeetingDuration.isValidDuration("0.0168"));
         assertTrue(MeetingDuration.isValidDuration("0.02"));
         assertTrue(MeetingDuration.isValidDuration("2.0000"));
+        assertTrue(MeetingDuration.isValidDuration("00000002.0000"));
         assertTrue(MeetingDuration.isValidDuration("23.9999"));
         assertTrue(MeetingDuration.isValidDuration("24"));
         assertTrue(MeetingDuration.isValidDuration("24.0000"));
