@@ -15,7 +15,7 @@ LinkyTime is a meetings link management system tailored for NUS students. It ser
 
 As NUS students, a common problem we face during this era of home-based learning is that the online lecture and tutorial links are disseminated across different platforms, such as via emails and LumiNUS. LinkyTime solves this problem by providing a platform for students to easily keep track of these meetings in one place.
 
-The app is optimized for use via a Command-Line Interface while still having the benefits of a Graphical User Interface. 
+The app is optimized for use via a Command-Line Interface while still having the benefits of a Graphical User Interface.
 
 If you're not familiar with using a Command-Line Interface, this User Guide can help you get up and running in no time.
 
@@ -80,7 +80,7 @@ Each module is displayed as shown in the example above.
    the app contains some sample data.<br>
 
    ![Ui](images/Ui.png)
-   
+
 5. Type a command in the command box and press Enter to execute it. e.g. typing `list` and pressing Enter will list all upcoming meetings.<br>
 
    Some example commands you can try:
