@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
  */
 public class MeetingDuration {
     public static final String MESSAGE_CONSTRAINTS =
-            "Duration should be a decimal number with 4 decimal places "
-            + "given in hours and range from 1 minute to 24 hours both inclusive";
+            "Duration should be a decimal number (4dp) "
+            + "given in hours, and range from 1 minute to 24 hours inclusive";
     public static final String VALIDATION_REGEX = "^0*[0-9]{1,2}(\\.[0-9]{1,4})?$";
     public final double duration;
 
