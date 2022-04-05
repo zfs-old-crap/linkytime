@@ -11,9 +11,10 @@ import java.time.LocalDateTime;
  */
 public class MeetingDuration {
     public static final String MESSAGE_CONSTRAINTS =
-            "Duration should be a decimal number given in hours and range from 0 < duration <= 24";
-
-    public final float duration;
+            "Duration should be a decimal number (4dp) "
+            + "given in hours, and range from 1 minute to 24 hours inclusive";
+    public static final String VALIDATION_REGEX = "^0*[0-9]{1,2}(\\.[0-9]{1,4})?$";
+    public final double duration;
 
     /**
      * Constructs a {@code MeetingDuration}
@@ -23,7 +24,7 @@ public class MeetingDuration {
     public MeetingDuration(String duration) {
         requireNonNull(duration);
         checkArgument(isValidDuration(duration), MESSAGE_CONSTRAINTS);
-        this.duration = Float.parseFloat(duration);
+        this.duration = Double.parseDouble(duration);
     }
 
     /**
@@ -34,9 +35,12 @@ public class MeetingDuration {
      * @return True, if the {@code String} is a valid float.
      */
     public static boolean isValidDuration(String test) {
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
         try {
-            final float durationToTest = Float.parseFloat(test);
-            return durationToTest > 0 && durationToTest <= 24;
+            final double durationToTest = Double.parseDouble(test);
+            return durationToTest >= ((1.0 / 60.0)) && durationToTest <= 24;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -55,7 +59,7 @@ public class MeetingDuration {
 
     @Override
     public String toString() {
-        return Float.toString(duration);
+        return Double.toString(duration);
     }
 
     @Override
