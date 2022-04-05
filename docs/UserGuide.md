@@ -38,7 +38,7 @@ The LinkyTime User Guide utilizes various visual cues to supplement the informat
 
 ## Graphical User Interface
 
-![Ui](images/AnnotatedUi.png)
+![Annotated UI](images/AnnotatedUi.png)
 
 LinkyTime's graphical user interface consists of 4 main components:
 
@@ -56,13 +56,13 @@ At the top of the **Meeting List Panel**, the **Meeting List State** label indic
 
 ### Meeting Card
 
-![Meeting Card](images/MeetingCard.png)
+![Annotated Meeting Card](images/MeetingCard.png)
 
 Each meeting is displayed as shown in the example above.
 
 ### Module Card
 
-![Module Card](images/ModuleCard.png)
+![Annotated Module Card](images/ModuleCard.png)
 
 Each module is displayed as shown in the example above.
 
@@ -86,7 +86,7 @@ Each module is displayed as shown in the example above.
    Some example commands you can try:
 
     * `list` : Lists all meetings.
-    * `madd m/CS2105` : Adds a module called `CS2105` to the list of modules.
+    * `madd n/CS2105` : Adds a module called `CS2105` to the list of modules.
     * `add n/Tutorial u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/Quiz` : Adds a meeting named `Tutorial` to the list of meetings.
     * `delete 3` : Deletes the 3rd meeting shown in the current list.
     * `exit` : Exits the app.
@@ -129,7 +129,7 @@ The commands in this user guide follow this format:
 * Items in square brackets are optional.<br>
   e.g. `n/MEETING_NAME [t/TAG]` can be used as `n/Lecture t/midterm` or as `n/Lecture`.
 
-* Items with `…`​ after them can be used zero or more times.<br>
+* Items with `…`​ after them can be used multiple times, including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/recorded`, `t/recorded t/lecturequiz` etc.
 
 * Parameters can be in any order.<br>
@@ -157,7 +157,7 @@ Most LinkyTime commands use various parameters. Their formats and constraints ar
 | `INDEX`        | -      | `edit` `delete` `medit` `mdelete` | The index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                   |
 | `MODULE_INDEX` | `m/`   | `edit` `delete`                   | The module's index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                          |
 | `KEYWORD`      | -      | `find`                            | A keyword used in the find command. {::nomarkdown}<ul><li> Must be given as a single word without spaces. </li><li> Input is not case-sensitive.</li></ul>{:/}                                                                                                                                                                                                                                                                                              |
-| `TAG`          | `t/`   | `add` `edit`                      | The tag(s) assigned to a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters. </li><li> Spaces are not allowed.</li></ul>{:/}                                                                                                                                                                                                                                                                                                              |
+| `TAG`          | `t/`   | `add` `edit`                      | The tag(s) assigned to a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters, and must not be blank. </li><li> Spaces are not allowed. </li><li> Duplicate tags are accepted as input, but they will be treated as a singular tag. </li></ul>{:/}                                                                                                                                                                                          |
 
 ## Features
 
@@ -265,9 +265,15 @@ Examples:
 
 #### List all archived meetings : `archive`
 
-View all elapsed meetings in the meeting list and display their respective details.
+View all expired/elapsed meetings in the meeting list and display their respective details.
+
+![Archived Meetings, indicated by the "Archived" label](images/UiArchive.png)
 
 Format: `archive`
+
+* Only **non-recurring** meetings will be archived. Recurring meetings do not expire, and will repeat on a weekly basis until it is deleted or set to stop recurring.
+* Meetings are archived only when the meeting has **ended**. Ongoing meetings will remain in your upcoming list.
+* When attempting to create a **recurring** meeting with a date that is set **in the past**, LinkyTime will compute the next recurrence relative to the current date and **override** the meeting date.
 
 ### Module Management
 
