@@ -167,7 +167,9 @@ This section describes each of the commands and features available in LinkyTime.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Meetings are always sorted in chronological order.
+:information_source: Meetings are always sorted in chronological order. <br/>
+Meeting list is only refreshed after every command. <br/>
+_Coming soon: Meeting list refreshes in real time_
 
 </div>
 
