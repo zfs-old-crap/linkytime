@@ -34,8 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_TUTORIAL = "Tutorial";
     public static final String VALID_URL_LECTURE = "https://www.google.com";
     public static final String VALID_URL_TUTORIAL = "https://www.zoom.com";
-    public static final String VALID_DATETIME_LECTURE = "18-03-2022 1400";
-    public static final String VALID_DATETIME_TUTORIAL = "01-02-2022 1300";
+    public static final String VALID_DATETIME_LECTURE = "18-03-2023 1400";
+    public static final String VALID_DATETIME_TUTORIAL = "01-02-2023 1300";
     public static final String VALID_DURATION_LECTURE = "2";
     public static final String VALID_DURATION_TUTORIAL = "1.5";
     public static final String VALID_MODULE_LECTURE = "CS2103";
@@ -61,12 +61,12 @@ public class CommandTestUtil {
     public static final String TAG_DESC_TUTORIAL = " " + PREFIX_TAG + VALID_TAG_TUTORIAL;
 
     //    TODO once we start validating input
-    //    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    //    public static final String INVALID_URL_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    //    public static final String INVALID_DATETIME_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    //    public static final String INVALID_MODULE_DESC = " " + PREFIX_ADDRESS; // empty string not allowed
-    //    public static final String INVALID_RECURRING_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
-    //    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Lecture&"; // '&' not allowed in names
+    public static final String INVALID_URL_DESC = " " + PREFIX_URL + "911a"; // no .com
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME
+                + "40-02-2022 1400"; // date does not exist
+    public static final String INVALID_RECURRING_DESC = " " + PREFIX_RECURRING + "L"; // must be 'Y' or 'N'
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "rip*"; // '*' not allowed in tags
     public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "two"; // letters not allowed in duration
     public static final String INVALID_MODULE_DESC = " " + PREFIX_NAME; // empty string not allowed
 
@@ -81,11 +81,11 @@ public class CommandTestUtil {
     static {
         DESC_LECTURE = new EditMeetingDescriptorBuilder().withName(VALID_NAME_LECTURE)
                 .withUrl(VALID_URL_LECTURE).withDateTime(VALID_DATETIME_LECTURE).withDuration(VALID_DURATION_LECTURE)
-                .withModule(VALID_MODULE_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE).withTags(VALID_TAG_LECTURE)
+                .withModule(Index.fromZeroBased(3)).withIsRecurring(VALID_RECURRING_LECTURE).withTags(VALID_TAG_LECTURE)
                 .build();
         DESC_TUTORIAL = new EditMeetingDescriptorBuilder().withName(VALID_NAME_TUTORIAL)
                 .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_TUTORIAL).withDuration(VALID_DURATION_TUTORIAL)
-                .withModule(VALID_MODULE_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
+                .withModule(Index.fromZeroBased(4)).withIsRecurring(VALID_RECURRING_TUTORIAL)
                 .withTags(VALID_TAG_TUTORIAL).build();
         DESC_CS2103 = new EditModuleDescriptorBuilder().withCode(VALID_MODULE_LECTURE).build();
         DESC_CS2101 = new EditModuleDescriptorBuilder().withCode(VALID_MODULE_TUTORIAL).build();

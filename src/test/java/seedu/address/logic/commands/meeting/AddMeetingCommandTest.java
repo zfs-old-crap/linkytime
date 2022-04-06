@@ -1,22 +1,26 @@
 package seedu.address.logic.commands.meeting;
 
 import static java.util.Objects.requireNonNull;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-//import java.util.Arrays;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-//import seedu.address.logic.commands.CommandResult;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ModelStub;
-//import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.meeting.Meeting;
-//import seedu.address.testutil.meeting.MeetingBuilder;
-
+import seedu.address.model.module.Module;
+import seedu.address.testutil.meeting.AddMeetingDescriptorBuilder;
+import seedu.address.testutil.meeting.MeetingBuilder;
 
 public class AddMeetingCommandTest {
 
@@ -25,60 +29,72 @@ public class AddMeetingCommandTest {
         assertThrows(NullPointerException.class, () -> new AddMeetingCommand(null));
     }
 
-    // TODO MODULE INDEX: fix
-    //@Test
-    //public void execute_meetingAcceptedByModel_addSuccessful() throws Exception {
-    //    final ModelStubAcceptingMeetingAdded modelStub = new ModelStubAcceptingMeetingAdded();
-    //    final Meeting validMeeting = new MeetingBuilder().build();
-    //
-    //    final CommandResult commandResult = new AddMeetingCommand(validMeeting).execute(modelStub);
-    //
-    //    assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting),
-    //                 commandResult.getFeedbackToUser());
-    //    assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
-    //}
+    @Test
+    public void execute_meetingAcceptedByModel_addSuccessful() throws Exception {
+        final ModelStubAcceptingMeetingAddedWithDefaultModule modelStub =
+                new ModelStubAcceptingMeetingAddedWithDefaultModule();
+        final Meeting validMeeting = new MeetingBuilder().build();
+        final AddMeetingDescriptorBuilder addMeetingDescriptorBuilder = new AddMeetingDescriptorBuilder(validMeeting);
+        addMeetingDescriptorBuilder.withModule(Index.fromZeroBased(0));
 
-    //@Test
-    //public void execute_duplicateMeeting_throwsCommandException() {
-    //    final Meeting validMeeting = new MeetingBuilder().build();
-    //    final AddMeetingCommand addMeetingCommand = new AddMeetingCommand(validMeeting);
-    //    final ModelStub modelStub = new ModelStubWithMeeting(validMeeting);
-    //
-    //    assertThrows(CommandException.class,
-    //            AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () -> addMeetingCommand.execute(modelStub));
-    //}
+        final CommandResult commandResult = new AddMeetingCommand(addMeetingDescriptorBuilder.build())
+                .execute(modelStub);
 
-    //@Test
-    //public void equals() {
-    //    final Meeting cs2103 = new MeetingBuilder().withName("CS2103").build();
-    //    final Meeting cs2101 = new MeetingBuilder().withName("CS2101").build();
-    //    final AddMeetingCommand addCS2103Command = new AddMeetingCommand(cs2103);
-    //    final AddMeetingCommand addCS2101Command = new AddMeetingCommand(cs2101);
-    //
-    //    // same object -> returns true
-    //    assertTrue(addCS2103Command.equals(addCS2103Command));
-    //
-    //    // same values -> returns true
-    //    final AddMeetingCommand addCS2103CommandCopy = new AddMeetingCommand(cs2103);
-    //    assertTrue(addCS2103Command.equals(addCS2103CommandCopy));
-    //
-    //    // different types -> returns false
-    //    assertFalse(addCS2103Command.equals(1));
-    //
-    //    // null -> returns false
-    //    assertFalse(addCS2103CommandCopy.equals(null));
-    //
-    //    // different meeting -> returns false
-    //    assertFalse(addCS2103Command.equals(addCS2101Command));
-    //}
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting),
+                     commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
+    }
+
+    @Test
+    public void execute_duplicateMeeting_throwsCommandException() {
+        final Meeting validMeeting = new MeetingBuilder().build();
+        final AddMeetingDescriptorBuilder addMeetingDescriptorBuilder = new AddMeetingDescriptorBuilder(validMeeting);
+        addMeetingDescriptorBuilder.withModule(Index.fromZeroBased(0));
+        final AddMeetingCommand addMeetingCommand = new AddMeetingCommand(addMeetingDescriptorBuilder.build());
+        final ModelStub modelStub = new ModelStubWithMeetingAndModule(validMeeting);
+
+        assertThrows(CommandException.class,
+                AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () -> addMeetingCommand.execute(modelStub));
+    }
+
+    @Test
+    public void equals() {
+        final Meeting cs2103 = new MeetingBuilder().withName("CS2103").build();
+        final Meeting cs2101 = new MeetingBuilder().withName("CS2101").build();
+        AddMeetingDescriptorBuilder addMeetingDescriptorBuilder = new AddMeetingDescriptorBuilder(cs2103);
+        addMeetingDescriptorBuilder.withModule(Index.fromZeroBased(0));
+        final AddMeetingCommand addCS2103Command = new AddMeetingCommand(addMeetingDescriptorBuilder.build());
+        addMeetingDescriptorBuilder = new AddMeetingDescriptorBuilder(cs2101);
+        addMeetingDescriptorBuilder.withModule(Index.fromZeroBased(0));
+        final AddMeetingCommand addCS2101Command = new AddMeetingCommand(addMeetingDescriptorBuilder.build());
+
+        // same object -> returns true
+        assertTrue(addCS2103Command.equals(addCS2103Command));
+
+        // same values -> returns true
+        final AddMeetingDescriptorBuilder addMeetingDescriptorBuilderCopy = new AddMeetingDescriptorBuilder(cs2103);
+        addMeetingDescriptorBuilderCopy.withModule(Index.fromZeroBased(0));
+        final AddMeetingCommand addCS2103CommandCopy = new AddMeetingCommand(addMeetingDescriptorBuilderCopy.build());
+        assertTrue(addCS2103Command.equals(addCS2103CommandCopy));
+
+        // different types -> returns false
+        assertFalse(addCS2103Command.equals(1));
+
+        // null -> returns false
+        assertFalse(addCS2103CommandCopy.equals(null));
+
+        // different meeting -> returns false
+        assertFalse(addCS2103Command.equals(addCS2101Command));
+    }
 
     /**
      * A Model stub that contains a single meeting.
      */
-    private class ModelStubWithMeeting extends ModelStub {
+    private class ModelStubWithMeetingAndModule extends ModelStub {
         private final Meeting meeting;
+        private final ObservableList<Module> internalList = FXCollections.observableArrayList();
 
-        ModelStubWithMeeting(Meeting meeting) {
+        ModelStubWithMeetingAndModule(Meeting meeting) {
             requireNonNull(meeting);
             this.meeting = meeting;
         }
@@ -89,13 +105,20 @@ public class AddMeetingCommandTest {
             return this.meeting.equals(meeting);
         }
 
+        @Override
+        public ObservableList<Module> getFilteredModuleList() {
+            internalList.add(new Module("CS2102"));
+            return internalList;
+        }
+
     }
 
     /**
      * A Model stub that always accept the Meeting being added.
      */
-    private class ModelStubAcceptingMeetingAdded extends ModelStub {
+    private class ModelStubAcceptingMeetingAddedWithDefaultModule extends ModelStub {
         final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
+        private final ObservableList<Module> internalList = FXCollections.observableArrayList();
 
         @Override
         public boolean hasMeeting(Meeting meeting) {
@@ -107,6 +130,12 @@ public class AddMeetingCommandTest {
         public void addMeeting(Meeting meeting) {
             requireNonNull(meeting);
             meetingsAdded.add(meeting);
+        }
+
+        @Override
+        public ObservableList<Module> getFilteredModuleList() {
+            internalList.add(new Module("CS2102"));
+            return internalList;
         }
     }
 

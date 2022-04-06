@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_LECTURE;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
@@ -14,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_URL_LECTURE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meeting.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
 
@@ -54,10 +54,9 @@ public class EditMeetingDescriptorTest {
         editedTutorial = new EditMeetingDescriptorBuilder(DESC_TUTORIAL).withDuration(VALID_DURATION_LECTURE).build();
         assertFalse(DESC_TUTORIAL.equals(editedTutorial));
 
-        // TODO MODULE INDEX: fix
-        //// different module -> returns false
-        //editedTutorial = new EditMeetingDescriptorBuilder(DESC_TUTORIAL).withModule(VALID_MODULE_LECTURE).build();
-        //assertFalse(DESC_TUTORIAL.equals(editedTutorial));
+        // different module -> returns false
+        editedTutorial = new EditMeetingDescriptorBuilder(DESC_TUTORIAL).withModule(Index.fromZeroBased(0)).build();
+        assertFalse(DESC_TUTORIAL.equals(editedTutorial));
 
         // different recurrence -> returns false
         editedTutorial = new EditMeetingDescriptorBuilder(DESC_TUTORIAL).withIsRecurring(VALID_RECURRING_LECTURE)

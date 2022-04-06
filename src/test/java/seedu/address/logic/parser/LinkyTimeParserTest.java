@@ -9,17 +9,20 @@ import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MEETING;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-//import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.AddMeetingCommand.AddMeetingDescriptor;
 import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
 import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.commands.meeting.OpenMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.meeting.Meeting;
-//import seedu.address.testutil.meeting.MeetingBuilder;
-//import seedu.address.testutil.meeting.MeetingUtil;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.testutil.meeting.AddMeetingDescriptorBuilder;
+import seedu.address.testutil.meeting.MeetingBuilder;
+import seedu.address.testutil.meeting.MeetingUtil;
 
 /**
  * Contains unit test for LinkyTimeParser
@@ -29,14 +32,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class LinkyTimeParserTest {
     private final LinkyTimeParser parser = new LinkyTimeParser();
 
-    // TODO MODULE INDEX: fix
-    //@Test
-    //public void parseCommand_add() throws Exception {
-    //    Meeting meeting = new MeetingBuilder().build();
-    //    AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(
-    //              MeetingUtil.getAddMeetingCommand(meeting));
-    //    assertEquals(new AddMeetingCommand(meeting), command);
-    //}
+    @Test
+    public void parseCommand_add() throws Exception {
+        Meeting meeting = new MeetingBuilder().build();
+        AddMeetingDescriptor addMeetingDescriptor = new AddMeetingDescriptorBuilder(meeting)
+                .withModule(Index.fromZeroBased(0)).build();
+        AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(
+                  MeetingUtil.getAddMeetingCommand(meeting));
+        assertEquals(new AddMeetingCommand(addMeetingDescriptor), command);
+    }
 
     @Test
     public void parseCommand_clear() throws Exception {
