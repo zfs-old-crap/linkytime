@@ -30,7 +30,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for all module features ([\#113](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/113))
+        * Added documentation for add and delete module features ([\#113](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/113))
         * Added documentation for command parameters, typographical conventions table, and updated introduction paragraphs ([\#113](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/113), [\#128](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/128))
         * Created annotated GUI images ([\#128](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/128), [\#179](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/179))
         * Full list of UG PRs available [here](https://github.com/AY2122S2-CS2103T-T13-3/tp/pulls?q=is%3Apr+ug+author%3ANatalieTanML)
