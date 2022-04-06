@@ -27,7 +27,7 @@
         </Label>
         <Label fx:id="module" text="\$module" wrapText="true" />
         <Label fx:id="isRecurring" text="\$isRecurring" />
-        <Label fx:id="name" text="\$name" styleClass="cell_big_label" minWidth="300" maxWidth="450" wrapText="true" />
+        <Label fx:id="name" text="\$name" styleClass="cell_big_label" maxWidth="800" wrapText="true" />
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="startDateTime" styleClass="cell_small_label" text="\$startDateTime" />
