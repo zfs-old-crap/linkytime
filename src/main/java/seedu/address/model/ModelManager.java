@@ -112,7 +112,6 @@ public class ModelManager implements Model {
     public void addMeeting(Meeting meeting) {
         requireNonNull(meeting);
         linkyTime.addMeeting(meeting);
-        linkyTime.sortMeetings();
         refreshFilteredMeetingList();
     }
 
@@ -120,7 +119,6 @@ public class ModelManager implements Model {
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
         linkyTime.setMeeting(target, editedMeeting);
-        linkyTime.sortMeetings();
         refreshFilteredMeetingList();
     }
 
@@ -136,8 +134,9 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         // Forces the GUI to perform a complete re-render to reflect updated recurrent meeting date and times.
         // This is a temporary workaround until a coherent solution comes about.
-        filteredMeetings.setPredicate(m -> false);
+        linkyTime.sortMeetings();
 
+        filteredMeetings.setPredicate(m -> false);
         filteredMeetings.setPredicate(invariantPredicate.and(predicate));
     }
 
