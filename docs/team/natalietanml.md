@@ -9,7 +9,7 @@ title: Natalie's Project Portfolio Page
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to manage modules.
+* **New Feature**: Added the ability to add and delete modules.
     * What it does: Allows the user to add and delete modules they may be taking at NUS, and assign meetings to modules via the module's index number.
     * Justification: This feature is needed to provide a way for users to categorize their meetings by its module. Users would be able to assign meetings to modules quicker, without having to type the full module name each time as well.
     * Highlights: This is a core feature of LinkyTime. The added enhancement to set a meeting's module by the module index required significant effort in ensuring the refactoring of the existing commands did not break.
