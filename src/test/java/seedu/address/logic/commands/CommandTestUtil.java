@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -34,10 +35,12 @@ public class CommandTestUtil {
     public static final String VALID_NAME_TUTORIAL = "Tutorial";
     public static final String VALID_URL_LECTURE = "https://www.google.com";
     public static final String VALID_URL_TUTORIAL = "https://www.zoom.com";
-    public static final String VALID_DATETIME_LECTURE = "18-03-2022 1400";
-    public static final String VALID_DATETIME_TUTORIAL = "01-02-2022 1300";
+    public static final String VALID_DATETIME_LECTURE = "18-03-2023 1400";
+    public static final String VALID_DATETIME_TUTORIAL = "01-02-2023 1300";
     public static final String VALID_DURATION_LECTURE = "2";
     public static final String VALID_DURATION_TUTORIAL = "1.5";
+    public static final Index VALID_MODULE_INDEX_LECTURE = Index.fromZeroBased(3);
+    public static final Index VALID_MODULE_INDEX_TUTORIAL = Index.fromZeroBased(4);
     public static final String VALID_MODULE_LECTURE = "CS2103";
     public static final String VALID_MODULE_TUTORIAL = "CS2101";
     public static final String VALID_RECURRING_LECTURE = "Y";
@@ -53,6 +56,11 @@ public class CommandTestUtil {
     public static final String DATETIME_DESC_TUTORIAL = " " + PREFIX_DATETIME + VALID_DATETIME_TUTORIAL;
     public static final String DURATION_DESC_LECTURE = " " + PREFIX_DURATION + VALID_DURATION_LECTURE;
     public static final String DURATION_DESC_TUTORIAL = " " + PREFIX_DURATION + VALID_DURATION_TUTORIAL;
+    public static final String MODULE_DESC_INDEX_LECTURE = " " + PREFIX_MODULE
+            + VALID_MODULE_INDEX_LECTURE.getOneBased();
+    public static final String MODULE_DESC_INDEX_TUTORIAL = " " + PREFIX_MODULE
+            + VALID_MODULE_INDEX_TUTORIAL.getOneBased();
+    public static final String MODULE_INDEX_ONE = " " + PREFIX_MODULE + "1";
     public static final String MODULE_DESC_LECTURE = " " + PREFIX_NAME + VALID_MODULE_LECTURE;
     public static final String MODULE_DESC_TUTORIAL = " " + PREFIX_NAME + VALID_MODULE_TUTORIAL;
     public static final String RECURRING_DESC_LECTURE = " " + PREFIX_RECURRING + VALID_RECURRING_LECTURE;
@@ -60,15 +68,14 @@ public class CommandTestUtil {
     public static final String TAG_DESC_LECTURE = " " + PREFIX_TAG + VALID_TAG_LECTURE;
     public static final String TAG_DESC_TUTORIAL = " " + PREFIX_TAG + VALID_TAG_TUTORIAL;
 
-    //    TODO once we start validating input
-    //    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    //    public static final String INVALID_URL_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    //    public static final String INVALID_DATETIME_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    //    public static final String INVALID_MODULE_DESC = " " + PREFIX_ADDRESS; // empty string not allowed
-    //    public static final String INVALID_RECURRING_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tag
-    //    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Lecture&"; // '&' not allowed in names
+    public static final String INVALID_URL_DESC = " " + PREFIX_URL + "911a"; // no .com
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME + "40-02-2022 1400"; // date doesn't exist
+    public static final String INVALID_RECURRING_DESC = " " + PREFIX_RECURRING + "L"; // must be 'Y' or 'N'
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "rip*"; // '*' not allowed in tags
     public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "two"; // letters not allowed in duration
     public static final String INVALID_MODULE_DESC = " " + PREFIX_NAME; // empty string not allowed
+    public static final String INVALID_MODULE_INDEX_DESC = " " + PREFIX_MODULE + "a"; // 'a' is not a number
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -81,11 +88,11 @@ public class CommandTestUtil {
     static {
         DESC_LECTURE = new EditMeetingDescriptorBuilder().withName(VALID_NAME_LECTURE)
                 .withUrl(VALID_URL_LECTURE).withDateTime(VALID_DATETIME_LECTURE).withDuration(VALID_DURATION_LECTURE)
-                .withModule(VALID_MODULE_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE).withTags(VALID_TAG_LECTURE)
-                .build();
+                .withModule(VALID_MODULE_INDEX_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE)
+                .withTags(VALID_TAG_LECTURE).build();
         DESC_TUTORIAL = new EditMeetingDescriptorBuilder().withName(VALID_NAME_TUTORIAL)
                 .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_TUTORIAL).withDuration(VALID_DURATION_TUTORIAL)
-                .withModule(VALID_MODULE_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
+                .withModule(VALID_MODULE_INDEX_TUTORIAL).withIsRecurring(VALID_RECURRING_TUTORIAL)
                 .withTags(VALID_TAG_TUTORIAL).build();
         DESC_CS2103 = new EditModuleDescriptorBuilder().withCode(VALID_MODULE_LECTURE).build();
         DESC_CS2101 = new EditModuleDescriptorBuilder().withCode(VALID_MODULE_TUTORIAL).build();
@@ -97,7 +104,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             final CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -112,7 +119,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         final CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
