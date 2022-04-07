@@ -206,6 +206,18 @@ Some details include:
 * Meeting date and time
 * Module the meeting is assigned to
 
+#### List all archived meetings : `archive`
+
+View all expired/elapsed meetings in the meeting list and display their respective details.
+
+![Archived Meetings, indicated by the "Archived" label](images/UiArchive.png)
+
+Format: `archive`
+
+* Only **non-recurring** meetings will be archived. Recurring meetings do not expire, and will repeat on a weekly basis until it is deleted or set to stop recurring.
+* Meetings are archived only when the meeting has **ended**. Ongoing meetings will remain in your upcoming list.
+* When attempting to create a **recurring** meeting with a date that is set **in the past**, LinkyTime will compute the next recurrence relative to the current date and **override** the meeting date.
+
 #### Find a meeting : `find`
 
 <div markdown="block" class="alert alert-info">
@@ -280,18 +292,6 @@ Format: `delete INDEX`
 Examples:
 
 * `list` followed by `delete 2` deletes the 2nd meeting in the meeting list.
-
-#### List all archived meetings : `archive`
-
-View all expired/elapsed meetings in the meeting list and display their respective details.
-
-![Archived Meetings, indicated by the "Archived" label](images/UiArchive.png)
-
-Format: `archive`
-
-* Only **non-recurring** meetings will be archived. Recurring meetings do not expire, and will repeat on a weekly basis until it is deleted or set to stop recurring.
-* Meetings are archived only when the meeting has **ended**. Ongoing meetings will remain in your upcoming list.
-* When attempting to create a **recurring** meeting with a date that is set **in the past**, LinkyTime will compute the next recurrence relative to the current date and **override** the meeting date.
 
 ### Module Management
 
