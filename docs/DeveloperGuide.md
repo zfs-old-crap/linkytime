@@ -186,6 +186,39 @@ depending on when their test cases are executed.
 of the program and after each command execution.
 * Cons: Implementation would sprawl across different components and more effort is required to ensure correctness.
 
+### Commands
+This section explains the general implementation of all commands.
+The implementation of all commands can be split into 2 general implementation flow, commands with a parser and commands without.
+
+#### Commands with a parser
+This section explains the general implementation of all commands that requires a parser to handle additional user input.
+
+Below is the sequence diagram for the execution of these commands (represented as command `xyz`) after user input is sent to `LogicManager`. The execution of each command has been omitted due to their differences and will covered in the respective command sections.
+![`CommandsWithParser` sequence diagram](images/CommandsWithParserSequenceDiagram.png)
+
+Step 1:
+The user enters a command with additional params(requires a parser) which is then passed to the `LogicManager`.
+
+Step 2:
+The `LogicManager` then calls `LinkyTimeParser::parseCommand` for it to figure out what command this is.
+
+Step 3:
+The `LinkyTimeParser` parses the user input and creates a command parser for that specific command. (denoted as `xyzCommandParser`)
+
+Step 4:
+The parser is then returned to the `LinkyTimeParser` which then calls `xyzCommandParser::parse` to parse the additional params.
+
+Step 5:
+The `xyzCommandParser` then creates its respective command (denoted as `xyzCommand`) and returns it to `LogicManager`.
+
+Step 6:
+The `LogicManager` then calls `xyzCommand::execute` where the interaction between the command and the model is handled.
+
+Step 7:
+The `xyzCommand` then creates a successful `CommandResult` and returns it to the UI.
+
+#### Commands without a parser
+
 #### List Meetings feature
 This section explains the implementation of the List Meetings feature via the `list` command.
 The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.
