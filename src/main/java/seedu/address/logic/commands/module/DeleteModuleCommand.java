@@ -58,7 +58,7 @@ public class DeleteModuleCommand extends Command {
         final Module moduleToDelete = lastShownModuleList.get(targetIndex.getZeroBased());
         final List<Meeting> allMeetings = model.getMeetingList();
 
-        if (!isForced && hasDependentMeetings(allMeetings, moduleToDelete)) {
+        if (!isForced && hasAssociatedMeetings(allMeetings, moduleToDelete)) {
             throw new CommandException(String.format(MESSAGE_DELETE_MODULE_RESTRICTED, moduleToDelete));
         }
 
@@ -83,9 +83,9 @@ public class DeleteModuleCommand extends Command {
      *
      * @param meetings The list of meetings to check.
      * @param module   The module to search for.
-     * @return True, if there are dependent meetings in the list.
+     * @return True, if there are associated meetings in the list.
      */
-    private boolean hasDependentMeetings(List<Meeting> meetings, Module module) {
+    private boolean hasAssociatedMeetings(List<Meeting> meetings, Module module) {
         return meetings.stream().anyMatch(meeting -> meeting.getModule().equals(module));
     }
 
