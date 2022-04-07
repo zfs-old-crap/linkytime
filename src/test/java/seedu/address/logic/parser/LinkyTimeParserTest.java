@@ -34,11 +34,13 @@ public class LinkyTimeParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Meeting meeting = new MeetingBuilder().build();
-        AddMeetingDescriptor addMeetingDescriptor = new AddMeetingDescriptorBuilder(meeting)
-                .withModule(Index.fromZeroBased(0)).build();
-        AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(
-                  MeetingUtil.getAddMeetingCommand(meeting));
+        final Meeting meeting = new MeetingBuilder().build();
+
+        final Index firstModule = Index.fromZeroBased(0);
+        final AddMeetingDescriptor addMeetingDescriptor = new AddMeetingDescriptorBuilder(meeting)
+                .withModule(firstModule).build();
+        final AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(
+                MeetingUtil.getAddMeetingCommand(meeting));
         assertEquals(new AddMeetingCommand(addMeetingDescriptor), command);
     }
 
@@ -50,14 +52,14 @@ public class LinkyTimeParserTest {
 
     @Test
     public void parseCommand_open() throws Exception {
-        OpenMeetingCommand command = (OpenMeetingCommand) parser.parseCommand(
+        final OpenMeetingCommand command = (OpenMeetingCommand) parser.parseCommand(
                 OpenMeetingCommand.COMMAND_WORD + " " + INDEX_FIRST_MEETING.getOneBased());
         assertEquals(new OpenMeetingCommand(INDEX_FIRST_MEETING), command);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteMeetingCommand command = (DeleteMeetingCommand) parser.parseCommand(
+        final DeleteMeetingCommand command = (DeleteMeetingCommand) parser.parseCommand(
                 DeleteMeetingCommand.COMMAND_WORD + " " + INDEX_FIRST_MEETING.getOneBased());
         assertEquals(new DeleteMeetingCommand(INDEX_FIRST_MEETING), command);
     }

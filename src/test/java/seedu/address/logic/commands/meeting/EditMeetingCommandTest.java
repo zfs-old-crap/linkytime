@@ -38,7 +38,7 @@ public class EditMeetingCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         final Meeting editedMeeting = new MeetingBuilder().withModule("CS2103").build();
-        Index modIndex = Index.fromZeroBased(model.getFilteredModuleList().indexOf(editedMeeting.getModule()));
+        final Index modIndex = Index.fromZeroBased(model.getFilteredModuleList().indexOf(editedMeeting.getModule()));
         final EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).withModule(modIndex)
                 .build();
         final EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_MEETING, descriptor);
@@ -106,7 +106,7 @@ public class EditMeetingCommandTest {
     @Test
     public void execute_duplicateMeetingUnfilteredList_failure() {
         final Meeting firstMeeting = model.getFilteredMeetingList().get(INDEX_FIRST_MEETING.getZeroBased());
-        Index modIndex = Index.fromZeroBased(model.getFilteredModuleList().indexOf(firstMeeting.getModule()));
+        final Index modIndex = Index.fromZeroBased(model.getFilteredModuleList().indexOf(firstMeeting.getModule()));
         final EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(firstMeeting).withModule(modIndex)
                 .build();
         final EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_SECOND_MEETING, descriptor);
@@ -117,7 +117,7 @@ public class EditMeetingCommandTest {
     @Test
     public void execute_duplicateMeetingFilteredList_failure() {
         final Meeting meetingInList = model.getFilteredMeetingList().get(INDEX_SECOND_MEETING.getZeroBased());
-        Index modIndex = Index.fromZeroBased(model.getFilteredModuleList().indexOf(meetingInList.getModule()));
+        final Index modIndex = Index.fromZeroBased(model.getFilteredModuleList().indexOf(meetingInList.getModule()));
         showMeetingAtIndex(model, INDEX_FIRST_MEETING);
 
         // edit meeting in filtered list into a duplicate in LinkyTime

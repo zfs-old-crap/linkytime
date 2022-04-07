@@ -7,10 +7,12 @@ import static seedu.address.logic.commands.CommandTestUtil.DURATION_DESC_LECTURE
 import static seedu.address.logic.commands.CommandTestUtil.DURATION_DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DURATION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_INDEX_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECURRING_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_URL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_INDEX_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.RECURRING_DESC_LECTURE;
@@ -22,6 +24,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTUR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_INDEX_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_LECTURE;
@@ -54,8 +57,6 @@ public class EditMeetingCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMeetingCommand.MESSAGE_USAGE);
-    private static final String MODULE_DESC_LECTURE = " m/2";
-    private static final String INVALID_MODULE_DESC = " m/a";
     private final EditMeetingCommandParser parser = new EditMeetingCommandParser();
 
     @Test
@@ -100,7 +101,7 @@ public class EditMeetingCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_DURATION_DESC, MeetingDuration.MESSAGE_CONSTRAINTS);
 
         // invalid module
-        assertParseFailure(parser, "1" + INVALID_MODULE_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "1" + INVALID_MODULE_INDEX_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // invalid isRecurring
         assertParseFailure(parser, "1" + INVALID_RECURRING_DESC, IsRecurring.MESSAGE_CONSTRAINTS);
@@ -113,12 +114,12 @@ public class EditMeetingCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         final Index targetIndex = INDEX_SECOND_MEETING;
         final String userInput = targetIndex.getOneBased() + NAME_DESC_LECTURE + URL_DESC_TUTORIAL
-                + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_LECTURE + RECURRING_DESC_LECTURE
+                + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + MODULE_DESC_INDEX_LECTURE + RECURRING_DESC_LECTURE
                 + TAG_DESC_LECTURE;
 
         final EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withName(VALID_NAME_LECTURE)
                 .withUrl(VALID_URL_TUTORIAL).withDateTime(VALID_DATETIME_LECTURE).withDuration(VALID_DURATION_LECTURE)
-                .withModule(Index.fromZeroBased(1)).withIsRecurring(VALID_RECURRING_LECTURE)
+                .withModule(VALID_MODULE_INDEX_LECTURE).withIsRecurring(VALID_RECURRING_LECTURE)
                 .withTags(VALID_TAG_LECTURE).build();
         final EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
 
@@ -165,8 +166,8 @@ public class EditMeetingCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // module
-        userInput = targetIndex.getOneBased() + MODULE_DESC_LECTURE;
-        descriptor = new EditMeetingDescriptorBuilder().withModule(Index.fromZeroBased(1)).build();
+        userInput = targetIndex.getOneBased() + MODULE_DESC_INDEX_LECTURE;
+        descriptor = new EditMeetingDescriptorBuilder().withModule(VALID_MODULE_INDEX_LECTURE).build();
         expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

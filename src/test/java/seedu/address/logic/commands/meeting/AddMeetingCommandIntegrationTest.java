@@ -39,7 +39,7 @@ public class AddMeetingCommandIntegrationTest {
 
         final AddMeetingDescriptorBuilder addMeetingDescriptorBuilder = new AddMeetingDescriptorBuilder(validMeeting);
         // to find the index of the module
-        Index modIndex = Index.fromZeroBased(model.getModuleList().indexOf(validMeeting.getModule()));
+        final Index modIndex = Index.fromZeroBased(model.getModuleList().indexOf(validMeeting.getModule()));
         addMeetingDescriptorBuilder.withModule(modIndex);
         final AddMeetingDescriptor addMeetingDescriptor = addMeetingDescriptorBuilder.build();
         assertCommandSuccess(new AddMeetingCommand(addMeetingDescriptor), model,
@@ -56,7 +56,7 @@ public class AddMeetingCommandIntegrationTest {
         final AddMeetingDescriptorBuilder addMeetingDescriptorBuilder = new AddMeetingDescriptorBuilder(meetingInList);
 
         // to find the index of the module
-        Index modIndex = Index.fromZeroBased(model.getModuleList().indexOf(meetingInList.getModule()));
+        final Index modIndex = Index.fromZeroBased(model.getModuleList().indexOf(meetingInList.getModule()));
         addMeetingDescriptorBuilder.withModule(modIndex);
         assertCommandFailure(new AddMeetingCommand(addMeetingDescriptorBuilder.build()),
                 expectedModel, AddMeetingCommand.MESSAGE_DUPLICATE_MEETING);

@@ -23,6 +23,7 @@ import seedu.address.testutil.meeting.AddMeetingDescriptorBuilder;
 import seedu.address.testutil.meeting.MeetingBuilder;
 
 public class AddMeetingCommandTest {
+    private static final Index firstModule = Index.fromZeroBased(0);
 
     @Test
     public void constructor_nullMeeting_throwsNullPointerException() {
@@ -35,13 +36,13 @@ public class AddMeetingCommandTest {
                 new ModelStubAcceptingMeetingAddedWithDefaultModule();
         final Meeting validMeeting = new MeetingBuilder().build();
         final AddMeetingDescriptorBuilder addMeetingDescriptorBuilder = new AddMeetingDescriptorBuilder(validMeeting);
-        addMeetingDescriptorBuilder.withModule(Index.fromZeroBased(0));
+        addMeetingDescriptorBuilder.withModule(firstModule);
 
         final CommandResult commandResult = new AddMeetingCommand(addMeetingDescriptorBuilder.build())
                 .execute(modelStub);
 
         assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting),
-                     commandResult.getFeedbackToUser());
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
     }
 
@@ -49,7 +50,7 @@ public class AddMeetingCommandTest {
     public void execute_duplicateMeeting_throwsCommandException() {
         final Meeting validMeeting = new MeetingBuilder().build();
         final AddMeetingDescriptorBuilder addMeetingDescriptorBuilder = new AddMeetingDescriptorBuilder(validMeeting);
-        addMeetingDescriptorBuilder.withModule(Index.fromZeroBased(0));
+        addMeetingDescriptorBuilder.withModule(firstModule);
         final AddMeetingCommand addMeetingCommand = new AddMeetingCommand(addMeetingDescriptorBuilder.build());
         final ModelStub modelStub = new ModelStubWithMeetingAndModule(validMeeting);
 
@@ -62,10 +63,10 @@ public class AddMeetingCommandTest {
         final Meeting cs2103 = new MeetingBuilder().withName("CS2103").build();
         final Meeting cs2101 = new MeetingBuilder().withName("CS2101").build();
         AddMeetingDescriptorBuilder addMeetingDescriptorBuilder = new AddMeetingDescriptorBuilder(cs2103);
-        addMeetingDescriptorBuilder.withModule(Index.fromZeroBased(0));
+        addMeetingDescriptorBuilder.withModule(firstModule);
         final AddMeetingCommand addCS2103Command = new AddMeetingCommand(addMeetingDescriptorBuilder.build());
         addMeetingDescriptorBuilder = new AddMeetingDescriptorBuilder(cs2101);
-        addMeetingDescriptorBuilder.withModule(Index.fromZeroBased(0));
+        addMeetingDescriptorBuilder.withModule(firstModule);
         final AddMeetingCommand addCS2101Command = new AddMeetingCommand(addMeetingDescriptorBuilder.build());
 
         // same object -> returns true
@@ -73,7 +74,7 @@ public class AddMeetingCommandTest {
 
         // same values -> returns true
         final AddMeetingDescriptorBuilder addMeetingDescriptorBuilderCopy = new AddMeetingDescriptorBuilder(cs2103);
-        addMeetingDescriptorBuilderCopy.withModule(Index.fromZeroBased(0));
+        addMeetingDescriptorBuilderCopy.withModule(firstModule);
         final AddMeetingCommand addCS2103CommandCopy = new AddMeetingCommand(addMeetingDescriptorBuilderCopy.build());
         assertTrue(addCS2103Command.equals(addCS2103CommandCopy));
 

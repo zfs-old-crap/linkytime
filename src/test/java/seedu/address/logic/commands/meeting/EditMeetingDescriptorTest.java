@@ -55,7 +55,8 @@ public class EditMeetingDescriptorTest {
         assertFalse(DESC_TUTORIAL.equals(editedTutorial));
 
         // different module -> returns false
-        editedTutorial = new EditMeetingDescriptorBuilder(DESC_TUTORIAL).withModule(Index.fromZeroBased(0)).build();
+        final Index firstModule = Index.fromZeroBased(0);
+        editedTutorial = new EditMeetingDescriptorBuilder(DESC_TUTORIAL).withModule(firstModule).build();
         assertFalse(DESC_TUTORIAL.equals(editedTutorial));
 
         // different recurrence -> returns false
