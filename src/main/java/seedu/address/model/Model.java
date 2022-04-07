@@ -132,6 +132,12 @@ public interface Model {
     void addModule(Module module);
 
     /**
+     * Replaces the given module {@code target} with {@code editedModule}.
+     * {@code target} must exist in LinkyTime.
+     */
+    void setModule(Module target, Module editedModule);
+
+    /**
      * Deletes the given module.
      * The module must exist in LinkyTime.
      */

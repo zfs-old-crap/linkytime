@@ -34,7 +34,7 @@
         <Label styleClass="label-bright"> - </Label>
         <Label fx:id="endDateTime" styleClass="cell_small_label" text="\$endDateTime" />
       </HBox>
-      <Label fx:id="url" styleClass="cell_small_label" text="\$url" />
+      <Label fx:id="url" styleClass="cell_small_label" text="\$url" wrapText="true" />
       <FlowPane fx:id="tags" />
     </VBox>
   </GridPane>

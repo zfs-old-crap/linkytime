@@ -14,7 +14,7 @@ import seedu.address.model.meeting.exceptions.InvalidDateTimeException;
  * Represents a Meeting's date and time in the meeting list.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
-public class MeetingDateTime {
+public class MeetingDateTime implements Comparable<MeetingDateTime> {
     public static final String MESSAGE_CONSTRAINTS =
             "DateTime should be formatted as dd-MM-yyyy HHmm; e.g. 30-04-2022 1400";
     public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
@@ -116,4 +116,8 @@ public class MeetingDateTime {
         return datetime.hashCode();
     }
 
+    @Override
+    public int compareTo(MeetingDateTime other) {
+        return datetime.compareTo(other.datetime);
+    }
 }

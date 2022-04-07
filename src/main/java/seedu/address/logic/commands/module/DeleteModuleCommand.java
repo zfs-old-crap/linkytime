@@ -2,6 +2,7 @@ package seedu.address.logic.commands.module;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -95,9 +96,10 @@ public class DeleteModuleCommand extends Command {
      * @param module The module to check against.
      */
     private void deleteAssociatedMeetings(Model model, Module module) {
-        model.getMeetingList()
-                .stream()
-                .filter(meeting -> meeting.getModule().equals(module))
-                .forEach(model::deleteMeeting);
+        List<Meeting> list = model.getMeetingList().filtered((meeting) -> meeting.getModule().equals(module));
+        ArrayList<Meeting> arr = new ArrayList<>(list);
+        for (Meeting m : arr) {
+            model.deleteMeeting(m);
+        }
     }
 }
