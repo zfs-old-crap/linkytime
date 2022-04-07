@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="LinkyTime App" minWidth="520" minHeight="600" onCloseRequest="#handleExit">
+         title="LinkyTime" minWidth="870" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/linkytime_32.png" />
   </icons>
   <scene>
     <Scene>
@@ -41,15 +41,15 @@
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="SOMETIMES" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="150">
+        <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                   minHeight="100" prefHeight="100" maxHeight="200">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
 
         <SplitPane orientation="HORIZONTAL" VBox.vgrow="ALWAYS" minHeight="200">
-          <VBox fx:id="meetingList" styleClass="pane-with-border" minWidth="320" prefWidth="320">
+          <VBox fx:id="meetingList" styleClass="pane-with-border" minWidth="550" prefWidth="550">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
@@ -57,10 +57,10 @@
               <Label styleClass="label-bright">Meetings</Label>
               <Label fx:id="meetingListStatus">Upcoming</Label>
             </HBox>
-              <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="moduleList" styleClass="pane-with-border" minWidth="160" prefWidth="160">
+          <VBox fx:id="moduleList" styleClass="pane-with-border" minWidth="275" prefWidth="275">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
