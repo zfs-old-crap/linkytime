@@ -9,37 +9,38 @@ title: Chen Xiang's Project Portfolio Page
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added `list` command to show all upcoming meetings.
+    * What it does: allows the user to view all upcoming meetings.
+    * Justification: This feature is fundamental to our product because it allows the user to reset the filter of the meeting list back to default after running other commands. Without this command, users would be unable to get an unfiltered view of all upcoming meetings.
+    * Credits: *AB3's listCommand*
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added `archive` command to show all completed meetings.
+    * What it does: allows the user to view all completed meetings.
+    * Justification: This feature is for user convenience in case the user wants to look up any details of past meetings. The program will retain past meeting information until explicitly told to delete them.
+    * Credits: *AB3's listCommand* 
+  
+* **New Feature**: Added auto sort functionality for meeting list
+    * What it does: Automatically sorts the meeting list by chronological order
+    * Justification: This feature is for user convenience as it displays the meetings in an intuitive format. Users tend to care more about meetings that are occurring soon, as such it is more convenient to already have them sorted in that order.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=AY2122S2-CS2103T-T13-3%2Ftp&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=xMashedxTomatox&tabRepo=AY2122S2-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs&authorshipIsBinaryFileTypeChecked=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=xMashedxTomatox&tabRepo=AY2122S2-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Refactored AB3 base code and test code to work with AB3 (Pull requests [\#62](), [\#85]())
+    * Updated the base GUI to work with LinkyTime data (Pull requests [\#60]())
+    * Wrote additional tests for existing features (Pull requests [\#78](), [\#187](), [\#188]())
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the features `list` [\#25]()
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `list` and `archive` feature.
+        * Added general implementation details of Commands that uses parser and Commands that don't.
+        * Added logic component diagram
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+    * PRs reviewed (with non-trivial review comments): [\#90](), [\#111]()
 
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
 
