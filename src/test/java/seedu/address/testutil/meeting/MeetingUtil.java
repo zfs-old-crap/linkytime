@@ -9,12 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_URL;
 import static seedu.address.model.meeting.MeetingDateTime.INPUT_FORMAT;
 
+import java.time.LocalDateTime;
+
 import seedu.address.logic.commands.meeting.AddMeetingCommand;
 import seedu.address.model.meeting.Meeting;
 
-/**
- * This class is a placeholder for MeetingUtil. For reference please refer to the obsolete package.
- */
 public class MeetingUtil {
     public static String getAddMeetingCommand(Meeting meeting) {
         return AddMeetingCommand.COMMAND_WORD + " " + getMeetingDetails(meeting);
@@ -32,5 +31,13 @@ public class MeetingUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
+    }
+
+    public static Meeting getRelativeNonRecurringMeeting(long offsetDays) {
+        LocalDateTime relativeDateTime = LocalDateTime.now();
+        relativeDateTime = relativeDateTime.plusDays(offsetDays);
+        Meeting relativeMeeting = new MeetingBuilder()
+                .withDateTime(relativeDateTime.format(INPUT_FORMAT)).withIsRecurring("N").build();
+        return relativeMeeting;
     }
 }
