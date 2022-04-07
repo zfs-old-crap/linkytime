@@ -2,7 +2,6 @@
 !include style.puml
 mainframe <b>sd</b> EditModuleCommandExecute
 participant "e:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 participant ":Model" as Model MODEL_COLOR
 
 [-> EditModuleCommand: execute()
