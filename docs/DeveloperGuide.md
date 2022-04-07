@@ -193,7 +193,8 @@ The implementation of all commands can be split into 2 general implementation fl
 #### Commands with a parser
 This section explains the general implementation of all commands that requires a parser to handle additional user input.
 
-Below is the sequence diagram for the execution of these commands (represented as command `xyz`) after user input is sent to `LogicManager`. The execution of each command has been omitted due to their differences and will covered in the respective command sections.
+Below is the sequence diagram for the execution of these commands (denoted by `XYZCommand`) after user input is sent to `LogicManager`. The execution of each command has been omitted due to their differences and will be covered in the respective command sections.
+
 ![`CommandsWithParser` sequence diagram](images/CommandsWithParserSequenceDiagram.png)
 
 Step 1:
@@ -203,47 +204,62 @@ Step 2:
 The `LogicManager` then calls `LinkyTimeParser::parseCommand` for it to figure out what command this is.
 
 Step 3:
-The `LinkyTimeParser` parses the user input and creates a command parser for that specific command. (denoted as `xyzCommandParser`)
+The `LinkyTimeParser` parses the user input and creates a command parser for that specific command. (denoted by `XYZCommandParser`)
 
 Step 4:
-The parser is then returned to the `LinkyTimeParser` which then calls `xyzCommandParser::parse` to parse the additional params.
+The parser is then returned to the `LinkyTimeParser` which then calls `XYZCommandParser::parse` to parse the additional params.
 
 Step 5:
-The `xyzCommandParser` then creates its respective command (denoted as `xyzCommand`) and returns it to `LogicManager`.
+The `XYZCommandParser` then creates its respective command (denoted by `XYZCommand`) and returns it to `LogicManager`.
 
 Step 6:
-The `LogicManager` then calls `xyzCommand::execute` where the interaction between the command and the model is handled.
+The `LogicManager` then calls `XYZCommand::execute` where the interaction between the command and the model is handled.
 
 Step 7:
-The `xyzCommand` then creates a successful `CommandResult` and returns it to the UI.
+The `XYZCommand` then creates a successful `CommandResult` and returns it to the UI.
 
 #### Commands without a parser
+This section explains the general implementation of all commands that does not require a parser.
 
-#### List Meetings feature
-This section explains the implementation of the List Meetings feature via the `list` command.
-The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.
+Below is the sequence diagram for the execution of these commands (denoted by `XYZCommand`) after user input is sent to `LogicManager`. The execution of each command has been omitted due to their differences and will be covered in the respective command sections.
 
-Below is the sequence diagram for the execution of `ListMeetingCommand` after user input is sent to `LogicManager`.
-
-![`ListMeetingCommand` sequence diagram](images/ListMeetingSequenceDiagram.png)
+![`CommandsWithParser` sequence diagram](images/CommandsWithoutParserSequenceDiagram.png)
 
 Step 1:
-The user enters the command for listing all upcoming meetings which is then passed to the `LogicManager`. E.g. `list`
+The user enters a command which is then passed to the `LogicManager`.
 
 Step 2:
 The `LogicManager` then calls `LinkyTimeParser::parseCommand` for it to figure out what command this is.
 
 Step 3:
-The `LinkyTimeParser` parses the user input and creates a `ListMeetingCommand` object.
+The `LinkyTimeParser` parses the user input and creates the respective command object (denoted by `XYZCommand`).
 
 Step 4:
-The `ListMeetingCommand` is then returned to the `LogicManager` which calls `ListMeetingCommand::execute` to execute the command.
+The `XYZCommand` is then returned to the `LogicManager`.
 
 Step 5:
-The `ListMeetingCommand` then calls `Model::updateFileredMeetingList` to update the model's filter to display all upcoming meetings.
+The `LogicManager` then calls `XYZCommand::execute` where the interaction between the command and the model is handled.
 
 Step 6:
-The `ListMeetingCommand` then creates a successful `CommandResult` and returns it to the UI.
+The `XYZCommand` then creates a successful `CommandResult` and returns it to the UI.
+
+#### List Meetings feature
+This section explains the implementation of the List Meetings feature via the `list` command.
+The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.
+It is a command that [does not require a parser](#Commands without a parser). 
+
+Below is the sequence diagram reference frame for the execution of `ListMeetingCommand`.
+
+![`ListMeetingCommand` sequence diagram](images/ListMeetingSequenceDiagramReferenceFrame.png)
+
+Step 1:
+The `LogicManager` calls `ListMeetingCommand::execute` with the returned `ListMeetingCommand`.
+
+Step 2:
+The `ListMeetingCommand` then calls `Model::showCompletedMeetings` to update the meeting list to show only upcoming meetings.
+
+Step 3:
+The `ListMeetingCommand` then continues its execution as defined by [this](#Commands without a parser) sequence diagram.
 
 #### Design considerations:
 **Aspect: How `ListMeetingCommand` executes:**
@@ -256,6 +272,11 @@ The `ListMeetingCommand` then creates a successful `CommandResult` and returns i
 **Alternative 2:** `LinkyTimeParser` uses a `ListMeetingCommandParser` to enforce that the user input cannot have additional params.
 * Pros: Provides clear definition of what the user input for a `ListMeetingCommand` should be.
 * Cons: Harder to implement and more rigid in nature.
+
+#### Archive Meetings feature
+This section explains the implementation of the Archive Meetings feature via the `archive` command.
+The `ArchiveMeetingCommand` updates the UI to display the details of all completed meetings in `LinkyTime`.
+It is identical in implementation to the `ListMeetingCommand` except for the flip in the boolean that is passed into `Model::showCompletedMeetings`.
 
 #### Add Meeting feature
 
