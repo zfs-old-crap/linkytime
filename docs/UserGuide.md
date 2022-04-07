@@ -183,7 +183,7 @@ Parameters:
 * [`MEETING_NAME`](#meeting_name) The name of the meeting.
 * [`URL`](#url) The URL to the online meeting.
 * [`DATETIME`](#datetime) The date and starting time of the meeting.
-* [`DURATION`](#duration) The duration of the meeting in hours. Must be a decimal number between 1 minute to 24 hours inclusive.
+* [`DURATION`](#duration) The duration of the meeting in hours. Must be a decimal number between 1 minute to 24 hours, both inclusive.
 * [`MODULE_INDEX`](#module_index) The index of the module in the module list that the meeting is for.
 * [`IS_RECURRING`](#is_recurring) Whether the meeting recurs every week. Given as `Y` or `N`.
 * [`TAG`](#tag) The tags associated with the meeting.
