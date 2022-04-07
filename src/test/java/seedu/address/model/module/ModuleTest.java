@@ -15,7 +15,7 @@ public class ModuleTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Module cs2103Copy = new ModuleBuilder(CS2103).build();
+        final Module cs2103Copy = new ModuleBuilder(CS2103).build();
         assertTrue(CS2103.equals(cs2103Copy));
 
         // same object -> returns true
@@ -39,8 +39,8 @@ public class ModuleTest {
         assertFalse(CS2103.equals(editedCS2103));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_MODULE_TUTORIAL + "  ";
-        Module editedCS2101 = new ModuleBuilder(CS2101).withCode(nameWithTrailingSpaces).build();
+        final String nameWithTrailingSpaces = VALID_MODULE_TUTORIAL + "  ";
+        final Module editedCS2101 = new ModuleBuilder(CS2101).withCode(nameWithTrailingSpaces).build();
         assertFalse(CS2101.equals(editedCS2101));
     }
 }

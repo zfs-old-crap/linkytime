@@ -22,7 +22,7 @@ public class AddModuleCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Module expectedModule = new ModuleBuilder(CS2103).withCode(VALID_MODULE_LECTURE).build();
+        final Module expectedModule = new ModuleBuilder(CS2103).withCode(VALID_MODULE_LECTURE).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + MODULE_DESC_LECTURE,
@@ -35,7 +35,7 @@ public class AddModuleCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE);
+        final String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_MODULE_LECTURE, expectedMessage);
