@@ -56,17 +56,17 @@ public class LinkyTimeParserTest {
         assertEquals(new AddMeetingCommand(addMeetingDescriptor), command);
     }
 
-    //    @Test
-    //    public void parseCommand_edit() throws Exception {
-    //        final Meeting meeting = new MeetingBuilder().build();
-    //        final Index firstModule = Index.fromZeroBased(0);
-    //        final EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(meeting)
-    //              .withModule(firstModule).build();
-    //        final EditModuleCommand command = (EditModuleCommand) parser.parseCommand(EditModuleCommand.COMMAND_WORD
-    //                + " " + INDEX_FIRST_MEETING.getOneBased() + " "
-    //                + MeetingUtil.getEditMeetingDescriptorDetails(descriptor));
-    //        assertEquals(new EditMeetingCommand(INDEX_FIRST_MEETING, descriptor), command);
-    //    }
+    @Test
+    public void parseCommand_edit() throws Exception {
+        final Meeting meeting = new MeetingBuilder().build();
+        final Index firstModule = Index.fromZeroBased(0);
+        final EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(meeting)
+              .withModule(firstModule).build();
+        final EditMeetingCommand command = (EditMeetingCommand) parser.parseCommand(EditMeetingCommand.COMMAND_WORD
+                + " " + INDEX_FIRST_MEETING.getOneBased() + " "
+                + MeetingUtil.getEditMeetingDescriptorDetails(descriptor));
+        assertEquals(new EditMeetingCommand(INDEX_FIRST_MEETING, descriptor), command);
+    }
 
     @Test
     public void parseCommand_clear() throws Exception {

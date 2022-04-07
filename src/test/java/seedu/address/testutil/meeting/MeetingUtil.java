@@ -51,9 +51,11 @@ public class MeetingUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name).append(" "));
         descriptor.getUrl().ifPresent(url -> sb.append(PREFIX_URL).append(url).append(" "));
-        descriptor.getDateTime().ifPresent(dateTime -> sb.append(PREFIX_DATETIME).append(dateTime).append(" "));
+        descriptor.getDateTime().ifPresent(datetime -> sb.append(PREFIX_DATETIME)
+                .append(datetime.datetime.format(INPUT_FORMAT)).append(" "));
         descriptor.getDuration().ifPresent(duration -> sb.append(PREFIX_DURATION).append(duration).append(" "));
-        descriptor.getModuleIndex().ifPresent(moduleIndex -> sb.append(PREFIX_MODULE).append(moduleIndex).append(" "));
+        descriptor.getModuleIndex().ifPresent(moduleIndex -> sb.append(PREFIX_MODULE)
+                .append(moduleIndex.getOneBased()).append(" "));
         descriptor.getIsRecurring().ifPresent(isRecurring ->
                 sb.append(PREFIX_RECURRING).append(isRecurring).append(" "));
         if (descriptor.getTags().isPresent()) {
