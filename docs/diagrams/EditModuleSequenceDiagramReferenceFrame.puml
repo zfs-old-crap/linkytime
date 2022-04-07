@@ -27,14 +27,5 @@ Model --> EditModuleCommand
 
 deactivate Model
 
-create CommandResult
 
-EditModuleCommand -> CommandResult
-activate CommandResult
-CommandResult --> EditModuleCommand
-deactivate CommandResult
-EditModuleCommand -->[
-deactivate EditModuleCommand
-
-deactivate EditModuleCommand
 @enduml
