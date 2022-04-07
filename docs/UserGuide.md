@@ -145,19 +145,19 @@ The commands in this user guide follow this format:
 
 Most LinkyTime commands use various parameters. Their formats and constraints are provided in the table below.
 
-| Parameter      | Prefix | Used in                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| -------------- | ------ | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `MEETING_NAME` | `n/`   | `add` `edit`                      | The name of a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li></ul>{:/}                                                                                                                                                                                                                                                                                                                  |
-| `MODULE_NAME`  | `n/`   | `madd` `medit`                    | The name of a module. {::nomarkdown}<ul><li> Must be unique. </li><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                          |
-| `URL`          | `u/`   | `add` `edit`                      | The URL/link to a meeting. {::nomarkdown}<ul><li> Must include the full URL link, i.e. starts with {:/}`https://`{::nomarkdown}. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                 |
-| `DATETIME`     | `d/`   | `add` `edit`                      | The date and time of a meeting. {::nomarkdown}<ul><li> Must be of the following format: {:/}`dd-MM-yyyy HHmm`{::nomarkdown}. </li><li> {:/}`dd` - 2 digit day, e.g. `01`, `28`{::nomarkdown}. </li><li> {:/}`MM` - 2 digit month, e.g. `01`, `12`{::nomarkdown}. </li><li> {:/}`yyyy` - 4 digit year, e.g. `2022`{::nomarkdown}. </li><li> {:/}`HHmm` - 24-hour time, e.g. `0800`, `1430`, `2359`{::nomarkdown}. </li><li> Must not be blank.</li></ul>{:/} |
-| `DURATION`     | `dur/` | `add` `edit`                      | The duration of a meeting in hours. {::nomarkdown}<ul><li> Must be a decimal number greater than 1 minute and less than or equal to 24 hours, i.e. between {:/}`0.0167` to `24`{::nomarkdown}. </li><li> Accepts up to 4 decimal places. </li><li> Must not be blank.</li><li>{:/}For inputs such as `2` and `2.0001`, although LinkyTime will show them both as a 2 hour duration, they are in fact different.{::nomarkdown}</li></ul>{:/}                 |
-| `MODULE_INDEX` | `m/`   | `add` `edit`                      | The index number of a module as shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer, e.g. 1, 2, 3, ...  Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                         |
-| `IS_RECURRING` | `r/`   | `add` `edit`                      | The recurrence of a meeting. If specified as `Y`, i.e. set to recur every week, the meeting will not expire and will be set to automatically repeat weekly. {::nomarkdown}<ul><li> Must be given as {:/}`Y` or `N`{::nomarkdown}. </li><li> Input is not case-sensitive. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                         |
-| `INDEX`        | -      | `edit` `delete` `medit` `mdelete` | The index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                   |
-| `MODULE_INDEX` | `m/`   | `edit` `delete`                   | The module's index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                          |
-| `KEYWORD`      | -      | `find`                            | A keyword used in the find command. {::nomarkdown}<ul><li> Must be given as a single word without spaces. </li><li> Input is not case-sensitive.</li></ul>{:/}                                                                                                                                                                                                                                                                                              |
-| `TAG`          | `t/`   | `add` `edit`                      | The tag(s) assigned to a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters, and must not be blank. </li><li> Spaces are not allowed. </li><li> Duplicate tags are accepted as input, but they will be treated as a singular tag. </li></ul>{:/}                                                                                                                                                                                          |
+| Parameter                                | Prefix | Used in                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ---------------------------------------- | ------ | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a id="meeting_name"></a> `MEETING_NAME` | `n/`   | `add` `edit`                      | The name of a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li></ul>{:/}                                                                                                                                                                                                                                                                                                                  |
+| <a id="module_name"></a> `MODULE_NAME`   | `n/`   | `madd` `medit`                    | The name of a module. {::nomarkdown}<ul><li> Must be unique. </li><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                          |
+| <a id="url"></a> `URL`                   | `u/`   | `add` `edit`                      | The URL/link to a meeting. {::nomarkdown}<ul><li> Must include the full URL link, i.e. starts with {:/}`https://`{::nomarkdown}. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                 |
+| <a id="datetime"></a> `DATETIME`         | `d/`   | `add` `edit`                      | The date and time of a meeting. {::nomarkdown}<ul><li> Must be of the following format: {:/}`dd-MM-yyyy HHmm`{::nomarkdown}. </li><li> {:/}`dd` - 2 digit day, e.g. `01`, `28`{::nomarkdown}. </li><li> {:/}`MM` - 2 digit month, e.g. `01`, `12`{::nomarkdown}. </li><li> {:/}`yyyy` - 4 digit year, e.g. `2022`{::nomarkdown}. </li><li> {:/}`HHmm` - 24-hour time, e.g. `0800`, `1430`, `2359`{::nomarkdown}. </li><li> Must not be blank.</li></ul>{:/} |
+| <a id="duration"></a> `DURATION`         | `dur/` | `add` `edit`                      | The duration of a meeting in hours. {::nomarkdown}<ul><li> Must be a decimal number greater than 1 minute and less than or equal to 24 hours, i.e. between {:/}`0.0167` to `24`{::nomarkdown}. </li><li> Accepts up to 4 decimal places. </li><li> Must not be blank.</li><li>{:/}For inputs such as `2` and `2.0001`, although LinkyTime will show them both as a 2 hour duration, they are in fact different.{::nomarkdown}</li></ul>{:/}                 |
+| <a id="module_index"></a> `MODULE_INDEX` | `m/`   | `add` `edit`                      | The index number of a module as shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer, e.g. 1, 2, 3, ...  Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                         |
+| <a id="is_recurring"></a> `IS_RECURRING` | `r/`   | `add` `edit`                      | The recurrence of a meeting. If specified as `Y`, i.e. set to recur every week, the meeting will not expire and will be set to automatically repeat weekly. {::nomarkdown}<ul><li> Must be given as {:/}`Y` or `N`{::nomarkdown}. </li><li> Input is not case-sensitive. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                         |
+| <a id="index"></a> `INDEX`               | -      | `edit` `delete` `medit` `mdelete` | The index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                   |
+| <a id="module_index"></a> `MODULE_INDEX` | `m/`   | `edit` `delete`                   | The module's index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                          |
+| <a id="keyword"></a> `KEYWORD`           | -      | `find`                            | A keyword used in the find command. {::nomarkdown}<ul><li> Must be given as a single word without spaces. </li><li> Input is not case-sensitive.</li></ul>{:/}                                                                                                                                                                                                                                                                                              |
+| <a id="tag"></a> `TAG`                   | `t/`   | `add` `edit`                      | The tag(s) assigned to a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters, and must not be blank. </li><li> Spaces are not allowed. </li><li> Duplicate tags are accepted as input, but they will be treated as a singular tag. </li></ul>{:/}                                                                                                                                                                                          |
 
 ## Features
 
@@ -180,13 +180,13 @@ Format: `add n/MEETING_NAME u/URL d/DATETIME dur/DURATION m/MODULE_INDEX r/IS_RE
 
 Parameters:
 
-* `MEETING_NAME` The name of the meeting.
-* `URL` The URL to the online meeting.
-* `DATETIME` The date and starting time of the meeting.
-* `DURATION` The duration of the meeting in hours. Must be a decimal number between 1 minute to 24 hours inclusive.
-* `MODULE_INDEX` The index of the module in the module list that the meeting is for.
-* `IS_RECURRING` Whether the meeting recurs every week. Given as `Y` or `N`.
-* `TAG` The tags associated with the meeting.
+* [`MEETING_NAME`](#meeting_name) The name of the meeting.
+* [`URL`](#url) The URL to the online meeting.
+* [`DATETIME`](#datetime) The date and starting time of the meeting.
+* [`DURATION`](#duration) The duration of the meeting in hours. Must be a decimal number between 1 minute to 24 hours inclusive.
+* [`MODULE_INDEX`](#module_index) The index of the module in the module list that the meeting is for.
+* [`IS_RECURRING`](#is_recurring) Whether the meeting recurs every week. Given as `Y` or `N`.
+* [`TAG`](#tag) The tags associated with the meeting.
 
 Examples:
 
@@ -240,7 +240,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 Parameters:
 
-* `KEYWORD` The keyword to search for in the meeting list.
+* [`KEYWORD`](#keyword) The keyword to search for in the meeting list.
 
 Examples:
 
@@ -257,6 +257,10 @@ Format: `open INDEX`
 * The index refers to the index number shown in the displayed meeting list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the meeting list.
 
+Parameters:
+
+* [`INDEX`](#index) The index of the meeting URL to open.
+
 Examples:
 
 * `list` followed by `open 2` opens the 2nd meeting's URL in the meeting list.
@@ -267,7 +271,7 @@ Edits a meeting in the meeting list.
 
 Format: `edit INDEX [n/MEETING_NAME] [u/URL] [d/DATETIME] [dur/DURATION] [m/MODULE_INDEX] [r/IS_RECURRING] [t/TAG]...`
 
-* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the meeting at the specified [`INDEX`](#index). The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the meeting will be removed, i.e., adding of tags is not cumulative.
@@ -285,7 +289,7 @@ Deletes the specified meeting from the meeting list.
 
 Format: `delete INDEX`
 
-* Deletes the meeting at the specified `INDEX`.
+* Deletes the meeting at the specified [`INDEX`](#index).
 * The index refers to the index number shown in the displayed meeting list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the meeting list.
 
@@ -309,7 +313,7 @@ Format: `madd n/MODULE_NAME`
 
 Parameters:
 
-* `MODULE_NAME` The name or identifier of the module.
+* [`MODULE_NAME`](#module_name) The name or identifier of the module.
 
 Examples:
 
@@ -322,7 +326,7 @@ Edits the module specified in the module list.
 
 Format: `medit INDEX n/MODULE_NAME`
 
-* Edits the module at the specified `INDEX`.
+* Edits the module at the specified [`INDEX`](#index).
 * The index refers to the index number shown in the displayed module list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the module list.
 * The existing value will be updated to the input value.
@@ -338,7 +342,7 @@ Deletes the specified module from the module list.
 
 Format: `mdelete INDEX [f/]`
 
-* Deletes the module at the specified `INDEX`.
+* Deletes the module at the specified [`INDEX`](#index).
   * If there are meetings that are currently assigned to the specified module, deletion would fail due to dependent meetings.
 * The index refers to the index number shown in the displayed module list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is within the range of the module list.
