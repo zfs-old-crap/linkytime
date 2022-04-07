@@ -85,13 +85,13 @@ Each module is displayed as shown in the example above.
 
    Some example commands you can try:
 
-    * `list` : Lists all meetings.
-    * `madd m/CS2105` : Adds a module called `CS2105` to the list of modules.
-    * `add n/Tutorial u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/Quiz` : Adds a meeting named `Tutorial` to the list of meetings.
+    * `list` : Lists all upcoming meetings.
+    * `madd n/CS2105` : Adds a module called `CS2105` to the list of modules.
+    * `add n/Tutorial u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/Quiz` : Adds a meeting named `Tutorial`, tagged as `Quiz`, on `25 April 2022` at `2:00pm` for `2` hours, and is assigned to the 1st module in the module list. The meeting is set to repeat weekly.
     * `delete 3` : Deletes the 3rd meeting shown in the current list.
     * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command, or [Using LinkyTime](#using-linkytime) for how to set up for a new semester.
+6. Refer to the [Features](#features) below for details of each command, [Command Parameters](#command-parameters) for details on the available command parameters, or [Using LinkyTime](#using-linkytime) for how to set up for a new semester.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -145,19 +145,19 @@ The commands in this user guide follow this format:
 
 Most LinkyTime commands use various parameters. Their formats and constraints are provided in the table below.
 
-| Parameter      | Prefix | Used in                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| -------------- | ------ | --------------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `MEETING_NAME` | `n/`   | `add` `edit`                      | The name of a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                    |
-| `MODULE_NAME`  | `n/`   | `madd` `medit`                    | The name of a module. {::nomarkdown}<ul><li> Must be unique. </li><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                            |
-| `URL`          | `u/`   | `add` `edit`                      | The URL/link to a meeting. {::nomarkdown}<ul><li> Must include the full URL link, i.e. starts with {:/}`https://`{::nomarkdown}. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                   |
-| `DATETIME`     | `d/`   | `add` `edit`                      | The date and time of a meeting. {::nomarkdown}<ul><li> Must be of the following format: {:/}`dd-MM-yyyy HHmm`{::nomarkdown}. </li><li> {:/}`dd` - 2 digit day, e.g. `01`, `28`{::nomarkdown}. </li><li> {:/}`MM` - 2 digit month, e.g. `01`, `12`{::nomarkdown}. </li><li> {:/}`yyyy` - 4 digit year, e.g. `2022`{::nomarkdown}. </li><li> {:/}`HHmm` - 24-hour time, e.g. `0800`, `1430`, `2359`{::nomarkdown}. </li><li> Must not be blank.</li></ul>{:/}                                                   |
-| `DURATION`     | `dur/` | `add` `edit`                      | The duration of a meeting in hours. {::nomarkdown}<ul><li> Must be a decimal number greater than 1 minute and less than or equal to 24 hours, i.e. between {:/}`0.0167` to `24`{::nomarkdown}. </li><li> Accepts up to 4 decimal places. </li><li> Must not be blank.</li><li>{:/}For inputs such as `2` and `2.0001`, although LinkyTime will show them both as a 2 hour duration, they are in fact different.{::nomarkdown}</li></ul>{:/}|
-| `MODULE_INDEX` | `m/`   | `add` `edit`                      | The index number of a module as shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer, e.g. 1, 2, 3, ...  Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                           |
-| `IS_RECURRING` | `r/`   | `add` `edit`                      | The recurrence of a meeting. If specified as `Y`, i.e. set to recur every week, the meeting will not expire and will be set to automatically repeat weekly. {::nomarkdown}<ul><li> Must be given as {:/}`Y` or `N`{::nomarkdown}. </li><li> Input is not case-sensitive. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                           |
-| `INDEX`        | -      | `edit` `delete` `medit` `mdelete` | The index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                                     |
-| `MODULE_INDEX` | `m/`   | `edit` `delete`                   | The module's index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                            |
-| `KEYWORD`      | -      | `find`                            | A keyword used in the find command. {::nomarkdown}<ul><li> Must be given as a single word without spaces. </li><li> Input is not case-sensitive.</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                |
-| `TAG`          | `t/`   | `add` `edit`                      | The tag(s) assigned to a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters. </li><li> Spaces are not allowed.</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                |
+| Parameter      | Prefix | Used in                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| -------------- | ------ | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `MEETING_NAME` | `n/`   | `add` `edit`                      | The name of a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li></ul>{:/}                                                                                                                                                                                                                                                                                                                  |
+| `MODULE_NAME`  | `n/`   | `madd` `medit`                    | The name of a module. {::nomarkdown}<ul><li> Must be unique. </li><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                          |
+| `URL`          | `u/`   | `add` `edit`                      | The URL/link to a meeting. {::nomarkdown}<ul><li> Must include the full URL link, i.e. starts with {:/}`https://`{::nomarkdown}. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                 |
+| `DATETIME`     | `d/`   | `add` `edit`                      | The date and time of a meeting. {::nomarkdown}<ul><li> Must be of the following format: {:/}`dd-MM-yyyy HHmm`{::nomarkdown}. </li><li> {:/}`dd` - 2 digit day, e.g. `01`, `28`{::nomarkdown}. </li><li> {:/}`MM` - 2 digit month, e.g. `01`, `12`{::nomarkdown}. </li><li> {:/}`yyyy` - 4 digit year, e.g. `2022`{::nomarkdown}. </li><li> {:/}`HHmm` - 24-hour time, e.g. `0800`, `1430`, `2359`{::nomarkdown}. </li><li> Must not be blank.</li></ul>{:/} |
+| `DURATION`     | `dur/` | `add` `edit`                      | The duration of a meeting in hours. {::nomarkdown}<ul><li> Must be a decimal number greater than 1 minute and less than or equal to 24 hours, i.e. between {:/}`0.0167` to `24`{::nomarkdown}. </li><li> Accepts up to 4 decimal places. </li><li> Must not be blank.</li><li>{:/}For inputs such as `2` and `2.0001`, although LinkyTime will show them both as a 2 hour duration, they are in fact different.{::nomarkdown}</li></ul>{:/}                 |
+| `MODULE_INDEX` | `m/`   | `add` `edit`                      | The index number of a module as shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer, e.g. 1, 2, 3, ...  Must not be blank.</li></ul>{:/}                                                                                                                                                                                                                                                                                         |
+| `IS_RECURRING` | `r/`   | `add` `edit`                      | The recurrence of a meeting. If specified as `Y`, i.e. set to recur every week, the meeting will not expire and will be set to automatically repeat weekly. {::nomarkdown}<ul><li> Must be given as {:/}`Y` or `N`{::nomarkdown}. </li><li> Input is not case-sensitive. </li><li> Must not be blank.</li></ul>{:/}                                                                                                                                         |
+| `INDEX`        | -      | `edit` `delete` `medit` `mdelete` | The index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                   |
+| `MODULE_INDEX` | `m/`   | `edit` `delete`                   | The module's index number shown in the displayed list. {::nomarkdown}<ul><li> Must be a positive integer: 1, 2, 3...</li></ul>{:/}                                                                                                                                                                                                                                                                                                                          |
+| `KEYWORD`      | -      | `find`                            | A keyword used in the find command. {::nomarkdown}<ul><li> Must be given as a single word without spaces. </li><li> Input is not case-sensitive.</li></ul>{:/}                                                                                                                                                                                                                                                                                              |
+| `TAG`          | `t/`   | `add` `edit`                      | The tag(s) assigned to a meeting. {::nomarkdown}<ul><li> Accepts only alphanumeric characters. </li><li> Spaces are not allowed.</li></ul>{:/}                                                                                                                                                                                                                                                                                                              |
 
 ## Features
 
@@ -168,8 +168,7 @@ This section describes each of the commands and features available in LinkyTime.
 <div markdown="block" class="alert alert-info">
 
 :information_source: Meetings are always sorted in chronological order. <br/>
-Meeting list is only refreshed after every command. <br/>
-_Coming soon: Meeting list refreshes in real time_
+Meeting list is only refreshed after every command is executed, i.e. manually refreshed. Real-time automatic refreshing will be implemented in the future.
 
 </div>
 
@@ -184,15 +183,15 @@ Parameters:
 * `MEETING_NAME` The name of the meeting.
 * `URL` The URL to the online meeting.
 * `DATETIME` The date and starting time of the meeting.
-* `DURATION` The duration of the meeting in hours. Must be a decimal number between `0 < duration <= 24`. E.g., `2`, `1.5`.
+* `DURATION` The duration of the meeting in hours. Must be a decimal number between 1 minute to 24 hours inclusive.
 * `MODULE_INDEX` The index of the module in the module list that the meeting is for.
 * `IS_RECURRING` Whether the meeting recurs every week. Given as `Y` or `N`.
 * `TAG` The tags associated with the meeting.
 
 Examples:
 
-* `add n/Lecture u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/recorded t/lecturequiz` creates a meeting called `Lecture` with the tags `recorded` and `lecturequiz`, set to start on `25 April 2022 at 2pm` for `2` hours, and is assigned to the first module in the module list. This meeting is set to repeat weekly.
-* `add n/Midterm u/https://meet.google.com d/13-05-2022 1000 dur/1.5 m/2 r/N` creates a meeting called `Midterm` on 13 May at 10am and is assigned to the second module in the module list.
+* `add n/Lecture u/https://www.zoom.com d/25-04-2022 1400 dur/2 m/1 r/Y t/recorded t/lecturequiz` creates a meeting called `Lecture` with the tags `recorded` and `lecturequiz`, set to start on `25 April 2022` at `2:00pm` for `2` hours, and is assigned to the first module in the module list. This meeting is set to repeat weekly.
+* `add n/Midterm u/https://meet.google.com d/13-05-2022 1000 dur/1.5 m/2 r/N` creates a meeting called `Midterm` on `13 May 2022` at `10:00am` for `1.5` hours, and is assigned to the second module in the module list. This meeting does not repeat.
 
 #### List all meetings : `list`
 
@@ -209,15 +208,32 @@ Some details include:
 
 #### Find a meeting : `find`
 
-Find meetings in the meeting list that matches the provided keywords and displays their respective details.
+<div markdown="block" class="alert alert-info">
+
+:information_source: `find` currently only searches through meetings via the name, module or tags. Searching by the meeting date time and URL domain will be implemented in the future.
+
+</div>
+
+Finds meetings whose fields contain the provided keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-* Displays all meetings with name, module code or tags that matches all of the provided keywords.
+* Only the name, module, and tags are searched.
+* The `find` command is applied to the current list state of meetings, e.g. `archive` followed by `find KEYWORD` will perform the search on archived meetings only.
+* The search is case-insensitive, e.g. `lecture` will match `Lecture`.
+* The order of the keywords does not matter, e.g. `cs2100 aaron` will match `aaron cs2100`.
+* Keywords are partially matched, e.g. `tut` will match `tutorial`.
+* Only meetings that match all keywords will be returned (i.e. **AND** search), e.g. `recorded lecture` will return meetings that contain both `recorded` and `lecture` in its name, module, and/or tags.
+* If no meeting matching the search criteria is found, the resulting meeting list will be blank.
+
+Parameters:
+
+* `KEYWORD` The keyword to search for in the meeting list.
 
 Examples:
 
-* `find CS2101 Aaron` displays all meetings with fields that matches `CS2101` and `Aaron`.
+* `list` followed by `find CS2101 Aaron` displays all upcoming meetings with fields that matches `CS2101` and `Aaron`.
+* `archive` followed by `find recorded lecture` displays all archived meetings with fields that matches `recorded` and `lecture`. 
 
 #### Open a meeting URL : `open`
 
@@ -366,6 +382,10 @@ The meetings are saved in a JSON file at `[JAR file location]/data/app.json`. Ad
 If your changes to the data file makes its format invalid, LinkyTime will discard all data and start with an empty data file on the next run.
 </div>
 
+#### Clearing archived meetings : `[coming in v2.0]`
+
+_Details coming soon..._
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -398,20 +418,20 @@ equivalent `app.json` data file from your previous LinkyTime installation.
 
 The error messages you may encounter while using LinkyTime should be mostly self-explanatory. This sub-section aims to clear up any possible ambiguity related to invalid arguments and/or parameters.
 
-| Error                                                                                          | What it means                                                                                                                                                                                                        |
-|------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Unknown Command**                                                                            | An unrecognised command word was supplied.{::nomarkdown}<br/> The command word was given in upper case.{:/}                                                                                                          |
-| **Invalid Command**                                                                            | The command format entered is incorrect.{::nomarkdown}<br> Missing one or more compulsory parameters. {:/}                                                                                                           |
-| **The meeting index provided is invalid**                                                      | The index provided is out of the range of the list of meetings.                                                                                                                                                      |
-| **The module index provided is invalid**                                                       | The index provided is out of the range of the list of modules.                                                                                                                                                       |
-| **Names should only contain alphanumeric characters and spaces, and it should not be blank**   | Check that the name is entered after the `n/` prefix.                                                                                                                                                                |
-| **URLs should be a valid link, and it should not be blank**                                    | The URL provided should be in one of the following formats: {::nomarkdown}<ul><li>`https://www.example.com`</li> <li>`http://example.com`</li><li>`www.example.com`</li><li>`example.com`</li></ul>{:/}              |
-| **DateTime should be formatted as dd-MM-yyyy HHmm; e.g. 30-04-2022 1400**                      | The dateTime given is invalid. {::nomarkdown} <br/><ul><li>Giving a date that does not exist, e.g. 30th of February.</li><li>Giving a time that does not exist, e.g. `2500`.</li></ul>  {:/}                         |
-| **Meeting recurrence status can only be a single letter `Y` or `N`**                           | As written.                                                                                                                                                                                                          |
-| **Tags names should be alphanumeric**                                                          | The tags entered contained spaces and/or special characters, which are not allowed.                                                                                                                                  |
-| **At least one field to edit must be provided.**                                               | {::nomarkdown}No fields were supplied together with the `edit`/`medit` command.{:/}                                                                                                                                  |
-| **Unable to delete Module: `[MODULE_NAME]` <br/> There are meetings assigned to this module.** | The module is unable to be deleted as there are still meetings that exist in LinkyTime that are assigned to this module. Please refer to the features section in this User Guide on how to force delete a module.    |
-| **This meeting already exists in LinkyTime.**                                                   | You have tried to either add a duplicate meeting with all the same fields, or edited a meeting such that all of its fields are a duplicate of an existing meeting.                                                  |
-| **This module already exists in LinkyTime.**                                                   | Same as the above.                                                                                                                                                                                                   |
-| **Unable to launch default system browser!**                                                   | You might not have the permissions to open the default browser.                                                                                                                                                      |
-| **Unable to interact with device desktop capabilities**                                        | Your System does not support the {::nomarkdown}`java.awt.Desktop` library.{:/}                                                                                                                                       |
+| Error                                                                                          | What it means                                                                                                                                                                                                     |
+| ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Unknown Command**                                                                            | An unrecognised command word was supplied.{::nomarkdown}<br/> The command word was given in upper case.{:/}                                                                                                       |
+| **Invalid Command**                                                                            | The command format entered is incorrect.{::nomarkdown}<br> Missing one or more compulsory parameters. {:/}                                                                                                        |
+| **The meeting index provided is invalid**                                                      | The index provided is out of the range of the list of meetings.                                                                                                                                                   |
+| **The module index provided is invalid**                                                       | The index provided is out of the range of the list of modules.                                                                                                                                                    |
+| **Names should only contain alphanumeric characters and spaces, and it should not be blank**   | Check that the name is entered after the `n/` prefix.                                                                                                                                                             |
+| **URLs should be a valid link, and it should not be blank**                                    | The URL provided should be in one of the following formats: {::nomarkdown}<ul><li>`https://www.example.com`</li> <li>`http://example.com`</li><li>`www.example.com`</li><li>`example.com`</li></ul>{:/}           |
+| **DateTime should be formatted as dd-MM-yyyy HHmm; e.g. 30-04-2022 1400**                      | The dateTime given is invalid. {::nomarkdown} <br/><ul><li>Giving a date that does not exist, e.g. 30th of February.</li><li>Giving a time that does not exist, e.g. `2500`.</li></ul>  {:/}                      |
+| **Meeting recurrence status can only be a single letter `Y` or `N`**                           | As written.                                                                                                                                                                                                       |
+| **Tags names should be alphanumeric**                                                          | The tags entered contained spaces and/or special characters, which are not allowed.                                                                                                                               |
+| **At least one field to edit must be provided.**                                               | {::nomarkdown}No fields were supplied together with the `edit`/`medit` command.{:/}                                                                                                                               |
+| **Unable to delete Module: `[MODULE_NAME]` <br/> There are meetings assigned to this module.** | The module is unable to be deleted as there are still meetings that exist in LinkyTime that are assigned to this module. Please refer to the features section in this User Guide on how to force delete a module. |
+| **This meeting already exists in LinkyTime.**                                                  | You have tried to either add a duplicate meeting with all the same fields, or edited a meeting such that all of its fields are a duplicate of an existing meeting.                                                |
+| **This module already exists in LinkyTime.**                                                   | Same as the above.                                                                                                                                                                                                |
+| **Unable to launch default system browser!**                                                   | You might not have the permissions to open the default browser.                                                                                                                                                   |
+| **Unable to interact with device desktop capabilities**                                        | Your System does not support the {::nomarkdown}`java.awt.Desktop` library.{:/}                                                                                                                                    |
