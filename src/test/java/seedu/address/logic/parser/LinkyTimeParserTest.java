@@ -10,14 +10,15 @@ import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MODULE;
 
 import org.junit.jupiter.api.Test;
 
-//import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-//import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.AddMeetingCommand;
+import seedu.address.logic.commands.meeting.AddMeetingCommand.AddMeetingDescriptor;
 import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
-//import seedu.address.logic.commands.meeting.EditMeetingCommand;
-//import seedu.address.logic.commands.meeting.EditMeetingCommand.EditMeetingDescriptor;
+import seedu.address.logic.commands.meeting.EditMeetingCommand;
+import seedu.address.logic.commands.meeting.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.commands.meeting.OpenMeetingCommand;
 import seedu.address.logic.commands.module.AddModuleCommand;
@@ -25,17 +26,15 @@ import seedu.address.logic.commands.module.DeleteModuleCommand;
 import seedu.address.logic.commands.module.EditModuleCommand;
 import seedu.address.logic.commands.module.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
-//import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
-//import seedu.address.testutil.meeting.MeetingBuilder;
-//import seedu.address.testutil.meeting.MeetingUtil;
+import seedu.address.testutil.meeting.AddMeetingDescriptorBuilder;
+import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
+import seedu.address.testutil.meeting.MeetingBuilder;
+import seedu.address.testutil.meeting.MeetingUtil;
 import seedu.address.testutil.module.EditModuleDescriptorBuilder;
 import seedu.address.testutil.module.ModuleBuilder;
 import seedu.address.testutil.module.ModuleUtil;
-//import seedu.address.model.meeting.Meeting;
-//import seedu.address.testutil.meeting.MeetingBuilder;
-//import seedu.address.testutil.meeting.MeetingUtil;
 
 /**
  * Contains unit test for LinkyTimeParser
@@ -45,14 +44,17 @@ import seedu.address.testutil.module.ModuleUtil;
 public class LinkyTimeParserTest {
     private final LinkyTimeParser parser = new LinkyTimeParser();
 
-    // TODO MODULE INDEX: fix
-    //@Test
-    //public void parseCommand_add() throws Exception {
-    //    Meeting meeting = new MeetingBuilder().build();
-    //    AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(
-    //              MeetingUtil.getAddMeetingCommand(meeting));
-    //    assertEquals(new AddMeetingCommand(meeting), command);
-    //}
+    @Test
+    public void parseCommand_add() throws Exception {
+        final Meeting meeting = new MeetingBuilder().build();
+
+        final Index firstModule = Index.fromZeroBased(0);
+        final AddMeetingDescriptor addMeetingDescriptor = new AddMeetingDescriptorBuilder(meeting)
+                .withModule(firstModule).build();
+        final AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(
+                MeetingUtil.getAddMeetingCommand(meeting));
+        assertEquals(new AddMeetingCommand(addMeetingDescriptor), command);
+    }
 
     //    @Test
     //    public void parseCommand_edit() throws Exception {
@@ -74,14 +76,14 @@ public class LinkyTimeParserTest {
 
     @Test
     public void parseCommand_open() throws Exception {
-        OpenMeetingCommand command = (OpenMeetingCommand) parser.parseCommand(
+        final OpenMeetingCommand command = (OpenMeetingCommand) parser.parseCommand(
                 OpenMeetingCommand.COMMAND_WORD + " " + INDEX_FIRST_MEETING.getOneBased());
         assertEquals(new OpenMeetingCommand(INDEX_FIRST_MEETING), command);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteMeetingCommand command = (DeleteMeetingCommand) parser.parseCommand(
+        final DeleteMeetingCommand command = (DeleteMeetingCommand) parser.parseCommand(
                 DeleteMeetingCommand.COMMAND_WORD + " " + INDEX_FIRST_MEETING.getOneBased());
         assertEquals(new DeleteMeetingCommand(INDEX_FIRST_MEETING), command);
     }

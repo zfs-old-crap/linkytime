@@ -9,37 +9,28 @@ title: Bing Quan's Project Portfolio Page
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability for meetings to be recurring on a weekly basis.
+    * What it does: A recurring meeting will always reflect the ongoing/upcoming date and time of its next recurrence.
+    * Justification: As modules in NUS recurs weekly, users shouldn't have to manually re-create such recurring meetings on a weekly basis as well.
+    * Highlights: This feature required an in-depth analysis of design alternatives to avoid issues with keeping the storage in sync with the next recurring date and time of a meeting.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=AY2122S2-CS2103T-T13-3%2Ftp&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=chuabingquan&tabRepo=AY2122S2-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~other&authorshipIsBinaryFileTypeChecked=false)
-
-* **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=chuabingquan&tabRepo=AY2122S2-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Migrated the model and logic layer to work with `Meeting` objects (Pull requests [\#48](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/48))
+    * Migrated the storage layer to serialize/deserialize LinkyTime user data (Pull requests [\#64](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/64))
+    * Accepted and parsed meeting date and time from `String` to `LocalDateTime` (Pull requests [\#92](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/92)).
+    * Updated the GUI to reflect the latest date and time of all recurring meetings upon the execution of any command (Pull requests [\#92](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/92)).
+    * Updated logic to only show ongoing/recurring meetings by default (Pull requests [\#119](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/119)). 
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the `archive` feature [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123).
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details for recurring meetings [\#108](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/108).
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
+    * TBD.
+  
 * **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
 
