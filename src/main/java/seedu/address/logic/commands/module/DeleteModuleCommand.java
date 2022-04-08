@@ -96,9 +96,9 @@ public class DeleteModuleCommand extends Command {
      * @param module The module to check against.
      */
     private void deleteAssociatedMeetings(Model model, Module module) {
-        List<Meeting> list = model.getMeetingList().filtered((meeting) -> meeting.getModule().equals(module));
-        ArrayList<Meeting> arr = new ArrayList<>(list);
-        for (Meeting m : arr) {
+        final List<Meeting> list = model.getMeetingList().filtered((meeting) -> meeting.getModule().equals(module));
+        final ArrayList<Meeting> arr = new ArrayList<>(list);
+        for (final Meeting m : arr) {
             model.deleteMeeting(m);
         }
     }

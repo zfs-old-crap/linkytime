@@ -35,7 +35,7 @@ public class LinkyTimeTest {
 
     @Test
     public void resetData_withValidReadOnlyLinkyTime_replacesData() {
-        LinkyTime newData = getTypicalLinkyTime();
+        final LinkyTime newData = getTypicalLinkyTime();
         linkyTime.resetData(newData);
         assertEquals(newData, linkyTime);
     }
@@ -43,8 +43,8 @@ public class LinkyTimeTest {
     @Test
     public void resetData_withDuplicateMeetings_throwsDuplicateMeetingException() {
         // Two meetings with the same identity fields
-        List<Meeting> newMeetings = Arrays.asList(CS2103, CS2103);
-        LinkyTimeStub newData = new LinkyTimeStub(newMeetings);
+        final List<Meeting> newMeetings = Arrays.asList(CS2103, CS2103);
+        final LinkyTimeStub newData = new LinkyTimeStub(newMeetings);
 
         assertThrows(DuplicateMeetingException.class, () -> linkyTime.resetData(newData));
     }

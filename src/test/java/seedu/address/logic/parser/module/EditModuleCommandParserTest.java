@@ -85,10 +85,10 @@ public class EditModuleCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         final Index targetIndex = INDEX_FIRST_MODULE;
-        String userInput = targetIndex.getOneBased() + INVALID_MODULE_DESC + MODULE_DESC_LECTURE;
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withCode(VALID_MODULE_LECTURE)
-                .build();
-        EditModuleCommand expectedCommand = new EditModuleCommand(targetIndex, descriptor);
+        final String userInput = targetIndex.getOneBased() + INVALID_MODULE_DESC + MODULE_DESC_LECTURE;
+        final EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
+                .withCode(VALID_MODULE_LECTURE).build();
+        final EditModuleCommand expectedCommand = new EditModuleCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
