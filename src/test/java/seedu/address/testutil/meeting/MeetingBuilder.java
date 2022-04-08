@@ -1,5 +1,6 @@
 package seedu.address.testutil.meeting;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -86,6 +87,14 @@ public class MeetingBuilder {
      * Sets the {@code MeetingDateTime} of the {@code Meeting} that we are building.
      */
     public MeetingBuilder withDateTime(String dateTime) {
+        this.dateTime = new MeetingDateTime(dateTime);
+        return this;
+    }
+
+    /**
+     * Sets the {@code MeetingDateTime} of the {@code Meeting} that we are building.
+     */
+    public MeetingBuilder withDateTime(LocalDateTime dateTime) {
         this.dateTime = new MeetingDateTime(dateTime);
         return this;
     }

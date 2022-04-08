@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TUTORIAL;
@@ -23,34 +24,78 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.meeting.MeetingBuilder;
 
 public class MeetingTest {
+    /*
+     * Note: getNextRecurrence is only called for recurring meetings
+     */
     @Test
-    public void getStartDateTime_nonRecurringMeeting_returnStartDateTime() {
-        final Meeting meeting = new MeetingBuilder().withIsRecurring("N").build();
-        assertEquals(meeting.getStartDateTime(), MeetingBuilder.DEFAULT_DATETIME);
+    public void getNextRecurrence_ongoingMeeting_returnCurrentRecurrence() {
+        final LocalDateTime current =
+                LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT);
+        final LocalDateTime startDateTime =
+                LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT)
+                        .minusHours(1);
+        final Meeting meeting = new MeetingBuilder().withIsRecurring("Y")
+                .withDuration("2").withDateTime(startDateTime).build();
+        assertEquals(meeting.getNextRecurrence(current), startDateTime);
     }
 
     @Test
-    public void getStartDateTime_recurringMeeting_returnNextRecurrence() {
-//        final Meeting meeting = new MeetingBuilder().withIsRecurring("Y").build();
-//        assertEquals(meeting.getStartDateTime(), MeetingBuilder.DEFAULT_DATETIME);
+    public void getNextRecurrence_newUpcomingMeeting_returnStartDateTime() {
+        final LocalDateTime current =
+                LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT);
+        final LocalDateTime startDateTime =
+                LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT).plusDays(2);
+        final Meeting meeting = new MeetingBuilder().withIsRecurring("Y")
+                .withDateTime(startDateTime).build();
+        assertEquals(meeting.getNextRecurrence(current), startDateTime);
+    }
+
+    @Test
+    public void getNextRecurrence_elapsedMeeting_returnNextRecurrence() {
+        final LocalDateTime current =
+                LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT);
+        final LocalDateTime startDateTime =
+                LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT).minusDays(2);
+        final LocalDateTime nextRecurrence = startDateTime.plusWeeks(1);
+        final Meeting meeting = new MeetingBuilder().withIsRecurring("Y")
+                .withDateTime(startDateTime).build();
+        assertEquals(meeting.getNextRecurrence(current), nextRecurrence);
+    }
+
+    @Test
+    public void getNextRecurrence_justElapsedMeeting_returnNextRecurrence() {
+        final LocalDateTime current =
+                LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT);
+        final LocalDateTime startDateTime =
+                LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT)
+                        .minusHours(2).minusNanos(1);
+        final LocalDateTime nextRecurrence = startDateTime.plusWeeks(1);
+        final Meeting meeting = new MeetingBuilder().withIsRecurring("Y")
+                .withDuration("2").withDateTime(startDateTime).build();
+        assertEquals(meeting.getNextRecurrence(current), nextRecurrence);
+    }
+
+    /*
+     * Note: getStartDateTime and getEndDateTime both rely on getNextRecurrence
+     */
+    @Test
+    public void getStartDateTime_nonRecurringMeeting_returnStartDateTime() {
+        final Meeting firstMeeting = new MeetingBuilder().withIsRecurring("N").build();
+        assertEquals(firstMeeting.getStartDateTime(), new MeetingDateTime(MeetingBuilder.DEFAULT_DATETIME));
+
+        final Meeting minMeeting = new MeetingBuilder().withIsRecurring("N").withDateTime(LocalDateTime.MIN).build();
+        final Meeting maxMeeting = new MeetingBuilder().withIsRecurring("N").withDateTime(LocalDateTime.MAX).build();
+        assertEquals(minMeeting.getStartDateTime(), new MeetingDateTime(LocalDateTime.MIN));
+        assertEquals(maxMeeting.getStartDateTime(), new MeetingDateTime(LocalDateTime.MAX));
     }
 
     @Test
     public void getEndDateTime_nonRecurringMeeting_returnEndDateTimeFromStartDateTime() {
         final Meeting meeting = new MeetingBuilder().withIsRecurring("N").build();
-        LocalDateTime expectedEndDateTime =
-                LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT);
-        assertEquals(meeting.getEndDateTime(), new MeetingDateTime(expectedEndDateTime));
-    }
-
-    @Test
-    public void getEndDateTime_recurringMeeting_returnEndDateTimeFromNextRecurrence() {
-        //
-    }
-
-    @Test
-    public void getNextRecurrence_recurringMeeting_return_nextUpcomingStartDateTime() {
-        //
+        final LocalDateTime startDateTime = LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT);
+        final MeetingDuration duration = new MeetingDuration(MeetingBuilder.DEFAULT_DURATION);
+        final LocalDateTime firstExpectedEnd = startDateTime.plusMinutes((int) duration.duration * 60);
+        assertEquals(meeting.getEndDateTime(), new MeetingDateTime(firstExpectedEnd));
     }
 
     @Test
@@ -106,5 +151,21 @@ public class MeetingTest {
         assertFalse(CS2105.equals(editedCs2105));
     }
 
-    // compareTo
+    @Test
+    public void compareTo_differentStartDateTime_earlierThenLater() {
+        final Meeting earlierMeeting = new MeetingBuilder().withIsRecurring("N")
+                .withDateTime(VALID_DATETIME_TUTORIAL).build();
+        final Meeting laterMeeting = new MeetingBuilder().withIsRecurring("N")
+                .withDateTime(VALID_DATETIME_LECTURE).build();
+        assertTrue(earlierMeeting.compareTo(laterMeeting) < 0);
+    }
+
+    @Test
+    public void compareTo_sameStartDifferentDuration_shorterThenLonger() {
+        final Meeting shorterMeeting = new MeetingBuilder().withIsRecurring("N")
+                .withDuration("1").build();
+        final Meeting longerMeeting = new MeetingBuilder().withIsRecurring("N")
+                .withDuration("2").build();
+        assertTrue(shorterMeeting.compareTo(longerMeeting) < 0);
+    }
 }
