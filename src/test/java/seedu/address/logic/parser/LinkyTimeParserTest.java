@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FORCED_DELETE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MODULE;
@@ -127,6 +128,14 @@ public class LinkyTimeParserTest {
         final DeleteModuleCommand command = (DeleteModuleCommand) parser.parseCommand(
                 DeleteModuleCommand.COMMAND_WORD + " " + INDEX_FIRST_MODULE.getOneBased());
         assertEquals(new DeleteModuleCommand(INDEX_FIRST_MODULE, false), command);
+    }
+
+    @Test
+    public void parseCommand_deleteModuleForced() throws Exception {
+        final DeleteModuleCommand command = (DeleteModuleCommand) parser.parseCommand(
+                DeleteModuleCommand.COMMAND_WORD + " " + INDEX_FIRST_MODULE.getOneBased()
+                        + " " + PREFIX_FORCED_DELETE);
+        assertEquals(new DeleteModuleCommand(INDEX_FIRST_MODULE, true), command);
     }
 
     @Test
