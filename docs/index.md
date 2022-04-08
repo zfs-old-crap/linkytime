@@ -4,7 +4,7 @@ title: LinkyTime
 ---
 
 [![CI Status](https://github.com/AY2122S2-CS2103T-T13-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2122S2-CS2103T-T13-3/tp/actions)
-[![codecov](https://codecov.io/gh/AY2122S2-CS2103T-T13-3/tp/branch/master/graph/badge.svg?token=NOT8TCOLWS)](https://codecov.io/gh/AY2122S2-CS2103T-T13-3/tp)
+[![codecov](https://codecov.io/gh/AY2122S2-CS2103T-T13-3/tp/branch/master/graph/badge.svg?)](https://codecov.io/gh/AY2122S2-CS2103T-T13-3/tp)
 
 ![Ui](images/Ui.png)
 
