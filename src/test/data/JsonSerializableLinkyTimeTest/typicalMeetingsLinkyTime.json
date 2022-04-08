@@ -1,5 +1,5 @@
 {
-  "meetings" : [
+  "meetings": [
     {
       "name": "Tutorial",
       "url": "https://www.zoom.com",
@@ -58,19 +58,23 @@
       "tagged": [ "hartinmenz" ]
     }
   ],
-  "modules" : [ {
-    "code": "CS2101"
-  }, {
-    "code": "CS2105"
-  }, {
-    "code": "CS2106"
-  }, {
-    "code": "CS2030"
-  }, {
-    "code": "CS2040"
-  }, {
-    "code": "CS2103"
-  }, {
-    "code": "CS1101S"
-  } ]
+  "modules": [
+    {
+      "code": "CS2101"
+    }, {
+      "code": "CS2105"
+    }, {
+      "code": "CS2106"
+    }, {
+      "code": "CS2030"
+    }, {
+      "code": "CS2040"
+    }, {
+      "code": "CS2103"
+    }, {
+      "code": "CS1101S"
+    }, {
+      "code": "PC1221"
+    }
+  ]
 }
