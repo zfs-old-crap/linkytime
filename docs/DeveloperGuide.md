@@ -93,17 +93,10 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+1. When `Logic` is called upon to execute a command, it uses the `LinkyTimeParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddMeetingCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a meeting).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -186,31 +179,83 @@ depending on when their test cases are executed.
 of the program and after each command execution.
 * Cons: Implementation would sprawl across different components and more effort is required to ensure correctness.
 
-#### List Meetings feature
-This section explains the implementation of the List Meetings feature via the `list` command.
-The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.
+### Commands
+This section explains the general implementation of all commands.
+The implementation of all commands in LinkyTime can be split into two general implementation flows: commands with a command-specific parser, and commands without.
 
-Below is the sequence diagram for the execution of `ListMeetingCommand` after user input is sent to `LogicManager`.
+#### Commands with a parser
+This section explains the general implementation of all commands that require a command-specific parser to handle additional user input.
 
-![`ListMeetingCommand` sequence diagram](images/ListMeetingSequenceDiagram.png)
+Below is the sequence diagram for the execution of these commands (denoted by `XYZCommand`) after user input is sent to `LogicManager`. The execution of each command has been omitted due to their differences and will be covered in the respective command sections.
+
+![`CommandsWithParser` sequence diagram](images/CommandsWithParserSequenceDiagram.png)
 
 Step 1:
-The user enters the command for listing all upcoming meetings which is then passed to the `LogicManager`. E.g. `list`
+The user enters a command with additional required parameters (requires a command-specific parser) which is then passed to the `LogicManager`.
 
 Step 2:
 The `LogicManager` then calls `LinkyTimeParser::parseCommand` for it to figure out what command this is.
 
 Step 3:
-The `LinkyTimeParser` parses the user input and creates a `ListMeetingCommand` object.
+The `LinkyTimeParser` parses the user input and creates a command parser for that specific command. (denoted by `XYZCommandParser`)
 
 Step 4:
-The `ListMeetingCommand` is then returned to the `LogicManager` which calls `ListMeetingCommand::execute` to execute the command.
+The command parser is then returned to the `LinkyTimeParser` which then calls `XYZCommandParser::parse` to parse the additional parameters.
 
 Step 5:
-The `ListMeetingCommand` then calls `Model::updateFileredMeetingList` to update the model's filter to display all upcoming meetings.
+The `XYZCommandParser` then creates its respective command (denoted by `XYZCommand`) and returns it to `LogicManager`.
 
 Step 6:
-The `ListMeetingCommand` then creates a successful `CommandResult` and returns it to the UI.
+The `LogicManager` then calls `XYZCommand::execute` where the interaction between the command and the model is handled.
+
+Step 7:
+The `XYZCommand` then creates a successful `CommandResult` and returns it to the UI.
+
+#### Commands without a parser
+This section explains the general implementation of all commands that does not require a command-specific parser.
+
+Below is the sequence diagram for the execution of these commands (denoted by `XYZCommand`) after user input is sent to `LogicManager`. The execution of each command has been omitted due to their differences and will be covered in the respective command sections.
+
+![`CommandsWithoutParser` sequence diagram](images/CommandsWithoutParserSequenceDiagram.png)
+
+Step 1:
+The user enters a command which is then passed to the `LogicManager`.
+
+Step 2:
+The `LogicManager` then calls `LinkyTimeParser::parseCommand` for it to figure out what command this is.
+
+Step 3:
+The `LinkyTimeParser` parses the user input and creates the respective command object (denoted by `XYZCommand`).
+
+Step 4:
+The `XYZCommand` is then returned to the `LogicManager`.
+
+Step 5:
+The `LogicManager` then calls `XYZCommand::execute` where the interaction between the command and the model is handled.
+
+Step 6:
+The `XYZCommand` then creates a successful `CommandResult` and returns it to the UI.
+
+#### List Meetings feature
+This section explains the implementation of the List Meetings feature via the `list` command.
+The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.
+It is a command that [does not require a parser](#Commands-without-a-parser). 
+
+Below is the sequence diagram reference frame for the execution of `ListMeetingCommand`.
+
+![`ListMeetingCommand` sequence diagram](images/ListMeetingSequenceDiagramReferenceFrame.png)
+
+Step 1:
+The `LogicManager` calls `ListMeetingCommand::execute` with the returned `ListMeetingCommand`.
+
+Step 2:
+The `ListMeetingCommand` then calls `Model::showCompletedMeetings` to update the meeting list to show only upcoming meetings.
+
+Step 3:
+The `ListMeetingCommand` then continues its execution as defined by [this](#Commands-without-a-parser) sequence diagram.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListMeetingCommand` should continue out of this reference frame, but due to a limitation of PlantUML, the lifeline ends in this diagram.
+</div>
 
 #### Design considerations:
 **Aspect: How `ListMeetingCommand` executes:**
@@ -223,6 +268,11 @@ The `ListMeetingCommand` then creates a successful `CommandResult` and returns i
 **Alternative 2:** `LinkyTimeParser` uses a `ListMeetingCommandParser` to enforce that the user input cannot have additional params.
 * Pros: Provides clear definition of what the user input for a `ListMeetingCommand` should be.
 * Cons: Harder to implement and more rigid in nature.
+
+#### Archive Meetings feature
+This section explains the implementation of the Archive Meetings feature via the `archive` command.
+The `ArchiveMeetingCommand` updates the UI to display the details of all completed meetings in `LinkyTime`.
+It is identical in implementation to the `ListMeetingCommand` except for the flip in the boolean that is passed into `Model::showCompletedMeetings`.
 
 #### Add Meeting feature
 
@@ -657,6 +707,51 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Meeting
+
+#### Adding Meetings
+1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`
+   Prerequisites:
+      1. There is no other meetings with the exact same fields.
+      2. There is one module in the module list.
+   Expected: Meeting is added.
+2. Incorrect commands:
+   1. Duplicate meeting 
+      Prerequisite:
+         1. The testcase command was just entered.
+      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+   2. Incorrect name
+      Command: `add n/Lectur$ u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+   3. Incorrect url
+      Command: `add n/Lecture u/zoom d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+   4. Incorrect date
+      Command: `add n/Lecture u/https://www.zoom.com d/40-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+   5. Incorrect time
+      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 2500 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+   6. Incorrect duration
+      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/25 m/1 r/Y t/recorded t/lecturequiz`.
+   7. Incorrect module index
+      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/10 r/Y t/recorded t/lecturequiz`.
+   8. Incorrect recurrence
+      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/A t/recorded t/lecturequiz`.
+   9. Incorrect tag
+      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/!ecturequiz`.
+   For each of the incorrect commands, there will be an error message included on how to rectify the issue.
+
+#### Edit Meetings
+1. Test case: `edit 1 n/Lecture`
+   Prerequisites:
+      1. There is at least one meeting in the meeting list.
+   Expected: The meeting at the first index is edited.
+2. Incorrect commands:
+   For each field of the meeting, you can refer to the Add Meetings of the Instructions for manual testing as they are exactly the same.
+   1. Duplicate meeting 
+      Prerequisite:
+         1. There is a meeting in the meeting list at index 4 which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+         2. There is a meeting in the meeting list at index 1 which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`
+      Command: `edit 1 n/Lecture`
+      Expected: There will be an error message included on how to rectify the issue.
+         
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
