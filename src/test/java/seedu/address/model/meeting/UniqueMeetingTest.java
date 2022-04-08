@@ -11,6 +11,7 @@ import static seedu.address.testutil.typical.TypicalMeetings.CS2105;
 import static seedu.address.testutil.typical.TypicalMeetings.CS2106;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -118,13 +119,14 @@ public class UniqueMeetingTest {
         uniqueMeetingList.add(secondMeeting);
         uniqueMeetingList.sortMeetings();
 
-        final UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
-        expectedUniqueMeetingList.add(firstMeeting);
-        expectedUniqueMeetingList.add(secondMeeting);
-        expectedUniqueMeetingList.add(thirdMeeting);
-        expectedUniqueMeetingList.add(fourthMeeting);
+        final List<Meeting> expectedList = new ArrayList<>();
+        expectedList.add(firstMeeting);
+        expectedList.add(secondMeeting);
+        expectedList.add(thirdMeeting);
+        expectedList.add(fourthMeeting);
+        Collections.sort(expectedList);
 
-        assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+        assertEquals(expectedList, uniqueMeetingList.asUnmodifiableObservableList());
     }
 
     @Test
