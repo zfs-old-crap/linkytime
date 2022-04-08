@@ -9,36 +9,59 @@ title: Justine's Project Portfolio Page
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to delete existing meetings in the list.
+    * What it does: Allows the user to remove a meeting in the list and all associated informaion by specifying the
+      index.
+    * Justification: This feature is fundamental to our product, as there needs to be a way to remove meetings from the
+      meeting list to prevent the list from growing indefinitely. Users can also delete any meetings that they may have
+      incorrectly added.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added the ability to find and display meetings using keywords.
+    * What it does: Allows the user to find meetings in the list that match all given keywords.
+    * Justification: This feature is required for users to quickly identify relevant meetings in the list that contains
+      desired keywords. Users will not have to manually search through the entire list.
+    * Highlights: This feature required an in depth analysis and observation of users' desired behaviour from such a
+      functionality. Between 2 different behaviours that are both valid for such a feature, I implemented the version
+      that most closely aligns with users' expectations.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=AY2122S2-CS2103T-T13-3%2Ftp&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=justinekoh&tabRepo=AY2122S2-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs&authorshipIsBinaryFileTypeChecked=false)
+* **New Feature**: Added the ability to open a meeting's link through the application, in the device browser.
+    * What it does: Allows the user to directly open a meeting's URL through the application using a simple command and
+      the meeting's index.
+    * Justification: This feature is needed to greatly enhance the application's usability and effectiveness as it
+      significantly speeds up the process of joining a meeting, which is a fundamental feature of the application.
+      Without this feature, the user will have to manually copy the link from the application, open their browser, paste
+      the link and open it. This is especially troublesome as the link is normally very long.
+    * Highlights: This feature called for a careful deliberation over the various libraries available that assist with
+      accessing desktop capabilities (such as opening default browsers). I had to do extensive research to identify the
+      shortcomings of each library and select the one that works with all versions of the 3 OSes that LinkyTime is made
+      for.
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+* **Code
+  contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=AY2122S2-CS2103T-T13-3%2Ftp&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=justinekoh&tabRepo=AY2122S2-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
+
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Added a force delete functionality for module delete
+      command [\#122](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/122)
 
 * **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * User Guide:
+        * Added documentation for the features `delete` and `find`
+          . [\28](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/28)
+          , [\86](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/86)
+        * Added documentation for the `open` feature. [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123)
+        * Added documentation for module force delete
+          command. [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123)
+    * Developer Guide:
+        * Added implementation details of the `delete`
+          feature. [\#111](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/111)
+        * Added implementation details of the `find`
+          feature. [\#72](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/112)
+        * Added implementation details of the `open` feature.
+        * Added some Use Cases and User Stories. [\10](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/10)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+    * PRs reviewed (with non-trivial review comments): [\#128](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/128)
+    * Reported bugs and suggestions for other teams in the class (examples:)
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo

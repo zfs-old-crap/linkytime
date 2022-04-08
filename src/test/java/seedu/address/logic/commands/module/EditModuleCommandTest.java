@@ -70,9 +70,9 @@ public class EditModuleCommandTest {
         showModuleAtIndex(model, INDEX_SECOND_MODULE);
 
         final Module moduleInFilteredList = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
-        final Module editedModule = new ModuleBuilder(moduleInFilteredList).withCode(VALID_MODULE_LECTURE).build();
+        final Module editedModule = new ModuleBuilder(moduleInFilteredList).withCode("CS2102").build();
         final EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE,
-                new EditModuleDescriptorBuilder().withCode(VALID_MODULE_LECTURE).build());
+                new EditModuleDescriptorBuilder().withCode("CS2102").build());
 
         final String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
