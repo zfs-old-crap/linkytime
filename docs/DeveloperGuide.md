@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `LinkyTimeParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddMeetingCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+3. The command can communicate with the `Model` when it is executed (e.g. to add a meeting).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -181,7 +181,7 @@ of the program and after each command execution.
 
 ### Commands
 This section explains the general implementation of all commands.
-The implementation of all commands can be split into 2 general implementation flow, commands with a parser and commands without.
+The implementation of all commands in LinkyTime can be split into two general implementation flows: commands with a parameter parser, and commands without.
 
 #### Commands with a parser
 This section explains the general implementation of all commands that requires a parser to handle additional user input.
@@ -191,7 +191,7 @@ Below is the sequence diagram for the execution of these commands (denoted by `X
 ![`CommandsWithParser` sequence diagram](images/CommandsWithParserSequenceDiagram.png)
 
 Step 1:
-The user enters a command with additional params(requires a parser) which is then passed to the `LogicManager`.
+The user enters a command with additional parameters (requires a parser) which is then passed to the `LogicManager`.
 
 Step 2:
 The `LogicManager` then calls `LinkyTimeParser::parseCommand` for it to figure out what command this is.
@@ -200,7 +200,7 @@ Step 3:
 The `LinkyTimeParser` parses the user input and creates a command parser for that specific command. (denoted by `XYZCommandParser`)
 
 Step 4:
-The parser is then returned to the `LinkyTimeParser` which then calls `XYZCommandParser::parse` to parse the additional params.
+The command parser is then returned to the `LinkyTimeParser` which then calls `XYZCommandParser::parse` to parse the additional parameters.
 
 Step 5:
 The `XYZCommandParser` then creates its respective command (denoted by `XYZCommand`) and returns it to `LogicManager`.
@@ -216,7 +216,7 @@ This section explains the general implementation of all commands that does not r
 
 Below is the sequence diagram for the execution of these commands (denoted by `XYZCommand`) after user input is sent to `LogicManager`. The execution of each command has been omitted due to their differences and will be covered in the respective command sections.
 
-![`CommandsWithParser` sequence diagram](images/CommandsWithoutParserSequenceDiagram.png)
+![`CommandsWithoutParser` sequence diagram](images/CommandsWithoutParserSequenceDiagram.png)
 
 Step 1:
 The user enters a command which is then passed to the `LogicManager`.
@@ -239,7 +239,7 @@ The `XYZCommand` then creates a successful `CommandResult` and returns it to the
 #### List Meetings feature
 This section explains the implementation of the List Meetings feature via the `list` command.
 The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.
-It is a command that [does not require a parser](#Commands without a parser). 
+It is a command that [does not require a parser](#Commands-without-a-parser). 
 
 Below is the sequence diagram reference frame for the execution of `ListMeetingCommand`.
 
@@ -252,7 +252,7 @@ Step 2:
 The `ListMeetingCommand` then calls `Model::showCompletedMeetings` to update the meeting list to show only upcoming meetings.
 
 Step 3:
-The `ListMeetingCommand` then continues its execution as defined by [this](#Commands without a parser) sequence diagram.
+The `ListMeetingCommand` then continues its execution as defined by [this](#Commands-without-a-parser) sequence diagram.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListMeetingCommand` should continue out of this reference frame, but due to a limitation of PlantUML, the lifeline ends in this diagram.
 </div>
