@@ -14,7 +14,7 @@ opt  hasDependentMeetings
     EditModuleCommand -> EditModuleCommand: editAssociatedMeetings(...)
     activate EditModuleCommand
     EditModuleCommand -> Model: setMeeting(...)
-note right: Editing of each associated \n meeting has been  \n omitted for brevity.
+note right: Updating of each associated\n meeting has been\n omitted for brevity.
     Model --> EditModuleCommand
     EditModuleCommand -->EditModuleCommand
     deactivate EditModuleCommand
