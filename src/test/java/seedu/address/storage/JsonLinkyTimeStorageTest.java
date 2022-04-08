@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.typical.TypicalLinkyTime.getTypicalLinkyTime;
-//import static seedu.address.testutil.typical.TypicalMeetings.CS2030;
-//import static seedu.address.testutil.typical.TypicalMeetings.CS2103;
-//import static seedu.address.testutil.typical.TypicalMeetings.CS2107;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2030;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2100;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2107;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,6 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.LinkyTime;
 import seedu.address.model.ReadOnlyLinkyTime;
+import seedu.address.model.module.Module;
 
 public class JsonLinkyTimeStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonLinkyTimeStorageTest");
@@ -71,19 +72,20 @@ public class JsonLinkyTimeStorageTest {
         ReadOnlyLinkyTime readBack = jsonLinkyTimeStorage.readLinkyTime(filePath).get();
         assertEquals(original, new LinkyTime(readBack));
 
-        // TODO MODULE INDEX: fix
-        //// Modify data, overwrite exiting file, and read back
-        //original.addMeeting(CS2103);
-        //original.removeMeeting(CS2030);
-        //jsonLinkyTimeStorage.saveLinkyTime(original, filePath);
-        //readBack = jsonLinkyTimeStorage.readLinkyTime(filePath).get();
-        //assertEquals(original, new LinkyTime(readBack));
+        // Modify data, overwrite exiting file, and read back
+        original.addModule(new Module("CS2100"));
+        original.addMeeting(CS2100);
+        original.removeMeeting(CS2030);
+        jsonLinkyTimeStorage.saveLinkyTime(original, filePath);
+        readBack = jsonLinkyTimeStorage.readLinkyTime(filePath).get();
+        assertEquals(original, new LinkyTime(readBack));
 
-        //// Save and read without specifying file path
-        //original.addMeeting(CS2107);
-        //jsonLinkyTimeStorage.saveLinkyTime(original); // file path not specified
-        //readBack = jsonLinkyTimeStorage.readLinkyTime().get(); // file path not specified
-        //assertEquals(original, new LinkyTime(readBack));
+        // Save and read without specifying file path
+        original.addModule(new Module("CS2107"));
+        original.addMeeting(CS2107);
+        jsonLinkyTimeStorage.saveLinkyTime(original); // file path not specified
+        readBack = jsonLinkyTimeStorage.readLinkyTime().get(); // file path not specified
+        assertEquals(original, new LinkyTime(readBack));
 
     }
 
