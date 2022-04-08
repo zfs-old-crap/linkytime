@@ -181,17 +181,17 @@ of the program and after each command execution.
 
 ### Commands
 This section explains the general implementation of all commands.
-The implementation of all commands in LinkyTime can be split into two general implementation flows: commands with a parameter parser, and commands without.
+The implementation of all commands in LinkyTime can be split into two general implementation flows: commands with a command-specific parser, and commands without.
 
 #### Commands with a parser
-This section explains the general implementation of all commands that requires a parser to handle additional user input.
+This section explains the general implementation of all commands that require a command-specific parser to handle additional user input.
 
 Below is the sequence diagram for the execution of these commands (denoted by `XYZCommand`) after user input is sent to `LogicManager`. The execution of each command has been omitted due to their differences and will be covered in the respective command sections.
 
 ![`CommandsWithParser` sequence diagram](images/CommandsWithParserSequenceDiagram.png)
 
 Step 1:
-The user enters a command with additional parameters (requires a parser) which is then passed to the `LogicManager`.
+The user enters a command with additional required parameters (requires a command-specific parser) which is then passed to the `LogicManager`.
 
 Step 2:
 The `LogicManager` then calls `LinkyTimeParser::parseCommand` for it to figure out what command this is.
@@ -212,7 +212,7 @@ Step 7:
 The `XYZCommand` then creates a successful `CommandResult` and returns it to the UI.
 
 #### Commands without a parser
-This section explains the general implementation of all commands that does not require a parser.
+This section explains the general implementation of all commands that does not require a command-specific parser.
 
 Below is the sequence diagram for the execution of these commands (denoted by `XYZCommand`) after user input is sent to `LogicManager`. The execution of each command has been omitted due to their differences and will be covered in the respective command sections.
 
