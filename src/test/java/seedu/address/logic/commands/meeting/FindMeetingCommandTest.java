@@ -9,7 +9,7 @@ import static seedu.address.testutil.typical.TypicalLinkyTime.getTypicalLinkyTim
 import static seedu.address.testutil.typical.TypicalMeetings.CS1101S;
 import static seedu.address.testutil.typical.TypicalMeetings.CS2030;
 import static seedu.address.testutil.typical.TypicalMeetings.CS2040;
-import static seedu.address.testutil.typical.TypicalMeetings.CS2100;
+import static seedu.address.testutil.typical.TypicalMeetings.CS2103;
 import static seedu.address.testutil.typical.TypicalMeetings.CS2105;
 import static seedu.address.testutil.typical.TypicalMeetings.CS2106;
 
@@ -76,19 +76,19 @@ public class FindMeetingCommandTest {
 
         expectedModel.updateFilteredMeetingList(firstPredicate);
         assertCommandSuccess(firstCommand, model, expectedFirstMessage, expectedModel);
-        List<Meeting> sortedList = Arrays.asList(CS2105, CS2106, CS2030, CS2040, CS2100, CS1101S);
+        List<Meeting> sortedList = Arrays.asList(CS2105, CS2106, CS2030, CS2040, CS2103, CS1101S);
         Collections.sort(sortedList);
         assertEquals(sortedList, model.getFilteredMeetingList());
 
         // predicate containing keywords matching meeting name, tag
         final String expectedSecondMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 1);
 
-        final MeetingContainsAllKeywordsPredicate secondPredicate = preparePredicate("Lecture aaron");
+        final MeetingContainsAllKeywordsPredicate secondPredicate = preparePredicate("Lecture damith");
         final FindMeetingCommand secondCommand = new FindMeetingCommand(secondPredicate);
 
         expectedModel.updateFilteredMeetingList(secondPredicate);
         assertCommandSuccess(secondCommand, model, expectedSecondMessage, expectedModel);
-        assertEquals(Arrays.asList(CS2100), model.getFilteredMeetingList());
+        assertEquals(Arrays.asList(CS2103), model.getFilteredMeetingList());
 
         // predicate containing keywords matching meeting module, tag
         final String expectedThirdMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 0);

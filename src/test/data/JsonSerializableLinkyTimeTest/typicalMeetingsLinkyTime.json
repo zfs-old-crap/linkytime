@@ -3,7 +3,7 @@
     {
       "name": "Tutorial",
       "url": "https://www.zoom.com",
-      "dateTime": "01-02-2022 1300",
+      "dateTime": "01-02-2023 1300",
       "duration": "1.5",
       "module": "CS2101",
       "isRecurring": "N",
@@ -42,12 +42,12 @@
       "tagged": [ "CKF" ]
     }, {
       "name": "Lecture",
-      "url": "https://www.zoom.com",
-      "dateTime": "06-02-2022 1300",
-      "duration": "15.0",
-      "module": "CS2100",
+      "url": "https://www.google.com",
+      "dateTime": "18-03-2023 1400",
+      "duration": "2",
+      "module": "CS2103",
       "isRecurring": "Y",
-      "tagged": [ "aaron" ]
+      "tagged": [ "damith" ]
     }, {
       "name": "Lecture",
       "url": "https://www.zoom.com",

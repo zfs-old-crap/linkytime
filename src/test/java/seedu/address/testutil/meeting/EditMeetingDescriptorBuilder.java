@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meeting.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.model.meeting.IsRecurring;
 import seedu.address.model.meeting.Meeting;
@@ -11,7 +12,6 @@ import seedu.address.model.meeting.MeetingDateTime;
 import seedu.address.model.meeting.MeetingDuration;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.MeetingUrl;
-//import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,8 +37,6 @@ public class EditMeetingDescriptorBuilder {
         descriptor.setUrl(meeting.getUrl());
         descriptor.setDateTime(meeting.getStartDateTime());
         descriptor.setDuration(meeting.getDuration());
-        // TODO MODULE INDEX: fix
-        // descriptor.setModule(meeting.getModule());
         descriptor.setIsRecurring(meeting.getIsRecurring());
         descriptor.setTags(meeting.getTags());
     }
@@ -78,9 +76,8 @@ public class EditMeetingDescriptorBuilder {
     /**
      * Sets the {@code Module} of the {@code EditMeetingDescriptor} that we are building.
      */
-    public EditMeetingDescriptorBuilder withModule(String module) {
-        // TODO MODULE INDEX: fix
-        // descriptor.setModule(new Module(module));
+    public EditMeetingDescriptorBuilder withModule(Index module) {
+        descriptor.setModuleIndex(module);
         return this;
     }
 

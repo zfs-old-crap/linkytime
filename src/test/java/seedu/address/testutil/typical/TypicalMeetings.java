@@ -77,6 +77,6 @@ public class TypicalMeetings {
     } // prevents instantiation
 
     public static List<Meeting> getTypicalMeetings() {
-        return new ArrayList<>(Arrays.asList(CS2101, CS2105, CS2106, CS2030, CS2040, CS2100, CS1101S));
+        return new ArrayList<>(Arrays.asList(CS2101, CS2105, CS2106, CS2030, CS2040, CS2103, CS1101S));
     }
 }
