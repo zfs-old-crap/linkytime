@@ -25,6 +25,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtilTest {
 
     private static final String VALID_INDEX_TYPE_1 = "Module";
+    // As the first character of the index type is extracted for capitalization, we need to test this one character
+    // edge case to ensure that no unexpected error occurs (e.g. out of bounds access on the index type string).
     private static final String VALID_INDEX_TYPE_2 = "M";
     private static final String EMPTY_INDEX_TYPE = "";
     private static final String INVALID_TAG = "#friend";
