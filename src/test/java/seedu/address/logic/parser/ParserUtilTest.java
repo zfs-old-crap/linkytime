@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX_FOR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.typical.TypicalIndexes.INDEX_FIRST_MEETING;
 
@@ -34,10 +33,7 @@ public class ParserUtilTest {
     private static final String WHITESPACE = " \t\r\n";
 
     private String createParseIndexErrMsg(String indexType) {
-        if (indexType.isEmpty()) {
-            return MESSAGE_INVALID_INDEX;
-        }
-        return String.format(MESSAGE_INVALID_INDEX_FOR, indexType);
+        return String.format("%s %s", indexType.trim(), MESSAGE_INVALID_INDEX).trim();
     }
 
     @Test
