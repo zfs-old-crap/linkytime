@@ -778,7 +778,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: Edit an existing upcoming meeting, updating its date to make it a completed meeting. <br>
       Expected: There should be one less meeting in the meeting list shown.
 
-#### List archive meetings
+#### List archived meetings
 1. Listing all archived meetings with multiple meetings in the meeting list.
     1. Prerequisite: There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
     2. Test case: `archive`<br>
