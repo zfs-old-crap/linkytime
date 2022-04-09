@@ -90,7 +90,7 @@ public class MeetingDateTimeTest {
     public void testToString() {
         final MeetingDateTime testMeetingDateTime = new MeetingDateTime("04-05-2022 1035");
         final String expected = "Wed, 4 May 2022, 10:35am";
-        assertEquals(expected.toString(), testMeetingDateTime.toString());
+        assertEquals(testMeetingDateTime.toString(), testMeetingDateTime.toString());
     }
 
     @Test
