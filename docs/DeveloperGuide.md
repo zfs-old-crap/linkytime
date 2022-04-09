@@ -554,6 +554,11 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
+* 1c. The new meeting is a duplicate of an existing meeting in the meeting list.
+  * 1c1. LinkyTime shows an error message stating that this meeting already exists.
+
+    Use case ends.
+
 ### UC-004: Open a meeting
 
 **MSS**
@@ -610,6 +615,11 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 * 3c. The user does not follow the format of the command.
   * 3c1. LinkyTime shows an error message stating the correct format of the command.
+
+    Use case resumes at step 2.
+
+* 3d. The edited meeting is a duplicate of an existing meeting in the meeting list.
+  * 3d1. LinkyTime shows an error message stating that this meeting already exists.
 
     Use case resumes at step 2.
 
@@ -673,6 +683,11 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
+* 1c. The new module is a duplicate of an existing module in the module list.
+  * 1c1. LinkyTime shows an error message stating that this module already exists.
+
+    Use case ends.
+
 ### UC-009: Edit a module
 
 **MSS**
@@ -700,6 +715,11 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 * 1d. The user does not follow the format of the command.
   * 1d1. LinkyTime shows an error message stating the correct format of the command.
+
+    Use case resumes at step 1.
+
+* 1c. The edited module is a duplicate of an existing module in the module list.
+  * 1c1. LinkyTime shows an error message stating that this module already exists.
 
     Use case resumes at step 1.
 
