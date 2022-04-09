@@ -74,7 +74,7 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
             editMeetingDescriptor.setDuration(duration);
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            final Index moduleIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MODULE).get());
+            final Index moduleIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MODULE).get(), "Module");
             editMeetingDescriptor.setModuleIndex(moduleIndex);
         }
         if (argMultimap.getValue(PREFIX_RECURRING).isPresent()) {
