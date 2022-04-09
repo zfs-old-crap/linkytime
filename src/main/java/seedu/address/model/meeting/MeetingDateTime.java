@@ -71,12 +71,7 @@ public class MeetingDateTime implements Comparable<MeetingDateTime> {
      * @return True, if the {@code LocalDateTime} is a valid date and time in the Gregorian calendar.
      */
     public static boolean isValidDateTime(LocalDateTime test) {
-        try {
-            parseDateTime(test.format(INPUT_FORMAT));
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return isValidDateTime(test.format(INPUT_FORMAT));
     }
 
     /**
@@ -89,7 +84,7 @@ public class MeetingDateTime implements Comparable<MeetingDateTime> {
     public static LocalDateTime parseDateTime(String dateTime) {
         try {
             return LocalDateTime.parse(dateTime, INPUT_FORMAT);
-        } catch (DateTimeParseException e) {
+        } catch (Exception ex) {
             throw new InvalidDateTimeException(String.format("%s is not a valid date time", dateTime));
         }
     }
