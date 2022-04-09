@@ -167,7 +167,7 @@ on the current date and time as well.
 
 Below is an activity diagram describing the execution of `getNextRecurrence`.
 
-![`getNextRecurrence` sequence diagram](images/GetNextRecurrenceActivityDiagram.png)
+![`getNextRecurrence` activity diagram](images/GetNextRecurrenceActivityDiagram.png)
 
 #### Design considerations:
 **Aspect: How the notion of recurrence is implemented:**
@@ -438,11 +438,15 @@ This section explains the implementation of the Delete Module feature via the `m
 
 The `DeleteModuleCommand` causes the specified module to be deleted from the application.
 
-If there are meetings that are tagged under this module, the command execution is blocked and an error message is displayed to the user. A proposed extension of this feature would be to include a flag that allows the user to force the deletion of the module and its associated meetings.
+If there are meetings that are tagged under this module, the command execution is blocked and an error message is displayed to the user.
 
 This process is summarized in the diagram below.
 
-![DeleteModuleActivityDiagram](images/DeleteModuleActivityDiagram.png)
+![`DeleteModuleCommand` activity diagram](images/DeleteModuleActivityDiagram.png)
+
+#### Force Delete Module feature
+
+This feature is an extension to the existing Delete Module feature. By supplying an additional force-delete flag (`f/`) to the `DeleteModuleCommand` parameters, this would override the delete restriction and remove the selected modules and its associated meetings.
 
 --------------------------------------------------------------------------------------------------------------------
 
