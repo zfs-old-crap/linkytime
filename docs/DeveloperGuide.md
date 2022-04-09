@@ -751,7 +751,72 @@ testers are expected to do more *exploratory* testing.
          2. There is a meeting in the meeting list at index 1 which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`
       Command: `edit 1 n/Lecture`
       Expected: There will be an error message included on how to rectify the issue.
-         
+
+#### List upcoming meetings
+1. Listing all upcoming meetings with multiple meetings in the meeting list.
+   1. Prerequisite: There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
+   2. Test case: `list`<br>
+      Expected: Only meetings that are ongoing or upcoming will be shown.
+   
+2. Listing all upcoming meetings with no meetings in the meeting list.
+   1. Prerequisite: There are no meetings in the meeting list.
+   2. Test case: `list`<br>
+      Expected: No meetings will be shown.
+
+3. Adding a ongoing or upcoming meeting after listing all upcoming meetings.
+   1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [adding meetings](#adding-meetings).
+   2. Test case: Add a meeting that is ongoing or upcoming. <br>
+      Expected: A new meeting should be displayed.
+   
+4. Adding a completed meeting after listing all upcoming meetings.
+    1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [adding meetings](#adding-meetings).
+    2. Test case: Add a meeting that is completed. <br>
+       Expected: No new meeting should be displayed.
+   
+5. Editing the date of an upcoming meeting, updating it to a completed meeting.
+   1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [editing meetings](#edit-meetings).
+   2. Test case: Edit an existing upcoming meeting, updating its date to make it a completed meeting. <br>
+      Expected: There should be one less meeting in the meeting list shown.
+
+#### List archived meetings
+1. Listing all archived meetings with multiple meetings in the meeting list.
+    1. Prerequisite: There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
+    2. Test case: `archive`<br>
+       Expected: Only meetings that are completed will be shown.
+
+2. Listing all archived meetings with no meetings in the meeting list.
+    1. Prerequisite: There are no meetings in the meeting list.
+    2. Test case: `archive`<br>
+       Expected: No meetings will be shown.
+
+3. Adding a completed meeting after listing all archived meetings.
+    1. Prerequisite: List all archived meetings using the `archive` command. Prerequisite of [adding meetings](#adding-meetings).
+    2. Test case: Add a meeting that is completed. <br>
+       Expected: A new meeting should be displayed.
+
+4. Adding a ongoing or upcoming meeting after listing all archived meetings.
+    1. Prerequisite: List all archived meetings using the `archive` command. Prerequisite of [adding meetings](#adding-meetings).
+    2. Test case: Add a meeting that is ongoing or upcoming. <br>
+       Expected: No new meeting should be displayed.
+   
+5. Editing the date of a completed meeting, updating it to an upcoming meeting.
+    1. Prerequisite: List all archived meetings using the `archive` command. Prerequisite of [editing meetings](#edit-meetings).
+    2. Test case: Edit an existing archived meeting, updating its date to make it an upcoming meeting. <br>
+       Expected: There should be one less meeting in the meeting list shown.
+
+#### Meetings sorted chronologically
+1. Adding a meeting while the meeting list is shown.
+   1. Prerequisites: List all upcoming/archived meetings with the `list` or `archive` command. Prerequisite of [adding meetings](#adding-meetings).
+   2. Test case: Add a meeting that is displayable by the current meeting list. e.g. If the meeting list is showing upcoming meetings, then add an upcoming meeting and vice versa.<br>
+      Expected: A new meeting is added and all meetings are still displayed in chronological order.
+      
+   
+2. Editing a meeting while the meeting list is shown.
+   1. Prerequisites: List all upcoming/archived meetings with the `list` or `archive` command. Prerequisite of [editing meetings](#edit-meetings).
+   2. Test case: Edit the date of a meeting such that it is still displayable by the current meeting list. e.g. If the meeting list is showing upcoming meetings, then the edited meeting should still be an upcoming meeting and vice versa.<br>
+      Expected: The meetings in the meeting list are still displayed in chronological order.
+   
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
