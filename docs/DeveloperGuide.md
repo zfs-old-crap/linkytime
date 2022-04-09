@@ -492,11 +492,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                         | open a meeting URL                          | open my meeting URL in my browser quickly                  |
 | `* * *`  | user                         | edit an existing meeting                    | update my online lecture details                           |
 | `* * *`  | user                         | delete a meeting                            | remove old meetings that I don’t need anymore              |
+| `* *`    | user with multiple meetings  | search for meetings                         | find my online meetings easily                             |
 | `* * *`  | user                         | add a new module                            | add my classes I am taking this semester                   |
 | `* *`    | user                         | edit an existing module                     | update a module's details                                  |
 | `* * *`  | user                         | delete a module                             | remove old modules I am no longer taking                   |
 | `* *`    | user                         | delete a module and its associated meetings | quickly remove old modules and its meetings                |
-| `* *`    | user with multiple meetings  | search for meetings                         | find my online meetings easily                             |
 | `* *`    | user starting a new semester | clear all data                              | remove old meetings and modules from the previous semester |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -506,12 +506,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 For all use cases below, the **System** is `LinkyTime` and the **Actor** is the `user`, unless specified otherwise.
 All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
-### UC-001: List all meetings
+### UC-001: List all upcoming meetings
 
 **MSS**
 
-1. User requests to list all meetings.
-2. LinkyTime shows a list of all meetings.
+1. User requests to list all upcoming meetings.
+2. LinkyTime shows a list of all upcoming meetings.
 
     Use case ends.
 
@@ -521,7 +521,22 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
-### UC-002: Add a meeting
+### UC-002: List all archived meetings
+
+**MSS**
+
+1. User requests to list all archived meetings.
+2. LinkyTime shows a list of all archived meetings.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The meeting list is empty.
+
+    Use case ends.
+
+### UC-003: Add a meeting
 
 **MSS**
 
@@ -542,7 +557,34 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
-### UC-003: Edit a meeting
+### UC-004: Open a meeting
+
+**MSS**
+
+1. User requests to list meetings.
+2. LinkyTime shows the list of meetings.
+3. User requests to open a specific meeting's URL based on the index from the meeting list displayed in step 2.
+4. LinkyTime opens the default browser with the given URL.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The meeting list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+  * 3a1. LinkyTime shows an error message stating that the given index is invalid.
+
+    Use case resumes at step 2.
+
+* 3b. The application does not have permissions to open the browser.
+  * 3b1. The application displays an error message.
+
+    Use case ends.
+
+### UC-005: Edit a meeting
 
 **MSS**
 
@@ -574,7 +616,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case resumes at step 2.
 
-### UC-004: Delete a meeting
+### UC-006: Delete a meeting
 
 **MSS**
 
@@ -596,28 +638,12 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case resumes at step 2.
 
-### UC-006: Open a meeting
-
-**MSS**
-
-1. User requests to open a meeting link.
-2. LinkyTime opens the default browser with the given link.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The application does not have permissions to open the browser.
-  * 2a1. The application displays an error message.
-
-    Use case ends.
-
 ### UC-007: Find meetings
 
 **MSS**
 
 1. User searches for a meeting by a search term.
-2. LinkyTime shows a list of meetings whose name, tags, or date contains the search term.
+2. LinkyTime shows a list of meetings whose name, tags, or module contains the search term.
 
     Use case ends.
 
@@ -629,26 +655,103 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
     Use case ends.
 
 
-### UC-008: Sort meetings chronologically
+### UC-008: Add a module
 
 **MSS**
 
-1. User chooses to sort meetings by the date.
-2. LinkyTime shows a list of meetings that is sorted in descending order.
+1. User requests to add a new module to the module list.
+2. LinkyTime adds a new module with given parameters in the module list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The meeting list is empty.
+* 1a. The user does not include the required parameters with the command.
+  * 1a1. LinkyTime shows an error message stating which parameters are required.
 
     Use case ends.
 
-* 2b. The meetings are already sorted by the date.
+* 1b. The user does not follow the format of the command.
+  * 1b1. LinkyTime shows an error message stating the correct format of the command.
 
     Use case ends.
 
-### UC-005: Clear all data
+### UC-009: Edit a module
+
+**MSS**
+
+1. User requests to edit a specific module based on the index from the module list displayed.
+2. LinkyTime edits the module and all associated meetings and saves the changes.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The module list is empty.
+
+    Use case ends.
+
+* 1b. The given index is invalid.
+  * 1b1. LinkyTime shows an error message stating that the given index is invalid.
+
+    Use case resumes at step 1.
+
+* 1c. No arguments were given.
+  * 1c1. LinkyTime shows an error message stating that at least one field must be edited.
+
+    Use case resumes at step 1.
+
+* 1d. The user does not follow the format of the command.
+  * 1d1. LinkyTime shows an error message stating the correct format of the command.
+
+    Use case resumes at step 1.
+
+### UC-010: Delete a module
+
+**MSS**
+
+1. User requests to delete a specific module in the module list based on the index from the module list displayed.
+2. LinkyTime deletes the module and saves the changes.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The module list is empty.
+
+    Use case ends.
+
+* 1b. The given index is invalid.
+  * 1b1. LinkyTime shows an error message stating that the given index is invalid.
+
+    Use case resumes at step 1.
+
+* 1c. The module has associated meetings in the meeting list.
+  * 1c1. LinkyTime shows an error message stating that the module cannot be deleted due to associated meetings.
+
+    Use case resumes at step 1.
+
+### UC-011: Delete a module and its associated meetings
+
+**MSS**
+
+1. User requests to force delete a specific module and its associated meetings based on the index from the module list displayed.
+2. LinkyTime deletes the module and its associated meetings and saves the changes.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The module list is empty.
+
+    Use case ends.
+
+* 1b. The given index is invalid.
+  * 1b1. LinkyTime shows an error message stating that the given index is invalid.
+
+    Use case resumes at step 1.
+
+### UC-012: Clear all data
 
 **MSS**
 
@@ -663,7 +766,7 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
-### UC-009: Access help
+### UC-013: Access help
 
 **MSS**
 
