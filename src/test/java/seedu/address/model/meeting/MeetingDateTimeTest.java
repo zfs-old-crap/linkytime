@@ -88,9 +88,10 @@ public class MeetingDateTimeTest {
 
     @Test
     public void testToString() {
-        final MeetingDateTime testMeetingDateTime = new MeetingDateTime("04-05-2022 1035");
-        final String expected = "Wed, 4 May 2022, 10:35am";
-        assertEquals(testMeetingDateTime.toString(), testMeetingDateTime.toString());
+        final LocalDateTime testDateTime = makeLocalDateTime("04-05-2022 1035");
+        final MeetingDateTime testMeetingDateTime = new MeetingDateTime(testDateTime);
+        final String expected = testDateTime.format(MeetingDateTime.DISPLAY_FORMAT);
+        assertEquals(expected, testMeetingDateTime.toString());
     }
 
     @Test
