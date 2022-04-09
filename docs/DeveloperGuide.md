@@ -498,7 +498,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Use cases
+## **Use cases**
 
 For all use cases below, the **System** is `LinkyTime` and the **Actor** is the `user`, unless specified otherwise.
 All use cases are prefixed with `UC`, followed by a three-digit use case number.
