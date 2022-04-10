@@ -852,50 +852,51 @@ testers are expected to do more *exploratory* testing.
 
 #### Adding Meetings
 
-1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`<br>
-   Prerequisites:
+1. Adding a meeting
+   1. Prerequisites:
       1. There is no other meetings with the exact same fields.
-      2. There is one module in the module list.<br>
-   Expected: Meeting is added.
-
-2. Incorrect commands:
-   1. Duplicate meeting<br>
-      Prerequisite:
-         1. The test case command was just entered.<br>
-      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   2. Incorrect name<br>
-      Command: `add n/Lectur$ u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   3. Incorrect url<br>
-      Command: `add n/Lecture u/zoom d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   4. Incorrect date<br>
-      Command: `add n/Lecture u/https://www.zoom.com d/40-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   5. Incorrect time<br>
-      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 2500 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   6. Incorrect duration<br>
-      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/25 m/1 r/Y t/recorded t/lecturequiz`.
-   7. Incorrect module index<br>
-      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/10 r/Y t/recorded t/lecturequiz`.
-   8. Incorrect recurrence<br>
-      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/A t/recorded t/lecturequiz`.
-   9. Incorrect tag<br>
-      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/!ecturequiz`.<br>
+      2. There is one module in the module list.
+   2. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`<br>
+      Expected: Meeting is added.
    
-   For each of the incorrect commands, there will be an error message included on how to rectify the issue.
+2. Duplicate meeting
+   1. Prerequisites:
+      1. The test case command was just entered.
+   2. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+3. Incorrect name
+   1. Test case: `add n/Lectur$ u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+4. Incorrect url
+   1. Test case: `add n/Lecture u/zoom d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+5. Incorrect date
+   1. Test case: `add n/Lecture u/https://www.zoom.com d/40-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+6. Incorrect time
+   1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 2500 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+7. Incorrect duration
+   1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/25 m/1 r/Y t/recorded t/lecturequiz`.
+8. Incorrect module index
+   1. Prerequisites:
+      1. There is only 1 module in the module list.
+   2. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/10 r/Y t/recorded t/lecturequiz`.
+9. Incorrect recurrence
+   1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/A t/recorded t/lecturequiz`.
+10. Incorrect tag 
+    1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/!ecturequiz`.<br>
+    For each of the incorrect commands, there will be an error message included on how to rectify the issue.
 
 #### Editing Meetings
 
-1. Test case: `edit 1 n/Lecture`<br>
-   Prerequisites:
+1. Editing a meeting in the meeting list
+   1. Prerequisites:
       1. There is at least one meeting in the meeting list.<br>
-   Expected: The meeting at the first index is edited.
+   2. Test case: `edit 1 n/Lecture`<br>
+      Expected: The meeting at the first index is edited.
 
-2. Incorrect commands:<br>
-   For each field of the meeting, you may refer to [Adding Meetings](#add-meetings) as they are exactly the same.
-   1. Duplicate meeting<br>
-      Prerequisite:
+2. Duplicate meeting<br>
+   1. For each field of the meeting, you may refer to [Adding Meetings](#adding-meetings) as they are exactly the same.
+   2. Prerequisite:
          1. There is a meeting in the meeting list at index 4 which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-         2. There is a meeting in the meeting list at index 1 which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`<br>
-      Command: `edit 1 n/Lecture`<br>
+         2. There is a meeting in the meeting list at index 1 which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+   3. Test case: `edit 1 n/Lecture`<br>
       Expected: There will be an error message included on how to rectify the issue.
 
 #### Deleting Meetings
