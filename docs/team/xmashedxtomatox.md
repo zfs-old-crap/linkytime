@@ -27,10 +27,10 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Refactored AB3 base code and test code to work with LinkyTime (Pull requests [\#62](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/62), [\#85](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/85))
-    * Updated the base GUI to work with LinkyTime data (Pull requests [\#60](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/60))
+    * Updated the base GUI to work with LinkyTime data (Pull request [\#60](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/60))
     * Wrote additional tests for existing features (Pull requests [\#78](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/78), [\#187](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/187), [\#188](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/188))
-    * Added GUI for users to differentiate list and archive (Pull requests [\#127](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/127))
-    * Removed legacy or obsolete AB3 content (Pull requests [\#218](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/218))
+    * Added GUI for users to differentiate list and archive (Pull request [\#127](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/127))
+    * Removed legacy or obsolete AB3 content (Pull request [\#218](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/218))
 
 * **Project Management**:
     * Maintained team [weekly meeting notes](https://docs.google.com/document/d/1blOVPpajNMHmHRSajK4t9cl0r2PwMiO2j7FF4Xy-pO8/edit?usp=sharing)
@@ -40,15 +40,15 @@ Given below are my contributions to the project.
   
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `list` (Pull requests [\#25](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/25))
-        * Added the `Using LinkyTime` section (Pull requests [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123/files))
+        * Added documentation for the features `list` (Pull request [\#25](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/25))
+        * Added the `Using LinkyTime` section (Pull request [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123/files))
     * Developer Guide:
-        * Added implementation details of the `list` and `archive` feature (Pull requests [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197))
+        * Added implementation details of the `list` and `archive` feature (Pull request [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197))
         * Collaborated with teammates on the DG using VSCode live share (Pull request [#10](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/10))
-        * Added general implementation details of Commands that uses parser and Commands that don't (Pull requests [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197))
-        * Updated logic component diagram (Pull requests [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197))
-        * Added manual testing steps for list, archive and auto-sort meetings (Pull requests [\#200](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/200))
-        * Added section for gui, unit test and auto-sort meetings in effort appendix (Pull requests [\#210](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/210))
+        * Added general implementation details of Commands that uses parser and Commands that don't (Pull request [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197))
+        * Updated logic component diagram (Pull request [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197))
+        * Added manual testing steps for list, archive and auto-sort meetings (Pull request [\#200](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/200))
+        * Added section for gui, unit test and auto-sort meetings in effort appendix (Pull request [\#210](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/210))
     * Created demo video segments for list, archive and auto-sort meetings
     * Compiled teammates' demo video segments for the final demo video
 
