@@ -5,7 +5,7 @@ title: GuanZong's Project Portfolio Page
 
 ### Project: LinkyTime
 
-**LinkyTime** is a desktop application for NUS Computer Science students to manage their online meeting links. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+**LinkyTime** is a desktop application for NUS Computer Science students to manage their online meeting links. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 13 kLoC.
 
 Given below are my contributions to the project.
 

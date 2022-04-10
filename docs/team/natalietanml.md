@@ -5,7 +5,7 @@ title: Natalie's Project Portfolio Page
 
 ### Project: LinkyTime
 
-**LinkyTime** is a desktop application for NUS Computer Science students to manage their online meeting links. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 12k LoC.
+**LinkyTime** is a desktop application for NUS Computer Science students to manage their online meeting links. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 13 kLoC.
 
 Given below are my contributions to the project.
 
@@ -57,5 +57,6 @@ Given below are my contributions to the project.
     * Enabled assertions. ([\#99](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/99))
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#59](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/59), [\#63](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/63), [\#91](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/91), [\#108](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/108); full list of [PRs reviewed](https://github.com/AY2122S2-CS2103T-T13-3/tp/pulls?q=is%3Apr+reviewed-by%3ANatalieTanML+)
+    * PRs reviewed (with non-trivial review comments): [\#59](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/59), [\#63](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/63), [\#91](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/91), [\#108](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/108)
+    * Full list of [PRs reviewed](https://github.com/AY2122S2-CS2103T-T13-3/tp/pulls?q=is%3Apr+reviewed-by%3ANatalieTanML+)
     * Bug reports made during PE-D for another team were fully accepted, including a high severity functionality bug: [PE-D](https://github.com/NatalieTanML/ped/issues), [\#17](https://github.com/NatalieTanML/ped/issues/17)
