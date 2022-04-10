@@ -893,6 +893,30 @@ testers are expected to do more *exploratory* testing.
       Command: `edit 1 n/Lecture`<br>
       Expected: There will be an error message included on how to rectify the issue.
 
+#### Deleting Meetings
+1. Deleting the first meeting in the currently shown meeting list.
+   1. Prerequisite: There is at least one meeting in the meeting list currently shown.
+   2. Test case: `delete 1`<br>
+      Expected: The first meeting in the currently shown meeting list is deleted.
+
+2. Deleting with an non-integer index.
+   1. Test case: `delete abc`<br>
+      Expected: Invalid command format error message shown. No meetings deleted.
+
+3. Deleting without an index.
+   1. Test case: `delete`<br>
+      Expected: Invalid command format error message shown. No meetings deleted.
+
+3. Deleting with an out-of-bounds index.
+   1. Prerequisite: There is at least one meeting in the meeting list currently shown.
+   2. Test case: `delete [index]`, where `[index]` is an integer greater than the number of meetings in the currently shown list.<br>
+      Expected: Invalid index error message shown. No meetings deleted.
+
+4. Deleting with a negative index.
+   1. Prerequisite: There is at least one meeting in the meeting list currently shown.
+   2. Test case: `delete [index]`, where `[index]` is a negative integer.<br>
+      Expected: Invalid command format error message shown. No meetings deleted.
+
 #### List upcoming meetings
 
 1. Listing all upcoming meetings with multiple meetings in the meeting list.
