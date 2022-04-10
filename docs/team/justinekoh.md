@@ -58,7 +58,7 @@ Given below are my contributions to the project.
           command. [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123)
     * Developer Guide:
         * Added implementation details of the `delete meeting`, `find meeting` and `open meeting`.
-          feature. [\#111](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/111), [\#72](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/112), [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
+          feature. [\#111](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/111), [\#112](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/112), [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
         * Added UML Sequence Diagrams for `delete meeting`, `find meeting` and `open meeting` features. [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
         * Added UML Sequence Diagrams for `delete module` feature. [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
         * Updated UML Activity Diagram for `delete module` feature. [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
