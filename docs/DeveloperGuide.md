@@ -836,17 +836,14 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample meetings. The window size may not be optimum.
+   1. Download the jar file and copy into an empty folder.
+   2. Double-click the jar file.<br>
+      Expected: Shows the GUI with a set of sample meetings and modules. The window size may not be optimum.
 
 2. Saving window preferences
-
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
    2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 ### Meeting
 
@@ -880,8 +877,8 @@ testers are expected to do more *exploratory* testing.
 9. Incorrect recurrence
    1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/A t/recorded t/lecturequiz`.
 10. Incorrect tag 
-    1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/!ecturequiz`.<br>
-    For each of the incorrect commands, there will be an error message included on how to rectify the issue.
+   1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/!ecturequiz`.<br>
+   For each of the incorrect commands, there will be an error message included on how to rectify the issue.
 
 #### Editing Meetings
 
@@ -987,14 +984,14 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: 
       1. List all archived meetings using the `archive` command. 
       2. Prerequisites of [Adding Meetings](#adding-meetings).
-   2. Test case: Add a meeting that is ongoing or upcoming. <br>
+   2. Test case: Add a meeting that is ongoing or upcoming.<br>
       Expected: No new meeting should be displayed.
    
 5. Editing the date of a completed meeting, updating it to an upcoming meeting.
    1. Prerequisites: 
       1. List all archived meetings using the `archive` command. 
       2. Prerequisites of [Editing Meetings](#editing-meetings).
-   2. Test case: Edit an existing archived meeting, updating its date to make it an upcoming meeting. <br>
+   2. Test case: Edit an existing archived meeting, updating its date to make it an upcoming meeting.<br>
       Expected: There should be one less meeting in the meeting list shown.
 
 #### Finding Meetings
@@ -1117,17 +1114,17 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: 
       1. There is no other module with the exact same name.
    2. Test case: `madd n/CS2103T`<br>
-   Expected: Module is added.
+      Expected: Module is added.
 
 2. Adding a duplicate module.
    1. Prerequisites: 
       1. A module with the name `CS2103T` exists in the module list.
    2. Test case: `madd n/CS2103T`<br>
-   Expected: Duplicate module error message shown. No new modules created.
+      Expected: Duplicate module error message shown. No new modules created.
 
 3. Adding a module with an invalid name.
    1. Test case: `madd n/C$2!03&`<br>
-   Expected: Invalid name error message shown. No new modules created.
+      Expected: Invalid name error message shown. No new modules created.
 
 #### Editing Modules
 
@@ -1135,31 +1132,31 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: 
       1. There is at least one module displayed and no existing module named `CS2103T`.
    2. Test case: `medit 1 n/CS2103T`<br>
-   Expected: Module at the first index is edited.
+      Expected: Module at the first index is edited.
 
 2. Editing an existing module to have the same name as another module.
    1. Prerequisites: 
       1. There is a module at the second index with the name `CS2103T`.
    2. Test case: `medit 1 n/CS2103T`<br>
-   Expected: Duplicate module error message shown. No modules edited.
+      Expected: Duplicate module error message shown. No modules edited.
 
 3. Editing an existing module to have an invalid name.
    1. Prerequisites: 
       1. There is at least one module displayed.
    2. Test case: `medit 1 n/C$2!03&`<br>
-   Expected: Invalid name error message shown. No modules edited.
+      Expected: Invalid name error message shown. No modules edited.
 
 4. Editing a module with a non-integer index.
    1. Prerequisites: 
       1. There is at least one module displayed.
    2. Test case: `medit abc n/C$2!03&`<br>
-   Expected: Invalid command format error message shown.  No modules edited.
+      Expected: Invalid command format error message shown.  No modules edited.
 
 5. Editing a module with an out-of-bounds index.
    1. Prerequisites: 
       1. There is at least one module displayed.
    2. Test case: `medit 0 n/C$2!03&`<br>
-   Expected: Invalid index error message shown. No modules edited.
+      Expected: Invalid index error message shown. No modules edited.
 
 #### Deleting Modules
 
@@ -1167,25 +1164,25 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: 
       1. There is at least one module displayed and the module has no associated meetings.
    2. Test case: `mdelete 1`<br>
-   Expected: Module at the first index is deleted.
+      Expected: Module at the first index is deleted.
 
 2. Deleting a module with a non-integer index.
    1. Prerequisites: 
       1. There is at least one module displayed.
    2. Test case: `mdelete abc`<br>
-   Expected: Invalid command format error message shown. No modules deleted.
+      Expected: Invalid command format error message shown. No modules deleted.
 
 3. Deleting a module with an out-of-bounds index.
    1. Prerequisites: 
       1. There is at least one module displayed.
    2. Test case: `mdelete 0`<br>
-   Expected: Invalid index error message shown. No modules deleted.
+      Expected: Invalid index error message shown. No modules deleted.
 
 4. Deleting a module without specifying an index.
    1. Prerequisites: 
       1. There is at least one module displayed.
    2. Test case: `mdelete`<br>
-   Expected: Invalid command format error message shown. No modules deleted.
+      Expected: Invalid command format error message shown. No modules deleted.
 
 #### Modules sorted alphabetically
 
