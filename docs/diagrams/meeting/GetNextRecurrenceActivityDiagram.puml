@@ -11,15 +11,13 @@ if () then ([Now <= Recurring end datetime])
 :Return next recurring start
 datetime by adding weeks
 elapsed to start datetime;
-stop
 else ([else])
 :Return next recurring start datetime
 by adding (weeks elapsed + 1 week)
 to start datetime;
-stop
 endif
 else ([else])
 :Return meeting's start datetime;
-stop
 endif
+stop
 @enduml
