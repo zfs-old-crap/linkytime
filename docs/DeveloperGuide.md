@@ -884,11 +884,11 @@ testers are expected to do more *exploratory* testing.
       Expected: The meeting at the first index is edited.
 
 2. Duplicate meeting<br>
-   1. For each field of the meeting, you may refer to [Adding Meetings](#addings-meetings) as they are exactly the same.
+   1. For each field of the meeting, you may refer to [Adding Meetings](#adding-meetings) as they are exactly the same.
    2.Prerequisite:
          1. There is a meeting in the meeting list at index 4 which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
          2. There is a meeting in the meeting list at index 1 which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   2. Test case: `edit 1 n/Lecture`<br>
+   3. Test case: `edit 1 n/Lecture`<br>
       Expected: There will be an error message included on how to rectify the issue.
 
 #### List upcoming meetings
