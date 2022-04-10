@@ -971,6 +971,30 @@ testers are expected to do more *exploratory* testing.
     2. Test case: Edit an existing archived meeting, updating its date to make it an upcoming meeting. <br>
        Expected: There should be one less meeting in the meeting list shown.
 
+#### Opening Meetings
+1. Opening the first meeting in the currently shown meeting list.
+   1. Prerequisite: There is at least one meeting in the meeting list currently shown. The testing device is compatible with `java.awt.Desktop` and has desktop capabilities.
+   2. Test case: `open 1`<br>
+      Expected: The URL of the first meeting in the currently shown meeting list is opened in the device default browser.
+
+2. Opening with an non-integer index.
+   1. Test case: `open abc`<br>
+      Expected: Invalid command format error message shown. No meetings opened.
+
+3. Opening without an index.
+   1. Test case: `open`<br>
+      Expected: Invalid command format error message shown. No meetings opened.
+
+3. Opening with an out-of-bounds index.
+   1. Prerequisite: There is at least one meeting in the meeting list currently shown.
+   2. Test case: `open [index]`, where `[index]` is an integer greater than the number of meetings in the currently shown list.<br>
+      Expected: Invalid index error message shown. No meetings opened.
+
+4. Opening with a negative index.
+   1. Prerequisite: There is at least one meeting in the meeting list currently shown.
+   2. Test case: `open [index]`, where `[index]` is a negative integer.<br>
+      Expected: Invalid command format error message shown. No meetings opened.
+
 #### Meetings sorted chronologically
 
 1. Adding a meeting while the meeting list is shown.
@@ -982,23 +1006,6 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all upcoming/archived meetings with the `list` or `archive` command. Prerequisite of [editing meetings](#edit-meetings).
    2. Test case: Edit the date of a meeting such that it is still displayable by the current meeting list. e.g. If the meeting list is showing upcoming meetings, then the edited meeting should still be an upcoming meeting and vice versa.<br>
       Expected: The meetings in the meeting list are still displayed in chronological order.
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Module
 
