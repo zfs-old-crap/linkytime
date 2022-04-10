@@ -16,9 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.meeting.exceptions.InvalidDateTimeException;
 
-/**
- * This class is a placeholder for MeetingDateTimeTest. For reference please refer to the obsolete package.
- */
 public class MeetingDateTimeTest {
     // Null meeting date time and empty string.
     final List<String> nullAndEmptyDateTimes = Arrays.asList("", null);
