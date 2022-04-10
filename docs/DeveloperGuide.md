@@ -1092,10 +1092,10 @@ the Java AWT library.
 5. List and Archive
 
 To ensure that our users are able to access meeting information that is relevant at the instance they’re using LinkyTime, our application
-defaults to showing meetings that are either ongoing or coming up. This would mean that non-recurring meetings that have elapsed would be 
+defaults to showing meetings that are either ongoing or coming up. This would mean that non-recurring meetings that have elapsed would be
 hidden, and possibly be inaccessible. To balance the need to show our users the most up-to-date information while not restricting any valid
-use they might have with the outdated ones, our `Model` enforces one of two invariants on our `filteredMeetingList`. This means that at any one time, 
-our `filteredMeetingList` either contains meetings that have elapsed, or meetings that are ongoing or coming up. The toggling of this invariant is 
-also exposed through our `Model` interface, which our `list` command leverages on to show all ongoing and upcoming meetings. Likewise, our `archive` command 
-leverages on that as well to show all elapsed non-recurring meetings. In turn, this allows us to indicate to our users if they’re looking at elapsed or 
+use they might have with the outdated ones, our `Model` enforces one of two invariants on our `filteredMeetingList`. This means that at any one time,
+our `filteredMeetingList` either contains meetings that have elapsed, or meetings that are ongoing or coming up. The toggling of this invariant is
+also exposed through our `Model` interface, which our `list` command leverages on to show all ongoing and upcoming meetings. Likewise, our `archive` command
+leverages on that as well to show all elapsed non-recurring meetings. In turn, this allows us to indicate to our users if they’re looking at elapsed or
 ongoing/upcoming meetings for a better user experience.
