@@ -14,7 +14,7 @@ alt isForced
     DeleteModuleCommand -> DeleteModuleCommand : deleteAssociatedMeetings(model, moduleToDelete)
     activate DeleteModuleCommand
 
-    loop has associated meetings
+    loop hasAssociatedMeetings
         DeleteModuleCommand -> Model : deleteMeeting(associatedMeeting)
         activate Model
 
