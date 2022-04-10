@@ -45,7 +45,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Added a force delete functionality for module delete
       command [\#122](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/122), with test cases. [\#199](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/199)
-    * Wrote comprehensive unit and integration test cases for `delete meeting`, `find meeting` and `open meeting` features. [\#63](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/63) [\#86](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/86) [\#94](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/94)
+    * Wrote comprehensive unit and integration test cases for `delete meeting`, `find meeting` and `open meeting` features. [\#63](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/63), [\#86](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/86), [\#94](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/94)
     * Wrote comprehensive test cases for `Meeting`, `MeetingUrl` and `UniqueMeetingList` classes of the application `Model`. [\#202](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/202)
 
 * **Documentation**:
