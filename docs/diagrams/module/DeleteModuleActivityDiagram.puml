@@ -7,6 +7,11 @@ if () then ([index parameter is valid])
 :Delete Module
 matching given index;
 if () then ([Module with given index exists])
+if () then ([isForced])
+: Delete all associated meetings;
+: Delete module from LinkyTime;
+: Show success message to user;
+else ([else])
 :Check if there are
 meetings under this module;
 if () then ([No meetings associated])
@@ -25,6 +30,7 @@ message to user;
 else ([else])
 :Show Delete restricted
 error to user;
+endif
 endif
 else ([else])
 :Show Module not found

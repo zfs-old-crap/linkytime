@@ -48,7 +48,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* At shut down: Shuts down the components and invokes clean-up methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -242,7 +242,7 @@ The `XYZCommand` then creates a successful `CommandResult` and returns it to the
 #### List Meetings feature
 This section explains the implementation of the List Meetings feature via the `list` command.
 The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.
-It is a command that [does not require a parser](#commands-without-a-parser). 
+This command [does not require a parser](#commands-without-a-parser). 
 
 Below is the sequence diagram reference frame for the execution of `ListMeetingCommand`.
 
@@ -255,7 +255,7 @@ Step 2:
 The `ListMeetingCommand` then calls `Model::showCompletedMeetings` to update the meeting list to show only upcoming meetings.
 
 Step 3:
-The `ListMeetingCommand` then continues its execution as defined by [this](#Commands-without-a-parser) sequence diagram.
+The `ListMeetingCommand` then continues its execution as defined by [this](#commands-without-a-parser) sequence diagram.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListMeetingCommand` should continue out of this reference frame, but due to a limitation of PlantUML, the lifeline ends in this diagram.
 </div>
@@ -283,30 +283,22 @@ This section explains the implementation of the Add Meeting feature via the `add
 The `AddMeetingCommand` causes the specified meeting to be added to the application.
 This command requires several compulsory fields such as the meeting name, URL, date time, duration, module, and whether it is recurring.
 There is only one optional field which is the tags of the meeting.
-It is a command that [requires a parser](#commands-with-a-parser).
+This command [requires a parser](#commands-with-a-parser).
 
 Below is the sequence diagram reference frame for the execution of `AddMeetingCommand`.
 
 ![`AddMeetingCommand` sequence diagram](images/AddMeetingSequenceDiagramReferenceFrame.png)
 
 Step 1:
-The user enters the command for adding a meeting, e.g. `add n/Lecture ...`
-
-Step 2:
-The user input is parsed through the `LinkyTimeParser`, which will then pass the user input to `AddMeetingCommandParser`
-to check if the user input is valid.
-
-Step 3:
-Once the user input is successfully parsed, the `AddMeetingCommandParser` creates a `AddMeetingCommand` containing the
-meeting to be added.
-
-Step 4:
-The `LogicManager` subsequently invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the
+The `LogicManager` invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the
 new meeting into the list.
 
-Step 5:
+Step 2:
 The `Model` will then call its own `updateFilteredMeetingList` method in order to update the model's filter to display
 all meetings.
+
+Step 3:
+The `AddMeetingCommand` then continues its execution as defined by [this](#commands-with-a-parser) sequence diagram.
 
 ##### Design considerations:
 
@@ -323,32 +315,21 @@ all meetings.
 
 This section explains the implementation of the Delete Meeting feature via the `delete` command.
 The `DeleteMeetingCommand` removes the meeting with the given index from the meeting list. This command requires a
-single field: the index of the meeting to be deleted.
-It is a command that [requires a parser](#commands-with-a-parser).
+single field: the index of the meeting to be deleted. 
+This command [requires a parser](#commands-with-a-parser).
 
 Below is the sequence diagram reference frame for the execution of an `DeleteMeetingCommand`.
 
 ![`DeleteMeetingCommand` Sequence Diagram](images/DeleteMeetingSequenceDiagramReferenceFrame.png)
 
 Step 1:
-The user enters a command for deleting a meeting, e.g. `delete 1`.
+The `LogicManager` calls `DeleteMeetingCommand::execute` with the returned `DeleteMeetingCommand`.
 
 Step 2:
-The user input is passed to `LogicManager`, which passes the user input to `LinkyTimeParser` to parse and identify the
-command type.
+The `DeleteMeetingCommand` then calls `Model::deleteMeeting` to remove the target meeting from the list.
 
 Step 3:
-`LinkyTimeParser` passes the user input to `DeleteMeetingCommandParser` to check if the user input is valid.
-
-Step 4:
-`DeleteMeetingCommandParser` parses the user input, creates a new `DeleteMeetingCommand` and returns it
-to `LogicManager`.
-
-Step 5:
-The `LogicManager` calls `DeleteMeetingCommand::execute` which calls `Model::deleteMeeting`.
-
-Step 6:
-The `DeleteMeetingCommand` creates a `CommandResult` and passes it back to the `LogicManager`.
+The `DeleteMeetingCommand` then continues its execution as defined by [this](#commands-with-a-parser) sequence diagram.
 
 #### Design considerations:
 
@@ -361,33 +342,20 @@ The `DeleteMeetingCommand` creates a `CommandResult` and passes it back to the `
 
 This section explains the implementation of the Find Meeting feature via the `find` command. The `FindMeetingCommand`
 causes the GUI to only show meetings that matches the given keywords.
-It is a command that [requires a parser](#commands-with-a-parser).
+This command [requires a parser](#commands-with-a-parser).
 
 Below is the sequence diagram reference frame for the execution of the `FindMeetingCommand`.
 
 ![`FindMeetingCommand` sequence diagram](images/FindMeetingSequenceDiagramReferenceFrame.png)
 
 Step 1:
-The user enters the command for finding meetings, e.g. `find cs2103t tutorial`.
+`LogicManager` calls `FindMeetingCommand::execute`.
 
 Step 2:
-The user input is passed to the `LogicManager`, which passes it to the `LinkyTimeParser`.
+`FindMeetingCommand` calls `Model::updateFilteredMeetingList` with a predicate that describes the criteria for the meetings to be shown.
 
 Step 3:
-`LinkyTimeParser` consumes the user input then passes the remaining input to a new `FindMeetingCommandParser`.
-
-Step 4:
-`FindMeetingCommandParser` consumes the user input and creates a new `FindMeetingCommand` with a predicate that
-describes the criteria for the meetings to be shown.
-
-Step 5:
-The `FindMeetingCommand` is passed to `LogicManager`.
-
-Step 6:
-`LogicManager` calls `FindMeetingCommand::execute`, which calls `Model::updateFilteredMeetingList` with the predicate.
-
-Step 7:
-The `FindMeetingCommand` creates a new `CommandResult` and returns it to the `LogicManager`.
+The `FindMeetingCommand` then continues its execution as defined by [this](#commands-with-a-parser) sequence diagram.
 
 ##### Design considerations:
 
@@ -407,6 +375,39 @@ The `FindMeetingCommand` creates a new `CommandResult` and returns it to the `Lo
     * Pros: Command can be used to find a diverse set of meetings that users may be interested in.
     * Cons: Command cannot be used to narrow down the search; adding more keywords may increase the number of meetings
       returned.
+
+#### Open Meeting Feature
+
+This section explains the implementation of the Open Meeting feature via the `open` command. The `OpenMeetingCommand` causes the application to open the given link in the desktop default browser. This is a command that [requires a parser](#commands-with-a-parser).
+
+Below is the sequence diagram reference frame for the execution of `OpenMeetingCommand`.
+
+![`OpenMeetingCommand` Sequence Diagram](images/OpenMeetingSequenceDiagramReferenceFrame.png)
+
+Step 1:
+`LogicManager` calls `OpenMeetingCommand::execute`.
+
+Step 2:
+`OpenMeetingCommand` creates a new `UrlOpenerManager` and calls `OpenMeetingCommand::executeWithUrlOpener` with it.
+
+Step 3:
+`OpenMeetingCommand` gets the `Url` from the `Model` and calls `UrlOpenerManager::open` with it.
+
+Step 4:
+The `OpenMeetingCommand` then continues its execution as defined by [this](#commands-with-a-parser) sequence diagram.
+
+#### Design considerations:
+
+**Aspect: Which component to handle desktop capabilities:**
+
+* **Alternative 1 (current choice):** Create a `UrlOpener` interface and a `UrlOpenerManager` to handle communication with the desktop.
+    * Pros: Ease of testing as the behaviour of the desktop can be mocked using stubs. 
+    * Cons: Additional complexity and more areas for bugs.
+
+* **Alternative 2:** Handle all communication with the desktop within `OpenCommand`.
+    * Pros: Simpler implementation with less components to maintain.
+    * Cons: Much harder to decouple the command logic from the behaviour of the desktop, which may differ according to the environment in which the tests are run. For example, when running tests meant for desktops on GitHub actions (a headless environment without desktop/browser capabilities), the tests for this command will fail.
+
 
 ### Modules
 
@@ -442,6 +443,7 @@ This section explains the implementation of the Delete Module feature via the `m
 The `DeleteModuleCommand` causes the specified module to be deleted from the application.
 
 If there are meetings that are tagged under this module, the command execution is blocked and an error message is displayed to the user.
+This command can be forced, see [below](#force-delete-module-feature).
 
 This process is summarized in the diagram below.
 
@@ -450,6 +452,10 @@ This process is summarized in the diagram below.
 #### Force Delete Module feature
 
 This feature is an extension to the existing Delete Module feature. By supplying an additional force-delete flag (`f/`) to the `DeleteModuleCommand` parameters, this would override the delete restriction and remove the selected modules and its associated meetings.
+
+This command [requires a parser](#commands-with-a-parser). The sequence diagram for the `DeleteModuleCommand` is as shown below.
+
+![`DeleteCommand` sequence diagram](images/DeleteModuleSequenceDiagramReferenceFrame.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -892,6 +898,33 @@ testers are expected to do more *exploratory* testing.
       Command: `edit 1 n/Lecture`<br>
       Expected: There will be an error message included on how to rectify the issue.
 
+#### Deleting Meetings
+1. Deleting the first meeting in the currently shown meeting list.
+   1. Prerequisites: 
+      1. There is at least one meeting in the meeting list currently shown.
+   2. Test case: `delete 1`<br>
+      Expected: The first meeting in the currently shown meeting list is deleted.
+
+2. Deleting with an non-integer index.
+   1. Test case: `delete abc`<br>
+      Expected: Invalid command format error message shown. No meetings deleted.
+
+3. Deleting without an index.
+   1. Test case: `delete`<br>
+      Expected: Invalid command format error message shown. No meetings deleted.
+
+4. Deleting with an out-of-bounds index.
+   1. Prerequisites: 
+      1. There is at least one meeting in the meeting list currently shown.
+   2. Test case: `delete [index]`, where `[index]` is an integer greater than the number of meetings in the currently shown list.<br>
+      Expected: Invalid index error message shown. No meetings deleted.
+
+5. Deleting with a negative index.
+   1. Prerequisites: 
+      1. There is at least one meeting in the meeting list currently shown.
+   2. Test case: `delete [index]`, where `[index]` is a negative integer.<br>
+      Expected: Invalid command format error message shown. No meetings deleted.
+
 #### List upcoming meetings
 
 1. Listing all upcoming meetings with multiple meetings in the meeting list.
@@ -961,6 +994,97 @@ testers are expected to do more *exploratory* testing.
     2. Test case: Edit an existing archived meeting, updating its date to make it an upcoming meeting. <br>
        Expected: There should be one less meeting in the meeting list shown.
 
+#### Finding Meetings
+1. Finding a meeting in the meeting list by singular name.
+   1. Prerequisites:
+      1. There is a module in the module list at index 1 named `CS2101`.
+      2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
+      4. There are no other meetings in the meeting list.
+   2. Test case: `find Lecture`<br>
+      Expected: The first meeting above will be displayed.
+      Test case: `find Tutorial`<br>
+      Expected: The second meeting above will be displayed.
+
+2. Finding a meeting in the meeting list by singular tag.
+   1. Prerequisites:
+      1. There is a module in the module list at index 1 named `CS2101`.
+      2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
+      4. There are no other meetings in the meeting list.
+   2. Test case: `find tutorialquiz`<br>
+      Expected: The second meeting above will be displayed.
+      Test case: `find lecturequiz`<br>
+      Expected: The first meeting above will be displayed.
+      Test case: `find recorded`<br>
+      Expected: Both meetings above will be displayed.
+
+3. Finding a meeting in the meeting list by singular module.
+   1. Prerequisites:
+      1. There is a module in the module list at index 1 named `CS2101` and at index 2 named `CS2103T`.
+      2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
+      4. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/2 r/Y t/recorded t/lecturequiz`.
+      5. There are no other meetings in the meeting list.
+   2. Test case: `find CS2101`<br>
+      Expected: The first and second meetings above will be displayed.
+      Test case: `find CS2103` (Partial match)<br>
+      Expected: The third meeting above will be displayed.
+
+4. Finding a meeting in the meeting list by a combination of names, modules and tags.
+   1. Prerequisites:
+      1. There is a module in the module list at index 1 named `CS2101` and at index 2 named `CS2103T`.
+      2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
+      4. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/2 r/Y t/recorded t/lecturequiz`.
+      5. There are no other meetings in the meeting list.
+   2. Test case: `find lecturequiz CS2103T`<br>
+      Expected: The third meeting above will be displayed.
+      Test case: `find recorded CS2101 Lecture`<br>
+      Expected: The first meeting above will be displayed.
+
+5. Finding a meeting in an empty meeting list.
+   1. Prerequisites: There are no meetings in the meeting list.
+   2. Test case: `find this`<br>
+      Expected: No meetings shown.
+
+6. Finding a meeting with keywords that do not fit any meetings.
+   1. Prerequisites:
+      1. There is a module in the module list at index 1 named `CS2101`.
+      2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
+      4. There are no other meetings in the meeting list.
+   2. Test case: `find this that those`<br>
+      Expected: No meeting will be displayed.
+
+7. Finding a meeting without keywords.
+   1. Test case: `find`<br>
+      Expected: Invalid command format error message shown. Displayed meeting list unchanged.
+
+#### Opening Meetings
+1. Opening the first meeting in the currently shown meeting list.
+   1. Prerequisites: There is at least one meeting in the meeting list currently shown. The testing device is compatible with `java.awt.Desktop` and has desktop capabilities.
+   2. Test case: `open 1`<br>
+      Expected: The URL of the first meeting in the currently shown meeting list is opened in the device default browser.
+
+2. Opening with an non-integer index.
+   1. Test case: `open abc`<br>
+      Expected: Invalid command format error message shown. No meetings opened.
+
+3. Opening without an index.
+   1. Test case: `open`<br>
+      Expected: Invalid command format error message shown. No meetings opened.
+
+3. Opening with an out-of-bounds index.
+   1. Prerequisites: There is at least one meeting in the meeting list currently shown.
+   2. Test case: `open [index]`, where `[index]` is an integer greater than the number of meetings in the currently shown list.<br>
+      Expected: Invalid index error message shown. No meetings opened.
+
+4. Opening with a negative index.
+   1. Prerequisites: There is at least one meeting in the meeting list currently shown.
+   2. Test case: `open [index]`, where `[index]` is a negative integer.<br>
+      Expected: Invalid command format error message shown. No meetings opened.
+
 #### Meetings sorted chronologically
 
 1. Adding a meeting while the meeting list is shown.
@@ -976,23 +1100,6 @@ testers are expected to do more *exploratory* testing.
       2. Prerequisites of [Editing Meetings](#editing-meetings).
    2. Test case: Edit the date of a meeting such that it is still displayable by the current meeting list. e.g. If the meeting list is showing upcoming meetings, then the edited meeting should still be an upcoming meeting and vice versa.<br>
       Expected: The meetings in the meeting list are still displayed in chronological order.
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Module
 
