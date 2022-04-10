@@ -5,7 +5,7 @@ title: Justine's Project Portfolio Page
 
 ### Project: LinkyTime
 
-**LinkyTime** is a desktop application for NUS Computer Science students to manage their online meeting links. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+**LinkyTime** is a desktop application for NUS Computer Science students to manage their online meeting links. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 12 kLoC.
 
 Given below are my contributions to the project.
 
@@ -42,26 +42,28 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Added a force delete functionality for module delete
-      command [\#122](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/122)
+      command [\#122](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/122), with test cases. [\#199](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/199)
+    * Wrote unit and integration test cases for `delete meeting`, `find meeting` and `open meeting` features. [\#63](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/63) [\#86](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/86) [\#94](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/94)
+    * Wrote test cases for 
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find`
-          . [\28](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/28)
-          , [\86](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/86)
+        * Added documentation for the features `delete meeting` and `find meeting`
+          . [\#28](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/28)
+          , [\#86](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/86)
         * Added documentation for the `open` feature. [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123)
         * Added documentation for module force delete
           command. [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123)
     * Developer Guide:
-        * Added implementation details of the `delete`
+        * Added implementation details of the `delete meeting`
           feature. [\#111](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/111)
-        * Added implementation details of the `find`
+        * Added implementation details of the `find meeting`
           feature. [\#72](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/112)
-        * Added implementation details of the `open` feature.
-        * Added some Use Cases and User Stories. [\10](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/10)
+        * Added implementation details of the `open meeting` feature. [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
+        * Added some Use Cases and User Stories. [\#10](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/10)
+        * Added UML Sequence Diagrams for `delete meeting`, `find meeting` and `open meeting` features. [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
+        * 
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#128](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/128)
     * Reported bugs and suggestions for other teams in the class (examples:)
-
-* **Tools**:
