@@ -1006,7 +1006,7 @@ testers are expected to do more *exploratory* testing.
       1. There is a module in the module list at index 1 named `CS2101` and at index 2 named `CS2103T`.
       2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
       3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
-      4. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      4. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/2 r/Y t/recorded t/lecturequiz`.
       5. There are no other meetings in the meeting list.
    2. Test case: `find CS2101`<br>
       Expected: The first and second meetings above will be displayed.
