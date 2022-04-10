@@ -242,7 +242,7 @@ The `XYZCommand` then creates a successful `CommandResult` and returns it to the
 #### List Meetings feature
 This section explains the implementation of the List Meetings feature via the `list` command.
 The `ListMeetingCommand` updates the UI to display the details of all upcoming meetings in `LinkyTime`.
-It is a command that [does not require a parser](#Commands-without-a-parser). 
+This command [does not require a parser](#commands-without-a-parser). 
 
 Below is the sequence diagram reference frame for the execution of `ListMeetingCommand`.
 
@@ -283,10 +283,11 @@ This section explains the implementation of the Add Meeting feature via the `add
 The `AddMeetingCommand` causes the specified meeting to be added to the application.
 This command requires several compulsory fields such as the meeting name, URL, date time, duration, module, and whether it is recurring.
 There is only one optional field which is the tags of the meeting.
+This command [requires a parser](#commands-with-a-parser).
 
-Below is the sequence diagram for the execution of `AddMeetingCommand`
+Below is the sequence diagram reference frame for the execution of `AddMeetingCommand`.
 
-![`AddMeetingCommand` sequence diagram](images/AddMeetingSequenceDiagram.png)
+![`AddMeetingCommand` sequence diagram](images/AddMeetingSequenceDiagramReferenceFrame.png)
 
 Step 1:
 The `LogicManager` invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the
@@ -314,7 +315,8 @@ The `AddMeetingCommand` then continues its execution as defined by [this](#comma
 
 This section explains the implementation of the Delete Meeting feature via the `delete` command.
 The `DeleteMeetingCommand` removes the meeting with the given index from the meeting list. This command requires a
-single field: the index of the meeting to be deleted. This command [requires a parser](#commands-with-a-parser).
+single field: the index of the meeting to be deleted. 
+This command [requires a parser](#commands-with-a-parser).
 
 Below is the sequence diagram reference frame for the execution of an `DeleteMeetingCommand`.
 
@@ -340,10 +342,11 @@ The `DeleteMeetingCommand` then continues its execution as defined by [this](#co
 
 This section explains the implementation of the Find Meeting feature via the `find` command. The `FindMeetingCommand`
 causes the GUI to only show meetings that matches the given keywords.
+This command [requires a parser](#commands-with-a-parser).
 
-Below is the sequence diagram for the execution of the `FindMeetingCommand`.
+Below is the sequence diagram reference frame for the execution of the `FindMeetingCommand`.
 
-![`FindMeetingCommand` sequence diagram](images/FindMeetingSequenceDiagram.png)
+![`FindMeetingCommand` sequence diagram](images/FindMeetingSequenceDiagramReferenceFrame.png)
 
 Step 1:
 `LogicManager` calls `FindMeetingCommand::execute`.

@@ -13,6 +13,12 @@ activate DeleteMeetingCommand
 DeleteMeetingCommand -> Model : deleteMeeting(meetingToDelete)
 activate Model
 
+Model -> Model : refreshFilteredMeetingList()
+activate Model
+
+Model ---> Model
+deactivate Model
+
 Model --> DeleteMeetingCommand
 deactivate Model
 
