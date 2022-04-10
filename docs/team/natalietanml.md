@@ -45,7 +45,7 @@ Given below are my contributions to the project.
         * Added explanation and implementation details of the Module class and the design considerations for it ([\#101](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/101))
         * Added implementation details and activity diagram of the `mdelete` feature ([\#101](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/101))
         * Wrote use cases for Module (UC-008 to UC-011)
-        * Added manual testing steps for Module commands ([\#201](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/201))
+        * Added manual testing steps for Module commands ([\#217](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/217))
         * Full list of DG PRs available [here](https://github.com/AY2122S2-CS2103T-T13-3/tp/pulls?q=is%3Apr+dg+author%3ANatalieTanML)
 
 * **Team tasks**:
