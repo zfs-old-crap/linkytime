@@ -1206,3 +1206,11 @@ of code and over 300 automated test cases which covers over 73% of our code.
   * The toggling of this invariant is also exposed through our `Model` interface, which our `list` command leverages on to show all ongoing and upcoming meetings. 
   * Likewise, our `archive` command leverages on that as well to show all elapsed non-recurring meetings. 
   * In turn, this allows us to indicate to our users if they’re looking at elapsed or ongoing/upcoming meetings for a better user experience.
+  
+* **Adding Meeting and Module Models**
+  * To start off our refactoring from AB3's address book to LinkyTime's meeting management, we first had to create the models for `Meeting` and `Module`.
+  * We had to implement models for `MeetingUrl`, `MeetingDateTime`, `MeetingDuration`, etc., in the same package as `Meeting`.
+  * The only reused model was `Tag` and we also adapted `MeetingName` from AB3's `Name`.
+  * For `Module`, we only had to implement one model. However, we decided to implement it in a separate package to follow OOP design principles.
+  * We also had to create unique lists to ensure that there are no duplicates for both `Meeting` and `Module`.
+  * Finally, due to using `Meeting` and `Module`, we had to refactor the majority of the codebase in order to accommodate these changes.
