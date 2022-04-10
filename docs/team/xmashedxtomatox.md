@@ -41,7 +41,7 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `list` [\#25](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/25)
-        * Added the`Using LinkyTime` section [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123/files)
+        * Added the `Using LinkyTime` section [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123/files)
     * Developer Guide:
         * Added implementation details of the `list` and `archive` feature [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197)
         * Collaborated with teammates on the DG using VSCode live share (Pull request [#10](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/10))
