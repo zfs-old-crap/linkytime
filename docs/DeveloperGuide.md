@@ -1079,3 +1079,23 @@ Rather than implementing a sort command for users to sort according to a sort fu
 for the user to have access to a constantly sorted list. As such we implemented it such that the meeting list would be displayed
 chronologically regardless of what filter it current has. This was relatively hard to implement due to the limitations of JavaFX and
 how **AB3** worked with JavaFX. 
+
+4. Opening of Meeting Links
+
+Accessing meeting links is a central use case of LinkyTime, and most conventional applications would achieve that by allowing 
+their users to click on the links presented in the GUI. However, since LinkyTime is a CLI application, we wanted to stay faithful 
+to this mode of user interaction while enabling our users to swiftly and ergonomically open their meeting links. As such, we implemented 
+an `open` command to do just that, and fire up our user’s meeting links in their default web browsers. In addition, this feature does not
+leverage on any existing AB3 implementation. Hence, we had to design our own URL opening abstraction from scratch with the aid of 
+the Java AWT library.
+
+5. List and Archive
+
+To ensure that our users are able to access meeting information that is relevant at the instance they’re using LinkyTime, our application
+defaults to showing meetings that are either ongoing or coming up. This would mean that non-recurring meetings that have elapsed would be 
+hidden, and possibly be inaccessible. To balance the need to show our users the most up-to-date information while not restricting any valid
+use they might have with the outdated ones, our `Model` enforces one of two invariants on our `filteredMeetingList`. This means that at any one time, 
+our `filteredMeetingList` either contains meetings that have elapsed, or meetings that are ongoing or coming up. The toggling of this invariant is 
+also exposed through our `Model` interface, which our `list` command leverages on to show all ongoing and upcoming meetings. Likewise, our `archive` command 
+leverages on that as well to show all elapsed non-recurring meetings. In turn, this allows us to indicate to our users if they’re looking at elapsed or 
+ongoing/upcoming meetings for a better user experience.
