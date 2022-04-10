@@ -890,6 +890,7 @@ testers are expected to do more *exploratory* testing.
       Expected: There will be an error message included on how to rectify the issue.
 
 #### List upcoming meetings
+
 1. Listing all upcoming meetings with multiple meetings in the meeting list.
    1. Prerequisite: There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
    2. Test case: `list`<br>
@@ -906,9 +907,9 @@ testers are expected to do more *exploratory* testing.
       Expected: A new meeting should be displayed.
    
 4. Adding a completed meeting after listing all upcoming meetings.
-    1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [adding meetings](#adding-meetings).
-    2. Test case: Add a meeting that is completed. <br>
-       Expected: No new meeting should be displayed.
+   1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [adding meetings](#adding-meetings).
+   2. Test case: Add a meeting that is completed. <br>
+      Expected: No new meeting should be displayed.
    
 5. Editing the date of an upcoming meeting, updating it to a completed meeting.
    1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [editing meetings](#edit-meetings).
@@ -916,6 +917,7 @@ testers are expected to do more *exploratory* testing.
       Expected: There should be one less meeting in the meeting list shown.
 
 #### List archived meetings
+
 1. Listing all archived meetings with multiple meetings in the meeting list.
     1. Prerequisite: There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
     2. Test case: `archive`<br>
@@ -942,17 +944,16 @@ testers are expected to do more *exploratory* testing.
        Expected: There should be one less meeting in the meeting list shown.
 
 #### Meetings sorted chronologically
+
 1. Adding a meeting while the meeting list is shown.
    1. Prerequisites: List all upcoming/archived meetings with the `list` or `archive` command. Prerequisite of [adding meetings](#adding-meetings).
    2. Test case: Add a meeting that is displayable by the current meeting list. e.g. If the meeting list is showing upcoming meetings, then add an upcoming meeting and vice versa.<br>
       Expected: A new meeting is added and all meetings are still displayed in chronological order.
-      
    
 2. Editing a meeting while the meeting list is shown.
    1. Prerequisites: List all upcoming/archived meetings with the `list` or `archive` command. Prerequisite of [editing meetings](#edit-meetings).
    2. Test case: Edit the date of a meeting such that it is still displayable by the current meeting list. e.g. If the meeting list is showing upcoming meetings, then the edited meeting should still be an upcoming meeting and vice versa.<br>
       Expected: The meetings in the meeting list are still displayed in chronological order.
-   
 
 ### Deleting a person
 
@@ -1022,3 +1023,15 @@ testers are expected to do more *exploratory* testing.
    2. Out of bounds index<br>
       Command: `mdelete 0`<br>
    Expected: An error message indicating the problem is displayed, and how to rectify the issue.
+
+#### Modules sorted alphabetically
+
+1. Adding a module.
+  1. Prerequisites: There is one existing module in the list via the test case [Adding Modules](#adding-modules).
+  2. Test case: `madd n/ACC1701X`<br>
+     Expected: A new module is added and the module list is sorted in alphabetical order, i.e. `ACC1701X` is at index 1, `CS2103T` is at index 2.
+
+2. Editing a module.
+  1. Prerequisites: There are two existing modules in the list via the test case [Modules sorted alphabetically - Adding a module](#modules-sorted-alphabetically).
+  2. Test case: `medit 1 n/CS3203`<br>
+     Expected: The module at index 1 (`ACC1701X`) is edited and the module list is sorted in alphabetical order, i.e. `CS2103T` is at index 1, `CS3203` is at index 2.
