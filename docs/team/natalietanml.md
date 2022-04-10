@@ -44,9 +44,11 @@ Given below are my contributions to the project.
         * Added architecture details and class diagram of the Model component ([\#201](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/201))
         * Added explanation and implementation details of the Module class and the design considerations for it ([\#101](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/101))
         * Added implementation details and activity diagram of the `mdelete` feature ([\#101](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/101))
-        * Wrote use cases for Module (UC-008 to UC-011)
+        * Wrote use cases for Module (UC-008 to UC-011) ([\#201](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/201))
         * Added manual testing steps for Module commands ([\#217](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/217))
+        * Collaborated with teammates on the DG using VSCode Live Share ([#10](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/10))
         * Full list of DG PRs available [here](https://github.com/AY2122S2-CS2103T-T13-3/tp/pulls?q=is%3Apr+dg+author%3ANatalieTanML)
+    * Created demo video segments for add module, edit module, delete module, and module sort
 
 * **Team tasks**:
     * Setup [Codecov](https://app.codecov.io/gh/AY2122S2-CS2103T-T13-3/tp) for the team repo.
