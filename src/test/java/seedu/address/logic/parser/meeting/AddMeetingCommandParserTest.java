@@ -184,7 +184,7 @@ public class AddMeetingCommandParserTest {
         // invalid module
         assertParseFailure(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE
                 + DATETIME_DESC_LECTURE + DURATION_DESC_LECTURE + INVALID_MODULE_DESC
-                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, ParserUtil.MESSAGE_INVALID_INDEX);
+                + RECURRING_DESC_LECTURE + TAG_DESC_LECTURE, "Module " + ParserUtil.MESSAGE_INVALID_INDEX);
 
         // invalid isRecurring
         assertParseFailure(parser, NAME_DESC_LECTURE + URL_DESC_LECTURE
