@@ -895,27 +895,35 @@ testers are expected to do more *exploratory* testing.
 #### List upcoming meetings
 
 1. Listing all upcoming meetings with multiple meetings in the meeting list.
-   1. Prerequisite: There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
+   1. Prerequisite: 
+      1. There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
    2. Test case: `list`<br>
       Expected: Only meetings that are ongoing or upcoming will be shown.
    
 2. Listing all upcoming meetings with no meetings in the meeting list.
-   1. Prerequisite: There are no meetings in the meeting list.
+   1. Prerequisite: 
+      1. There are no meetings in the meeting list.
    2. Test case: `list`<br>
       Expected: No meetings will be shown.
 
 3. Adding a ongoing or upcoming meeting after listing all upcoming meetings.
-   1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [Adding Meetings](#adding-meetings).
+   1. Prerequisite: 
+      1. List all upcoming meetings using the `list` command. 
+      2. Prerequisite of [Adding Meetings](#adding-meetings).
    2. Test case: Add a meeting that is ongoing or upcoming. <br>
       Expected: A new meeting should be displayed.
    
 4. Adding a completed meeting after listing all upcoming meetings.
-   1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [Adding Meetings](#adding-meetings).
+   1. Prerequisite: 
+      1. List all upcoming meetings using the `list` command. 
+      2. Prerequisite of [Adding Meetings](#adding-meetings).
    2. Test case: Add a meeting that is completed. <br>
       Expected: No new meeting should be displayed.
    
 5. Editing the date of an upcoming meeting, updating it to a completed meeting.
-   1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [Editing Meetings](#editing-meetings).
+   1. Prerequisite: 
+      1. List all upcoming meetings using the `list` command. 
+      2. Prerequisite of [Editing Meetings](#editing-meetings).
    2. Test case: Edit an existing upcoming meeting, updating its date to make it a completed meeting. <br>
       Expected: There should be one less meeting in the meeting list shown.
 
