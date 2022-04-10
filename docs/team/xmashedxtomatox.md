@@ -31,6 +31,9 @@ Given below are my contributions to the project.
     * Wrote additional tests for existing features (Pull requests [\#78](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/78), [\#187](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/187), [\#188](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/188))
     * Added GUI for users to differentiate list and archive (Pull requests [\#127](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/127))
 
+* **Project Management**:
+    * Maintained team [weekly meeting notes](https://docs.google.com/document/d/1blOVPpajNMHmHRSajK4t9cl0r2PwMiO2j7FF4Xy-pO8/edit?usp=sharing)
+  
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `list` [\#25](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/25)
@@ -40,10 +43,13 @@ Given below are my contributions to the project.
         * Updated logic component diagram [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197)
         * Added manual testing steps for list, archive and auto-sort meetings [\#200](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/200)
         * Added section for gui, unit test and auto-sort meetings in effort appendix [\#210](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/210)
+    * Created demo video segments for list, archive and auto-sort meetings
+    * Compiled teammates' demo video segments for the final demo video
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#90](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/90), [\#111](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/111)
     * Closed redundant issues after closing PRs [\#56](https://github.com/AY2122S2-CS2103T-T13-3/tp/issues/56), [\#80](https://github.com/AY2122S2-CS2103T-T13-3/tp/issues/80) 
+    * Removed legacy or obsolete AB3 content [\#218](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/218)
     * Added several issues after weekly group discussions 
     * Suggested change in workflow which sped up the overall team progress
 
