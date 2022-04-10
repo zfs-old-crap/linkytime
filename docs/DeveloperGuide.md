@@ -48,7 +48,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* At shut down: Shuts down the components and invokes clean-up methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -970,6 +970,73 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisite: List all archived meetings using the `archive` command. Prerequisite of [editing meetings](#edit-meetings).
     2. Test case: Edit an existing archived meeting, updating its date to make it an upcoming meeting. <br>
        Expected: There should be one less meeting in the meeting list shown.
+
+#### Finding Meetings
+1. Finding a meeting in the meeting list by singular name.
+   1. Prerequisite:
+      1. There is a module in the module list at index 1 named `CS2101`.
+      2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
+      4. There are no other meetings in the meeting list.
+   2. Test case: `find Lecture`<br>
+      Expected: The first meeting above will be displayed.
+      Test case: `find Tutorial`<br>
+      Expected: The second meeting above will be displayed.
+
+2. Finding a meeting in the meeting list by singular tag.
+   1. Prerequisite:
+      1. There is a module in the module list at index 1 named `CS2101`.
+      2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
+      4. There are no other meetings in the meeting list.
+   2. Test case: `find tutorialquiz`<br>
+      Expected: The second meeting above will be displayed.
+      Test case: `find lecturequiz`<br>
+      Expected: The first meeting above will be displayed.
+      Test case: `find recorded`<br>
+      Expected: Both meetings above will be displayed.
+
+3. Finding a meeting in the meeting list by singular module.
+   1. Prerequisite:
+      1. There is a module in the module list at index 1 named `CS2101` and at index 2 named `CS2103T`.
+      2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
+      4. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      5. There are no other meetings in the meeting list.
+   2. Test case: `find CS2101`<br>
+      Expected: The first and second meetings above will be displayed.
+      Test case: `find CS2103` (Partial match)<br>
+      Expected: The third meeting above will be displayed.
+
+4. Finding a meeting in the meeting list by a combination of names, modules and tags.
+   1. Prerequisite:
+      1. There is a module in the module list at index 1 named `CS2101` and at index 2 named `CS2103T`.
+      2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
+      4. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      5. There are no other meetings in the meeting list.
+   2. Test case: `find lecturequiz CS2103T`<br>
+      Expected: The third meeting above will be displayed.
+      Test case: `find recorded CS2101 Lecture`<br>
+      Expected: The first meeting above will be displayed.
+
+5. Finding a meeting in an empty meeting list.
+   1. Prerequisite: There are no meetings in the meeting list.
+   2. Test case: `find this`<br>
+      Expected: No meetings shown.
+
+6. Finding a meeting with keywords that do not fit any meetings.
+   1. Prerequisite:
+      1. There is a module in the module list at index 1 named `CS2101`.
+      2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
+      3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
+      4. There are no other meetings in the meeting list.
+   2. Test case: `find this that those`<br>
+      Expected: No meeting will be displayed.
+
+7. Finding a meeting without keywords.
+   1. Test case: `find`<br>
+      Expected: Invalid command format error message shown. Displayed meeting list unchanged.
 
 #### Opening Meetings
 1. Opening the first meeting in the currently shown meeting list.
