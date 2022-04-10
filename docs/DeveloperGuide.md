@@ -1038,3 +1038,44 @@ testers are expected to do more *exploratory* testing.
   1. Prerequisites: There are two existing modules in the list via the test case [Modules sorted alphabetically - Adding a module](#modules-sorted-alphabetically).
   2. Test case: `medit 1 n/CS3203`<br>
      Expected: The module at index 1 (`ACC1701X`) is edited and the module list is sorted in alphabetical order, i.e. `CS2103T` is at index 1, `CS3203` is at index 2.
+
+## **Appendix: Effort**
+
+If the effort required to create **AB3** is 100, we would place the effort that our group put into **LinkyTime** at 150.
+
+Our group has put in a significant amount effort to morph the model of **AB3** to fit that of **LinkyTime**. On top of that,
+we also implemented several new features that complements our product well. As testament to our effort, we have over 10000 lines
+of code and over 300 automated test cases which covers over 73% of our code.
+
+### Notable Changes
+
+1. Updated GUI
+
+With respect to the GUI components provided by **AB3**, **LinkyTime** has more GUI components in order to support its additional
+features. Each of the GUI components added were properly thought out to be intuitive and provide good UX.
+
+We altered the base UI of **AB3** that was working with `person` to work with `meeting` and its data instead. On top of that
+we added another GUI segment for `module`. Finally, we had to address the issues that was present in the base version
+of **AB3** such as the overflowing of characters.
+
+To ensure that our GUI is intuitive and user-friendly, we had to trial and error for a proper default and minimum window size. 
+
+2. Unit Testing
+
+With respect to unit tests that were present in **AB3**, due to the changes in the model, many of the existing test cases did
+not work for **LinkyTime**. 
+
+Due to the introduction of module and the unique requirement that meetings can't exist without a module
+many of the initial test cases for the different commands had to be tested much more in depth in order to ensure that it worked.
+On top of that because almost all the fields of `Meeting` is different from `Person`, there was a need to recreate test cases
+for each of the fields in `Meeting`. 
+
+The most notable of all the test cases were the ones that involved meeting recurrence. Due to the concept of ongoing/completed meetings,
+we needed to create test cases that worked relative to our current date and time.
+
+3. Auto-sort meeting chronologically
+
+Rather than implementing a sort command for users to sort according to a sort function, we decided it would be much more intuitive
+for the user to have access to a constantly sorted list. As such we implemented it such that the meeting list would be displayed
+chronologically regardless of what filter it current has. This was relatively hard to implement due to the limitations of JavaFX and
+how **AB3** worked with JavaFX. 
