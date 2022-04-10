@@ -28,7 +28,8 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Maintained team [weekly meeting notes](https://docs.google.com/document/d/1blOVPpajNMHmHRSajK4t9cl0r2PwMiO2j7FF4Xy-pO8/edit?usp=sharing).
-    * Created communication channels for team to use.
+    * Created communication channels for team to use. 
+    * Closed redundant PR after reviewing. [\#183](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/183)
 
 * **Enhancements to existing features**:
     * Implemented MeetingDuration for MeetingEntry. (Pull request [\#82](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/82))
@@ -51,4 +52,4 @@ Given below are my contributions to the project.
     
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#108](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/108#discussion_r834411234), [\#94](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/94#discussion_r835257091), [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211#discussion_r846765970)
-    * Closed redundant PR after reviewing. [\#183](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/183)
+
