@@ -37,8 +37,10 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `list` [\#25](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/25)
+        * Added the`Using LinkyTime` section [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123/files)
     * Developer Guide:
         * Added implementation details of the `list` and `archive` feature [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197)
+        * Collaborated with teammates on the DG using VSCode live share (Pull request [#10](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/10))
         * Added general implementation details of Commands that uses parser and Commands that don't [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197)
         * Updated logic component diagram [\#197](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/197)
         * Added manual testing steps for list, archive and auto-sort meetings [\#200](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/200)
@@ -50,7 +52,7 @@ Given below are my contributions to the project.
     * PRs reviewed (with non-trivial review comments): [\#90](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/90), [\#111](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/111)
     * Closed redundant issues after closing PRs [\#56](https://github.com/AY2122S2-CS2103T-T13-3/tp/issues/56), [\#80](https://github.com/AY2122S2-CS2103T-T13-3/tp/issues/80) 
     * Removed legacy or obsolete AB3 content [\#218](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/218)
-    * Added several issues after weekly group discussions 
+    * Added several [issues](https://github.com/AY2122S2-CS2103T-T13-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3AxMashedxTomatox) after weekly group discussions 
     * Suggested change in workflow which sped up the overall team progress
 
 
