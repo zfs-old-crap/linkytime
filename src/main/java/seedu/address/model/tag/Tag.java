@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Tag {
     public static final int MAX_TAG_LENGTH = 25;
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String MESSAGE_LENGTH_EXCEEDED = "Tags names are limited to at most 25 characters each.";
+    public static final String MESSAGE_LENGTH_EXCEEDED = "Tags names are limited to at most %d characters each.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -22,7 +22,7 @@ public class Tag {
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
-        checkArgument(isValidTagLength(tagName), MESSAGE_LENGTH_EXCEEDED);
+        checkArgument(isValidTagLength(tagName), String.format(MESSAGE_LENGTH_EXCEEDED, MAX_TAG_LENGTH));
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
