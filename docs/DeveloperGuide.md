@@ -868,12 +868,14 @@ testers are expected to do more *exploratory* testing.
 7. Incorrect duration
    1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/25 m/1 r/Y t/recorded t/lecturequiz`.
 8. Incorrect module index
-   1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/10 r/Y t/recorded t/lecturequiz`.
+   1. Prerequisites:
+      1. There is only 1 module in the module list.
+   2. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/10 r/Y t/recorded t/lecturequiz`.
 9. Incorrect recurrence
    1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/A t/recorded t/lecturequiz`.
-10. Incorrect tag
-   1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/!ecturequiz`.<br>
-   For each of the incorrect commands, there will be an error message included on how to rectify the issue.
+10. Incorrect tag 
+    1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/!ecturequiz`.<br>
+    For each of the incorrect commands, there will be an error message included on how to rectify the issue.
 
 #### Editing Meetings
 
