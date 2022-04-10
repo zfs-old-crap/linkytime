@@ -860,7 +860,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Incorrect commands:
    1. Duplicate meeting<br>
-      Prerequisite:
+      Prerequisites:
          1. The test case command was just entered.<br>
       Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
    2. Incorrect name<br>
@@ -963,36 +963,36 @@ testers are expected to do more *exploratory* testing.
 #### List archived meetings
 
 1. Listing all archived meetings with multiple meetings in the meeting list.
-    1. Prerequisites: 
-       1. There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
-    2. Test case: `archive`<br>
-       Expected: Only meetings that are completed will be shown.
+   1. Prerequisites: 
+      1. There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
+   2. Test case: `archive`<br>
+      Expected: Only meetings that are completed will be shown.
 
 2. Listing all archived meetings with no meetings in the meeting list.
-    1. Prerequisites: There are no meetings in the meeting list.
-    2. Test case: `archive`<br>
-       Expected: No meetings will be shown.
+   1. Prerequisites: There are no meetings in the meeting list.
+   2. Test case: `archive`<br>
+      Expected: No meetings will be shown.
 
 3. Adding a completed meeting after listing all archived meetings.
-    1. Prerequisites: 
-       1. List all archived meetings using the `archive` command. 
-       2. Prerequisites of [Adding Meetings](#adding-meetings).
-    2. Test case: Add a meeting that is completed. <br>
-       Expected: A new meeting should be displayed.
+   1. Prerequisites: 
+      1. List all archived meetings using the `archive` command. 
+      2. Prerequisites of [Adding Meetings](#adding-meetings).
+   2. Test case: Add a meeting that is completed.<br>
+      Expected: A new meeting should be displayed.
 
 4. Adding a ongoing or upcoming meeting after listing all archived meetings.
-    1. Prerequisites: 
-       1. List all archived meetings using the `archive` command. 
-       2. Prerequisites of [Adding Meetings](#adding-meetings).
-    2. Test case: Add a meeting that is ongoing or upcoming. <br>
-       Expected: No new meeting should be displayed.
+   1. Prerequisites: 
+      1. List all archived meetings using the `archive` command. 
+      2. Prerequisites of [Adding Meetings](#adding-meetings).
+   2. Test case: Add a meeting that is ongoing or upcoming. <br>
+      Expected: No new meeting should be displayed.
    
 5. Editing the date of a completed meeting, updating it to an upcoming meeting.
-    1. Prerequisites: 
-       1. List all archived meetings using the `archive` command. 
-       2. Prerequisites of [Editing Meetings](#editing-meetings).
-    2. Test case: Edit an existing archived meeting, updating its date to make it an upcoming meeting. <br>
-       Expected: There should be one less meeting in the meeting list shown.
+   1. Prerequisites: 
+      1. List all archived meetings using the `archive` command. 
+      2. Prerequisites of [Editing Meetings](#editing-meetings).
+   2. Test case: Edit an existing archived meeting, updating its date to make it an upcoming meeting. <br>
+      Expected: There should be one less meeting in the meeting list shown.
 
 #### Finding Meetings
 1. Finding a meeting in the meeting list by singular name.
@@ -1063,7 +1063,8 @@ testers are expected to do more *exploratory* testing.
 
 #### Opening Meetings
 1. Opening the first meeting in the currently shown meeting list.
-   1. Prerequisites: There is at least one meeting in the meeting list currently shown. The testing device is compatible with `java.awt.Desktop` and has desktop capabilities.
+   1. Prerequisites: 
+      1. There is at least one meeting in the meeting list currently shown. The testing device is compatible with `java.awt.Desktop` and has desktop capabilities.
    2. Test case: `open 1`<br>
       Expected: The URL of the first meeting in the currently shown meeting list is opened in the device default browser.
 
@@ -1075,13 +1076,15 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `open`<br>
       Expected: Invalid command format error message shown. No meetings opened.
 
-3. Opening with an out-of-bounds index.
-   1. Prerequisites: There is at least one meeting in the meeting list currently shown.
+4. Opening with an out-of-bounds index.
+   1. Prerequisites: 
+      1. There is at least one meeting in the meeting list currently shown.
    2. Test case: `open [index]`, where `[index]` is an integer greater than the number of meetings in the currently shown list.<br>
       Expected: Invalid index error message shown. No meetings opened.
 
-4. Opening with a negative index.
-   1. Prerequisites: There is at least one meeting in the meeting list currently shown.
+5. Opening with a negative index.
+   1. Prerequisites: 
+      1. There is at least one meeting in the meeting list currently shown.
    2. Test case: `open [index]`, where `[index]` is a negative integer.<br>
       Expected: Invalid command format error message shown. No meetings opened.
 
@@ -1106,12 +1109,14 @@ testers are expected to do more *exploratory* testing.
 #### Adding Modules
 
 1. Creating a new module in the module list.
-   1. Prerequisites: There is no other module with the exact same name.
+   1. Prerequisites: 
+      1. There is no other module with the exact same name.
    2. Test case: `madd n/CS2103T`<br>
    Expected: Module is added.
 
 2. Adding a duplicate module.
-   1. Prerequisites: A module with the name `CS2103T` exists in the module list.
+   1. Prerequisites: 
+      1. A module with the name `CS2103T` exists in the module list.
    2. Test case: `madd n/CS2103T`<br>
    Expected: Duplicate module error message shown. No new modules created.
 
@@ -1122,61 +1127,72 @@ testers are expected to do more *exploratory* testing.
 #### Editing Modules
 
 1. Editing an existing module in the module list.
-   1. Prerequisite: There is at least one module displayed and no existing module named `CS2103T`.
+   1. Prerequisites: 
+      1. There is at least one module displayed and no existing module named `CS2103T`.
    2. Test case: `medit 1 n/CS2103T`<br>
    Expected: Module at the first index is edited.
 
 2. Editing an existing module to have the same name as another module.
-   1. Prerequisite: There is a module at the second index with the name `CS2103T`.
+   1. Prerequisites: 
+      1. There is a module at the second index with the name `CS2103T`.
    2. Test case: `medit 1 n/CS2103T`<br>
    Expected: Duplicate module error message shown. No modules edited.
 
 3. Editing an existing module to have an invalid name.
-   1. Prerequisite: There is at least one module displayed.
+   1. Prerequisites: 
+      1. There is at least one module displayed.
    2. Test case: `medit 1 n/C$2!03&`<br>
    Expected: Invalid name error message shown. No modules edited.
 
 4. Editing a module with a non-integer index.
-   1. Prerequisite: There is at least one module displayed.
+   1. Prerequisites: 
+      1. There is at least one module displayed.
    2. Test case: `medit abc n/C$2!03&`<br>
    Expected: Invalid command format error message shown.  No modules edited.
 
 5. Editing a module with an out-of-bounds index.
-   1. Prerequisite: There is at least one module displayed.
+   1. Prerequisites: 
+      1. There is at least one module displayed.
    2. Test case: `medit 0 n/C$2!03&`<br>
    Expected: Invalid index error message shown. No modules edited.
 
 #### Deleting Modules
 
 1. Deleting a module in the module list.
-   1. Prerequisite: There is at least one module displayed and the module has no associated meetings.
+   1. Prerequisites: 
+      1. There is at least one module displayed and the module has no associated meetings.
    2. Test case: `mdelete 1`<br>
    Expected: Module at the first index is deleted.
 
 2. Deleting a module with a non-integer index.
-   1. Prerequisite: There is at least one module displayed.
+   1. Prerequisites: 
+      1. There is at least one module displayed.
    2. Test case: `mdelete abc`<br>
    Expected: Invalid command format error message shown. No modules deleted.
 
 3. Deleting a module with an out-of-bounds index.
-   1. Prerequisite: There is at least one module displayed.
+   1. Prerequisites: 
+      1. There is at least one module displayed.
    2. Test case: `mdelete 0`<br>
    Expected: Invalid index error message shown. No modules deleted.
 
 4. Deleting a module without specifying an index.
-   1. Prerequisite: There is at least one module displayed.
+   1. Prerequisites: 
+      1. There is at least one module displayed.
    2. Test case: `mdelete`<br>
    Expected: Invalid command format error message shown. No modules deleted.
 
 #### Modules sorted alphabetically
 
 1. Adding a module.
-   1. Prerequisites: There is one existing module in the list via the test case [Adding Modules](#adding-modules).
+   1. Prerequisites: 
+      1. There is one existing module in the list via the test case [Adding Modules](#adding-modules).
    2. Test case: `madd n/ACC1701X`<br>
       Expected: A new module is added and the module list is sorted in alphabetical order, i.e. `ACC1701X` is at index 1, `CS2103T` is at index 2.
 
 2. Editing a module.
-   1. Prerequisites: There are two existing modules in the list via the test case [Modules sorted alphabetically - Adding a module](#modules-sorted-alphabetically).
+   1. Prerequisites: 
+      1. There are two existing modules in the list via the test case [Modules sorted alphabetically - Adding a module](#modules-sorted-alphabetically).
    2. Test case: `medit 1 n/GEQ1000`<br>
       Expected: The module at index 1 (`ACC1701X`) is edited and the module list is sorted in alphabetical order, i.e. `CS2103T` is at index 1, `GEQ1000` is at index 2.
 
