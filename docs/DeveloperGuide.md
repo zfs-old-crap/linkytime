@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Logo icon adapted from [AkashRajDahal](https://www.svgviewer.dev/s/12130/link).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,11 +21,19 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+**LinkyTime** is a cross-platform desktop application designed for NUS Computer Science students to efficiently keep track of their online meetings and classes. The application is optimized for use via the Command Line Interface (CLI).
+
+This Developer Guide (DG) serves to aid developers in explaining the design, architecture, and implementation of LinkyTime and its features. It also covers design considerations for specific features, and a guide on how to perform manual testing.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +46,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +79,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +96,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -107,28 +117,21 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores LinkyTime data i.e., all `Meeting` and `Module` objects (which are contained in a `UniqueMeetingList` and a `UniqueModuleList` object respectively).
+* stores the currently 'selected' `Meeting` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable list `ObservableList<Meeting>` and `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
+* does not depend on any of the other three components, i.e. `Storage`, `Model`, `UI` (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -164,7 +167,7 @@ on the current date and time as well.
 
 Below is an activity diagram describing the execution of `getNextRecurrence`.
 
-![`getNextRecurrence` sequence diagram](images/GetNextRecurrenceActivityDiagram.png)
+![`getNextRecurrence` activity diagram](images/GetNextRecurrenceActivityDiagram.png)
 
 #### Design considerations:
 **Aspect: How the notion of recurrence is implemented:**
@@ -432,17 +435,21 @@ The `Module` objects are stored in a `UniqueModuleList` which is held by `LinkyT
 
 As we do not intend to contain any additional fields within the Module object, we opted for a simpler approach in its design.
 
-#### \[Proposed\] Delete Module feature
+#### Delete Module feature
 
 This section explains the implementation of the Delete Module feature via the `mdelete` command.
 
 The `DeleteModuleCommand` causes the specified module to be deleted from the application.
 
-If there are meetings that are tagged under this module, the command execution is blocked and an error message is displayed to the user. A proposed extension of this feature would be to include a flag that allows the user to force the deletion of the module and its associated meetings.
+If there are meetings that are tagged under this module, the command execution is blocked and an error message is displayed to the user.
 
 This process is summarized in the diagram below.
 
-![DeleteModuleActivityDiagram](images/DeleteModuleActivityDiagram.png)
+![`DeleteModuleCommand` activity diagram](images/DeleteModuleActivityDiagram.png)
+
+#### Force Delete Module feature
+
+This feature is an extension to the existing Delete Module feature. By supplying an additional force-delete flag (`f/`) to the `DeleteModuleCommand` parameters, this would override the delete restriction and remove the selected modules and its associated meetings.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -476,31 +483,35 @@ Aiken Dueet is a Year 2 NUS Computer Science student. He is currently taking his
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …                      | I want to …                   | So that I can…                                       |
-|----------|-----------------------------|-------------------------------|------------------------------------------------------|
-| `* * *`  | new user                    | see usage instructions        | refer to instructions if I forget how to use the App |
-| `* * *`  | user                        | view all my meetings          | view all my meetings in one place                    |
-| `* * *`  | user                        | add a new meeting             | add my online lecture details                        |
-| `* * *`  | user                        | edit an existing meeting      | add my online lecture details                        |
-| `* * *`  | user                        | delete a meeting              | remove old meetings that I don’t need anymore        |
-| `* *`    | user with outdated meetings | clear all meetings            | remove old meetings from the previous semester       |
-| `* *`    | user                        | open a meeting link           | open my meeting quickly                              |
-| `* *`    | user with multiple meetings | search for meetings           | find an meeting matching a specific criteria         |
-| `* *`    | user with multiple meetings | sort meetings chronologically | know what is my next upcoming meeting                |
+| Priority | As a …                       | I want to …                                 | So that I can…                                             |
+| -------- | ---------------------------- | ------------------------------------------- | ---------------------------------------------------------- |
+| `* * *`  | new user                     | see usage instructions                      | refer to instructions if I forget how to use the App       |
+| `* * *`  | user                         | view all my upcoming meetings               | see what meetings I have up next                           |
+| `* * *`  | user                         | view all my archived meetings               | see my old meetings that I might have missed               |
+| `* * *`  | user                         | add a new meeting                           | add my online lecture details                              |
+| `* * *`  | user                         | open a meeting URL                          | open my meeting URL in my browser quickly                  |
+| `* * *`  | user                         | edit an existing meeting                    | update my online lecture details                           |
+| `* * *`  | user                         | delete a meeting                            | remove old meetings that I don’t need anymore              |
+| `* *`    | user with multiple meetings  | search for meetings                         | find my online meetings easily                             |
+| `* * *`  | user                         | add a new module                            | add my classes I am taking this semester                   |
+| `* *`    | user                         | edit an existing module                     | update a module's details                                  |
+| `* * *`  | user                         | delete a module                             | remove old modules I am no longer taking                   |
+| `* *`    | user                         | delete a module and its associated meetings | quickly remove old modules and its meetings                |
+| `* *`    | user starting a new semester | clear all data                              | remove old meetings and modules from the previous semester |
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Use cases
+## **Use cases**
 
 For all use cases below, the **System** is `LinkyTime` and the **Actor** is the `user`, unless specified otherwise.
 All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
-### UC-001: List all meetings
+### UC-001: List all upcoming meetings
 
 **MSS**
 
-1. User requests to list all meetings.
-2. LinkyTime shows a list of all meetings.
+1. User requests to list all upcoming meetings.
+2. LinkyTime shows a list of all upcoming meetings.
 
     Use case ends.
 
@@ -510,7 +521,22 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
-### UC-002: Add a meeting
+### UC-002: List all archived meetings
+
+**MSS**
+
+1. User requests to list all archived meetings.
+2. LinkyTime shows a list of all archived meetings.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The meeting list is empty.
+
+    Use case ends.
+
+### UC-003: Add a meeting
 
 **MSS**
 
@@ -531,7 +557,39 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case ends.
 
-### UC-003: Edit a meeting
+* 1c. The new meeting is a duplicate of an existing meeting in the meeting list.
+  * 1c1. LinkyTime shows an error message stating that this meeting already exists.
+
+    Use case ends.
+
+### UC-004: Open a meeting
+
+**MSS**
+
+1. User requests to list meetings.
+2. LinkyTime shows the list of meetings.
+3. User requests to open a specific meeting's URL based on the index from the meeting list displayed in step 2.
+4. LinkyTime opens the default browser with the given URL.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The meeting list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+  * 3a1. LinkyTime shows an error message stating that the given index is invalid.
+
+    Use case resumes at step 2.
+
+* 3b. The application does not have permissions to open the browser.
+  * 3b1. The application displays an error message.
+
+    Use case ends.
+
+### UC-005: Edit a meeting
 
 **MSS**
 
@@ -563,7 +621,12 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case resumes at step 2.
 
-### UC-004: Delete a meeting
+* 3d. The edited meeting is a duplicate of an existing meeting in the meeting list.
+  * 3d1. LinkyTime shows an error message stating that this meeting already exists.
+
+    Use case resumes at step 2.
+
+### UC-006: Delete a meeting
 
 **MSS**
 
@@ -585,43 +648,12 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
     Use case resumes at step 2.
 
-### UC-005: Clear all meetings
-
-**MSS**
-
-1. User chooses to clear all meetings in the list.
-2. LinkyTime deletes all meetings and saves the changes.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The meeting list is empty.
-
-    Use case ends.
-
-### UC-006: Open a meeting
-
-**MSS**
-
-1. User requests to open a meeting link.
-2. LinkyTime opens the default browser with the given link.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The application does not have permissions to open the browser.
-  * 2a1. The application displays an error message.
-
-    Use case ends.
-
 ### UC-007: Find meetings
 
 **MSS**
 
 1. User searches for a meeting by a search term.
-2. LinkyTime shows a list of meetings whose name, tags, or date contains the search term.
+2. LinkyTime shows a list of meetings whose name, tags, or module contains the search term.
 
     Use case ends.
 
@@ -633,26 +665,128 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
     Use case ends.
 
 
-### UC-008: Sort meetings chronologically
+### UC-008: Add a module
 
 **MSS**
 
-1. User chooses to sort meetings by the date.
-2. LinkyTime shows a list of meetings that is sorted in descending order.
+1. User requests to add a new module to the module list.
+2. LinkyTime adds a new module with given parameters in the module list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The meeting list is empty.
+* 1a. The user does not include the required parameters with the command.
+  * 1a1. LinkyTime shows an error message stating which parameters are required.
 
     Use case ends.
 
-* 2b. The meetings are already sorted by the date.
+* 1b. The user does not follow the format of the command.
+  * 1b1. LinkyTime shows an error message stating the correct format of the command.
 
     Use case ends.
 
-### UC-009: Access help
+* 1c. The new module is a duplicate of an existing module in the module list.
+  * 1c1. LinkyTime shows an error message stating that this module already exists.
+
+    Use case ends.
+
+### UC-009: Edit a module
+
+**MSS**
+
+1. User requests to edit a specific module based on the index from the module list displayed.
+2. LinkyTime edits the module and all associated meetings and saves the changes.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The module list is empty.
+
+    Use case ends.
+
+* 1b. The given index is invalid.
+  * 1b1. LinkyTime shows an error message stating that the given index is invalid.
+
+    Use case resumes at step 1.
+
+* 1c. No arguments were given.
+  * 1c1. LinkyTime shows an error message stating that at least one field must be edited.
+
+    Use case resumes at step 1.
+
+* 1d. The user does not follow the format of the command.
+  * 1d1. LinkyTime shows an error message stating the correct format of the command.
+
+    Use case resumes at step 1.
+
+* 1c. The edited module is a duplicate of an existing module in the module list.
+  * 1c1. LinkyTime shows an error message stating that this module already exists.
+
+    Use case resumes at step 1.
+
+### UC-010: Delete a module
+
+**MSS**
+
+1. User requests to delete a specific module in the module list based on the index from the module list displayed.
+2. LinkyTime deletes the module and saves the changes.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The module list is empty.
+
+    Use case ends.
+
+* 1b. The given index is invalid.
+  * 1b1. LinkyTime shows an error message stating that the given index is invalid.
+
+    Use case resumes at step 1.
+
+* 1c. The module has associated meetings in the meeting list.
+  * 1c1. LinkyTime shows an error message stating that the module cannot be deleted due to associated meetings.
+
+    Use case resumes at step 1.
+
+### UC-011: Delete a module and its associated meetings
+
+**MSS**
+
+1. User requests to force delete a specific module and its associated meetings based on the index from the module list displayed.
+2. LinkyTime deletes the module and its associated meetings and saves the changes.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The module list is empty.
+
+    Use case ends.
+
+* 1b. The given index is invalid.
+  * 1b1. LinkyTime shows an error message stating that the given index is invalid.
+
+    Use case resumes at step 1.
+
+### UC-012: Clear all data
+
+**MSS**
+
+1. User chooses to clear all data in LinkyTime.
+2. LinkyTime deletes all meetings and modules and saves the changes.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The meeting and module lists are empty.
+
+    Use case ends.
+
+### UC-013: Access help
 
 **MSS**
 
@@ -678,9 +812,9 @@ All use cases are prefixed with `UC`, followed by a three-digit use case number.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Meeting**: An online class containing the details such as the meeting link, name, date, and other fields.
+* **Module**: A self-contained structured unit of study in a specific subject. Also known as course, class.
 * **NUS**: The National University of Singapore.
-* **Command**: A keyword that defines an action for the program to perform when entered into the CLI.
-* **Search Term**: A substring that is contained in the name/tags of a meeting.
+* **Command**: A keyword that defines an action for the program to perform when entered into the command box.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -699,63 +833,67 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample meetings. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Meeting
 
 #### Adding Meetings
-1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`
+
+1. Test case: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`<br>
    Prerequisites:
       1. There is no other meetings with the exact same fields.
-      2. There is one module in the module list.
+      2. There is one module in the module list.<br>
    Expected: Meeting is added.
+
 2. Incorrect commands:
-   1. Duplicate meeting 
+   1. Duplicate meeting<br>
       Prerequisite:
-         1. The testcase command was just entered.
+         1. The test case command was just entered.<br>
       Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   2. Incorrect name
+   2. Incorrect name<br>
       Command: `add n/Lectur$ u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   3. Incorrect url
+   3. Incorrect url<br>
       Command: `add n/Lecture u/zoom d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   4. Incorrect date
+   4. Incorrect date<br>
       Command: `add n/Lecture u/https://www.zoom.com d/40-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   5. Incorrect time
+   5. Incorrect time<br>
       Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 2500 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-   6. Incorrect duration
+   6. Incorrect duration<br>
       Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/25 m/1 r/Y t/recorded t/lecturequiz`.
-   7. Incorrect module index
+   7. Incorrect module index<br>
       Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/10 r/Y t/recorded t/lecturequiz`.
-   8. Incorrect recurrence
+   8. Incorrect recurrence<br>
       Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/A t/recorded t/lecturequiz`.
-   9. Incorrect tag
-      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/!ecturequiz`.
+   9. Incorrect tag<br>
+      Command: `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/!ecturequiz`.<br>
+   
    For each of the incorrect commands, there will be an error message included on how to rectify the issue.
 
-#### Edit Meetings
-1. Test case: `edit 1 n/Lecture`
+#### Editing Meetings
+
+1. Test case: `edit 1 n/Lecture`<br>
    Prerequisites:
-      1. There is at least one meeting in the meeting list.
+      1. There is at least one meeting in the meeting list.<br>
    Expected: The meeting at the first index is edited.
-2. Incorrect commands:
-   For each field of the meeting, you can refer to the Add Meetings of the Instructions for manual testing as they are exactly the same.
-   1. Duplicate meeting 
+
+2. Incorrect commands:<br>
+   For each field of the meeting, you may refer to [Adding Meetings](#add-meetings) as they are exactly the same.
+   1. Duplicate meeting<br>
       Prerequisite:
          1. There is a meeting in the meeting list at index 4 which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
-         2. There is a meeting in the meeting list at index 1 which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`
-      Command: `edit 1 n/Lecture`
+         2. There is a meeting in the meeting list at index 1 which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`<br>
+      Command: `edit 1 n/Lecture`<br>
       Expected: There will be an error message included on how to rectify the issue.
 
 #### List upcoming meetings
+
 1. Listing all upcoming meetings with multiple meetings in the meeting list.
    1. Prerequisite: There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
    2. Test case: `list`<br>
@@ -772,9 +910,9 @@ testers are expected to do more *exploratory* testing.
       Expected: A new meeting should be displayed.
    
 4. Adding a completed meeting after listing all upcoming meetings.
-    1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [adding meetings](#adding-meetings).
-    2. Test case: Add a meeting that is completed. <br>
-       Expected: No new meeting should be displayed.
+   1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [adding meetings](#adding-meetings).
+   2. Test case: Add a meeting that is completed. <br>
+      Expected: No new meeting should be displayed.
    
 5. Editing the date of an upcoming meeting, updating it to a completed meeting.
    1. Prerequisite: List all upcoming meetings using the `list` command. Prerequisite of [editing meetings](#edit-meetings).
@@ -782,6 +920,7 @@ testers are expected to do more *exploratory* testing.
       Expected: There should be one less meeting in the meeting list shown.
 
 #### List archived meetings
+
 1. Listing all archived meetings with multiple meetings in the meeting list.
     1. Prerequisite: There are multiple meetings in the meeting list which was added using `AddMeetingCommand`.
     2. Test case: `archive`<br>
@@ -808,17 +947,16 @@ testers are expected to do more *exploratory* testing.
        Expected: There should be one less meeting in the meeting list shown.
 
 #### Meetings sorted chronologically
+
 1. Adding a meeting while the meeting list is shown.
    1. Prerequisites: List all upcoming/archived meetings with the `list` or `archive` command. Prerequisite of [adding meetings](#adding-meetings).
    2. Test case: Add a meeting that is displayable by the current meeting list. e.g. If the meeting list is showing upcoming meetings, then add an upcoming meeting and vice versa.<br>
       Expected: A new meeting is added and all meetings are still displayed in chronological order.
-      
    
 2. Editing a meeting while the meeting list is shown.
    1. Prerequisites: List all upcoming/archived meetings with the `list` or `archive` command. Prerequisite of [editing meetings](#edit-meetings).
    2. Test case: Edit the date of a meeting such that it is still displayable by the current meeting list. e.g. If the meeting list is showing upcoming meetings, then the edited meeting should still be an upcoming meeting and vice versa.<br>
       Expected: The meetings in the meeting list are still displayed in chronological order.
-   
 
 ### Deleting a person
 
@@ -837,10 +975,66 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### Module
 
-1. Dealing with missing/corrupted data files
+#### Adding Modules
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Test case: `madd n/CS2103T`<br>
+   Prerequisite:
+      1. There is no other module with the exact same name.<br>
+   Expected: Module is added.
 
-1. _{ more test cases …​ }_
+2. Incorrect commands to try:
+   1. Duplicate module<br>
+      Prerequisite:
+         1. The test case command was just entered.<br>
+      Command: `madd n/CS2103T`.
+   2. Incorrect name<br>
+      Command: `madd n/C$2!03&`.<br>
+   Expected: An error message indicating the problem is displayed, and how to rectify the issue.
+
+#### Editing Modules
+
+1. Test case: `medit 1 n/CS2103T`<br>
+   Prerequisite:
+      1. There is at least one module displayed and no existing module named `CS2103T`.<br>
+   Expected: Module at the first index is edited.
+
+2. Incorrect commands:
+   1. Duplicate module<br>
+      Prerequisite:
+         1. There is a module at the second index with the name `CS2103T`.<br>
+      Command: `medit 1 n/CS2103T`.
+   2. Incorrect name<br>
+      Command: `medit 1 n/C$2!03&`.
+   3. Incorrect index<br>
+      Command: `medit abc n/CS2103T`.
+   4. Out of bounds index<br>
+      Command: `medit 0 n/CS2103T`.<br>
+   Expected: An error message indicating the problem is displayed, and how to rectify the issue.
+
+#### Deleting Modules
+
+1. Test case: `mdelete 1`<br>
+   Prerequisite:
+      1. There is at least one module displayed and there are no associated meetings.<br>
+   Expected: Module at the first index is deleted.
+
+2. Incorrect commands:
+   1. Incorrect index<br>
+      Command: `mdelete abc`
+   2. Out of bounds index<br>
+      Command: `mdelete 0`<br>
+   Expected: An error message indicating the problem is displayed, and how to rectify the issue.
+
+#### Modules sorted alphabetically
+
+1. Adding a module.
+  1. Prerequisites: There is one existing module in the list via the test case [Adding Modules](#adding-modules).
+  2. Test case: `madd n/ACC1701X`<br>
+     Expected: A new module is added and the module list is sorted in alphabetical order, i.e. `ACC1701X` is at index 1, `CS2103T` is at index 2.
+
+2. Editing a module.
+  1. Prerequisites: There are two existing modules in the list via the test case [Modules sorted alphabetically - Adding a module](#modules-sorted-alphabetically).
+  2. Test case: `medit 1 n/CS3203`<br>
+     Expected: The module at index 1 (`ACC1701X`) is edited and the module list is sorted in alphabetical order, i.e. `CS2103T` is at index 1, `CS3203` is at index 2.
