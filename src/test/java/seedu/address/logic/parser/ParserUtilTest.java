@@ -24,20 +24,50 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtilTest {
 
+    private static final String VALID_INDEX_TYPE_1 = "Module";
+    // As the first character of the index type is extracted for capitalization, we need to test this one character
+    // edge case to ensure that no unexpected error occurs (e.g. out of bounds access on the index type string).
+    private static final String VALID_INDEX_TYPE_2 = "M";
+    private static final String EMPTY_INDEX_TYPE = "";
     private static final String INVALID_TAG = "#friend";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String WHITESPACE = " \t\r\n";
 
+    private String createParseIndexErrMsg(String indexType) {
+        return String.format("%s %s", indexType.trim(), MESSAGE_INVALID_INDEX).trim();
+    }
+
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        final String indexInput = "10 a";
+
+        // Test variant of `parseIndex` that does not accept an `indexType`.
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndex(indexInput));
+
+        // Test variant of `parseIndex` that accepts an `indexType`.
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
+                ParserUtil.parseIndex(indexInput, EMPTY_INDEX_TYPE));
+        assertThrows(ParseException.class, createParseIndexErrMsg(VALID_INDEX_TYPE_1), () ->
+                ParserUtil.parseIndex(indexInput, VALID_INDEX_TYPE_1));
+        assertThrows(ParseException.class, createParseIndexErrMsg(VALID_INDEX_TYPE_2), () ->
+                ParserUtil.parseIndex(indexInput, VALID_INDEX_TYPE_2));
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class,
-                MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        final String indexInput = Long.toString(Integer.MAX_VALUE + 1);
+
+        // Test variant of `parseIndex` that does not accept an `indexType`.
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndex(indexInput));
+
+        // Test variant of `parseIndex` that accepts an `indexType`.
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
+                ParserUtil.parseIndex(indexInput, EMPTY_INDEX_TYPE));
+        assertThrows(ParseException.class, createParseIndexErrMsg(VALID_INDEX_TYPE_1), () ->
+                ParserUtil.parseIndex(indexInput, VALID_INDEX_TYPE_1));
+        assertThrows(ParseException.class, createParseIndexErrMsg(VALID_INDEX_TYPE_2), () ->
+                ParserUtil.parseIndex(indexInput, VALID_INDEX_TYPE_2));
     }
 
     @Test

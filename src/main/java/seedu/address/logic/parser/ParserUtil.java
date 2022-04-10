@@ -30,11 +30,33 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        String trimmedIndex = oneBasedIndex.trim();
+        return parseIndexWithErrMsg(oneBasedIndex, MESSAGE_INVALID_INDEX);
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed. If the operation fails, a {@code ParseException} indicating the {@code indexType} will be thrown.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseIndex(String oneBasedIndex, String indexType) throws ParseException {
+        final String errMsg = String.format("%s %s", processIndexType(indexType), MESSAGE_INVALID_INDEX).trim();
+        return parseIndexWithErrMsg(oneBasedIndex, errMsg);
+    }
+
+    private static Index parseIndexWithErrMsg(String oneBasedIndex, String errMsg) throws ParseException {
+        final String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(errMsg);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    private static String processIndexType(String indexType) {
+        final String trimmed = indexType.trim();
+        if (trimmed.isEmpty()) {
+            return trimmed;
+        }
+        return Character.toUpperCase(trimmed.charAt(0)) + trimmed.substring(1).toLowerCase();
     }
 
     /**

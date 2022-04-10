@@ -101,7 +101,8 @@ public class EditMeetingCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_DURATION_DESC, MeetingDuration.MESSAGE_CONSTRAINTS);
 
         // invalid module
-        assertParseFailure(parser, "1" + INVALID_MODULE_INDEX_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "1" + INVALID_MODULE_INDEX_DESC,
+                String.format("%s %s", "Module", ParserUtil.MESSAGE_INVALID_INDEX));
 
         // invalid isRecurring
         assertParseFailure(parser, "1" + INVALID_RECURRING_DESC, IsRecurring.MESSAGE_CONSTRAINTS);
