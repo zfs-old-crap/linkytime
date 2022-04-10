@@ -21,16 +21,21 @@ Given below are my contributions to the project.
     * Migrated the storage layer to serialize/deserialize LinkyTime user data (Pull requests [\#64](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/64))
     * Accepted and parsed meeting date and time from `String` to `LocalDateTime` (Pull requests [\#92](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/92)).
     * Updated the GUI to reflect the latest date and time of all recurring meetings upon the execution of any command (Pull requests [\#92](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/92)).
-    * Updated logic to only show ongoing/recurring meetings by default (Pull requests [\#119](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/119)). 
+    * Updated logic to only show ongoing/recurring meetings by default (Pull requests [\#119](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/119)).
+    * Wrote test cases for `MeetingDateTime` (Pull requests [\#205](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/205)).
+
+* **Project Management**:
+  * Maintained team [weekly meeting notes](https://docs.google.com/document/d/1blOVPpajNMHmHRSajK4t9cl0r2PwMiO2j7FF4Xy-pO8/edit?usp=sharing).
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the `archive` feature [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123).
+        * Collaborated with teammates on the user guide in VSCode live share [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123).
     * Developer Guide:
-        * Added implementation details for recurring meetings [\#108](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/108).
+        * Collaborated with teammates on the developer guide in VSCode live share [\#10](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/10).
+        * Added activity diagram and implementation details for recurring meetings [\#108](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/108).
+        * Migrated AB3 diagrams to LinkyTime ones [\#208](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/208).
+        * Described notable features like "Opening of Meeting Links" and "List and Archive" [\#213](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/213).
 
 * **Community**:
-    * TBD.
-  
-* **Tools**:
+  * PRs reviewed (with non-trivial review comments): [\#82](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/82#pullrequestreview-910379147) [\#83](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/83#pullrequestreview-911378194), [\#112](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/112#discussion_r834584643), [\#202](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/202#discussion_r846625004); full list of [PRs reviewed](https://github.com/AY2122S2-CS2103T-T13-3/tp/pulls?q=is%3Apr+reviewed-by%3AChuaBingQuan+).
 
