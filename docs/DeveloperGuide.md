@@ -443,6 +443,7 @@ This section explains the implementation of the Delete Module feature via the `m
 The `DeleteModuleCommand` causes the specified module to be deleted from the application.
 
 If there are meetings that are tagged under this module, the command execution is blocked and an error message is displayed to the user.
+This command can be forced, see [below](#force-delete-module-feature).
 
 This process is summarized in the diagram below.
 
@@ -451,6 +452,10 @@ This process is summarized in the diagram below.
 #### Force Delete Module feature
 
 This feature is an extension to the existing Delete Module feature. By supplying an additional force-delete flag (`f/`) to the `DeleteModuleCommand` parameters, this would override the delete restriction and remove the selected modules and its associated meetings.
+
+This command [requires a parser](#commands-with-a-parser). The sequence diagram for the `DeleteModuleCommand` is as shown below.
+
+![`DeleteCommand` sequence diagram](images/DeleteModuleSequenceDiagramReferenceFrame.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
