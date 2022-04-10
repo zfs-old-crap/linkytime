@@ -255,7 +255,7 @@ Step 2:
 The `ListMeetingCommand` then calls `Model::showCompletedMeetings` to update the meeting list to show only upcoming meetings.
 
 Step 3:
-The `ListMeetingCommand` then continues its execution as defined by [this](#Commands-without-a-parser) sequence diagram.
+The `ListMeetingCommand` then continues its execution as defined by [this](#commands-without-a-parser) sequence diagram.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListMeetingCommand` should continue out of this reference frame, but due to a limitation of PlantUML, the lifeline ends in this diagram.
 </div>
@@ -289,23 +289,15 @@ Below is the sequence diagram for the execution of `AddMeetingCommand`
 ![`AddMeetingCommand` sequence diagram](images/AddMeetingSequenceDiagram.png)
 
 Step 1:
-The user enters the command for adding a meeting, e.g. `add n/Lecture ...`
-
-Step 2:
-The user input is parsed through the `LinkyTimeParser`, which will then pass the user input to `AddMeetingCommandParser`
-to check if the user input is valid.
-
-Step 3:
-Once the user input is successfully parsed, the `AddMeetingCommandParser` creates a `AddMeetingCommand` containing the
-meeting to be added.
-
-Step 4:
-The `LogicManager` subsequently invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the
+The `LogicManager` invokes `AddMeetingCommand::execute`, which in turn calls `Model::addMeeting` to add the
 new meeting into the list.
 
-Step 5:
+Step 2:
 The `Model` will then call its own `updateFilteredMeetingList` method in order to update the model's filter to display
 all meetings.
+
+Step 3:
+The `AddMeetingCommand` then continues its execution as defined by [this](#commands-with-a-parser) sequence diagram.
 
 ##### Design considerations:
 
@@ -322,31 +314,20 @@ all meetings.
 
 This section explains the implementation of the Delete Meeting feature via the `delete` command.
 The `DeleteMeetingCommand` removes the meeting with the given index from the meeting list. This command requires a
-single field: the index of the meeting to be deleted.
+single field: the index of the meeting to be deleted. This command [requires a parser](#commands-with-a-parser).
 
-Below is the sequence diagram for the execution of an `DeleteMeetingCommand`.
+Below is the sequence diagram reference frame for the execution of an `DeleteMeetingCommand`.
 
-![`DeleteMeetingCommand` Sequence Diagram](images/DeleteMeetingSequenceDiagram.png)
+![`DeleteMeetingCommand` Sequence Diagram](images/DeleteMeetingSequenceDiagramReferenceFrame.png)
 
 Step 1:
-The user enters a command for deleting a meeting, e.g. `delete 1`.
+The `LogicManager` calls `DeleteMeetingCommand::execute` with the returned `DeleteMeetingCommand`.
 
 Step 2:
-The user input is passed to `LogicManager`, which passes the user input to `LinkyTimeParser` to parse and identify the
-command type.
+The `DeleteMeetingCommand` then calls `Model::deleteMeeting` to remove the target meeting from the list.
 
 Step 3:
-`LinkyTimeParser` passes the user input to `DeleteMeetingCommandParser` to check if the user input is valid.
-
-Step 4:
-`DeleteMeetingCommandParser` parses the user input, creates a new `DeleteMeetingCommand` and returns it
-to `LogicManager`.
-
-Step 5:
-The `LogicManager` calls `DeleteMeetingCommand::execute` which calls `Model::deleteMeeting`.
-
-Step 6:
-The `DeleteMeetingCommand` creates a `CommandResult` and passes it back to the `LogicManager`.
+The `DeleteMeetingCommand` then continues its execution as defined by [this](#commands-with-a-parser) sequence diagram.
 
 #### Design considerations:
 
@@ -365,26 +346,13 @@ Below is the sequence diagram for the execution of the `FindMeetingCommand`.
 ![`FindMeetingCommand` sequence diagram](images/FindMeetingSequenceDiagram.png)
 
 Step 1:
-The user enters the command for finding meetings, e.g. `find cs2103t tutorial`.
+`LogicManager` calls `FindMeetingCommand::execute`.
 
 Step 2:
-The user input is passed to the `LogicManager`, which passes it to the `LinkyTimeParser`.
+`FindMeetingCommand` calls `Model::updateFilteredMeetingList` with a predicate that describes the criteria for the meetings to be shown.
 
 Step 3:
-`LinkyTimeParser` consumes the user input then passes the remaining input to a new `FindMeetingCommandParser`.
-
-Step 4:
-`FindMeetingCommandParser` consumes the user input and creates a new `FindMeetingCommand` with a predicate that
-describes the criteria for the meetings to be shown.
-
-Step 5:
-The `FindMeetingCommand` is passed to `LogicManager`.
-
-Step 6:
-`LogicManager` calls `FindMeetingCommand::execute`, which calls `Model::updateFilteredMeetingList` with the predicate.
-
-Step 7:
-The `FindMeetingCommand` creates a new `CommandResult` and returns it to the `LogicManager`.
+The `FindMeetingCommand` then continues its execution as defined by [this](#commands-with-a-parser) sequence diagram.
 
 ##### Design considerations:
 
@@ -404,6 +372,39 @@ The `FindMeetingCommand` creates a new `CommandResult` and returns it to the `Lo
     * Pros: Command can be used to find a diverse set of meetings that users may be interested in.
     * Cons: Command cannot be used to narrow down the search; adding more keywords may increase the number of meetings
       returned.
+
+#### Open Meeting Feature
+
+This section explains the implementation of the Open Meeting feature via the `open` command. The `OpenMeetingCommand` causes the application to open the given link in the desktop default browser. This is a command that [requires a parser](#commands-with-a-parser).
+
+Below is the sequence diagram reference frame for the execution of `OpenMeetingCommand`.
+
+![`OpenMeetingCommand` Sequence Diagram](images/OpenMeetingSequenceDiagramReferenceFrame.png)
+
+Step 1:
+`LogicManager` calls `OpenMeetingCommand::execute`.
+
+Step 2:
+`OpenMeetingCommand` creates a new `UrlOpenerManager` and calls `OpenMeetingCommand::executeWithUrlOpener` with it.
+
+Step 3:
+`OpenMeetingCommand` gets the `Url` from the `Model` and calls `UrlOpenerManager::open` with it.
+
+Step 4:
+The `OpenMeetingCommand` then continues its execution as defined by [this](#commands-with-a-parser) sequence diagram.
+
+#### Design considerations:
+
+**Aspect: Which component to handle desktop capabilities:**
+
+* **Alternative 1 (current choice):** Create a `UrlOpener` interface and a `UrlOpenerManager` to handle communication with the desktop.
+    * Pros: Ease of testing as the behaviour of the desktop can be mocked using stubs. 
+    * Cons: Additional complexity and more areas for bugs.
+
+* **Alternative 2:** Handle all communication with the desktop within `OpenCommand`.
+    * Pros: Simpler implementation with less components to maintain.
+    * Cons: Much harder to decouple the command logic from the behaviour of the desktop, which may differ according to the environment in which the tests are run. For example, when running tests meant for desktops on GitHub actions (a headless environment without desktop/browser capabilities), the tests for this command will fail.
+
 
 ### Modules
 

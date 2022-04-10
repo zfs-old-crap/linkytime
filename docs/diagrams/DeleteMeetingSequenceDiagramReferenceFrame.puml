@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+
+mainframe **sd** DeleteMeetingCommandExecute
+
+participant "d:DeleteMeetingCommand" as DeleteMeetingCommand LOGIC_COLOR
+
+participant ":Model" as Model MODEL_COLOR
+
+[-> DeleteMeetingCommand : execute()
+activate DeleteMeetingCommand
+
+DeleteMeetingCommand -> Model : deleteMeeting(meetingToDelete)
+activate Model
+
+Model --> DeleteMeetingCommand
+deactivate Model
+
+@enduml
