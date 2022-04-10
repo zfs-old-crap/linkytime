@@ -1082,11 +1082,11 @@ how **AB3** worked with JavaFX.
 
 4. Opening of Meeting Links
 
-Accessing meeting links is a central use case of LinkyTime, and most conventional applications would achieve that by allowing 
-their users to click on the links presented in the GUI. However, since LinkyTime is a CLI application, we wanted to stay faithful 
-to this mode of user interaction while enabling our users to swiftly and ergonomically open their meeting links. As such, we implemented 
+Accessing meeting links is a central use case of LinkyTime, and most conventional applications would achieve that by allowing
+their users to click on the links presented in the GUI. However, since LinkyTime is a CLI application, we wanted to stay faithful
+to this mode of user interaction while enabling our users to swiftly and ergonomically open their meeting links. As such, we implemented
 an `open` command to do just that, and fire up our user’s meeting links in their default web browsers. In addition, this feature does not
-leverage on any existing AB3 implementation. Hence, we had to design our own URL opening abstraction from scratch with the aid of 
+leverage on any existing AB3 implementation. Hence, we had to design our own URL opening abstraction from scratch with the aid of
 the Java AWT library.
 
 5. List and Archive
