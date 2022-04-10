@@ -1105,65 +1105,80 @@ testers are expected to do more *exploratory* testing.
 
 #### Adding Modules
 
-1. Test case: `madd n/CS2103T`<br>
-   Prerequisite:
-      1. There is no other module with the exact same name.<br>
+1. Creating a new module in the module list.
+   1. Prerequisites: There is no other module with the exact same name.
+   2. Test case: `madd n/CS2103T`<br>
    Expected: Module is added.
 
-2. Incorrect commands to try:
-   1. Duplicate module<br>
-      Prerequisite:
-         1. The test case command was just entered.<br>
-      Command: `madd n/CS2103T`.
-   2. Incorrect name<br>
-      Command: `madd n/C$2!03&`.<br>
-   Expected: An error message indicating the problem is displayed, and how to rectify the issue.
+2. Adding a duplicate module.
+   1. Prerequisites: A module with the name `CS2103T` exists in the module list.
+   2. Test case: `madd n/CS2103T`<br>
+   Expected: Duplicate module error message shown. No new modules created.
+
+3. Adding a module with an invalid name.
+   1. Test case: `madd n/C$2!03&`<br>
+   Expected: Invalid name error message shown. No new modules created.
 
 #### Editing Modules
 
-1. Test case: `medit 1 n/CS2103T`<br>
-   Prerequisite:
-      1. There is at least one module displayed and no existing module named `CS2103T`.<br>
+1. Editing an existing module in the module list.
+   1. Prerequisite: There is at least one module displayed and no existing module named `CS2103T`.
+   2. Test case: `medit 1 n/CS2103T`<br>
    Expected: Module at the first index is edited.
 
-2. Incorrect commands:
-   1. Duplicate module<br>
-      Prerequisite:
-         1. There is a module at the second index with the name `CS2103T`.<br>
-      Command: `medit 1 n/CS2103T`.
-   2. Incorrect name<br>
-      Command: `medit 1 n/C$2!03&`.
-   3. Incorrect index<br>
-      Command: `medit abc n/CS2103T`.
-   4. Out of bounds index<br>
-      Command: `medit 0 n/CS2103T`.<br>
-   Expected: An error message indicating the problem is displayed, and how to rectify the issue.
+2. Editing an existing module to have the same name as another module.
+   1. Prerequisite: There is a module at the second index with the name `CS2103T`.
+   2. Test case: `medit 1 n/CS2103T`<br>
+   Expected: Duplicate module error message shown. No modules edited.
+
+3. Editing an existing module to have an invalid name.
+   1. Prerequisite: There is at least one module displayed.
+   2. Test case: `medit 1 n/C$2!03&`<br>
+   Expected: Invalid name error message shown. No modules edited.
+
+4. Editing a module with a non-integer index.
+   1. Prerequisite: There is at least one module displayed.
+   2. Test case: `medit abc n/C$2!03&`<br>
+   Expected: Invalid command format error message shown.  No modules edited.
+
+5. Editing a module with an out-of-bounds index.
+   1. Prerequisite: There is at least one module displayed.
+   2. Test case: `medit 0 n/C$2!03&`<br>
+   Expected: Invalid index error message shown. No modules edited.
 
 #### Deleting Modules
 
-1. Test case: `mdelete 1`<br>
-   Prerequisite:
-      1. There is at least one module displayed and there are no associated meetings.<br>
+1. Deleting a module in the module list.
+   1. Prerequisite: There is at least one module displayed and the module has no associated meetings.
+   2. Test case: `mdelete 1`<br>
    Expected: Module at the first index is deleted.
 
-2. Incorrect commands:
-   1. Incorrect index<br>
-      Command: `mdelete abc`
-   2. Out of bounds index<br>
-      Command: `mdelete 0`<br>
-   Expected: An error message indicating the problem is displayed, and how to rectify the issue.
+2. Deleting a module with a non-integer index.
+   1. Prerequisite: There is at least one module displayed.
+   2. Test case: `mdelete abc`<br>
+   Expected: Invalid command format error message shown. No modules deleted.
+
+3. Deleting a module with an out-of-bounds index.
+   1. Prerequisite: There is at least one module displayed.
+   2. Test case: `mdelete 0`<br>
+   Expected: Invalid index error message shown. No modules deleted.
+
+4. Deleting a module without specifying an index.
+   1. Prerequisite: There is at least one module displayed.
+   2. Test case: `mdelete`<br>
+   Expected: Invalid command format error message shown. No modules deleted.
 
 #### Modules sorted alphabetically
 
 1. Adding a module.
-  1. Prerequisites: There is one existing module in the list via the test case [Adding Modules](#adding-modules).
-  2. Test case: `madd n/ACC1701X`<br>
-     Expected: A new module is added and the module list is sorted in alphabetical order, i.e. `ACC1701X` is at index 1, `CS2103T` is at index 2.
+   1. Prerequisites: There is one existing module in the list via the test case [Adding Modules](#adding-modules).
+   2. Test case: `madd n/ACC1701X`<br>
+      Expected: A new module is added and the module list is sorted in alphabetical order, i.e. `ACC1701X` is at index 1, `CS2103T` is at index 2.
 
 2. Editing a module.
-  1. Prerequisites: There are two existing modules in the list via the test case [Modules sorted alphabetically - Adding a module](#modules-sorted-alphabetically).
-  2. Test case: `medit 1 n/CS3203`<br>
-     Expected: The module at index 1 (`ACC1701X`) is edited and the module list is sorted in alphabetical order, i.e. `CS2103T` is at index 1, `CS3203` is at index 2.
+   1. Prerequisites: There are two existing modules in the list via the test case [Modules sorted alphabetically - Adding a module](#modules-sorted-alphabetically).
+   2. Test case: `medit 1 n/GEQ1000`<br>
+      Expected: The module at index 1 (`ACC1701X`) is edited and the module list is sorted in alphabetical order, i.e. `CS2103T` is at index 1, `GEQ1000` is at index 2.
 
 ## **Appendix: Effort**
 
