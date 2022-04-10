@@ -900,7 +900,8 @@ testers are expected to do more *exploratory* testing.
 
 #### Deleting Meetings
 1. Deleting the first meeting in the currently shown meeting list.
-   1. Prerequisite: There is at least one meeting in the meeting list currently shown.
+   1. Prerequisites: 
+      1. There is at least one meeting in the meeting list currently shown.
    2. Test case: `delete 1`<br>
       Expected: The first meeting in the currently shown meeting list is deleted.
 
@@ -912,13 +913,15 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete`<br>
       Expected: Invalid command format error message shown. No meetings deleted.
 
-3. Deleting with an out-of-bounds index.
-   1. Prerequisite: There is at least one meeting in the meeting list currently shown.
+4. Deleting with an out-of-bounds index.
+   1. Prerequisites: 
+      1. There is at least one meeting in the meeting list currently shown.
    2. Test case: `delete [index]`, where `[index]` is an integer greater than the number of meetings in the currently shown list.<br>
       Expected: Invalid index error message shown. No meetings deleted.
 
-4. Deleting with a negative index.
-   1. Prerequisite: There is at least one meeting in the meeting list currently shown.
+5. Deleting with a negative index.
+   1. Prerequisites: 
+      1. There is at least one meeting in the meeting list currently shown.
    2. Test case: `delete [index]`, where `[index]` is a negative integer.<br>
       Expected: Invalid command format error message shown. No meetings deleted.
 
@@ -978,7 +981,7 @@ testers are expected to do more *exploratory* testing.
 
 #### Finding Meetings
 1. Finding a meeting in the meeting list by singular name.
-   1. Prerequisite:
+   1. Prerequisites:
       1. There is a module in the module list at index 1 named `CS2101`.
       2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
       3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
@@ -989,7 +992,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The second meeting above will be displayed.
 
 2. Finding a meeting in the meeting list by singular tag.
-   1. Prerequisite:
+   1. Prerequisites:
       1. There is a module in the module list at index 1 named `CS2101`.
       2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
       3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
@@ -1002,7 +1005,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Both meetings above will be displayed.
 
 3. Finding a meeting in the meeting list by singular module.
-   1. Prerequisite:
+   1. Prerequisites:
       1. There is a module in the module list at index 1 named `CS2101` and at index 2 named `CS2103T`.
       2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
       3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
@@ -1014,7 +1017,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The third meeting above will be displayed.
 
 4. Finding a meeting in the meeting list by a combination of names, modules and tags.
-   1. Prerequisite:
+   1. Prerequisites:
       1. There is a module in the module list at index 1 named `CS2101` and at index 2 named `CS2103T`.
       2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
       3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
@@ -1026,12 +1029,12 @@ testers are expected to do more *exploratory* testing.
       Expected: The first meeting above will be displayed.
 
 5. Finding a meeting in an empty meeting list.
-   1. Prerequisite: There are no meetings in the meeting list.
+   1. Prerequisites: There are no meetings in the meeting list.
    2. Test case: `find this`<br>
       Expected: No meetings shown.
 
 6. Finding a meeting with keywords that do not fit any meetings.
-   1. Prerequisite:
+   1. Prerequisites:
       1. There is a module in the module list at index 1 named `CS2101`.
       2. There is a meeting in the meeting list which was added using the command `add n/Lecture u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/lecturequiz`.
       3. There is a meeting in the meeting list which was added using the command `add n/Tutorial u/https://www.zoom.com d/25-03-2022 1400 dur/1.5 m/1 r/Y t/recorded t/tutorialquiz`<br>
@@ -1045,7 +1048,7 @@ testers are expected to do more *exploratory* testing.
 
 #### Opening Meetings
 1. Opening the first meeting in the currently shown meeting list.
-   1. Prerequisite: There is at least one meeting in the meeting list currently shown. The testing device is compatible with `java.awt.Desktop` and has desktop capabilities.
+   1. Prerequisites: There is at least one meeting in the meeting list currently shown. The testing device is compatible with `java.awt.Desktop` and has desktop capabilities.
    2. Test case: `open 1`<br>
       Expected: The URL of the first meeting in the currently shown meeting list is opened in the device default browser.
 
@@ -1058,12 +1061,12 @@ testers are expected to do more *exploratory* testing.
       Expected: Invalid command format error message shown. No meetings opened.
 
 3. Opening with an out-of-bounds index.
-   1. Prerequisite: There is at least one meeting in the meeting list currently shown.
+   1. Prerequisites: There is at least one meeting in the meeting list currently shown.
    2. Test case: `open [index]`, where `[index]` is an integer greater than the number of meetings in the currently shown list.<br>
       Expected: Invalid index error message shown. No meetings opened.
 
 4. Opening with a negative index.
-   1. Prerequisite: There is at least one meeting in the meeting list currently shown.
+   1. Prerequisites: There is at least one meeting in the meeting list currently shown.
    2. Test case: `open [index]`, where `[index]` is a negative integer.<br>
       Expected: Invalid command format error message shown. No meetings opened.
 
