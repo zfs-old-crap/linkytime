@@ -39,12 +39,14 @@ Given below are my contributions to the project.
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=AY2122S2-CS2103T-T13-3%2Ftp&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=justinekoh&tabRepo=AY2122S2-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
+* **Project Management**:
+    * Maintained team [weekly meeting notes](https://docs.google.com/document/d/1blOVPpajNMHmHRSajK4t9cl0r2PwMiO2j7FF4Xy-pO8/edit?usp=sharing).
 
 * **Enhancements to existing features**:
     * Added a force delete functionality for module delete
       command [\#122](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/122), with test cases. [\#199](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/199)
-    * Wrote unit and integration test cases for `delete meeting`, `find meeting` and `open meeting` features. [\#63](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/63) [\#86](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/86) [\#94](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/94)
-    * Wrote test cases for 
+    * Wrote comprehensive unit and integration test cases for `delete meeting`, `find meeting` and `open meeting` features. [\#63](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/63) [\#86](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/86) [\#94](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/94)
+    * Wrote comprehensive test cases for `Meeting`, `MeetingUrl` and `UniqueMeetingList` classes of the application `Model`. [\#202](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/202)
 
 * **Documentation**:
     * User Guide:
@@ -52,18 +54,19 @@ Given below are my contributions to the project.
           . [\#28](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/28)
           , [\#86](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/86)
         * Added documentation for the `open` feature. [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123)
-        * Added documentation for module force delete
+        * Added documentation for `force delete module`
           command. [\#123](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/123)
     * Developer Guide:
-        * Added implementation details of the `delete meeting`
-          feature. [\#111](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/111)
-        * Added implementation details of the `find meeting`
-          feature. [\#72](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/112)
-        * Added implementation details of the `open meeting` feature. [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
-        * Added some Use Cases and User Stories. [\#10](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/10)
+        * Added implementation details of the `delete meeting`, `find meeting` and `open meeting`.
+          feature. [\#111](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/111), [\#72](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/112), [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
         * Added UML Sequence Diagrams for `delete meeting`, `find meeting` and `open meeting` features. [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
-        * 
+        * Added UML Sequence Diagrams for `delete module` feature. [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
+        * Updated UML Activity Diagram for `delete module` feature. [\#211](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/211)
+        * Collaborated with teammates to update Use Cases and User Stories. [\#10](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/10)
+    * Demonstration video:
+        * Showcased the `delete meeting`, `find meeting` and `open meeting` features of the product.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#128](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/128)
-    * Reported bugs and suggestions for other teams in the class (examples:)
+    * PRs reviewed (with non-trivial review comments): [\#85](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/85), [\#128](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/128)
+    * Reported bugs and suggestions for other teams in the class (examples: [ped-repo](https://github.com/justinekoh/ped/issues))
+    * All code reviews available [here](https://github.com/AY2122S2-CS2103T-T13-3/tp/pulls?q=is%3Apr+reviewed-by%3Ajustinekoh).
