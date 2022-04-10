@@ -53,7 +53,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         final MeetingUrl url = ParserUtil.parseMeetingUrl(argMultimap.getValue(PREFIX_URL).get());
         final MeetingDateTime dateTime = ParserUtil.parseMeetingDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
         final MeetingDuration duration = ParserUtil.parseMeetingDuration(argMultimap.getValue(PREFIX_DURATION).get());
-        final Index moduleIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MODULE).get());
+        final Index moduleIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MODULE).get(), "Module");
         final IsRecurring recurringStatus = ParserUtil.parseRecurringStatus(argMultimap
                 .getValue(PREFIX_RECURRING).get());
         final Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

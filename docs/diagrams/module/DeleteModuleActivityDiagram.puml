@@ -7,10 +7,16 @@ if () then ([index parameter is valid])
 :Delete Module
 matching given index;
 if () then ([Module with given index exists])
+if () then ([isForced])
+: Delete all associated meetings;
+: Delete module from LinkyTime;
+: Show success message to user;
+else ([else])
 :Check if there are
 meetings under this module;
 if () then ([No meetings associated])
-:Delete module from LinkyTime;
+:Delete module
+from LinkyTime;
 note left
 Saving and
 committing of
@@ -19,21 +25,20 @@ data has been
 omitted for
 brevity.
 end note
-:Show success message to user;
+:Show success
+message to user;
 else ([else])
 :Show Delete restricted
 error to user;
-stop
+endif
 endif
 else ([else])
 :Show Module not found
 error to user;
-stop
 endif
 else ([else])
 :Show invalid usage
 error to user;
-stop
 endif
 stop
 @enduml

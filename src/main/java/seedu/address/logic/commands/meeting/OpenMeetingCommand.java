@@ -59,7 +59,7 @@ public class OpenMeetingCommand extends Command {
      * logic from the running environment for testing purposes. This method should ideally be private/protected
      * but is made public for testing purposes.
      */
-    public CommandResult executeWithUrlOpener(Model model, UrlOpener urlOpener) throws CommandException {
+    protected CommandResult executeWithUrlOpener(Model model, UrlOpener urlOpener) throws CommandException {
         requireNonNull(model);
         final List<Meeting> lastShownList = model.getFilteredMeetingList();
 

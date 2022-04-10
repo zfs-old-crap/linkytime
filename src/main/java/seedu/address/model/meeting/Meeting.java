@@ -97,6 +97,14 @@ public class Meeting implements Comparable<Meeting> {
      */
     private LocalDateTime getNextRecurrence() {
         final LocalDateTime today = LocalDateTime.now();
+        return getNextRecurrence(today);
+    }
+
+    /*
+     * This is the protected version of the private method getNextOccurence that accepts a
+     * LocalDateTime, logic abstracted out for testing purposes.
+     */
+    protected LocalDateTime getNextRecurrence(LocalDateTime today) {
         final LocalDateTime endDateTime = duration.getEndDateTime(startDateTime.datetime);
 
         final long weeksElapsed = ChronoUnit.WEEKS.between(endDateTime, today);
