@@ -27,10 +27,10 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to open a meeting's link through the application, in the device browser.
     * What it does: Allows the user to directly open a meeting's URL through the application using a simple command and
       the meeting's index.
-    * Justification: This feature is needed to greatly enhance the application's usability and effectiveness as it
+    * Justification: This feature is needed to greatly enhance the application's usability as it
       significantly speeds up the process of joining a meeting, which is a fundamental feature of the application.
       Without this feature, the user will have to manually copy the link from the application, open their browser, paste
-      the link and open it. This is especially troublesome as the link is normally very long.
+      the link and open it. This is especially troublesome as links are normally very long.
     * Highlights: This feature called for a careful deliberation over the various libraries available that assist with
       accessing desktop capabilities (such as opening default browsers). I had to do extensive research to identify the
       shortcomings of each library and select the one that works with all versions of the 3 OSes that LinkyTime is made
