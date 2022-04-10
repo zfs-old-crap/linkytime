@@ -5,7 +5,7 @@ title: Bing Quan's Project Portfolio Page
 
 ### Project: LinkyTime
 
-**LinkyTime** is a desktop application for NUS Computer Science students to manage their online meeting links. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+**LinkyTime** is a desktop application for NUS Computer Science students to manage their online meeting links. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 13 kLoC.
 
 Given below are my contributions to the project.
 
@@ -37,5 +37,6 @@ Given below are my contributions to the project.
         * Described notable features like "Opening of Meeting Links" and "List and Archive" [\#213](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/213).
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#82](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/82#pullrequestreview-910379147) [\#83](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/83#pullrequestreview-911378194), [\#112](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/112#discussion_r834584643), [\#202](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/202#discussion_r846625004); full list of [PRs reviewed](https://github.com/AY2122S2-CS2103T-T13-3/tp/pulls?q=is%3Apr+reviewed-by%3AChuaBingQuan+).
+  * PRs reviewed (with non-trivial review comments): [\#82](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/82#pullrequestreview-910379147) [\#83](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/83#pullrequestreview-911378194), [\#112](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/112#discussion_r834584643), [\#202](https://github.com/AY2122S2-CS2103T-T13-3/tp/pull/202#discussion_r846625004)
+  * Full list of [PRs reviewed](https://github.com/AY2122S2-CS2103T-T13-3/tp/pulls?q=is%3Apr+reviewed-by%3AChuaBingQuan+).
 
