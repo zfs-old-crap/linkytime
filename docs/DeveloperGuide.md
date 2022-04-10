@@ -971,7 +971,8 @@ testers are expected to do more *exploratory* testing.
       Expected: Only meetings that are completed will be shown.
 
 2. Listing all archived meetings with no meetings in the meeting list.
-   1. Prerequisites: There are no meetings in the meeting list.
+   1. Prerequisites: 
+      1. There are no meetings in the meeting list.
    2. Test case: `archive`<br>
       Expected: No meetings will be shown.
 
