@@ -17,6 +17,8 @@ public class MeetingUrl {
     public static final String MESSAGE_CONSTRAINTS =
             "URLs should be a valid link, and it should not be blank";
 
+    public static final String INVALID_URL_STRING = "%s is not a valid URL";
+
     /* Regex to check if a string starts with `http[s]://`. */
     public static final String HTTP_REGEX = "^(https?)://.*$";
 
@@ -59,10 +61,10 @@ public class MeetingUrl {
      */
     public static URL parseUrl(String url) {
         try {
-            url = checkAndPrependHttps(url);
-            return new URL(url);
+            final String prependedUrl = checkAndPrependHttps(url);
+            return new URL(prependedUrl);
         } catch (MalformedURLException e) {
-            throw new InvalidUrlException(String.format("%s is not a valid URL", url));
+            throw new InvalidUrlException(String.format(INVALID_URL_STRING, url));
         }
     }
 
