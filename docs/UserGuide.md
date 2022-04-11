@@ -19,9 +19,6 @@ The app is optimized for use via a Command-Line Interface while still having the
 
 If you're not familiar with using a Command-Line Interface, this User Guide can help you get up and running in no time.
 
-<!-- If you can type fast,
-LinkyTime can get your meeting management tasks done faster than traditional GUI apps. -->
-
 ### How to use the User Guide
 
 You may refer to the [Table of Contents](#table-of-contents) to quickly navigate the User Guide.
@@ -56,13 +53,13 @@ At the top of the **Meeting List Panel**, the **Meeting List State** label indic
 
 ### Meeting Card
 
-![Annotated Meeting Card](images/MeetingCard.png)
+<img src="images/MeetingCard.png" alt="Annotated Meeting Card" width="550" />
 
 Each meeting is displayed as shown in the example above.
 
 ### Module Card
 
-![Annotated Module Card](images/ModuleCard.png)
+<img src="images/ModuleCard.png" alt="Annotated Module Card" width="400" />
 
 Each module is displayed as shown in the example above.
 
