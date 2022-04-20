@@ -49,7 +49,7 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Tutorial "
-            + PREFIX_DURATION + "1.0";
+            + PREFIX_DURATION + "1h";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

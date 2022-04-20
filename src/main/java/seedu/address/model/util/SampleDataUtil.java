@@ -25,7 +25,7 @@ public class SampleDataUtil {
                 new MeetingName("Lecture"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/3442dfkj99221?pwd=F3ejfa99221"),
                 new MeetingDateTime("18-03-2022 1400"),
-                new MeetingDuration("2"),
+                new MeetingDuration("2h"),
                 new Module("CS2103T"),
                 new IsRecurring("Y"),
                 getTagSet("recorded", "lecturequiz")
@@ -34,7 +34,7 @@ public class SampleDataUtil {
                 new MeetingName("Weekly Meeting"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/3442138ukj99221?pwd=F3ejfa99221"),
                 new MeetingDateTime("14-03-2022 1800"),
-                new MeetingDuration("2"),
+                new MeetingDuration("2h"),
                 new Module("CS2103T"),
                 new IsRecurring("Y"),
                 getTagSet("tp")
@@ -43,7 +43,7 @@ public class SampleDataUtil {
                 new MeetingName("Tutorial"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/3abc922qwdu1?pwd=F3a99rgb221"),
                 new MeetingDateTime("17-03-2022 1300"),
-                new MeetingDuration("1"),
+                new MeetingDuration("1h"),
                 new Module("CS2103T"),
                 new IsRecurring("Y"),
                 getTagSet("participation")
@@ -52,7 +52,7 @@ public class SampleDataUtil {
                 new MeetingName("PE Dry Run"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/3442dfkj99221?pwd=F3ejfa99221"),
                 new MeetingDateTime("01-04-2022 1345"),
-                new MeetingDuration("1.5"),
+                new MeetingDuration("1h30m"),
                 new Module("CS2103T"),
                 new IsRecurring("N"),
                 getTagSet("graded")
@@ -61,7 +61,7 @@ public class SampleDataUtil {
                 new MeetingName("PE Exam"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/3442dfkj99221?pwd=F3ejfa99221"),
                 new MeetingDateTime("16-04-2022 1345"),
-                new MeetingDuration("2.5"),
+                new MeetingDuration("2h30m"),
                 new Module("CS2103T"),
                 new IsRecurring("N"),
                 getTagSet("graded")
@@ -70,7 +70,7 @@ public class SampleDataUtil {
                 new MeetingName("Lecture"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/93sd28jvnk2921?pwd=F3a9als7421"),
                 new MeetingDateTime("16-03-2022 1000"),
-                new MeetingDuration("2"),
+                new MeetingDuration("2h"),
                 new Module("CS2106"),
                 new IsRecurring("Y"),
                 getTagSet("recorded")
@@ -79,7 +79,7 @@ public class SampleDataUtil {
                 new MeetingName("Tutorial"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/1abaslk849y2?pwd=F3jdf12mvf21"),
                 new MeetingDateTime("16-03-2022 1400"),
-                new MeetingDuration("1"),
+                new MeetingDuration("1h"),
                 new Module("CS2106"),
                 new IsRecurring("Y"),
                 getTagSet()
@@ -88,7 +88,7 @@ public class SampleDataUtil {
                 new MeetingName("Lab"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/1a2398sllab49y2?pwd=F3129fmvf21"),
                 new MeetingDateTime("14-02-2022 1300"),
-                new MeetingDuration("1"),
+                new MeetingDuration("1h"),
                 new Module("CS2106"),
                 new IsRecurring("N"),
                 getTagSet()
@@ -97,7 +97,7 @@ public class SampleDataUtil {
                 new MeetingName("Midterm"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/93sd28jvnk2921?pwd=F3a9als7421"),
                 new MeetingDateTime("12-03-2022 1300"),
-                new MeetingDuration("2"),
+                new MeetingDuration("2h"),
                 new Module("CS2106"),
                 new IsRecurring("N"),
                 getTagSet("exams", "graded", "openbook")
@@ -106,7 +106,7 @@ public class SampleDataUtil {
                 new MeetingName("Tutorial"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/1awe2398sll3249y2?pwd=F312sdf9fmvf21"),
                 new MeetingDateTime("15-03-2022 1200"),
-                new MeetingDuration("2"),
+                new MeetingDuration("2h"),
                 new Module("CS2101"),
                 new IsRecurring("Y"),
                 getTagSet("participation")
@@ -115,7 +115,7 @@ public class SampleDataUtil {
                 new MeetingName("OP2 Presentation"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/1awe23sll3249y2?pwd=F312sdf9fmvf21"),
                 new MeetingDateTime("01-04-2022 1600"),
-                new MeetingDuration("2"),
+                new MeetingDuration("2h"),
                 new Module("CS2101"),
                 new IsRecurring("N"),
                 getTagSet("presentation")
@@ -124,7 +124,7 @@ public class SampleDataUtil {
                 new MeetingName("OP1 Presentation"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/1awe23sll3249y2?pwd=F312sdf9fmvf21"),
                 new MeetingDateTime("08-02-2022 1600"),
-                new MeetingDuration("2"),
+                new MeetingDuration("2h"),
                 new Module("CS2101"),
                 new IsRecurring("N"),
                 getTagSet("presentation")
@@ -133,7 +133,7 @@ public class SampleDataUtil {
                 new MeetingName("Lecture"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/1awell3242?pwd=F31a12sdf9fmvf21"),
                 new MeetingDateTime("18-03-2022 1200"),
-                new MeetingDuration("2"),
+                new MeetingDuration("2h"),
                 new Module("ST2334"),
                 new IsRecurring("Y"),
                 getTagSet("notrecorded")
@@ -142,7 +142,7 @@ public class SampleDataUtil {
                 new MeetingName("Tutorial"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/1awll3242?pwd=F312sdfdf9fmvf21"),
                 new MeetingDateTime("15-03-2022 1000"),
-                new MeetingDuration("2"),
+                new MeetingDuration("2h"),
                 new Module("GES1035"),
                 new IsRecurring("Y"),
                 getTagSet()
@@ -151,7 +151,7 @@ public class SampleDataUtil {
                 new MeetingName("Group Presentation"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/1awll3242?pwd=F312sdfdf9fmvf21"),
                 new MeetingDateTime("22-02-2022 1000"),
-                new MeetingDuration("2"),
+                new MeetingDuration("2h"),
                 new Module("GES1035"),
                 new IsRecurring("N"),
                 getTagSet("graded", "presentation")
@@ -160,7 +160,7 @@ public class SampleDataUtil {
                 new MeetingName("Final Quiz"),
                 new MeetingUrl("https://legit-uni.zoom.us/j/1awll3242?pwd=F312sdfdf9fmvf21"),
                 new MeetingDateTime("13-04-2022 2000"),
-                new MeetingDuration("1"),
+                new MeetingDuration("1h"),
                 new Module("GES1035"),
                 new IsRecurring("N"),
                 getTagSet("graded", "exams", "openbook")
@@ -169,7 +169,7 @@ public class SampleDataUtil {
                 new MeetingName("Weekly Check In"),
                 new MeetingUrl("https://legit-company.zoom.us/j/1awll323242?pwd=F312sdgfdfdf9fmvf21"),
                 new MeetingDateTime("02-04-2022 1400"),
-                new MeetingDuration("0.5"),
+                new MeetingDuration("30m"),
                 new Module("Internship"),
                 new IsRecurring("Y"),
                 getTagSet()

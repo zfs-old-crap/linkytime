@@ -48,7 +48,7 @@ public class AddMeetingCommand extends Command {
             + PREFIX_NAME + "Tutorial "
             + PREFIX_URL + "https://www.zoom.com "
             + PREFIX_DATETIME + "30-04-2022 1400 "
-            + PREFIX_DURATION + "2 "
+            + PREFIX_DURATION + "2h "
             + PREFIX_MODULE + "1 "
             + PREFIX_RECURRING + "Y "
             + PREFIX_TAG + "Boring";

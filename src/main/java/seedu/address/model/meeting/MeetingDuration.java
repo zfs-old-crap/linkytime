@@ -1,9 +1,12 @@
 package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNullElse;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents a Meeting's duration in the meeting list.
@@ -11,10 +14,12 @@ import java.time.LocalDateTime;
  */
 public class MeetingDuration {
     public static final String MESSAGE_CONSTRAINTS =
-            "Duration should be a decimal number (4dp) "
-            + "given in hours, and range from 1 minute to 24 hours inclusive";
-    public static final String VALIDATION_REGEX = "^0*[0-9]{1,2}(\\.[0-9]{1,4})?$";
-    public final double duration;
+            "Duration should be given in the form of Xh Ym (where X is the number of hours"
+            + "and Y the number of minutes), and should range from 1 minute to 24 hours inclusive";
+    public static final Pattern VALIDATION_REGEX =
+            Pattern.compile("^(?!$)(?:0*(?<hour>\\d{1,2}) *h *)?(?:0*(?<minute>\\d{1,2}) *m)?$");
+    public final int hour;
+    public final int minute;
 
     /**
      * Constructs a {@code MeetingDuration}
@@ -24,7 +29,10 @@ public class MeetingDuration {
     public MeetingDuration(String duration) {
         requireNonNull(duration);
         checkArgument(isValidDuration(duration), MESSAGE_CONSTRAINTS);
-        this.duration = Double.parseDouble(duration);
+        Matcher matcher = VALIDATION_REGEX.matcher(duration);
+        matcher.matches();
+        this.hour = Integer.parseInt(requireNonNullElse(matcher.group("hour"), "0"));
+        this.minute = Integer.parseInt(requireNonNullElse(matcher.group("minute"), "0"));
     }
 
     /**
@@ -35,12 +43,14 @@ public class MeetingDuration {
      * @return True, if the {@code String} is a valid float.
      */
     public static boolean isValidDuration(String test) {
-        if (!test.matches(VALIDATION_REGEX)) {
+        Matcher matcher = VALIDATION_REGEX.matcher(test);
+        if (!matcher.matches()) {
             return false;
         }
         try {
-            final double durationToTest = Double.parseDouble(test);
-            return durationToTest >= ((1.0 / 60.0)) && durationToTest <= 24;
+            final int hour = Integer.parseInt(requireNonNullElse(matcher.group("hour"), "0"));
+            final int minute = Integer.parseInt(requireNonNullElse(matcher.group("minute"), "0"));
+            return (minute >= 1 || hour >= 1) && (minute < 60) && (hour < 24 || (hour == 24 && minute == 0));
         } catch (NumberFormatException e) {
             return false;
         }
@@ -53,19 +63,20 @@ public class MeetingDuration {
      * @return The resulting LocalDateTime after adding the duration to the startDateTime.
      */
     public LocalDateTime getEndDateTime(LocalDateTime startDateTime) {
-        final int durationInMinutes = (int) (duration * 60);
+        final int durationInMinutes = hour * 60 + minute;
         return startDateTime.plusMinutes(durationInMinutes);
     }
 
     @Override
     public String toString() {
-        return Double.toString(duration);
+        return hour + "h" + minute + "m";
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MeetingDuration // instanceof handles nulls
-                && duration == (((MeetingDuration) other).duration)); // state check
+                && hour == ((MeetingDuration) other).hour // state check
+                && minute == ((MeetingDuration) other).minute);
     }
 }
