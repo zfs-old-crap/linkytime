@@ -4,7 +4,7 @@
       "name": "Tutorial",
       "url": "https://www.zoom.com",
       "dateTime": "01-02-2023 1300",
-      "duration": "1.5",
+      "duration": "1h30m",
       "module": "CS2101",
       "isRecurring": "N",
       "tagged": [ "amy" ]
@@ -12,7 +12,7 @@
       "name": "Lecture",
       "url": "https://www.zoom.com",
       "dateTime": "02-02-2022 1300",
-      "duration": "2.0",
+      "duration": "2h",
       "module": "CS2105",
       "isRecurring": "Y",
       "tagged": [ "roger" ]
@@ -20,7 +20,7 @@
       "name": "Lecture",
       "url": "https://www.zoom.com",
       "dateTime": "03-02-2022 1300",
-      "duration": "2.0",
+      "duration": "2h",
       "module": "CS2106",
       "isRecurring": "Y",
       "tagged": [ "colin" ]
@@ -28,7 +28,7 @@
       "name": "Lecture",
       "url": "https://www.zoom.com",
       "dateTime": "04-02-2022 1300",
-      "duration": "2.0",
+      "duration": "2h",
       "module": "CS2030",
       "isRecurring": "Y",
       "tagged": [ "ooi" ]
@@ -36,7 +36,7 @@
       "name": "Lecture",
       "url": "https://www.zoom.com",
       "dateTime": "05-02-2022 1300",
-      "duration": "1.0",
+      "duration": "1h",
       "module": "CS2040",
       "isRecurring": "Y",
       "tagged": [ "CKF" ]
@@ -44,7 +44,7 @@
       "name": "Lecture",
       "url": "https://www.google.com",
       "dateTime": "18-03-2023 1400",
-      "duration": "2",
+      "duration": "2h",
       "module": "CS2103",
       "isRecurring": "Y",
       "tagged": [ "damith" ]
@@ -52,7 +52,7 @@
       "name": "Lecture",
       "url": "https://www.zoom.com",
       "dateTime": "07-02-2022 1300",
-      "duration": "1.5",
+      "duration": "1h30m",
       "module": "CS1101S",
       "isRecurring": "Y",
       "tagged": [ "hartinmenz" ]

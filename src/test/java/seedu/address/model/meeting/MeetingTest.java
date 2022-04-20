@@ -35,7 +35,7 @@ public class MeetingTest {
                 LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT)
                         .minusHours(1);
         final Meeting meeting = new MeetingBuilder().withIsRecurring("Y")
-                .withDuration("2").withDateTime(startDateTime).build();
+                .withDuration("2h").withDateTime(startDateTime).build();
         assertEquals(meeting.getNextRecurrence(current), startDateTime);
     }
 
@@ -71,7 +71,7 @@ public class MeetingTest {
                         .minusHours(2).minusNanos(1);
         final LocalDateTime nextRecurrence = startDateTime.plusWeeks(1);
         final Meeting meeting = new MeetingBuilder().withIsRecurring("Y")
-                .withDuration("2").withDateTime(startDateTime).build();
+                .withDuration("2h").withDateTime(startDateTime).build();
         assertEquals(meeting.getNextRecurrence(current), nextRecurrence);
     }
 
@@ -94,7 +94,7 @@ public class MeetingTest {
         final Meeting meeting = new MeetingBuilder().withIsRecurring("N").build();
         final LocalDateTime startDateTime = LocalDateTime.parse(MeetingBuilder.DEFAULT_DATETIME, INPUT_FORMAT);
         final MeetingDuration duration = new MeetingDuration(MeetingBuilder.DEFAULT_DURATION);
-        final LocalDateTime firstExpectedEnd = startDateTime.plusMinutes((int) duration.duration * 60);
+        final LocalDateTime firstExpectedEnd = startDateTime.plusMinutes(duration.hour * 60 + duration.minute);
         assertEquals(meeting.getEndDateTime(), new MeetingDateTime(firstExpectedEnd));
     }
 
@@ -163,9 +163,9 @@ public class MeetingTest {
     @Test
     public void compareTo_sameStartDifferentDuration_shorterThenLonger() {
         final Meeting shorterMeeting = new MeetingBuilder().withIsRecurring("N")
-                .withDuration("1").build();
+                .withDuration("1h").build();
         final Meeting longerMeeting = new MeetingBuilder().withIsRecurring("N")
-                .withDuration("2").build();
+                .withDuration("2h").build();
         assertTrue(shorterMeeting.compareTo(longerMeeting) < 0);
     }
 }

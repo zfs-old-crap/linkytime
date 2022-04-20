@@ -37,8 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_URL_TUTORIAL = "https://www.zoom.com";
     public static final String VALID_DATETIME_LECTURE = "18-03-2023 1400";
     public static final String VALID_DATETIME_TUTORIAL = "01-02-2023 1300";
-    public static final String VALID_DURATION_LECTURE = "2";
-    public static final String VALID_DURATION_TUTORIAL = "1.5";
+    public static final String VALID_DURATION_LECTURE = "2h";
+    public static final String VALID_DURATION_TUTORIAL = "1h30m";
     public static final Index VALID_MODULE_INDEX_LECTURE = Index.fromZeroBased(3);
     public static final Index VALID_MODULE_INDEX_TUTORIAL = Index.fromZeroBased(4);
     public static final String VALID_MODULE_LECTURE = "CS2103";
